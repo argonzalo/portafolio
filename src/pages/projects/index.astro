@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content"
+import PageHeader from "@/components/portfolio/PageHeader.astro"
+import ProjectCard from "@/components/portfolio/ProjectCard.astro"
+import BaseLayout from "@/layouts/BaseLayout.astro"
+
+const projects = (await getCollection("projects", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+)
+---
+
+<BaseLayout
+  title="Proyectos"
+  description="Proyectos reales, decisiones técnicas y case studies."
+>
+  <section class="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-16">
+    <PageHeader
+      eyebrow="Projects"
+      title="Trabajo seleccionado."
+      description="Cada proyecto explica el resultado y el proceso: problema, decisiones, arquitectura y aprendizajes."
+    />
+    {
+      projects.length > 0 ? (
+        <div class="grid gap-6 md:grid-cols-2">
+          {projects.map((project) => (
+            <ProjectCard
+              href={`/projects/${project.id}`}
+              title={project.data.title}
+              description={project.data.description}
+              stack={project.data.stack}
+              experimental={project.data.experimental}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="text-muted-foreground">Todavía no hay proyectos publicados.</p>
+      )
+    }
+  </section>
+</BaseLayout>

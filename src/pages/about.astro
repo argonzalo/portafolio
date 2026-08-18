@@ -1,0 +1,28 @@
+---
+import PageHeader from "@/components/portfolio/PageHeader.astro"
+import { FadeIn } from "@/components/interactive/FadeIn"
+import BaseLayout from "@/layouts/BaseLayout.astro"
+---
+
+<BaseLayout
+  title="Sobre mí"
+  description="Quién soy, cómo trabajo y qué tipo de productos construyo."
+>
+  <section class="mx-auto flex w-full max-w-3xl flex-col gap-10 px-6 py-16">
+    <PageHeader
+      eyebrow="About"
+      title="Criterio, interfaces y sistemas."
+      description="Esta página está pensada para comunicar con claridad. La interfaz debe desaparecer y dejar que la información sea protagonista."
+    />
+    <FadeIn client:visible className="text-muted-foreground flex flex-col gap-4 text-base leading-relaxed">
+      <p>
+        Completa este espacio con tu trayectoria, enfoque de trabajo y el tipo
+        de problemas que te interesa resolver.
+      </p>
+      <p>
+        El objetivo es que en pocos segundos quede claro quién eres, qué
+        construyes y qué tecnologías dominas.
+      </p>
+    </FadeIn>
+  </section>
+</BaseLayout>

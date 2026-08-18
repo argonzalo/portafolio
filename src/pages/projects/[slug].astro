@@ -1,0 +1,67 @@
+---
+import { getCollection, render } from "astro:content"
+import type { CollectionEntry } from "astro:content"
+import BaseLayout from "@/layouts/BaseLayout.astro"
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects", ({ data }) => !data.draft)
+
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }))
+}
+
+type Props = {
+  project: CollectionEntry<"projects">
+}
+
+const { project } = Astro.props
+const { Content } = await render(project)
+const { title, description, role, stack, links } = project.data
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="mx-auto flex w-full max-w-3xl flex-col gap-10 px-6 py-16">
+    <header class="flex flex-col gap-4">
+      <p class="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+        Case study
+      </p>
+      <h1 class="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+        {title}
+      </h1>
+      <p class="text-muted-foreground text-base leading-relaxed">{description}</p>
+      <dl class="text-muted-foreground grid gap-4 text-sm sm:grid-cols-2">
+        <div>
+          <dt class="text-foreground font-medium">Rol</dt>
+          <dd>{role}</dd>
+        </div>
+        <div>
+          <dt class="text-foreground font-medium">Stack</dt>
+          <dd>{stack.join(" · ")}</dd>
+        </div>
+      </dl>
+      {
+        links && (
+          <div class="flex flex-wrap gap-4 text-sm">
+            {links.live && (
+              <a class="underline-offset-4 hover:underline" href={links.live}>
+                Ver producto
+              </a>
+            )}
+            {links.repo && (
+              <a class="underline-offset-4 hover:underline" href={links.repo}>
+                Repositorio
+              </a>
+            )}
+          </div>
+        )
+      }
+    </header>
+    <div
+      class="max-w-none [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-semibold [&_p]:text-muted-foreground [&_p]:leading-relaxed [&_ul]:text-muted-foreground"
+    >
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
