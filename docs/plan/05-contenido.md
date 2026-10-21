@@ -41,6 +41,45 @@ const project = z.object({
 
 El cuerpo del MDX es el caso completo para `/projects/<id>`. La migración (T-A04) traslada los datos actuales de `src/lib/projects.ts` (incluidas las Versiones 2 de las descripciones) y deja los campos nuevos con borradores marcados `TODO(humano)`.
 
+### 1.1 Implementación (T-A04)
+
+Los esquemas concretos viven en `src/content/schema.ts` y se conectan a las colecciones en `src/content.config.ts`:
+
+- `projects`: `src/content/projects/<id>.mdx`, un archivo por proyecto.
+- `organizations`: `src/content/organizations/<id>.md`, registros referenciados desde el campo `organization` (por ejemplo `banner-director`).
+
+Además del esquema de arriba se definen:
+
+```ts
+const partSchema = z.object({
+  title: z.string(),
+  period: z.string(),
+  stack: z.array(z.string()).default([]),
+  description: z.string(),
+  url: z.url().optional(),
+  stats: z.array(z.string()).default([]),
+  notes: z.array(z.string()).default([]), // avisos: confidencialidad, imágenes ilustrativas…
+})
+
+const mediaSchema = z.object({
+  src: z.string(),
+  alt: z.string(),
+  caption: z.string().optional(),
+})
+
+const organizationSchema = z.object({
+  name: z.string(),
+  summary: z.string(),
+  description: z.string(),
+  period: z.string(),
+  location: z.string().optional(),
+})
+```
+
+Los avisos que antes eran un string (`alert`) pasan a ser `notes: string[]` en el proyecto y en cada pieza; la fachada los vuelve a unir para las páginas actuales.
+
+**Fachada temporal:** `src/lib/projects.ts` conserva la API síncrona que usan las páginas (`projects`, `getSortedProjects`, `getProjectById`, `getProjectRoutes`, `getOrganization`, `getProjectCover`, `getProjectInitial`). Lee el frontmatter con `import.meta.glob` para no obligar a reescribir páginas antes de T-A11/T-A17, y no importa `astro:content` porque la API debe ser síncrona (`getStaticPaths`, listados). Cuando esas tareas consulten las colecciones con `getCollection`/`render`, la fachada se elimina.
+
 ## 2. Presentación personal (set de textos base)
 
 | Pieza | Texto base (de la descripción) |
