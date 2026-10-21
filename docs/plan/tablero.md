@@ -27,7 +27,7 @@
 | T-A07 | Calidad adaptativa (`quality.ts`, `PerformanceMonitor`), overlay `?debug`, deep links de estado, ruta `/lab/[scene]` solo en dev | T-A06 | `src/experience/quality.ts`, `src/experience/debug.tsx`, `src/pages/lab/` | pendiente |
 | T-A08 | **Spike del hilo conductor:** opciones A y C de ADR-006 en `/lab/thread`, con transición Vibo→Pirp y versión mobile; best-of-N (una variante por worktree). Default A si no hay elección a tiempo; C solo si cumple mobile | ADR-001 | `src/experience/thread/`, `src/pages/lab/thread.astro` | listo |
 | T-A09 | Pipeline de assets: `npm run assets:build` con gltf-transform (meshopt, KTX2, LOD por nivel), verificación de presupuestos, `assets-src/` gitignored + README de convención (ADR-010) | ADR-010 | `scripts/assets/`, `assets-src/README.md`, `.gitignore`, `package.json` (script) | listo |
-| T-A10 | Borradores de narrativa (problema, enfoque, decisiones, desafíos, impacto) de los 4 proyectos de primera línea a partir de `docs/descripciones-proyectos-originales.md`, marcando con `TODO(humano)` lo que solo él sabe | — | `docs/plan/borradores/` | en curso (Cursor A10) |
+| T-A10 | Borradores de narrativa (problema, enfoque, decisiones, desafíos, impacto) de los 4 proyectos de primera línea a partir de `docs/descripciones-proyectos-originales.md`, marcando con `TODO(humano)` lo que solo él sabe | — | `docs/plan/borradores/` | en revisión (rama `t/A10-borradores-narrativa`; abrir PR: https://github.com/argonzalo/portafolio/compare/main...t/A10-borradores-narrativa?expand=1) |
 
 ## F1 — Esqueleto del recorrido · Compuerta G1
 
