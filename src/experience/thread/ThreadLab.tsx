@@ -149,6 +149,10 @@ function costLabel(option: ThreadOption, tier: RenderTier): string {
 export function ThreadLab() {
   const { quality } = useExperienceStore()
   const [params, setParams] = useState<LabParams>(readParams)
+  // En el teléfono el panel de métricas tapa el hilo: arranca plegado.
+  const [showMetrics, setShowMetrics] = useState(
+    () => !window.matchMedia("(max-width: 768px)").matches
+  )
   const clock = useMemo(() => createThreadClock(readParams().mix), [])
   const progress = useMemo(() => experienceStore.progress(CHAPTER_ID), [])
   const slider = useRef<HTMLInputElement>(null)
@@ -253,13 +257,14 @@ export function ThreadLab() {
           </div>
         )}
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-[max(1rem,env(safe-area-inset-bottom))] flex justify-between px-5 font-mono text-[11px] tracking-wide text-white/55 uppercase">
+        <div className="pointer-events-none absolute inset-x-0 top-[max(1rem,env(safe-area-inset-top))] flex justify-between px-5 font-mono text-[11px] tracking-wide text-white/55 uppercase sm:top-auto sm:bottom-[max(1rem,env(safe-area-inset-bottom))]">
           <span>Vibo · trayectoria</span>
           <span>Pirp · señal</span>
         </div>
       </div>
 
-      <div className="pointer-events-none fixed inset-x-0 top-0 z-40 flex justify-center p-3">
+      {/* En el teléfono los controles van abajo: no tapan el hilo y quedan al alcance del pulgar. */}
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:top-0 sm:bottom-auto">
         <div className="pointer-events-auto flex w-full max-w-lg flex-col gap-2 rounded-lg border border-white/15 bg-black/75 p-3 font-mono text-[12px] text-white/90 backdrop-blur-sm">
           <div className="flex items-baseline justify-between gap-3">
             <p className="font-semibold tracking-wide uppercase">
@@ -329,6 +334,14 @@ export function ThreadLab() {
             >
               {params.frame ? "pantalla completa" : "marco mobile 390×844"}
             </button>
+            <button
+              type="button"
+              onClick={() => setShowMetrics((value) => !value)}
+              aria-pressed={showMetrics}
+              className="min-h-11 cursor-pointer rounded border border-white/15 px-2 text-white/75 hover:bg-white/10 aria-pressed:border-emerald-300/50 aria-pressed:text-emerald-200"
+            >
+              {showMetrics ? "ocultar métricas" : "métricas"}
+            </button>
           </div>
 
           <p className="text-[10px] leading-relaxed text-white/45">
@@ -339,7 +352,7 @@ export function ThreadLab() {
         </div>
       </div>
 
-      <DebugOverlay alwaysVisible />
+      {showMetrics ? <DebugOverlay alwaysVisible /> : null}
     </div>
   )
 }

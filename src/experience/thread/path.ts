@@ -50,6 +50,8 @@ export type ThreadExtent = {
   /** 1 en un viewport de referencia horizontal; escala grosores y tamaños. */
   scale: number
   portrait: boolean
+  /** En vertical el hilo sube: la escena va arriba y el texto abajo (`02` §4). */
+  offsetY: number
 }
 
 const REFERENCE_HEIGHT = 4.14
@@ -59,14 +61,15 @@ export function threadExtent(width: number, height: number): ThreadExtent {
 
   // En vertical la curva ocupa casi todo el ancho y no crece más de lo que
   // permite el ancho: la trayectoria no se vuelve una aguja.
-  const x = width * (portrait ? 0.44 : 0.4)
-  const y = portrait ? Math.min(height * 0.2, x * 0.9) : height * 0.3
+  const x = width * (portrait ? 0.41 : 0.4)
+  const y = portrait ? Math.min(height * 0.24, x * 1.2) : height * 0.26
 
   return {
     x,
     y,
     scale: Math.min(width, height) / REFERENCE_HEIGHT,
     portrait,
+    offsetY: portrait ? height * 0.1 : 0,
   }
 }
 
@@ -111,9 +114,9 @@ vec3 pirpPath(float u, float m) {
   float y = 0.0;
 
   for (int i = 0; i < PULSES; i++) {
-    float d = (u - pulseCenter(i)) * 22.0;
-    float e = d - 1.8;
-    y += pulseWeight(i, m) * (exp(-d * d) * 0.9 - exp(-e * e) * 0.35);
+    float d = (u - pulseCenter(i)) * 32.0;
+    float e = d - 1.7;
+    y += pulseWeight(i, m) * (exp(-d * d) * 1.05 - exp(-e * e) * 0.4);
   }
 
   // Portadora: el ruido de fondo del tiempo real.

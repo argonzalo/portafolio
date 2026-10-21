@@ -5,6 +5,7 @@ import {
   BufferAttribute,
   BufferGeometry,
   Color,
+  DoubleSide,
   Mesh,
   Points,
   ShaderMaterial,
@@ -47,13 +48,14 @@ varying float vU;
 void main() {
   float m = smoothstep(0.0, 1.0, uMix);
   vec3 p = threadPath(aU, m);
-  vec3 ahead = threadPath(min(aU + 0.002, 1.0), m);
-  vec3 behind = threadPath(max(aU - 0.002, 0.0), m);
+  // Tangente con paso amplio: en los picos de la señal la normal no se da vuelta.
+  vec3 ahead = threadPath(min(aU + 0.006, 1.0), m);
+  vec3 behind = threadPath(max(aU - 0.006, 0.0), m);
   vec2 tangent = normalize((ahead - behind).xy + 1e-5);
   vec2 normal = vec2(-tangent.y, tangent.x);
 
   float energy = threadEnergy(aU, m);
-  p.xy += normal * aSide * uWidth * (1.0 + energy * 1.6);
+  p.xy += normal * aSide * uWidth * (1.0 + min(energy, 1.0) * mix(1.6, 0.7, m));
 
   vSide = aSide;
   vEnergy = energy;
@@ -87,7 +89,8 @@ void main() {
   // Borde de dibujado: la línea se "enciende" al avanzar.
   float drawing = 1.0 + smoothstep(0.04, 0.0, uDraw - vU) * step(uDraw, 0.999) * 2.0;
 
-  vec3 line = mix(uLineA, uLineB, m);
+  // El cruce pasa por el dorado de Vibo en lugar de un violeta de mezcla.
+  vec3 line = mix(mix(uLineA, uLineB, m), uHeadA, sin(m * 3.14159) * 0.55);
   vec3 head = mix(uHeadA, uHeadB, m);
   vec3 color = line * (core + halo) * (base + energy) * drawing;
   color += head * core * energy * 1.2;
@@ -212,6 +215,8 @@ export function Filament({ clock, tier }: Props) {
         transparent: true,
         depthWrite: false,
         blending: AdditiveBlending,
+        // El listón gira con la curva: según el tramo queda de frente o de espaldas.
+        side: DoubleSide,
       }),
     []
   )
@@ -262,7 +267,7 @@ export function Filament({ clock, tier }: Props) {
   })
 
   return (
-    <group>
+    <group position-y={extent.offsetY}>
       <mesh
         ref={ribbonRef}
         geometry={ribbon}

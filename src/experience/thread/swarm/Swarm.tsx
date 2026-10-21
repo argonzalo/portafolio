@@ -66,7 +66,7 @@ void main() {
   vec3 ballPosition = threadPath(head, m) + aOffset * uBallRadius;
 
   vec3 p = mix(dust, ballPosition, ball);
-  energy = mix(energy, 1.2 * pulseWeight(0, m), ball);
+  energy = mix(energy, 0.75 * pulseWeight(0, m), ball);
   alpha = mix(alpha, pulseWeight(0, m), ball);
   alpha *= step(mix(u, head, ball), uDraw);
 
@@ -231,6 +231,7 @@ export function Swarm({ clock, tier }: Props) {
       ref={pointsRef}
       geometry={geometry}
       material={material}
+      position-y={extent.offsetY}
       frustumCulled={false}
     />
   )
