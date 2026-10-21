@@ -4,8 +4,12 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { LightboxStage } from "@/components/projects/LightboxStage"
 import type { ProjectImage } from "@/lib/projects"
-import { getProjectInitial } from "@/lib/projects"
 import { cn } from "@/lib/utils"
+
+/** Inicial para el fallback de proyectos sin imágenes. */
+function getProjectInitial(title: string) {
+  return title.trim().charAt(0).toUpperCase()
+}
 
 type ProjectGalleryProps = {
   images: ProjectImage[]
