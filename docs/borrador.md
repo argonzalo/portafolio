@@ -1,4 +1,4 @@
-_IGNORAR ESTE ARCHIVO_
+_!!! IMPORTANTE: IGNORAR ESTE ARCHIVO, ES UN BORRADOR PERSONAL !!!_
 
 Por carga de **diseño + modelado 3D**, ordenados de más a menos exigentes:
 

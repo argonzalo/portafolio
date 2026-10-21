@@ -14,13 +14,13 @@
 | ID | Tarea y criterio de terminado | Depende de | Zona | Estado |
 | --- | --- | --- | --- | --- |
 | T-H01 | Leer `00` y `decisiones.md`; aceptar o corregir ADR-001 a 005, 007, 008, 009 | — | `docs/plan/decisiones.md` | hecho (grilling 2026-10-21; ADR-006 spike A+C pendiente de elección visual) |
-| T-H02 | Cuentas y secretos: vincular repo a Vercel, instalar Upstash Redis desde el Marketplace, configurar tope de gasto mensual en OpenAI, confirmar `OPEN_AI_MODEL` y elegir `OPEN_AI_MODEL_FALLBACK` | — | Paneles externos, `.env` local | en curso (humano + agente) |
+| T-H02 | Cuentas y secretos: vincular repo a Vercel, instalar Upstash Redis desde el Marketplace, configurar tope de gasto mensual en OpenAI, confirmar `OPEN_AI_MODEL` y elegir `OPEN_AI_MODEL_FALLBACK` | — | Paneles externos, `.env` local | hecho (2026-10-21; modelo `gpt-6-luna`, fallback `gpt-5.4-mini`; Upstash `upstash-kv-lime-lantern`; preview https://portafolio-coral-zeta-55.vercel.app) |
 | T-H03 | Arrancar la recolección de insumos de primera línea: I-03 (marcas), I-08 (qué se puede contar de Pirp), I-04 (capturas) | — | `assets-src/`, `docs/plan/licencias.md` | listo |
 | T-H05 | Moodboard y validación de la ficha de Vibo (`03` §3.1 + ADR-011: golpe en slow-mo + overlays); después Pirp, Naturalis y Banner | — | `docs/plan/03-escenas.md` | listo |
 | T-H07 | I-02 / ADR-011: exportar de Firebase (`vibo-beta-2e60f` → `videos.analysisResults`) 1–2 clips anonimizados; curar JSON de overlays (bboxes + keypoints en la ventana del golpe) + métricas de jugador; sin trayectoria 3D fiel | — | `assets-src/vibo/` | listo |
 | T-A01 | Higiene del repo: README actualizado, scripts de `package.json` documentados, quitar `proyectos-facu/` y `.zip`, `.gitignore` (incl. `assets-src/` salvo README) | ADR-009, ADR-010 | Raíz (`README.md`, `.gitignore`), `proyectos-facu/` | listo |
 | T-A02 | Tooling de calidad: script `npm run check`, GitHub Actions (lint, typecheck, build), Lighthouse CI con presupuestos de `02` §1 sobre el preview, `rollup-plugin-visualizer`, Playwright con un smoke test | — | `package.json` (scripts, devDeps), `.github/`, `lighthouserc.*`, `playwright.config.*`, `tests/` | listo |
-| T-A03 | Adaptador Vercel + `astro:env` (esquema server/secret para las variables de `04` §2) + `/api/health` + redirección `analisis-rep-politica → pirp` + `.env.example` actualizado; preview funcionando | ADR-004, T-H02 | `astro.config.ts`, `package.json`, `src/pages/api/`, `.env.example` | pendiente (falta T-H02) |
+| T-A03 | Adaptador Vercel + `astro:env` (esquema server/secret para las variables de `04` §2) + `/api/health` + redirección `analisis-rep-politica → pirp` + `.env.example` actualizado; preview funcionando | ADR-004, T-H02 | `astro.config.ts`, `package.json`, `src/pages/api/`, `.env.example` | listo |
 | T-A04 | Content collections: esquema de `05` §1, migración de los 14 proyectos + Pirp como `pirp`, helpers de consulta; `src/lib/projects.ts` queda como fachada temporal para no romper páginas | ADR-003 | `src/content/`, `src/content.config.ts`, `src/lib/projects.ts` | listo |
 | T-A05 | Contratos y store: `src/experience/types.ts` (contratos de `01` §4), store mutable de progreso/capítulo/calidad, `registry.ts` vacío, emisor de `JourneySignal`; instalar R3F y drei | ADR-001, ADR-002 | `src/experience/`, `src/scenes/registry.ts`, `src/guide/signals.ts`, `package.json` | listo |
 | T-A06 | **Spike del runtime** (ruta crítica): `Stage` persistente con `transition:persist`, ScrollTrigger → store, 2 escenas dummy con montaje/desmontaje y transición, navegación home ↔ caso sin perder el canvas, medición de memoria | T-A05 | `src/experience/`, `src/layouts/`, `src/pages/index.astro` (temporal) | pendiente |
@@ -120,7 +120,7 @@
 
 | Fecha | Pedido por | Qué se necesita y por qué | Tarea que lo resuelve |
 | --- | --- | --- | --- |
-| | | | |
+| 2026-10-21 | T-H02 | `.gitignore` ignora `.env*` y también excluye `.env.example`. Hay que exceptuar `!.env.example` para versionar el esquema de variables. | T-A01 |
 
 ## Estado de insumos del humano
 
