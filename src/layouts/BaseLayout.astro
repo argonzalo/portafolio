@@ -3,6 +3,7 @@ import { ClientRouter } from "astro:transitions"
 import Footer from "@/components/layout/Footer.astro"
 import Header from "@/components/layout/Header.astro"
 import Seo from "@/components/layout/Seo.astro"
+import StageHost from "@/experience/StageHost.astro"
 import { site } from "@/lib/site"
 import "@/styles/globals.css"
 
@@ -26,6 +27,7 @@ const pageTitle = title ? `${title} · ${site.name}` : site.name
     <ClientRouter />
   </head>
   <body class="dark flex min-h-svh flex-col">
+    <StageHost />
     <a
       href="#contenido"
       class="bg-primary text-primary-foreground sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:px-3 focus:py-2"
@@ -33,7 +35,7 @@ const pageTitle = title ? `${title} · ${site.name}` : site.name
       Saltar al contenido
     </a>
     <Header />
-    <main id="contenido" class="flex-1">
+    <main id="contenido" class="relative z-0 flex-1">
       <slot />
     </main>
     <Footer />
