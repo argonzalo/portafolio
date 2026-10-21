@@ -1,0 +1,72 @@
+---
+function wavyCircle(
+  cx: number,
+  cy: number,
+  radius: number,
+  waves: number,
+  amplitude: number,
+  phase: number,
+  steps = 400
+) {
+  const commands: string[] = []
+
+  for (let i = 0; i <= steps; i++) {
+    const t = (i / steps) * Math.PI * 2
+    const r = radius + amplitude * Math.sin(waves * t + phase)
+    const x = Number((cx + r * Math.cos(t)).toFixed(3))
+    const y = Number((cy + r * Math.sin(t)).toFixed(3))
+    commands.push(i === 0 ? `M${x} ${y}` : `L${x} ${y}`)
+  }
+
+  commands.push("Z")
+  return commands.join(" ")
+}
+
+const path = wavyCircle(60, 59, 54.2, 6, 0.9, 0)
+---
+
+<div
+  class="pointer-events-none absolute -inset-4 z-0 motion-safe:animate-float-ring motion-safe:[animation-delay:-3.4s]"
+>
+  <svg
+    class="size-full origin-center overflow-visible motion-safe:animate-snake-spin"
+    viewBox="0 0 120 120"
+    fill="none"
+    aria-hidden="true"
+  >
+    <defs>
+      <linearGradient
+        id="avatar-snake-grad"
+        x1="12"
+        y1="8"
+        x2="108"
+        y2="112"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset="40%" stop-color="var(--primary-soft)"></stop>
+        <stop offset="100%" stop-color="var(--primary)"></stop>
+        <stop offset="100%" stop-color="var(--primary)"></stop>
+      </linearGradient>
+    </defs>
+    <path
+      d={path}
+      pathLength="1"
+      stroke="var(--primary)"
+      stroke-width="1.15"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="opacity-20"
+    >
+    </path>
+    <path
+      d={path}
+      pathLength="1"
+      stroke="url(#avatar-snake-grad)"
+      stroke-width="0.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="avatar-snake-stroke motion-safe:animate-snake-crawl"
+    >
+    </path>
+  </svg>
+</div>

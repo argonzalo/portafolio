@@ -1,0 +1,53 @@
+---
+function seeded(seed: number) {
+  return () => {
+    seed = (Math.imul(seed, 1664525) + 1013904223) | 0
+    return (seed >>> 0) / 4294967296
+  }
+}
+
+const rand = seeded(20260820)
+const cols = 18
+const rows = 16
+const count = 24
+const seen = new Set<string>()
+const cells: { col: number; row: number; delay: string; duration: string }[] =
+  []
+
+while (cells.length < count) {
+  const col = Math.floor(rand() * cols)
+  const row = Math.floor(rand() * rows)
+  const key = `${col}:${row}`
+
+  if (seen.has(key)) {
+    continue
+  }
+
+  seen.add(key)
+  cells.push({
+    col,
+    row,
+    delay: `${(rand() * 8).toFixed(2)}s`,
+    duration: `${(3.8 + rand() * 4.4).toFixed(2)}s`,
+  })
+}
+---
+
+<div
+  class="pointer-events-none absolute inset-0 -z-10 overflow-hidden -trany"
+  aria-hidden="true"
+>
+  <div
+    class="hero-grid-mask absolute top-0 right-0 h-[78%] w-[78%] max-w-3xl sm:w-[62%] lg:w-[54%]"
+  >
+    <div class="hero-grid-lines absolute inset-0"></div>
+    {
+      cells.map((cell) => (
+        <div
+          class="hero-grid-cell motion-safe:animate-grid-cell"
+          style={`left: calc(${cell.col} * var(--hero-cell)); top: calc(${cell.row} * var(--hero-cell)); animation-delay: ${cell.delay}; animation-duration: ${cell.duration}`}
+        />
+      ))
+    }
+  </div>
+</div>

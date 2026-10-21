@@ -1,0 +1,114 @@
+---
+import { getProjectInitial } from "@/lib/projects"
+import type { Project, ProjectSubproject } from "@/lib/projects"
+
+type Props = {
+  project: Project
+  currentId?: string
+}
+
+const { project, currentId } = Astro.props
+const items = [...project.subprojects].sort((a, b) => a.order - b.order)
+
+function hrefFor(sub: ProjectSubproject) {
+  return `/projects/${project.id}/${sub.id}`
+}
+---
+
+{
+  items.length > 1 && (
+    <>
+      <nav
+        aria-label="Subproyectos"
+        class="lg:hidden -mx-4 flex gap-2 overflow-x-auto px-4 pb-1"
+      >
+        {items.map((item) => {
+          const thumb = item.images[0]
+          const active = item.id === currentId
+
+          return (
+            <a
+              href={hrefFor(item)}
+              aria-current={active ? "page" : undefined}
+              class:list={[
+                "inline-flex shrink-0 items-center gap-2.5 rounded-xl border p-1 pr-4 text-base font-medium whitespace-nowrap transition-colors",
+                active
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-border text-muted-foreground hover:text-foreground hover:bg-muted",
+              ]}
+            >
+              <span class="bg-muted size-14 shrink-0 overflow-hidden rounded-lg">
+                {thumb ? (
+                  <img
+                    src={thumb.src}
+                    alt=""
+                    class="size-full object-cover"
+                  />
+                ) : (
+                  <span class="text-primary flex size-full items-center justify-center text-base font-semibold">
+                    {getProjectInitial(item.title)}
+                  </span>
+                )}
+              </span>
+              {item.title}
+            </a>
+          )
+        })}
+      </nav>
+
+      <aside class="border-border hidden w-64 shrink-0 lg:block xl:w-72">
+        <div class="sticky top-24 flex flex-col gap-3">
+          <p class="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+            Subproyectos
+          </p>
+          <nav aria-label="Subproyectos" class="flex flex-col gap-2">
+            {items.map((item) => {
+              const thumb = item.images[0]
+              const active = item.id === currentId
+
+              return (
+                <a
+                  href={hrefFor(item)}
+                  aria-current={active ? "page" : undefined}
+                  class:list={[
+                    "group relative flex gap-3 overflow-hidden rounded-2xl border p-2 transition-colors",
+                    active
+                      ? "border-primary bg-primary/16 shadow-[inset_3px_0_0_0_var(--primary)]"
+                      : "border-border hover:border-foreground/20 hover:bg-muted/40",
+                  ]}
+                >
+                  <span class="bg-muted size-14 shrink-0 overflow-hidden rounded-xl">
+                    {thumb ? (
+                      <img
+                        src={thumb.src}
+                        alt=""
+                        class="size-full object-cover"
+                      />
+                    ) : (
+                      <span class="text-primary flex size-full items-center justify-center text-lg font-semibold">
+                        {getProjectInitial(item.title)}
+                      </span>
+                    )}
+                  </span>
+                  <span class="flex min-w-0 flex-col justify-center gap-0.5">
+                    <span
+                      class:list={[
+                        "text-sm tracking-tight text-balance",
+                        active ? "font-semibold text-primary" : "font-medium",
+                      ]}
+                    >
+                      {item.title}
+                    </span>
+                    <span class="text-muted-foreground text-xs">
+                      {item.period}
+                    </span>
+                  </span>
+                </a>
+              )
+            })}
+          </nav>
+        </div>
+      </aside>
+    </>
+  )
+}

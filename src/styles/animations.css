@@ -1,3 +1,97 @@
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes float-ring {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes snake-spin {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes snake-crawl {
+  0% {
+    stroke-dasharray: 0.72 0.28;
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dasharray: 0.72 0.28;
+    stroke-dashoffset: -1;
+  }
+}
+
+.avatar-snake-stroke {
+  stroke-dasharray: 0.72 0.28;
+  stroke-dashoffset: 0;
+}
+
+@keyframes grid-cell {
+  0%,
+  22%,
+  100% {
+    opacity: 0;
+  }
+
+  38%,
+  62% {
+    opacity: 1;
+  }
+}
+
+.hero-grid-lines {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklch, var(--foreground) 8%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--foreground) 8%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: var(--hero-cell) var(--hero-cell);
+}
+
+.hero-grid-cell {
+  position: absolute;
+  width: var(--hero-cell);
+  height: var(--hero-cell);
+  background: color-mix(in oklch, var(--primary) 9%, transparent);
+  opacity: 0;
+}
+
+.hero-grid-mask {
+  mask-image: radial-gradient(
+    ellipse 78% 72% at 72% 38%,
+    #000 16%,
+    transparent 72%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 78% 72% at 72% 38%,
+    #000 16%,
+    transparent 72%
+  );
+}
+
 @layer utilities {
   @media (prefers-reduced-motion: reduce) {
     html {

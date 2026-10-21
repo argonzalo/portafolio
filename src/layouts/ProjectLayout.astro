@@ -1,0 +1,40 @@
+---
+import Footer from "@/components/layout/Footer.astro"
+import Seo from "@/components/layout/Seo.astro"
+import { ClientRouter } from "astro:transitions"
+import { site } from "@/lib/site"
+import "@/styles/globals.css"
+
+type Props = {
+  title: string
+  description: string
+}
+
+const { title, description } = Astro.props
+const pageTitle = `${title} · ${site.name}`
+---
+
+<!doctype html>
+<html lang={site.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <Seo title={pageTitle} description={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{pageTitle}</title>
+    <ClientRouter />
+  </head>
+  <body class="dark flex min-h-svh flex-col">
+    <a
+      href="#contenido"
+      class="bg-primary text-primary-foreground sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:px-3 focus:py-2"
+    >
+      Saltar al contenido
+    </a>
+    <slot name="toolbar" />
+    <main id="contenido" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

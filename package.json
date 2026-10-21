@@ -13,7 +13,8 @@
     "astro": "astro",
     "lint": "eslint .",
     "format": "prettier --write \"**/*.{ts,tsx,astro}\"",
-    "typecheck": "astro check"
+    "typecheck": "astro check",
+    "images:webp": "node scripts/convert-project-images.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.6",
@@ -39,6 +40,9 @@
   "devDependencies": {
     "@astrojs/check": "^0.9",
     "@eslint/js": "^10",
+    "@iconify-json/logos": "^1.2.13",
+    "@iconify-json/tabler": "^1.2.38",
+    "@iconify/tailwind4": "^1.2.3",
     "@types/three": "^0.185.4",
     "eslint": "^10",
     "eslint-plugin-react-hooks": "^7.1.1",
@@ -47,6 +51,7 @@
     "prettier": "^3.8.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.8.0",
+    "sharp": "^0.35.3",
     "typescript": "~6",
     "typescript-eslint": "^8"
   }

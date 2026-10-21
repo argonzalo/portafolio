@@ -1,3 +1,5 @@
+_!!! IMPORTANTE: DOCUMENTO OBSOLETO !!!_
+
 # Portfolio — Technical & Creative Direction
 
 ## 1. Purpose
@@ -97,6 +99,8 @@ Ejemplos:
 Objetivo:
 
 > La interfaz debe convertirse en parte del contenido y demostrar lo que el desarrollador es capaz de construir.
+
+El portfolio combinará **claridad informativa e impacto visual**, utilizando una estructura web convencional como base y reservando la experimentación para momentos específicos. Astro, Tailwind y shadcn/ui serán responsables de una experiencia rápida, clara y consistente, mientras que GSAP y Three.js se incorporarán como **islas interactivas** para generar experiencias visuales de alto impacto sin saturar el sitio ni aumentar innecesariamente su complejidad. La filosofía será **“estructura por defecto, creatividad cuando aporta valor”**: un portfolio profesional y fácil de recorrer, pero con momentos inesperados que demuestren capacidad técnica y creatividad.
 
 ---
 

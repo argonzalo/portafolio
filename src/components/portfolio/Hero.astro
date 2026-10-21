@@ -1,0 +1,90 @@
+---
+import AvatarSnake from "@/components/portfolio/AvatarSnake.astro"
+import { FadeIn } from "@/components/interactive/FadeIn"
+import { buttonVariants } from "@/components/ui/button"
+import HeroGrid from "@/components/portfolio/HeroGrid.astro"
+import { contacts, hero, site } from "@/lib/site"
+
+const [descriptionStart, descriptionEnd] = hero.description.split(
+  hero.highlight
+)
+---
+
+<section class="relative isolate my-0 overflow-hidden">
+  <HeroGrid />
+
+  <div
+    class="mx-auto flex min-h-[60vh] w-full max-w-6xl flex-col-reverse items-center justify-center gap-12 px-6 py-20 sm:py-30 lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16"
+  >
+    <FadeIn
+      client:load
+      className="relative z-10 flex w-full max-w-2xl flex-col gap-6"
+    >
+      <h1
+        class="text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl"
+      >
+        {hero.greeting}{" "}
+        <span
+          class="bg-linear-to-l from-primary-soft to-primary bg-clip-text text-transparent"
+        >
+          {site.firstName}.
+        </span>
+      </h1>
+
+      <p class="text-base leading-relaxed text-pretty text-muted-foreground">
+        {descriptionStart}<span class="font-bold text-primary"
+          >{hero.highlight}</span
+        >{descriptionEnd}
+      </p>
+
+      <p class="text-sm leading-relaxed text-muted-foreground sm:text-base">
+        <span class="font-medium text-foreground">{hero.skillsLabel}:</span>
+        {" "}
+        {hero.skills.join(" · ")}
+      </p>
+
+      <div class="flex flex-wrap gap-3 pt-1">
+        {
+          contacts.map((item) => (
+            <a
+              href={item.href}
+              class={buttonVariants({ variant: item.variant, size: "lg" })}
+              target={item.external ? "_blank" : undefined}
+              rel={item.external ? "noopener noreferrer" : undefined}
+            >
+              <span
+                class:list={[
+                  item.iconClass,
+                  "size-5 shrink-0",
+                  item.monochrome
+                    ? [item.labelClass, "bg-current"]
+                    : "bg-contain",
+                ]}
+                aria-hidden="true"
+              />
+              <span class:list={[item.labelClass, "ml-2"]}>{item.label}</span>
+            </a>
+          ))
+        }
+      </div>
+    </FadeIn>
+
+    <div class="relative z-0 shrink-0">
+      <div
+        class="absolute top-1/2 left-1/2 -z-10 size-[118%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-neutral-400/18 dark:bg-neutral-400/22 blur-3xl motion-safe:animate-float"
+        aria-hidden="true"
+      >
+      </div>
+      <AvatarSnake/>
+      <img
+        src={site.avatar}
+        alt={`Retrato de ${site.name}`}
+        width={320}
+        height={320}
+        fetchpriority="high"
+        decoding="async"
+        class="relative z-10 size-44 rounded-full object-cover motion-safe:animate-float sm:size-60 lg:size-72"
+      />
+    </div>
+  </div>
+</section>

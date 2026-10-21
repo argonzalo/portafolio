@@ -1,0 +1,43 @@
+---
+import { ExperienceTimeline } from "@/components/interactive/ExperienceTimeline"
+import { experience } from "@/lib/experience"
+
+type Props = {
+  framed?: boolean
+}
+
+const { framed = true } = Astro.props
+---
+
+<section
+  id="experiencia"
+  class:list={["scroll-mt-28", framed && "border-border border-t"]}
+>
+  <div class="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-20">
+    <div class="flex max-w-2xl flex-col gap-3">
+      <div class="flex items-center gap-3">
+        <span
+          class="bg-primary/10 text-primary flex size-11 shrink-0 items-center justify-center rounded-xl"
+        >
+          <span
+            class="icon-[tabler--briefcase] size-5 bg-current"
+            aria-hidden="true"
+          ></span>
+        </span>
+        <h2
+          class="text-3xl font-semibold tracking-tight text-balance sm:text-4xl"
+        >
+          Experiencia laboral
+        </h2>
+      </div>
+      <p class="pl-14 text-muted-foreground text-base leading-relaxed text-pretty">
+        2021 - Actualidad
+      </p>
+    </div>
+
+    <ExperienceTimeline
+      client:visible={{ rootMargin: "280px" }}
+      stages={experience}
+    />
+  </div>
+</section>

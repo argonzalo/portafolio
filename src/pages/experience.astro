@@ -1,26 +1,11 @@
 ---
-import PageHeader from "@/components/portfolio/PageHeader.astro"
+import Experience from "@/components/portfolio/Experience.astro"
 import BaseLayout from "@/layouts/BaseLayout.astro"
 ---
 
 <BaseLayout
-  title="Experiencia"
+  title="Experiencia laboral"
   description="Recorrido profesional, responsabilidades y resultados."
 >
-  <section class="mx-auto flex w-full max-w-3xl flex-col gap-10 px-6 py-16">
-    <PageHeader
-      eyebrow="Experience"
-      title="Cómo he construido hasta ahora."
-      description="Usa esta página para contar roles, contexto y el impacto de cada etapa. Prioriza claridad sobre ornamentación."
-    />
-    <ol class="border-border relative space-y-8 border-l pl-6">
-      <li class="flex flex-col gap-1">
-        <h2 class="font-medium">Rol o empresa</h2>
-        <p class="text-muted-foreground text-sm">Año — contexto</p>
-        <p class="text-muted-foreground text-sm leading-relaxed">
-          Describe el problema, tu responsabilidad y el resultado.
-        </p>
-      </li>
-    </ol>
-  </section>
+  <Experience framed={false} />
 </BaseLayout>

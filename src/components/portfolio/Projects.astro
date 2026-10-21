@@ -1,0 +1,63 @@
+---
+import { ProjectCard } from "@/components/portfolio/ProjectCard"
+import {
+  getProjectCover,
+  getSortedProjects,
+} from "@/lib/projects"
+
+type Props = {
+  framed?: boolean
+}
+
+const { framed = true } = Astro.props
+const projects = getSortedProjects()
+---
+
+<section
+  id="proyectos"
+  class:list={["scroll-mt-28", framed && "border-border border-t"]}
+>
+  <div class="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-20">
+    <div class="flex max-w-2xl flex-col gap-3">
+      <div class="flex items-center gap-3">
+        <span
+          class="bg-primary/10 text-primary flex size-11 shrink-0 items-center justify-center rounded-xl"
+        >
+          <span
+            class="icon-[tabler--folders] size-5 bg-current"
+            aria-hidden="true"
+          ></span>
+        </span>
+        <h2
+          class="text-3xl font-semibold tracking-tight text-balance sm:text-4xl"
+        >
+          Mis proyectos
+        </h2>
+      </div>
+      <p class="text-muted-foreground pl-14 text-base leading-relaxed text-pretty">
+        Trabajo seleccionado. Cada tarjeta resume el producto, el stack y las
+        piezas que lo componen.
+      </p>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        projects.map((project) => (
+          <ProjectCard
+            client:load
+            href={`/projects/${project.id}`}
+            title={project.title}
+            description={project.cardDescription}
+            stack={project.stack}
+            cover={getProjectCover(project)}
+            active={project.active}
+            subprojects={project.subprojects.map((item) => ({
+              title: item.title,
+              description: item.description,
+            }))}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

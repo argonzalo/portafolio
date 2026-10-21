@@ -1,54 +1,53 @@
 ---
 import { Logo } from "@/components/portfolio/Logo"
 import { navigation, site } from "@/lib/site"
-
-const currentPath = Astro.url.pathname
 ---
 
 <header
-  class="border-border/80 bg-background/80 sticky top-0 z-40 border-b backdrop-blur-md"
-  transition:persist
+  class="pointer-events-none sticky top-0 z-40 flex w-full justify-center pt-[env(safe-area-inset-top)] transition-[top] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] data-[compact=true]:top-3"
+  data-app-bar-root
 >
   <div
-    class="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-6 px-6"
+    data-app-bar
+    class="group bg-background/40 pointer-events-auto flex h-16 w-full justify-center border border-transparent shadow-[0_1px_0_0_var(--border)] backdrop-blur-lg transition-[border-radius,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] data-[compact=true]:rounded-full data-[compact=true]:border-border/50 data-[compact=true]:shadow-[0_8px_28px_-12px_rgba(0,0,0,0.16)]"
   >
-    <a
-      href="/"
-      class="flex items-center gap-2.5 text-sm font-semibold tracking-tight"
+    <div
+      data-app-bar-inner
+      class="mx-auto flex h-full w-full max-w-6xl flex-nowrap items-center gap-3 px-4 transition-[padding] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:gap-4 sm:px-6 group-data-[compact=true]:px-3 sm:group-data-[compact=true]:px-4"
     >
-      <Logo size={24} />
-      {site.name}
-    </a>
-    <nav aria-label="Principal" class="hidden items-center gap-1 md:flex">
-      {
-        navigation.map((item) => {
-          const isActive =
-            item.href === "/"
-              ? currentPath === "/"
-              : currentPath.startsWith(item.href)
-
-          return (
+      <a
+        href="/"
+        class="flex shrink-0 items-center gap-2.5 text-sm font-semibold tracking-tight"
+      >
+        <Logo size={24} backgroundClassName="bg-primary"/>
+        <span class="hidden md:inline">{site.name}</span>
+      </a>
+      <nav
+        aria-label="Principal"
+        class="ml-auto flex min-w-0 items-center gap-0.5 overflow-x-auto scrollbar-none sm:gap-1"
+      >
+        {
+          navigation.map((item) => (
             <a
               href={item.href}
-              aria-current={isActive ? "page" : undefined}
-              class:list={[
-                "rounded-md px-3 py-2 text-sm transition-colors",
-                isActive
-                  ? "text-foreground bg-muted"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/70",
-              ]}
+              data-section={item.id}
+              class="text-muted-foreground hover:text-foreground hover:bg-muted/70 data-[active=true]:text-foreground data-[active=true]:bg-muted rounded-full px-2 py-1.5 text-xs whitespace-nowrap transition-colors sm:px-3 sm:text-sm"
             >
               {item.label}
             </a>
-          )
-        })
-      }
-    </nav>
-    <a
-      href="/contact"
-      class="text-muted-foreground hover:text-foreground text-sm md:hidden"
-    >
-      Contacto
-    </a>
+          ))
+        }
+      </nav>
+    </div>
   </div>
 </header>
+
+<script>
+  import { initAppBar } from "@/components/interactive/appBar"
+  import { initHashScroll } from "@/lib/hashScroll"
+
+  document.addEventListener("astro:page-load", () => {
+    initAppBar()
+    initHashScroll()
+  })
+</script>
