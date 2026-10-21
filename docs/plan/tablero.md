@@ -18,7 +18,7 @@
 | T-H03 | Arrancar la recolección de insumos de primera línea: I-03 (marcas), I-08 (qué se puede contar de Pirp), I-04 (capturas) | — | `assets-src/`, `docs/plan/licencias.md` | listo |
 | T-H05 | Moodboard y validación de la ficha de Vibo (`03` §3.1 + ADR-011: golpe en slow-mo + overlays); después Pirp, Naturalis y Banner | — | `docs/plan/03-escenas.md` | listo |
 | T-H07 | I-02 / ADR-011: exportar de Firebase (`vibo-beta-2e60f` → `videos.analysisResults`) 1–2 clips anonimizados; curar JSON de overlays (bboxes + keypoints en la ventana del golpe) + métricas de jugador; sin trayectoria 3D fiel | — | `assets-src/vibo/` | listo |
-| T-A01 | Higiene del repo: README actualizado, scripts de `package.json` documentados, quitar `proyectos-facu/` y `.zip`, `.gitignore` (incl. `assets-src/` salvo README) | ADR-009, ADR-010 | Raíz (`README.md`, `.gitignore`), `proyectos-facu/` | listo |
+| T-A01 | Higiene del repo: README actualizado, scripts de `package.json` documentados, quitar `proyectos-facu/` y `.zip`, `.gitignore` (incl. `assets-src/` salvo README) | ADR-009, ADR-010 | Raíz (`README.md`, `.gitignore`), `proyectos-facu/` | en revisión (rama `t/A01-higiene`) |
 | T-A02 | Tooling de calidad: script `npm run check`, GitHub Actions (lint, typecheck, build), Lighthouse CI con presupuestos de `02` §1 sobre el preview, `rollup-plugin-visualizer`, Playwright con un smoke test | — | `package.json` (scripts, devDeps), `.github/`, `lighthouserc.*`, `playwright.config.*`, `tests/` | listo |
 | T-A03 | Adaptador Vercel + `astro:env` (esquema server/secret para las variables de `04` §2) + `/api/health` + redirección `analisis-rep-politica → pirp` + `.env.example` actualizado; preview funcionando | ADR-004, T-H02 | `astro.config.ts`, `package.json`, `src/pages/api/`, `.env.example` | hecho (2026-10-21; preview https://portafolio-git-t-a03-vercel-argonzalos-projects.vercel.app) |
 | T-A04 | Content collections: esquema de `05` §1, migración de los 14 proyectos + Pirp como `pirp`, helpers de consulta; `src/lib/projects.ts` queda como fachada temporal para no romper páginas | ADR-003 | `src/content/`, `src/content.config.ts`, `src/lib/projects.ts` | listo |
@@ -112,7 +112,7 @@
 
 | Fecha | Tarea | Pregunta o bloqueo | Respuesta |
 | --- | --- | --- | --- |
-| | | | |
+| 2026-10-21 | T-A01 | `npm run lint` y `npm run typecheck` ya fallan en `main` por código previo, fuera de la zona de T-A01: `src/components/projects/LightboxStage.tsx` (ref asignada en render + 2 warnings de deps en `useEffect`) y `src/components/interactive/ExperienceTimeline.tsx` (`offsetHeight` sobre `Element`). `npm run build` pasa. Bloquea el `npm run check` de T-A02 hasta que alguien con esa zona lo arregle. | |
 
 ## Pedidos a plataforma
 
@@ -120,7 +120,7 @@
 
 | Fecha | Pedido por | Qué se necesita y por qué | Tarea que lo resuelve |
 | --- | --- | --- | --- |
-| 2026-10-21 | T-H02 | `.gitignore` ignora `.env*` y también excluye `.env.example`. Hay que exceptuar `!.env.example` para versionar el esquema de variables. | T-A01 |
+| 2026-10-21 | T-H02 | `.gitignore` ignora `.env*` y también excluye `.env.example`. Hay que exceptuar `!.env.example` para versionar el esquema de variables. | T-A01 (resuelto en `t/A01-higiene`) |
 
 ## Estado de insumos del humano
 
