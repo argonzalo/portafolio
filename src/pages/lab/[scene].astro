@@ -1,0 +1,54 @@
+---
+/**
+ * Laboratorio de escenas (`01-arquitectura.md` §9): monta una sola escena con
+ * slider de progreso, selector de nivel y panel de métricas.
+ *
+ * La ruta solo existe en desarrollo: en producción `getStaticPaths` devuelve
+ * una lista vacía y no se genera ningún archivo. T-A07 usa las escenas dummy
+ * del spike; cuando lleguen las reales (T-A14+) el índice sale del registry.
+ */
+import { SPIKE_SCENES } from "@/experience/spike/scenes"
+import { LabScene } from "./_LabScene"
+import "@/styles/globals.css"
+
+export function getStaticPaths() {
+  if (!import.meta.env.DEV) {
+    return []
+  }
+
+  return SPIKE_SCENES.map((scene) => ({
+    params: { scene: scene.chapterId },
+    props: {
+      chapterId: scene.chapterId,
+      label: scene.label,
+      accent: scene.accent,
+    },
+  }))
+}
+
+type Props = {
+  chapterId: string
+  label: string
+  accent: string
+}
+
+const { chapterId, label, accent } = Astro.props
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Lab · {label}</title>
+  </head>
+  <body class="overflow-hidden bg-[#0a0a0b] text-white antialiased">
+    <LabScene
+      client:only="react"
+      chapterId={chapterId}
+      label={label}
+      accent={accent}
+    />
+  </body>
+</html>

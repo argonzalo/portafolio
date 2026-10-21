@@ -74,9 +74,10 @@ src/
 │   ├── store.ts                   # progreso, capítulo activo, nivel de calidad (store mutable + suscripción)
 │   ├── scroll.ts                  # ScrollTrigger → store
 │   ├── quality.ts                 # detección y adaptación de nivel de calidad
+│   ├── deepLink.ts                # deep links de estado (?chapter, ?progress, ?quality, ?debug)
 │   ├── thread/                    # hilo conductor
 │   ├── audio.ts                   # mezclador Web Audio (opcional)
-│   ├── debug.tsx                  # overlay ?debug (solo dev o con flag)
+│   ├── debug.tsx                  # overlay ?debug, sampler de calidad (solo dev o con flag)
 │   └── types.ts                   # CONTRATOS (ver §4)
 ├── scenes/
 │   ├── registry.ts                # lista de SceneDefinition (zona caliente)
@@ -196,6 +197,13 @@ export type GuideAction =
 
 Detección inicial (en `quality.ts`): soporte WebGL2, `navigator.hardwareConcurrency`, `navigator.deviceMemory`, renderer de la GPU (`WEBGL_debug_renderer_info` cuando esté disponible), tamaño de pantalla y `Save-Data`. Adaptación en vivo con `PerformanceMonitor` de drei, con histéresis (no sube y baja constantemente). El nivel se guarda en `sessionStorage` y se puede forzar con `?quality=`.
 
+Implementación (T-A07):
+
+- `classifyQuality` es pura (recibe las señales del dispositivo) y se puede probar sin navegador. Un render por software (SwiftShader, llvmpipe, Basic Render Driver) cae directo a `static`; `prefers-reduced-motion`, `Save-Data` y conexiones 2G/3G también, y esas restricciones no se adaptan.
+- `QualityMonitor` (dentro del Canvas) mide ventanas de 1,5 s con histéresis explícita en lugar del `PerformanceMonitor` de drei: baja tras 2 ventanas por debajo de 45 FPS en `high` o 40 en `medium` (3 por debajo de 28 en `low`); sube tras 5 ventanas por encima de 55/57 FPS, con 20 s de enfriamiento, como máximo 2 subidas por sesión y techo `medium` en mobile (y en anchos ≤ 768 px). Se eligió el monitor propio porque la histéresis queda medible y testeable.
+- El nivel se persiste en `sessionStorage` (`experience:quality`); `?quality=` lo fuerza sin persistirlo. En `static` no se monta el Canvas (los pósters llegan con T-A16) y el `<div data-experience-stage>` desaparece.
+- El DPR sale de `QUALITY_DPR`: `high` 1–2, `medium` 1–1,5, `low` 1.
+
 ## 7. Pipeline de assets
 
 ```text
@@ -217,7 +225,7 @@ assets-src/<escena>/*.blend|*.glb  ──►  npm run assets:build  ──►  p
 
 ## 9. Herramientas para iterar rápido (clave para agentes)
 
-- **Deep links de estado:** `/?chapter=vibo&progress=0.45&quality=low&debug` deja la experiencia en un punto exacto. Permite a un agente sacar capturas reproducibles y al humano revisar un beat concreto.
-- **Laboratorio de escenas:** `/lab/<escena>` monta una sola escena con un slider de progreso, selector de nivel y panel de métricas. Solo existe en desarrollo.
-- **Overlay `?debug`:** FPS, frame time, draw calls, triángulos, texturas y geometrías vivas, nivel de calidad, beat activo.
+- **Deep links de estado:** `/?chapter=vibo&progress=0.45&quality=low&debug` deja la experiencia en un punto exacto. Permite a un agente sacar capturas reproducibles y al humano revisar un beat concreto. `deepLink.ts` parsea `chapter`, `progress`, `quality` y `debug`; mueve el scroll al punto equivalente del trigger y escribe el progreso en el store, así la escena arranca en ese beat aunque todavía no esté montada. Se reengancha en cada `astro:page-load`.
+- **Laboratorio de escenas:** `/lab/<escena>` monta una sola escena con un slider de progreso, selector de nivel y panel de métricas. Solo existe en desarrollo: en producción `getStaticPaths` devuelve una lista vacía y no se genera el archivo. Hoy sirve las escenas dummy del spike (`/lab/spike-alpha`, `/lab/spike-beta`); cuando lleguen las reales, el índice sale del registry.
+- **Overlay `?debug`:** FPS, frame time (promedio y p95), draw calls, triángulos, texturas y geometrías vivas, escenas montadas, nivel de calidad con su motivo, beat activo y el deep link del estado actual. Permite forzar `high`/`medium`/`low`/`static` y volver a `auto`.
 - **Script `npm run check`:** lint + typecheck + build + verificación de presupuestos de assets. Es lo mínimo antes de abrir un PR.
