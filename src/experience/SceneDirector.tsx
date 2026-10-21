@@ -4,7 +4,7 @@ import {
   useRef,
   useState,
   type ComponentType,
-  type MutableRefObject,
+  type RefObject,
 } from "react"
 import { useFrame } from "@react-three/fiber"
 import type { Group } from "three"
@@ -157,7 +157,7 @@ type SceneLayerProps = {
   isMobile: boolean
   active: boolean
   role: Slot["role"]
-  blend: MutableRefObject<number>
+  blend: RefObject<number>
 }
 
 function SceneLayer({
