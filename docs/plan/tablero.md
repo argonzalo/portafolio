@@ -14,10 +14,10 @@
 | ID | Tarea y criterio de terminado | Depende de | Zona | Estado |
 | --- | --- | --- | --- | --- |
 | T-H01 | Leer `00` y `decisiones.md`; aceptar o corregir ADR-001 a 005, 007, 008, 009 | — | `docs/plan/decisiones.md` | hecho (grilling 2026-10-21; ADR-006 spike A+C pendiente de elección visual) |
-| T-H02 | Cuentas y secretos: vincular repo a Vercel, instalar Upstash Redis desde el Marketplace, configurar tope de gasto mensual en OpenAI, confirmar `OPEN_AI_MODEL` y elegir `OPEN_AI_MODEL_FALLBACK` | — | Paneles externos, `.env` local | listo |
+| T-H02 | Cuentas y secretos: vincular repo a Vercel, instalar Upstash Redis desde el Marketplace, configurar tope de gasto mensual en OpenAI, confirmar `OPEN_AI_MODEL` y elegir `OPEN_AI_MODEL_FALLBACK` | — | Paneles externos, `.env` local | en curso (humano + agente) |
 | T-H03 | Arrancar la recolección de insumos de primera línea: I-03 (marcas), I-08 (qué se puede contar de Pirp), I-04 (capturas) | — | `assets-src/`, `docs/plan/licencias.md` | listo |
-| T-H05 | Moodboard y validación de la ficha de Vibo (`03` §3.1); después Pirp, Naturalis y Banner | — | `docs/plan/03-escenas.md` | listo |
-| T-H07 | Exportar datos reales de Vibo (I-02): keypoints + trayectoria de 2–3 golpes en JSON y métricas de un jugador anonimizadas | — | `assets-src/vibo/` | listo |
+| T-H05 | Moodboard y validación de la ficha de Vibo (`03` §3.1 + ADR-011: golpe en slow-mo + overlays); después Pirp, Naturalis y Banner | — | `docs/plan/03-escenas.md` | listo |
+| T-H07 | I-02 / ADR-011: exportar de Firebase (`vibo-beta-2e60f` → `videos.analysisResults`) 1–2 clips anonimizados; curar JSON de overlays (bboxes + keypoints en la ventana del golpe) + métricas de jugador; sin trayectoria 3D fiel | — | `assets-src/vibo/` | listo |
 | T-A01 | Higiene del repo: README actualizado, scripts de `package.json` documentados, quitar `proyectos-facu/` y `.zip`, `.gitignore` (incl. `assets-src/` salvo README) | ADR-009, ADR-010 | Raíz (`README.md`, `.gitignore`), `proyectos-facu/` | listo |
 | T-A02 | Tooling de calidad: script `npm run check`, GitHub Actions (lint, typecheck, build), Lighthouse CI con presupuestos de `02` §1 sobre el preview, `rollup-plugin-visualizer`, Playwright con un smoke test | — | `package.json` (scripts, devDeps), `.github/`, `lighthouserc.*`, `playwright.config.*`, `tests/` | listo |
 | T-A03 | Adaptador Vercel + `astro:env` (esquema server/secret para las variables de `04` §2) + `/api/health` + redirección `analisis-rep-politica → pirp` + `.env.example` actualizado; preview funcionando | ADR-004, T-H02 | `astro.config.ts`, `package.json`, `src/pages/api/`, `.env.example` | pendiente (falta T-H02) |
@@ -55,7 +55,7 @@
 | T-H12 | Revisión de arte de cada escena al cerrar su greybox y antes del merge final (recurrente) | — | Comentarios en PR | pendiente |
 | T-A18 | Kit de escena: HUD anclado a 3D, grafo de nodos/agentes, líneas con el shader del hilo, contadores, rig de cámara por beats; ejemplos en `/lab/kit` | T-A07, T-A13 | `src/scenes/kit/` (salvo dispositivos) | pendiente |
 | T-A19 | Kit de dispositivos: `Phone`, `Laptop`, `Display` low-poly con pantalla texturizable y capas de UI flotantes | T-A07, T-A09 | `src/scenes/kit/devices/`, `assets-src/kit/`, `public/models/kit/` | pendiente |
-| T-A20 | **Escena Vibo completa** (`03` §3.1) con datos reales, interacción, transición de su par Vibo→Pirp (lado saliente) | T-A14-vibo aprobado, T-A18, T-H07 | `src/scenes/vibo/`, `public/models/vibo/`, `public/textures/vibo/` | pendiente |
+| T-A20 | **Escena Vibo completa** (`03` §3.1, ADR-011): personaje 3D en slow-mo + overlays de detección, interacción, transición Vibo→Pirp (lado saliente) | T-A14-vibo aprobado, T-A18, T-H07 | `src/scenes/vibo/`, `public/models/vibo/`, `public/textures/vibo/` | pendiente |
 | T-A21 | Backend del guía: `/api/guide` con AI SDK, tools de la lista cerrada, contexto generado en build, límites (sesión, IP, global), kill switch, fallback de modelo, tests | T-A03, T-A04, ADR-005, ADR-008 | `src/pages/api/guide.ts`, `src/server/guide/`, `scripts/guide-context.*` | pendiente |
 | T-A22 | Observador y motor de reglas del guía (`04` §3) con panel de debug que muestra el estado detectado | T-A05, T-A11 | `src/guide/` | pendiente |
 
@@ -129,7 +129,7 @@
 | Insumo | Estado | Nota |
 | --- | --- | --- |
 | I-01 Narrativas primera línea | pendiente | Espera borradores de T-A10 |
-| I-02 Datos reales de Vibo | pendiente | **Crítico** para T-A20 |
+| I-02 Datos reales de Vibo | pendiente | **Crítico** para T-A20. Fuente: Firebase `vibo-beta-2e60f` / `videos.analysisResults`. Uso: overlays + métricas (ADR-011), no reconstrucción 3D |
 | I-03 Marcas y paletas | pendiente | |
 | I-04 Capturas en alta | pendiente | |
 | I-05 Assets Naturalis | pendiente | |

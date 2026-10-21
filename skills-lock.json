@@ -42,6 +42,12 @@
       "sourceType": "github",
       "skillPath": "skills/hyperframes-creative/SKILL.md",
       "computedHash": "5ee32cbd52af7cff9e2804b5f3bebb487c52ff3d3ebef9430aaab903ccc87d45"
+    },
+    "upstash-redis-js": {
+      "source": "upstash/skills",
+      "sourceType": "github",
+      "skillPath": "skills/upstash-redis-js/SKILL.md",
+      "computedHash": "44a3c51915f635b2b453b7b83ed062bd998cddabaade45943e2e3a8730b98f3d"
     }
   }
 }

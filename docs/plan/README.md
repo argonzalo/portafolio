@@ -61,7 +61,7 @@ Lo que retrasa todo si se demora; se prioriza por encima de cualquier otra tarea
 1. **Cerrar decisiones de F0** (`decisiones.md`: ADR-001 a ADR-005) → desbloquea a todos los agentes.
 2. **Spike del runtime 3D persistente** (T-A06) → sin esto no se puede producir ninguna escena con seguridad.
 3. **Decisión del hilo conductor** (ADR-006, tras el spike T-A08) → afecta a la transición de todas las escenas.
-4. **Insumos de Vibo** (keypoints y métricas reales, T-H07) → la escena insignia depende de ellos.
+4. **Insumos de Vibo** (overlays + métricas reales, T-H07 / ADR-011) → la escena insignia depende de ellos.
 5. **Aprobación de Vibo** (G2) → fija la vara de calidad que replican las demás escenas.
 
 Lo que **no** está en la ruta crítica y por eso se usa para llenar huecos: contenido de segunda y tercera línea, kit de dispositivos, analítica, OG images.
@@ -73,6 +73,6 @@ Lo que **no** está en la ruta crítica y por eso se usa para llenar huecos: con
 1. Lanzar en paralelo a los agentes de F0 que no dependen de ninguna decisión: `T-A02` (CI y presupuestos), `T-A09` (pipeline de assets) y `T-A10` (borradores de narrativa), con el prompt de [`plantillas/prompt-agente.md`](./plantillas/prompt-agente.md). Trabajan solos mientras hacés lo siguiente.
 2. `T-H01`: leer `00` y `decisiones.md` y aceptar o corregir las decisiones propuestas (30–45 min). Al cerrarlas pasan a `listo` `T-A01`, `T-A03`, `T-A04`, `T-A05` y `T-A08`.
 3. `T-H02`: cuentas (Vercel, Upstash) y tope de gasto en OpenAI.
-4. `T-H07`: empezar a exportar los datos reales de Vibo; es el insumo más crítico del proyecto.
+4. `T-H07`: exportar/curar overlays y métricas desde Firebase (`vibo-beta-2e60f`); es el insumo más crítico del proyecto (ADR-011).
 
 **Agentes:** leer `06-coordinacion.md` y tomar solo tareas con estado `listo` en `tablero.md`.

@@ -78,7 +78,7 @@ Este es el cuello de botella real del proyecto. Se piden **antes** de que la tar
 | ID | Insumo | Para | Necesario antes de | Prioridad |
 | --- | --- | --- | --- | --- |
 | I-01 | Narrativas de primera línea (plantilla §3) | Vibo, Pirp, Naturalis, Banner 2.0 | F2 | Alta |
-| I-02 | Keypoints + trayectorias reales de 2–3 golpes (JSON) y métricas de un jugador | Vibo | Inicio de T-A20 | **Crítica** |
+| I-02 | Export anonimizado de `analysisResults` (Firebase `vibo-beta-2e60f`) + JSON curado de overlays (bboxes, pose keypoints en la ventana del golpe) + métricas de un jugador. No se exige trayectoria 3D fiel (ADR-011) | Vibo | Inicio de T-A20 | **Crítica** |
 | I-03 | Paleta, logo y permiso de uso de marca | Vibo, Pirp, Banner, Naturalis | Fichas validadas | Alta |
 | I-04 | Capturas actualizadas en alta resolución (desktop y mobile) | Todos los de primera y segunda línea | Kit de dispositivos | Media |
 | I-05 | Assets 3D de Naturalis (o aprobación de assets con licencia propuestos por el agente) | Naturalis | Fin del greybox de Naturalis | Alta |

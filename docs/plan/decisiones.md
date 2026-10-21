@@ -16,6 +16,7 @@ Para agregar una decisión: copiar la plantilla del final, siguiente número lib
 | 008 | Identidad del guía (cómo se presenta) | aceptada | — | Prompt del guía |
 | 009 | Limpieza de `proyectos-facu/` y `proyectos-facu.zip` del repo | aceptada | — | Limpieza |
 | 010 | Almacenamiento de fuentes 3D pesadas (`assets-src/`) | aceptada | — | Pipeline de assets |
+| 011 | Vibo: personaje 3D + overlays (no trayectoria 3D fiel) | aceptada | — | T-H07, T-A14-vibo, T-A20 |
 
 ---
 
@@ -94,6 +95,15 @@ Para agregar una decisión: copiar la plantilla del final, siguiente número lib
 - **Fecha:** 2026-10-21
 - **Decisión:** `assets-src/` vive en el árbol del proyecto local pero está en `.gitignore`. El humano hace backup en Dropbox/Drive. En el repo solo se versionan las salidas optimizadas (`public/models/`, `public/textures/`, etc.) y un `assets-src/README.md` con la convención de carpetas.
 - **Alternativas descartadas:** Git LFS; versionar las fuentes pesadas en Git.
+
+## ADR-011 — Vibo: personaje 3D en slow motion + overlays de detección
+
+- **Estado:** aceptada
+- **Fecha:** 2026-10-21
+- **Contexto:** existen `analysisResults` reales en Firebase (`vibo-beta` / `vibo-beta-2e60f`, colección `videos`), pero están en perspectiva de cámara y no alcanzan para una trayectoria 3D fiel. La escena insignia necesita impacto y propósito, no fidelidad geométrica. El núcleo narrativo es el golpe del jugador.
+- **Decisión:** el beat de razonamiento de Vibo se construye con un **personaje 3D animado en slow motion** y **detecciones como overlay flotante** (bounding boxes, pose keypoints, etiquetas). Los datos reales alimentan y acreditan ese overlay (y métricas anonimizadas); la trayectoria de pelota y el staging 3D se **diseñan** para la escena. No se reconstruye el mundo a partir del tracking.
+- **Alternativas descartadas:** jugador solo con keypoints instanciados + trayectoria de pelota reconstruida desde el pipeline (barato y “auténtico”, pero los datos no soportan una 3D fiel y diluyen el golpe como héroe visual).
+- **Consecuencias:** T-H07 / I-02 pasan a exportar y curar overlays + métricas (no trayectorias 3D); T-A20 prioriza rig/animación de golpe y HUD de detecciones; D-10 se reformula; actualizar ficha `03` §3.1.
 
 ---
 

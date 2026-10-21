@@ -40,22 +40,23 @@ Construir esto una vez es lo que hace viable el volumen de escenas. Vive en `src
 
 1. **Mundo** — el filamento dibuja las líneas de la cancha en la oscuridad; se encienden los reflectores.
 2. **Problema** — un fragmento de video crudo (plano, sin datos) flota sobre la cancha: "Un partido grabado no dice cómo jugaste".
-3. **Razonamiento** — un jugador ejecuta un golpe. Se marcan las articulaciones, aparecen el ángulo de muñeca frente a hombros, la zona de la cancha y la trayectoria de la pelota (que es el propio filamento). En paralelo, un grafo de agentes ejecuta el pipeline: detección → seguimiento → calibración de cancha (de píxeles a metros) → detección de golpes → clasificación. Cada nodo se enciende cuando "decide".
+3. **Razonamiento (núcleo)** — un personaje 3D ejecuta un golpe en *slow motion*. Sobre él flotan las detecciones del producto como overlay (bounding boxes, pose keypoints, etiquetas de golpe/zona). En paralelo, un grafo de agentes ejecuta el pipeline: detección → seguimiento → calibración de cancha → detección de golpes → clasificación. Cada nodo se enciende cuando "decide". La trayectoria de la pelota puede ser estilizada (filamento); no hace falta reconstrucción 3D fiel.
 4. **Solución** — la cámara sube a vista cenital: mapa de calor de zonas, cobertura de cancha frente al compañero y los rivales, perfil ofensivo/defensivo.
 5. **Resultado** — tarjeta de jugador con métricas (estilo, golpes más frecuentes, desgaste a lo largo del partido) en dorado; CTA al caso completo.
 
-**Interacción:** en el beat 3, el visitante puede pausar el golpe y arrastrar para recorrerlo cuadro a cuadro; en desktop, hover sobre una articulación muestra su dato.
+**Interacción:** en el beat 3, el visitante puede pausar el golpe en slow motion y arrastrar para recorrerlo; en desktop, hover sobre un keypoint o caja del overlay muestra su dato.
 
-**Técnica**
+**Técnica** (ADR-011)
 
 - Cancha procedural (líneas y planos), sin modelo pesado.
-- **Jugador a partir de datos reales:** secuencias de keypoints exportadas del pipeline de Vibo (por ejemplo 17 puntos × N cuadros) renderizadas como articulaciones instanciadas + huesos con el shader de líneas, opcionalmente con una silueta low-poly. Es auténtico (son datos del producto real) y mucho más barato que un personaje con skinning. Alternativa si no hay datos: personaje de Mixamo con animación de golpe y material estilizado.
-- Trayectoria de la pelota con datos reales de seguimiento.
+- **Personaje 3D animado** (p. ej. Mixamo u otro rig con licencia) con animación de golpe en slow motion; material estilizado acorde a la paleta. El impacto de la escena está en el golpe, no en una trayectoria realista.
+- **Overlays de detección** anclados al personaje/espacio (HUD del kit): bounding boxes, pose keypoints y etiquetas, alimentados por un JSON curado a partir de `analysisResults` reales (referencia; ver T-H07). Los datos del producto vienen en perspectiva de cámara y **no** bastan para una trayectoria 3D fiel; se usan para credibilidad visual del overlay, no para reconstruir el mundo.
+- Trayectoria de pelota **diseñada** (filamento / curva con propósito), inspirada a lo sumo en el seguimiento real.
 - Mapa de calor como shader sobre el plano de la cancha, con datos precalculados en build.
 
-**Mobile:** encuadre vertical con la cancha en perspectiva más cerrada; overlays de a uno por tap; el grafo del pipeline pasa a ser una tira vertical.
+**Mobile:** encuadre cerrado al jugador en el beat 3 (el golpe es el héroe); overlays de a uno por tap; el grafo del pipeline pasa a ser una tira vertical.
 
-**Insumos del humano (T-H07):** 2–3 secuencias de keypoints y trayectoria de pelota (smash, bandeja, drive) en JSON; un set de métricas reales de un jugador (anonimizado); confirmación de paleta y logo; permiso para mostrar datos.
+**Insumos del humano (T-H07):** export anonimizado de `analysisResults` (Firebase `vibo-beta` / `vibo-beta-2e60f`, colección `videos`) de 1–2 clips con al menos un golpe claro; JSON curado de overlays (bboxes + keypoints en la ventana del golpe); métricas de un jugador anonimizadas; confirmación de paleta y logo; permiso para mostrar datos. No se exige trayectoria 3D reconstruida.
 
 ### 3.2 Pirp — "Todo pasa rápido, y aun así se entiende"
 

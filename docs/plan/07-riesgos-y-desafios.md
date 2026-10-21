@@ -17,7 +17,7 @@ Cada desafío indica dónde se resuelve (tarea o documento). Si aparece uno nuev
 | D-07 | Saltos de layout por la barra de direcciones móvil | `svh/dvh`, `ScrollTrigger.config({ ignoreMobileResize: true })`, `normalizeScroll` evaluado | T-A11 |
 | D-08 | Texto legible y SEO con una experiencia mayormente visual | Todo el texto en DOM, vista lista, páginas de caso prerenderizadas | `01` §2, T-A11, T-A17 |
 | D-09 | 10.000 pantallas (Banner) y miles de titulares (Pirp) en tiempo real | Instancing + atlas de texturas + estado en shader; layouts precalculados en build | T-A23, T-A25 |
-| D-10 | Personaje de Vibo creíble sin el costo de un modelo con skinning | Keypoints reales como articulaciones instanciadas + huesos con shader de líneas | T-A20 |
+| D-10 | Golpe de Vibo impactante sin reconstrucción 3D fiel (datos solo en perspectiva de cámara) | Personaje 3D animado en slow motion + overlays de detección (bboxes, keypoints) desde JSON curado; trayectoria de pelota diseñada (ADR-011) | T-H07, T-A20 |
 | D-11 | Ciclo día/noche de Naturalis sin luces en tiempo real | Mezcla de dos lightmaps horneados | T-A24 |
 | D-12 | Audio que no moleste ni rompa en iOS | Apagado por defecto, se activa con gesto, se silencia al ocultar la pestaña | T-A26 |
 | D-13 | Recorrido "cíclico" sin romper el scroll ni la accesibilidad | El final reconstruye el estado del hero y ofrece volver arriba con una transición; no scroll infinito real | T-A34 |

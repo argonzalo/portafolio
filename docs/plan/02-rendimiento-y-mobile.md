@@ -43,7 +43,7 @@ Si una escena no entra en el presupuesto, el orden para recortar es: postprocesa
 **GPU**
 
 - Iluminación horneada; sombras en tiempo real solo en `high` y solo si una escena lo justifica.
-- `InstancedMesh` para todo lo repetido (pantallas de Banner, titulares de Pirp, hojas de Naturalis, articulaciones del jugador de Vibo).
+- `InstancedMesh` para todo lo repetido (pantallas de Banner, titulares de Pirp, hojas de Naturalis, keypoints/markers del overlay de Vibo).
 - Compilar shaders antes de entrar a la escena (`renderer.compile` en idle) para evitar tirones.
 - DPR adaptativo; tope 2 en desktop, 1,5 en mobile.
 - Postprocesado: un único composer, efectos fusionados, solo en `high`.
