@@ -33,6 +33,7 @@ El sitio funciona sin variables de entorno. Solo el guía de IA y los límites n
 | `npm run lint` | ESLint sobre todo el repo. |
 | `npm run format` | Prettier sobre `ts`, `tsx` y `astro`. |
 | `npm run typecheck` | Chequeo de tipos con `astro check`. |
+| `npm run check` | Atajo previo a un PR: `lint` + `typecheck` + `build`. Es lo que corre la verificación obligatoria. |
 | `npm run images:webp` | Convierte las imágenes de `public/images/proyects` a WebP (calidad 82) y reporta el ahorro. `--keep` conserva los originales. |
 | `npm run astro` | CLI de Astro para comandos puntuales (`astro add`, `astro sync`…). |
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useCallback, useEffect, useRef } from "react"
 
 import type { ProjectImage } from "@/lib/projects"
 
@@ -50,9 +50,14 @@ export function LightboxStage({
   })
   const suppressClick = useRef(false)
   const actions = useRef({ onPrev, onNext, onClose, canNavigate })
-  actions.current = { onPrev, onNext, onClose, canNavigate }
 
-  function apply(animated = false) {
+  // Las props cambian sin desmontar el componente; los handlers táctiles se
+  // registran una sola vez y leen la versión vigente desde el ref.
+  useEffect(() => {
+    actions.current = { onPrev, onNext, onClose, canNavigate }
+  })
+
+  const apply = useCallback((animated = false) => {
     const el = imageRef.current
     if (!el) {
       return
@@ -61,9 +66,9 @@ export function LightboxStage({
     const { scale, x, y } = transform.current
     el.style.transition = animated ? "transform 0.28s ease-out" : "none"
     el.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`
-  }
+  }, [])
 
-  function clampPan() {
+  const clampPan = useCallback(() => {
     const stage = stageRef.current
     const el = imageRef.current
     const next = transform.current
@@ -73,36 +78,44 @@ export function LightboxStage({
       return
     }
 
-    const maxX = Math.max(0, (el.offsetWidth * next.scale - stage.clientWidth) / 2)
+    const maxX = Math.max(
+      0,
+      (el.offsetWidth * next.scale - stage.clientWidth) / 2
+    )
     const maxY = Math.max(
       0,
       (el.offsetHeight * next.scale - stage.clientHeight) / 2
     )
     next.x = Math.min(maxX, Math.max(-maxX, next.x))
     next.y = Math.min(maxY, Math.max(-maxY, next.y))
-  }
+  }, [])
 
-  function reset(animated = false) {
-    transform.current = { scale: 1, x: 0, y: 0 }
-    apply(animated)
-  }
+  const reset = useCallback(
+    (animated = false) => {
+      transform.current = { scale: 1, x: 0, y: 0 }
+      apply(animated)
+    },
+    [apply]
+  )
 
-  function markGesture() {
+  const markGesture = useCallback(() => {
     suppressClick.current = true
     window.setTimeout(() => {
       suppressClick.current = false
     }, 400)
-  }
+  }, [])
 
   useEffect(() => {
     reset()
-  }, [image.src])
+  }, [image.src, reset])
 
   useEffect(() => {
     const stage = stageRef.current
     if (!stage) {
       return
     }
+
+    const stageEl: HTMLDivElement = stage
 
     function onTouchStart(event: TouchEvent) {
       const state = gesture.current
@@ -140,7 +153,7 @@ export function LightboxStage({
         const b = touchPoint(event.touches[1])
         const dist = distance(a, b)
         const mid = midpoint(a, b)
-        const stageBox = stage.getBoundingClientRect()
+        const stageBox = stageEl.getBoundingClientRect()
         const cx = stageBox.left + stageBox.width / 2
         const cy = stageBox.top + stageBox.height / 2
 
@@ -160,8 +173,14 @@ export function LightboxStage({
           Math.max(MIN_SCALE, current.scale * (dist / state.lastDist))
         )
         const ratio = nextScale / current.scale
-        current.x = current.x * ratio + (mid.x - cx) * (1 - ratio) + (mid.x - state.lastMid.x)
-        current.y = current.y * ratio + (mid.y - cy) * (1 - ratio) + (mid.y - state.lastMid.y)
+        current.x =
+          current.x * ratio +
+          (mid.x - cx) * (1 - ratio) +
+          (mid.x - state.lastMid.x)
+        current.y =
+          current.y * ratio +
+          (mid.y - cy) * (1 - ratio) +
+          (mid.y - state.lastMid.y)
         current.scale = nextScale
         state.lastDist = dist
         state.lastMid = mid
@@ -272,18 +291,18 @@ export function LightboxStage({
       }
     }
 
-    stage.addEventListener("touchstart", onTouchStart, { passive: false })
-    stage.addEventListener("touchmove", onTouchMove, { passive: false })
-    stage.addEventListener("touchend", onTouchEnd)
-    stage.addEventListener("touchcancel", onTouchEnd)
+    stageEl.addEventListener("touchstart", onTouchStart, { passive: false })
+    stageEl.addEventListener("touchmove", onTouchMove, { passive: false })
+    stageEl.addEventListener("touchend", onTouchEnd)
+    stageEl.addEventListener("touchcancel", onTouchEnd)
 
     return () => {
-      stage.removeEventListener("touchstart", onTouchStart)
-      stage.removeEventListener("touchmove", onTouchMove)
-      stage.removeEventListener("touchend", onTouchEnd)
-      stage.removeEventListener("touchcancel", onTouchEnd)
+      stageEl.removeEventListener("touchstart", onTouchStart)
+      stageEl.removeEventListener("touchmove", onTouchMove)
+      stageEl.removeEventListener("touchend", onTouchEnd)
+      stageEl.removeEventListener("touchcancel", onTouchEnd)
     }
-  }, [])
+  }, [apply, clampPan, markGesture, reset])
 
   return (
     <div

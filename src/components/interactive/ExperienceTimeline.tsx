@@ -24,7 +24,9 @@ export function ExperienceTimeline({ stages }: ExperienceTimelineProps) {
 
     const context = gsap.context(() => {
       const fill = root.querySelector("[data-experience-fill]")
-      const items = Array.from(root.querySelectorAll("[data-experience-item]"))
+      const items = Array.from(
+        root.querySelectorAll<HTMLElement>("[data-experience-item]")
+      )
       const nodes = Array.from(root.querySelectorAll("[data-experience-node]"))
       const animatedItems = items.slice(1)
       const animatedNodes = nodes.slice(1)
@@ -87,12 +89,12 @@ export function ExperienceTimeline({ stages }: ExperienceTimelineProps) {
       aria-label="Experiencia laboral"
     >
       <div
-        className="bg-border absolute top-2 bottom-2 left-1.75 w-px overflow-hidden"
+        className="absolute top-2 bottom-2 left-1.75 w-px overflow-hidden bg-border"
         aria-hidden="true"
       >
         <div
           data-experience-fill
-          className="from-primary to-primary-soft h-full w-full origin-top bg-linear-to-b"
+          className="h-full w-full origin-top bg-linear-to-b from-primary to-primary-soft"
         />
       </div>
 
@@ -108,13 +110,13 @@ export function ExperienceTimeline({ stages }: ExperienceTimelineProps) {
           >
             {stage.current && (
               <span
-                className="bg-primary/35 absolute inset-0 rounded-full motion-safe:animate-ping"
+                className="absolute inset-0 rounded-full bg-primary/35 motion-safe:animate-ping"
                 aria-hidden="true"
               />
             )}
             <span
               className={cn(
-                "border-background absolute inset-0 rounded-full border-2 shadow-[0_0_0_1px_var(--primary)]",
+                "absolute inset-0 rounded-full border-2 border-background shadow-[0_0_0_1px_var(--primary)]",
                 stage.current ? "bg-primary" : "bg-background"
               )}
               aria-hidden="true"
@@ -123,8 +125,9 @@ export function ExperienceTimeline({ stages }: ExperienceTimelineProps) {
 
           <article
             className={cn(
-              "border-border bg-card flex min-w-0 flex-1 flex-col gap-3 rounded-2xl border p-5 sm:p-6",
-              stage.current && "border-primary/25 shadow-[0_0_0_1px_color-mix(in_oklch,var(--primary)_12%,transparent)]"
+              "flex min-w-0 flex-1 flex-col gap-3 rounded-2xl border border-border bg-card p-5 sm:p-6",
+              stage.current &&
+                "border-primary/25 shadow-[0_0_0_1px_color-mix(in_oklch,var(--primary)_12%,transparent)]"
             )}
           >
             <div className="flex flex-wrap items-center gap-2">
@@ -144,7 +147,7 @@ export function ExperienceTimeline({ stages }: ExperienceTimelineProps) {
               <h3 className="text-lg font-semibold tracking-tight text-balance">
                 {stage.title}
               </h3>
-              <p className="text-primary flex items-center gap-1.5 text-sm font-medium">
+              <p className="flex items-center gap-1.5 text-sm font-medium text-primary">
                 <span
                   className="icon-[tabler--building] size-3.5 bg-current"
                   aria-hidden="true"
@@ -153,7 +156,7 @@ export function ExperienceTimeline({ stages }: ExperienceTimelineProps) {
               </p>
             </div>
 
-            <p className="text-muted-foreground text-sm leading-relaxed text-pretty">
+            <p className="text-sm leading-relaxed text-pretty text-muted-foreground">
               {stage.description}
             </p>
           </article>

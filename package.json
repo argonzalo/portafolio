@@ -14,6 +14,7 @@
     "lint": "eslint .",
     "format": "prettier --write \"**/*.{ts,tsx,astro}\"",
     "typecheck": "astro check",
+    "check": "npm run lint && npm run typecheck && npm run build",
     "images:webp": "node scripts/convert-project-images.mjs"
   },
   "dependencies": {
