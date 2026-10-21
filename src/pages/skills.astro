@@ -1,46 +1,7 @@
 ---
-import PageHeader from "@/components/portfolio/PageHeader.astro"
-import BaseLayout from "@/layouts/BaseLayout.astro"
-
-const groups = [
-  {
-    title: "Frontend",
-    items: ["Astro", "TypeScript", "React", "Tailwind CSS"],
-  },
-  {
-    title: "Motion y 3D",
-    items: ["GSAP", "View Transitions", "Three.js"],
-  },
-  {
-    title: "Contenido y UI",
-    items: ["MDX", "shadcn/ui", "Content Collections"],
-  },
-]
+/**
+ * Decisión T-A11: se elimina `/skills` (05 §2 / `01` §8).
+ * Redirige al inicio del recorrido.
+ */
+return Astro.redirect("/", 301)
 ---
-
-<BaseLayout
-  title="Skills"
-  description="Tecnologías y herramientas con las que construyo productos e interfaces."
->
-  <section class="mx-auto flex w-full max-w-3xl flex-col gap-10 px-6 py-16">
-    <PageHeader
-      eyebrow="Skills"
-      title="Herramientas con criterio."
-      description="El stack existe para servir al producto. Cada herramienta se evalúa por valor, complejidad y efecto en el bundle."
-    />
-    <div class="grid gap-8">
-      {
-        groups.map((group) => (
-          <section class="flex flex-col gap-3">
-            <h2 class="font-medium">{group.title}</h2>
-            <ul class="flex flex-wrap gap-2">
-              {group.items.map((item) => (
-                <li class="bg-muted rounded-md px-3 py-1.5 text-sm">{item}</li>
-              ))}
-            </ul>
-          </section>
-        ))
-      }
-    </div>
-  </section>
-</BaseLayout>

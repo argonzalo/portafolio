@@ -1,0 +1,140 @@
+---
+/**
+ * Vista lista clásica: todos los proyectos, agrupados por línea (ADR-007).
+ * Fallback liviano sin WebGL y entrada rápida para reclutadores.
+ */
+import {
+  getProjectCover,
+  getProjectsByTier,
+  type Project,
+  type ProjectTier,
+} from "@/lib/projects"
+
+const tiers: { tier: ProjectTier; title: string; description: string }[] = [
+  {
+    tier: 1,
+    title: "Primera línea",
+    description: "Casos con mayor profundidad e impacto.",
+  },
+  {
+    tier: 2,
+    title: "Segunda línea",
+    description: "Productos con alcance medio, también en el recorrido.",
+  },
+  {
+    tier: 3,
+    title: "Archivo",
+    description: "Piezas más breves y exploraciones.",
+  },
+]
+
+function statusLabel(project: Project): string | null {
+  if (project.status === "activo") return "En curso"
+  if (project.status === "demo") return "Demo"
+  return null
+}
+---
+
+<section class="mx-auto flex w-full max-w-6xl flex-col gap-14 px-6 py-16 sm:py-20">
+  <header class="flex max-w-2xl flex-col gap-3">
+    <p
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      Proyectos
+    </p>
+    <h1
+      class="text-3xl font-semibold tracking-tight text-balance sm:text-4xl"
+    >
+      Vista lista
+    </h1>
+    <p class="text-muted-foreground text-base leading-relaxed text-pretty">
+      Todos los proyectos en formato clásico: liviano, accesible y sin canvas.
+      Para el recorrido inmersivo, volvé al{" "}
+      <a href="/" class="text-foreground underline-offset-4 hover:underline"
+        >inicio</a
+      >.
+    </p>
+  </header>
+
+  {
+    tiers.map(({ tier, title, description }) => {
+      const projects = getProjectsByTier(tier)
+      if (projects.length === 0) return null
+
+      return (
+        <section
+          aria-labelledby={`tier-${tier}`}
+          class="flex flex-col gap-6"
+        >
+          <div class="flex max-w-2xl flex-col gap-1">
+            <h2
+              id={`tier-${tier}`}
+              class="text-xl font-semibold tracking-tight sm:text-2xl"
+            >
+              {title}
+            </h2>
+            <p class="text-muted-foreground text-sm leading-relaxed">
+              {description}
+            </p>
+          </div>
+          <ul class="divide-border border-border divide-y border-y">
+            {projects.map((project) => {
+              const cover = getProjectCover(project)
+              const status = statusLabel(project)
+
+              return (
+                <li>
+                  <a
+                    href={`/projects/${project.id}`}
+                    class="hover:bg-muted/40 group flex flex-col gap-4 py-5 transition-colors sm:flex-row sm:items-center sm:gap-6"
+                  >
+                    <div
+                      class="bg-muted aspect-16/10 w-full shrink-0 overflow-hidden rounded-lg sm:aspect-auto sm:h-20 sm:w-32"
+                    >
+                      {cover ? (
+                        <img
+                          src={cover}
+                          alt=""
+                          class="size-full object-cover"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div
+                          class="text-muted-foreground flex size-full items-center justify-center text-lg font-semibold"
+                          aria-hidden="true"
+                        >
+                          {project.title.charAt(0)}
+                        </div>
+                      )}
+                    </div>
+                    <div class="flex min-w-0 flex-1 flex-col gap-1">
+                      <div class="flex flex-wrap items-center gap-2">
+                        <h3 class="text-lg font-semibold tracking-tight group-hover:underline group-hover:underline-offset-4">
+                          {project.title}
+                        </h3>
+                        {status && (
+                          <span class="bg-primary/10 text-primary rounded-md px-2 py-0.5 text-xs font-medium">
+                            {status}
+                          </span>
+                        )}
+                      </div>
+                      {project.client && (
+                        <p class="text-muted-foreground text-sm">
+                          {project.client}
+                          {project.period ? ` · ${project.period}` : ""}
+                        </p>
+                      )}
+                      <p class="text-muted-foreground text-sm leading-relaxed text-pretty">
+                        {project.oneLiner}
+                      </p>
+                    </div>
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
+      )
+    })
+  }
+</section>

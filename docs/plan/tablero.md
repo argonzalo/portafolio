@@ -37,7 +37,7 @@
 | --- | --- | --- | --- | --- |
 | T-H04 | Corregir y completar las narrativas de primera línea (I-01) sobre los borradores de T-A10 | T-A10 | `docs/plan/borradores/`, `src/content/projects/` | listo |
 | T-H06 | Revisión del esqueleto en dispositivos reales (matriz de `02` §5); lista de ajustes | T-A11 a T-A16 | `docs/plan/tablero.md` | pendiente |
-| T-A11 | Estructura del recorrido en DOM: capítulos con `data-chapter`, índice overlay, vista lista `/projects`, contacto siempre visible, eliminar `/skills` y decidir el destino de `/about`, `/experience`, `/contact` | T-A04, T-A06, ADR-007 | `src/pages/`, `src/components/journey/`, `src/components/layout/` | listo |
+| T-A11 | Estructura del recorrido en DOM: capítulos con `data-chapter`, índice overlay, vista lista `/projects`, contacto siempre visible, eliminar `/skills` y decidir el destino de `/about`, `/experience`, `/contact` | T-A04, T-A06, ADR-007 | `src/pages/`, `src/components/journey/`, `src/components/layout/` | en curso (agente T-A11) |
 | T-A12 | Hero y manifiesto: copy de `05` §2, tags, frases, animación con SplitText, hero 100 % HTML (LCP), punto de entrada del hilo | T-A11 | `src/components/journey/Hero*`, `src/components/journey/Manifesto*`, `src/lib/site.ts` | pendiente |
 | T-A13 | Hilo conductor v1 con la opción elegida, integrado en `Stage`, con API para que cada escena defina su `ThreadForm` | ADR-006, T-A06 | `src/experience/thread/` | pendiente |
 | T-A14 | Greybox de las 4 escenas de primera línea (un agente por escena: `T-A14-vibo`, `-pirp`, `-naturalis`, `-banner`): beats, cámaras desktop/mobile, ritmo, en `/lab` y en el recorrido | T-A07, ficha validada (T-H05) | `src/scenes/<id>/` | pendiente |
@@ -121,6 +121,7 @@
 | Fecha | Pedido por | Qué se necesita y por qué | Tarea que lo resuelve |
 | --- | --- | --- | --- |
 | 2026-10-21 | T-H02 | `.gitignore` ignora `.env*` y también excluye `.env.example`. Hay que exceptuar `!.env.example` para versionar el esquema de variables. | T-A01 (resuelto en `t/A01-higiene`) |
+| 2026-10-21 | T-A11 | Registrar en `astro.config.ts` redirects 301: `/skills` → `/`, `/about` y `/experience` → `/?chapter=about`, `/contact` → `/?chapter=contact` (hoy están en páginas Astro). Opcional: ampliar `hashScroll` en `src/lib/hashScroll.ts` a cualquier `#capítulo` del recorrido (hoy solo `#proyectos`). | plataforma / orquestador |
 
 ## Estado de insumos del humano
 

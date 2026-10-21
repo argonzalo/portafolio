@@ -1,11 +1,7 @@
 ---
-import Experience from "@/components/portfolio/Experience.astro"
-import BaseLayout from "@/layouts/BaseLayout.astro"
+/**
+ * Decisión T-A11: la experiencia laboral deja de ser ruta/sección propia (05 §2).
+ * Redirige a "Quién soy" en el recorrido.
+ */
+return Astro.redirect("/?chapter=about", 301)
 ---
-
-<BaseLayout
-  title="Experiencia laboral"
-  description="Recorrido profesional, responsabilidades y resultados."
->
-  <Experience framed={false} />
-</BaseLayout>
