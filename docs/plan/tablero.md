@@ -22,7 +22,7 @@
 | T-A02 | Tooling de calidad: script `npm run check`, GitHub Actions (lint, typecheck, build), Lighthouse CI con presupuestos de `02` §1 sobre el preview, `rollup-plugin-visualizer`, Playwright con un smoke test | — | `package.json` (scripts, devDeps), `.github/`, `lighthouserc.*`, `playwright.config.*`, `tests/` | listo |
 | T-A03 | Adaptador Vercel + `astro:env` (esquema server/secret para las variables de `04` §2) + `/api/health` + redirección `analisis-rep-politica → pirp` + `.env.example` actualizado; preview funcionando | ADR-004, T-H02 | `astro.config.ts`, `package.json`, `src/pages/api/`, `.env.example` | hecho (2026-10-21; preview https://portafolio-git-t-a03-vercel-argonzalos-projects.vercel.app) |
 | T-A04 | Content collections: esquema de `05` §1, migración de los 14 proyectos + Pirp como `pirp`, helpers de consulta; `src/lib/projects.ts` queda como fachada temporal para no romper páginas | ADR-003 | `src/content/`, `src/content.config.ts`, `src/lib/projects.ts` | listo |
-| T-A05 | Contratos y store: `src/experience/types.ts` (contratos de `01` §4), store mutable de progreso/capítulo/calidad, `registry.ts` vacío, emisor de `JourneySignal`; instalar R3F y drei | ADR-001, ADR-002 | `src/experience/`, `src/scenes/registry.ts`, `src/guide/signals.ts`, `package.json` | listo |
+| T-A05 | Contratos y store: `src/experience/types.ts` (contratos de `01` §4), store mutable de progreso/capítulo/calidad, `registry.ts` vacío, emisor de `JourneySignal`; instalar R3F y drei | ADR-001, ADR-002 | `src/experience/`, `src/scenes/registry.ts`, `src/guide/signals.ts`, `package.json` | en revisión (rama `t/A05-contratos`, pusheada; falta abrir el PR en github.com/argonzalo/portafolio/pull/new/t/A05-contratos) |
 | T-A06 | **Spike del runtime** (ruta crítica): `Stage` persistente con `transition:persist`, ScrollTrigger → store, 2 escenas dummy con montaje/desmontaje y transición, navegación home ↔ caso sin perder el canvas, medición de memoria | T-A05 | `src/experience/`, `src/layouts/`, `src/pages/index.astro` (temporal) | pendiente |
 | T-A07 | Calidad adaptativa (`quality.ts`, `PerformanceMonitor`), overlay `?debug`, deep links de estado, ruta `/lab/[scene]` solo en dev | T-A06 | `src/experience/quality.ts`, `src/experience/debug.tsx`, `src/pages/lab/` | pendiente |
 | T-A08 | **Spike del hilo conductor:** opciones A y C de ADR-006 en `/lab/thread`, con transición Vibo→Pirp y versión mobile; best-of-N (una variante por worktree). Default A si no hay elección a tiempo; C solo si cumple mobile | ADR-001 | `src/experience/thread/`, `src/pages/lab/thread.astro` | listo |
@@ -112,7 +112,7 @@
 
 | Fecha | Tarea | Pregunta o bloqueo | Respuesta |
 | --- | --- | --- | --- |
-| | | | |
+| 2026-10-21 | T-A05 | `npm run typecheck` ya falla en `main` (verificado con la rama limpia): `src/components/interactive/ExperienceTimeline.tsx:35` (`offsetHeight` sobre `Element`) y `src/components/projects/LightboxStage.tsx:143` (`stage` posiblemente `null`). `npm run lint` además falla en `LightboxStage.tsx:53` (ref escrito durante el render). Los tres están fuera de la zona de T-A05. ¿Los arregla T-A02 o una tarea de QA? `npm run check` todavía no existe (T-A02). | |
 
 ## Pedidos a plataforma
 
