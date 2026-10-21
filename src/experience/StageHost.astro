@@ -1,0 +1,10 @@
+---
+/**
+ * Isla persistente del canvas (ADR-002).
+ * Mismo `transition:persist` en BaseLayout y ProjectLayout para que el
+ * contexto WebGL sobreviva home ↔ caso.
+ */
+import { Stage } from "@/experience/Stage"
+---
+
+<Stage client:load transition:persist="experience-stage" transition:persist-props />

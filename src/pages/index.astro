@@ -1,4 +1,9 @@
 ---
+/**
+ * Home temporal del spike T-A06: dos capítulos dummy + enlace a un caso
+ * para probar `transition:persist` del canvas. El recorrido definitivo llega
+ * en T-A11; este markup se reemplaza entonces.
+ */
 import { FadeIn } from "@/components/interactive/FadeIn"
 import Experience from "@/components/portfolio/Experience.astro"
 import Hero from "@/components/portfolio/Hero.astro"
@@ -9,6 +14,93 @@ import { contacts, site } from "@/lib/site"
 ---
 
 <BaseLayout>
+  <section
+    class="border-border relative z-0 border-b bg-background/70 px-6 py-10 backdrop-blur-sm"
+    aria-label="Spike del runtime"
+  >
+    <div class="mx-auto flex w-full max-w-6xl flex-col gap-4">
+      <p
+        class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+      >
+        Spike T-A06 · runtime
+      </p>
+      <p class="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+        Canvas persistente, scroll → store, dos escenas dummy.
+      </p>
+      <p class="text-muted-foreground max-w-2xl text-base leading-relaxed">
+        Scrolléá los bloques de abajo para cambiar de escena. Después andá y
+        volvé de un caso 5 veces y mirá el HUD (geometries / textures / heap):
+        no deberían crecer en cada viaje.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="/projects/vibo"
+          class={buttonVariants({ variant: "default", size: "lg" })}
+        >
+          Ir al caso Vibo
+        </a>
+        <a
+          href="/?spike=1#spike-alpha"
+          class={buttonVariants({ variant: "secondary", size: "lg" })}
+        >
+          Ver HUD del spike
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="spike-alpha"
+    data-chapter="spike-alpha"
+    class="border-border relative z-0 flex min-h-[120svh] flex-col justify-center border-b bg-background/40 px-6 py-24 backdrop-blur-[2px]"
+  >
+    <div class="mx-auto w-full max-w-6xl">
+      <p
+        class="text-sm font-medium tracking-wide text-sky-300/90 uppercase"
+      >
+        Capítulo spike-alpha
+      </p>
+      <h2 class="mt-2 max-w-xl text-3xl font-semibold tracking-tight sm:text-4xl">
+        Dummy A · icosaedro
+      </h2>
+      <p class="text-muted-foreground mt-3 max-w-lg text-base leading-relaxed">
+        El progreso 0…1 gira y desplaza la malla. Al pasar al siguiente
+        capítulo, esta escena sale y se dispone.
+      </p>
+    </div>
+  </section>
+
+  <section
+    id="spike-beta"
+    data-chapter="spike-beta"
+    class="border-border relative z-0 flex min-h-[120svh] flex-col justify-center border-b bg-background/40 px-6 py-24 backdrop-blur-[2px]"
+  >
+    <div class="mx-auto w-full max-w-6xl">
+      <p
+        class="text-sm font-medium tracking-wide text-amber-300/90 uppercase"
+      >
+        Capítulo spike-beta
+      </p>
+      <h2 class="mt-2 max-w-xl text-3xl font-semibold tracking-tight sm:text-4xl">
+        Dummy B · toro
+      </h2>
+      <p class="text-muted-foreground mt-3 max-w-lg text-base leading-relaxed">
+        Segunda escena del spike. Transición con como máximo dos montadas a la
+        vez.
+      </p>
+      <a
+        href="/projects/vibo"
+        class={buttonVariants({
+          variant: "secondary",
+          size: "lg",
+          className: "mt-6 w-fit",
+        })}
+      >
+        Probar persistencia → caso Vibo
+      </a>
+    </div>
+  </section>
+
   <Hero />
 
   <Experience />
@@ -31,29 +123,40 @@ import { contacts, site } from "@/lib/site"
         >
           Quién soy y cómo trabajo.
         </h2>
-        
       </div>
       <div
         class="flex max-w-3xl flex-col gap-4 text-base leading-relaxed text-muted-foreground"
       >
-      <p>
-        Soy desarrollador, pero me cuesta definirme por una tecnología o un lenguaje en particular. Me interesa más entender un problema, explorar posibilidades y encontrar la mejor manera de resolverlo, incluso cuando eso implica aprender algo completamente nuevo.
-      </p>
-      <p>
-        Disfruto especialmente de los proyectos que me permiten crear, experimentar y cruzar distintas disciplinas. La misma curiosidad que encuentro en la tecnología también está presente en otras partes de mi vida: la música, donde participé en bandas y proyectos de producción musical, y el deporte, especialmente el fútbol, el tenis y el pádel.
-      </p>
-      <a
-        href={site.instagram}
-        class={buttonVariants({ variant: "secondary", size: "lg", className: "w-fit" })}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span
-          class="icon-[tabler--brand-instagram] size-5 shrink-0 bg-current"
-          aria-hidden="true"
-        />
-        Instagram
-      </a>
+        <p>
+          Soy desarrollador, pero me cuesta definirme por una tecnología o un
+          lenguaje en particular. Me interesa más entender un problema,
+          explorar posibilidades y encontrar la mejor manera de resolverlo,
+          incluso cuando eso implica aprender algo completamente nuevo.
+        </p>
+        <p>
+          Disfruto especialmente de los proyectos que me permiten crear,
+          experimentar y cruzar distintas disciplinas. La misma curiosidad que
+          encuentro en la tecnología también está presente en otras partes de
+          mi vida: la música, donde participé en bandas y proyectos de
+          producción musical, y el deporte, especialmente el fútbol, el tenis y
+          el pádel.
+        </p>
+        <a
+          href={site.instagram}
+          class={buttonVariants({
+            variant: "secondary",
+            size: "lg",
+            className: "w-fit",
+          })}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span
+            class="icon-[tabler--brand-instagram] size-5 shrink-0 bg-current"
+            aria-hidden="true"
+          />
+          Instagram
+        </a>
       </div>
     </FadeIn>
   </section>
