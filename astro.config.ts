@@ -3,7 +3,10 @@ import react from "@astrojs/react"
 import vercel from "@astrojs/vercel"
 import tailwindcss from "@tailwindcss/vite"
 import { defineConfig, envField } from "astro/config"
+import { visualizer } from "rollup-plugin-visualizer"
 import { site } from "./src/lib/site"
+
+const analyze = process.env.ANALYZE === "true"
 
 export default defineConfig({
   site: site.url,
@@ -81,6 +84,19 @@ export default defineConfig({
     "/projects/varios/forme": "/projects/forme",
   },
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      tailwindcss(),
+      ...(analyze
+        ? [
+            visualizer({
+              filename: "stats.html",
+              gzipSize: true,
+              brotliSize: true,
+              template: "treemap",
+              open: false,
+            }),
+          ]
+        : []),
+    ],
   },
 })

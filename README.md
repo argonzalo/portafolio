@@ -29,13 +29,27 @@ El sitio funciona sin variables de entorno. Solo el guía de IA y los límites n
 | --- | --- |
 | `npm run dev` | Servidor de desarrollo en el puerto **3010**. |
 | `npm run build` | Build de producción (`dist/`). |
-| `npm run preview` | Sirve el build de producción. |
+| `npm run preview` | Preview nativo de Astro (no aplica con el adaptador de Vercel). |
+| `npm run preview:static` | Sirve `.vercel/output/static` tras `npm run build` (lo que usan Playwright y LHCI). |
 | `npm run lint` | ESLint sobre todo el repo. |
 | `npm run format` | Prettier sobre `ts`, `tsx` y `astro`. |
 | `npm run typecheck` | Chequeo de tipos con `astro check`. |
-| `npm run check` | Atajo previo a un PR: `lint` + `typecheck` + `build`. Es lo que corre la verificación obligatoria. |
+| `npm run check` | Atajo previo a un PR: `lint` + `typecheck` + `build`. Es lo que corre la verificación obligatoria en CI. |
+| `npm run analyze` | Build con `rollup-plugin-visualizer` → `stats.html` (gzip/brotli) para revisar el presupuesto de JS de `02` §1. |
+| `npm run lhci` | Lighthouse CI contra el preview local (o `LHCI_URL` si apunta a un preview de Vercel). Presupuestos en `lighthouserc.cjs`. |
+| `npm run test:e2e` | Smoke tests de Playwright (requiere `npm run build` previo; levanta `preview:static`). |
 | `npm run images:webp` | Convierte las imágenes de `public/images/proyects` a WebP (calidad 82) y reporta el ahorro. `--keep` conserva los originales. |
 | `npm run astro` | CLI de Astro para comandos puntuales (`astro add`, `astro sync`…). |
+
+## CI
+
+GitHub Actions (`.github/workflows/ci.yml`) en cada push a `main` y en cada PR:
+
+1. **check** — `npm run check` + artefacto `stats.html` del visualizer.
+2. **smoke** — Playwright (`tests/smoke.spec.ts`) sobre el preview.
+3. **lighthouse** — LHCI con los presupuestos de [`docs/plan/02-rendimiento-y-mobile.md`](./docs/plan/02-rendimiento-y-mobile.md) §1 (config `lighthouserc.cjs`). En F0 LCP/a11y/peso van en `warn`; CLS en `error`. Se endurecen en T-A12 / T-A16 / T-A37.
+
+Para auditar un preview de Vercel en local o en CI: `LHCI_URL=https://….vercel.app/ npm run lhci`.
 
 ## Variables de entorno
 
