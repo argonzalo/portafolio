@@ -10,10 +10,10 @@
 | Lenguaje | TypeScript estricto | Se mantiene | |
 | Estilos | Tailwind CSS v4 + CSS variables | Se mantiene | Tokens por capítulo vía variables (paleta que cambia con el scroll) |
 | UI funcional | shadcn/ui (Radix) | Se mantiene, uso mínimo | Diálogos, índice, sheet del guía en mobile, tooltips |
-| 3D | **three.js + @react-three/fiber + @react-three/drei** | ADR-001 (propuesta) | drei solo con imports puntuales: `View`, `Text`, `useGLTF`, `useKTX2`, `PerformanceMonitor`, `AdaptiveDpr` |
+| 3D | **three.js + @react-three/fiber + @react-three/drei** | ADR-001 (aceptada) | drei solo con imports puntuales: `View`, `Text`, `useGLTF`, `useKTX2`, `PerformanceMonitor`, `AdaptiveDpr` |
 | Postprocesado | `postprocessing` (vía `@react-three/postprocessing`) | Solo nivel `high` | Un único `EffectComposer` con efectos fusionados |
 | Movimiento | **GSAP 3.15** (ScrollTrigger, SplitText; todos los plugins son gratuitos) | Se mantiene | Sin Lenis: si hace falta scroll suave, `ScrollSmoother` de GSAP, evaluado por rendimiento |
-| Navegación | View Transitions (`ClientRouter`) + `transition:persist` | ADR-002 (propuesta) | El canvas 3D persiste entre páginas |
+| Navegación | View Transitions (`ClientRouter`) + `transition:persist` | ADR-002 (aceptada) | El canvas 3D persiste entre páginas |
 | Contenido | Content Collections (MDX + Zod) | ADR-003 (propuesta) | Reemplaza `src/lib/projects.ts` |
 | Hosting | **Vercel** + `@astrojs/vercel` | ADR-004 (propuesta) | Todo prerenderizado salvo `/api/guide` |
 | Agente IA | AI SDK (`ai` + `@ai-sdk/openai`) | ADR-005 (propuesta) | Streaming, tools con Zod, modelo desde `OPEN_AI_MODEL` |
