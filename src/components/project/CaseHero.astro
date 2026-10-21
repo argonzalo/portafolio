@@ -1,0 +1,116 @@
+---
+import type { ProjectData } from "@/content/schema"
+import { displayUrl } from "@/lib/utils"
+
+type Props = {
+  project: ProjectData
+}
+
+const { project } = Astro.props
+
+/** Póster definitivo en `/posters/<scene>/` (T-A16 / T-A35); mientras, primera media. */
+const posterFromScene = project.scene
+  ? `/posters/${project.scene}/desktop.webp`
+  : undefined
+const posterFromMedia = project.media[0]?.src
+// Prioridad: media existente (evita 404 de pósters aún no generados) → ruta de póster.
+const posterSrc = posterFromMedia ?? posterFromScene
+const posterAlt = project.media[0]?.alt ?? `Vista de ${project.title}`
+const hasScene = Boolean(project.scene)
+const initial = project.title.trim().charAt(0).toUpperCase()
+---
+
+<section
+  class="relative isolate overflow-hidden"
+  data-case-hero
+  data-chapter={project.scene}
+  data-scene={project.scene}
+  aria-label={hasScene ? `Escena de ${project.title}` : `Portada de ${project.title}`}
+>
+  <div class="relative aspect-16/10 w-full min-h-[16rem] sm:min-h-[22rem] lg:min-h-[28rem]">
+    {
+      posterSrc ? (
+        <img
+          src={posterSrc}
+          alt={posterAlt}
+          width={1440}
+          height={900}
+          class="absolute inset-0 size-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
+      ) : null
+    }
+
+    <div
+      class="from-background via-background/70 absolute inset-0 bg-linear-to-t to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+
+    {
+      !posterSrc && (
+        <div
+          class="bg-muted absolute inset-0 flex items-center justify-center"
+          aria-hidden="true"
+        >
+          <span class="text-primary/40 text-[clamp(6rem,22vw,12rem)] font-semibold leading-none select-none">
+            {initial}
+          </span>
+        </div>
+      )
+    }
+
+    {
+      hasScene && (
+        <p class="bg-background/70 text-muted-foreground absolute top-4 right-4 z-10 rounded-full px-3 py-1 text-xs font-medium backdrop-blur-sm sm:top-6 sm:right-6">
+          Escena en vivo cuando esté disponible · póster de respaldo
+        </p>
+      )
+    }
+
+    <div
+      class="absolute inset-x-0 bottom-0 z-10 mx-auto flex w-full max-w-[100rem] flex-col gap-4 px-5 py-8 sm:px-8 sm:py-10 lg:px-12"
+    >
+      <p class="text-foreground max-w-3xl text-xl font-medium tracking-tight text-pretty sm:text-2xl lg:text-3xl">
+        {project.oneLiner}
+      </p>
+
+      <p class="text-muted-foreground flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+        <span class="inline-flex items-center gap-1.5">
+          <span class="icon-[tabler--calendar] size-4 bg-current" aria-hidden="true"></span>
+          {project.period}
+        </span>
+        {
+          project.location && (
+            <span class="inline-flex items-center gap-1.5">
+              <span class="icon-[tabler--map-pin] size-4 bg-current" aria-hidden="true"></span>
+              {project.location}
+            </span>
+          )
+        }
+      </p>
+
+      {
+        project.url && (
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="border-border bg-background/70 text-foreground hover:border-primary/40 hover:bg-background inline-flex w-fit max-w-full items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium backdrop-blur-sm transition-colors"
+          >
+            <span class="icon-[tabler--link] size-3.5 shrink-0 bg-current" aria-hidden="true"
+            ></span>
+            <span class="truncate underline decoration-primary/50 underline-offset-4">
+              {displayUrl(project.url)}
+            </span>
+            <span
+              class="icon-[tabler--external-link] size-3.5 shrink-0 bg-current opacity-70"
+              aria-hidden="true"></span>
+            <span class="sr-only">(se abre en una pestaña nueva)</span>
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>

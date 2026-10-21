@@ -1,0 +1,85 @@
+---
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { StackBadge } from "@/components/portfolio/StackBadge"
+import type { ProjectPartData } from "@/content/schema"
+import { displayUrl } from "@/lib/utils"
+
+import CaseSection from "./CaseSection.astro"
+
+type Props = {
+  parts: ProjectPartData[]
+}
+
+const { parts } = Astro.props
+---
+
+{
+  parts.length > 0 && (
+    <CaseSection title="Piezas" id="piezas">
+      <ul class="grid gap-6 md:grid-cols-2">
+        {parts.map((part) => (
+          <li class="border-border flex flex-col gap-3 border-t pt-5">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 class="text-lg font-semibold tracking-tight text-balance">{part.title}</h3>
+              <p class="text-muted-foreground inline-flex items-center gap-1.5 text-xs">
+                <span class="icon-[tabler--calendar] size-3.5 bg-current" aria-hidden="true" />
+                {part.period}
+              </p>
+            </div>
+            <p class="text-muted-foreground text-sm leading-relaxed text-pretty">
+              {part.description}
+            </p>
+            {part.notes.length > 0 && (
+              <Alert variant="warning">
+                <span
+                  class="icon-[tabler--alert-triangle] mt-0.5 size-4 shrink-0 bg-current"
+                  aria-hidden="true"
+                />
+                <div class="flex flex-col gap-1">
+                  <AlertTitle>Nota</AlertTitle>
+                  <AlertDescription>{part.notes.join(" ")}</AlertDescription>
+                </div>
+              </Alert>
+            )}
+            {part.stats.length > 0 && (
+              <p class="text-foreground flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-medium">
+                {part.stats.map((stat) => (
+                  <span class="inline-flex items-center gap-1.5">
+                    <span
+                      class="icon-[tabler--chart-dots] text-muted-foreground size-3.5 bg-current"
+                      aria-hidden="true"
+                    />
+                    {stat}
+                  </span>
+                ))}
+              </p>
+            )}
+            {part.stack.length > 0 && (
+              <ul class="flex flex-wrap gap-1.5">
+                {part.stack.map((tech) => (
+                  <li>
+                    <StackBadge name={tech} />
+                  </li>
+                ))}
+              </ul>
+            )}
+            {part.url && (
+              <a
+                href={part.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-foreground inline-flex w-fit max-w-full items-center gap-1.5 text-xs font-medium"
+              >
+                <span class="icon-[tabler--link] size-3.5 shrink-0 bg-current" aria-hidden="true" />
+                <span class="truncate underline decoration-primary/50 underline-offset-4">
+                  {displayUrl(part.url)}
+                </span>
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+    </CaseSection>
+  )
+}

@@ -1,0 +1,67 @@
+---
+import { Badge } from "@/components/ui/badge"
+import { buttonVariants } from "@/components/ui/button"
+import type { ProjectData } from "@/content/schema"
+import { cn } from "@/lib/utils"
+
+import { statusLabel } from "./statusLabel"
+
+type Props = {
+  project: ProjectData
+}
+
+const { project } = Astro.props
+const client = project.client
+---
+
+<header
+  data-case-bar
+  class="group border-border bg-background/80 sticky top-0 z-40 border-b backdrop-blur-lg"
+>
+  <div
+    class="mx-auto flex w-full max-w-[100rem] items-center gap-5 px-5 py-6 transition-[padding,gap] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-data-[compact=true]:gap-3 group-data-[compact=true]:py-2.5 sm:px-8 sm:py-8 sm:group-data-[compact=true]:py-3 lg:px-12"
+  >
+    <a
+      href="/projects"
+      aria-label="Volver a la lista de proyectos"
+      class={cn(
+        buttonVariants({ variant: "outline" }),
+        "size-14 shrink-0 rounded-full transition-[width,height] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] sm:size-16 [&_span]:size-7 sm:[&_span]:size-8 group-data-[compact=true]:size-11 group-data-[compact=true]:[&_span]:size-5 sm:group-data-[compact=true]:size-12"
+      )}
+    >
+      <span class="icon-[tabler--arrow-left] bg-current" aria-hidden="true"></span>
+    </a>
+
+    <div class="min-w-0 flex-1">
+      <div class="flex flex-wrap items-center gap-2">
+        <h1
+          class="truncate text-3xl font-semibold tracking-tight transition-[font-size] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] sm:text-4xl lg:text-5xl group-data-[compact=true]:text-lg sm:group-data-[compact=true]:text-xl lg:group-data-[compact=true]:text-2xl"
+        >
+          {project.title}
+        </h1>
+        {
+          project.status === "activo" ? (
+            <Badge>{statusLabel(project.status)}</Badge>
+          ) : (
+            <Badge variant="muted">{statusLabel(project.status)}</Badge>
+          )
+        }
+      </div>
+      {
+        client && (
+          <div class="grid grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-data-[compact=true]:grid-rows-[0fr]">
+            <p class="text-muted-foreground mt-1 min-h-0 overflow-hidden text-sm sm:text-base">
+              {client}
+            </p>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</header>
+
+<script>
+  import { initCaseBar } from "@/components/project/caseBar"
+
+  document.addEventListener("astro:page-load", initCaseBar)
+</script>

@@ -43,7 +43,7 @@
 | T-A14 | Greybox de las 4 escenas de primera línea (un agente por escena: `T-A14-vibo`, `-pirp`, `-naturalis`, `-banner`): beats, cámaras desktop/mobile, ritmo, en `/lab` y en el recorrido | T-A07, ficha validada (T-H05) | `src/scenes/<id>/` | pendiente |
 | T-A15 | Paletas por capítulo: interpolación de CSS variables con el progreso, cambio a tema claro en Naturalis, sincronía con el canvas | T-A06, T-A11 | `src/experience/palette.ts`, `src/styles/` (con permiso de plataforma) | pendiente |
 | T-A16 | Nivel `static`: recorrido sin canvas con pósters provisionales, `prefers-reduced-motion`, `Save-Data`, sin WebGL | T-A07, T-A11 | `src/components/journey/Fallback*`, `public/posters/` | pendiente |
-| T-A17 | Página de caso `/projects/[id]` con la estructura problema → enfoque → decisiones → desafíos → resultado → piezas → stack; header con escena o póster | T-A04, T-A06 | `src/pages/projects/[...slug].astro`, `src/components/project/` | listo |
+| T-A17 | Página de caso `/projects/[id]` con la estructura problema → enfoque → decisiones → desafíos → resultado → piezas → stack; header con escena o póster | T-A04, T-A06 | `src/pages/projects/[...slug].astro`, `src/components/project/` | en curso (agente T-A17) |
 
 ## F2 — Escena insignia, kits y backend del guía · Compuerta G2
 

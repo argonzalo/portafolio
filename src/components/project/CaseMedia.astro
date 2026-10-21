@@ -1,0 +1,27 @@
+---
+import { ProjectGallery } from "@/components/projects/ProjectGallery"
+import type { ProjectMediaData } from "@/content/schema"
+
+import CaseSection from "./CaseSection.astro"
+
+type Props = {
+  media: ProjectMediaData[]
+  title: string
+}
+
+const { media, title } = Astro.props
+
+const images = media.map((item) => ({
+  src: encodeURI(item.src),
+  alt: item.alt,
+  ...(item.caption ? { caption: item.caption } : {}),
+}))
+---
+
+{
+  images.length > 0 && (
+    <CaseSection title="Galería" id="galeria">
+      <ProjectGallery client:load images={images} title={title} />
+    </CaseSection>
+  )
+}
