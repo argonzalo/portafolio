@@ -1,10 +1,9 @@
-# build output
-dist/
-# generated types
-.astro/
-
-# dependencies
+# dependencias
 node_modules/
+
+# build y tipos generados
+dist/
+.astro/
 
 # logs
 npm-debug.log*
@@ -12,18 +11,28 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# environment variables
-.env*
+# variables de entorno (el esquema público se versiona en .env.example)
+.env
+.env.*
+!.env.example
 
-# macOS-specific files
-.DS_Store
+# Vercel
+.vercel/
 
-# jetbrains setting folder
-.idea/
+# fuentes de assets 3D: viven solo en el equipo del humano (ADR-010).
+# En el repo se versionan las salidas optimizadas (public/models, public/textures…)
+# y la convención de carpetas.
+assets-src/*
+!assets-src/README.md
 
-# windows
-Thumbs.db
+# duplicados eliminados del repo (ADR-009); siguen en el historial de Git
+proyectos-facu/
+proyectos-facu.zip
 
+# notas locales
 recap/
-.vercel
-.env*
+
+# sistema operativo y editores
+.DS_Store
+Thumbs.db
+.idea/
