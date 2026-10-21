@@ -3,9 +3,20 @@ export type ProjectImage = {
   alt: string
 }
 
-export type ProjectSubproject = {
-  id: string
-  order: number
+/** Prioridad de presentación: 1 = primera línea (escenas más personalizadas), 3 = última línea. */
+export type ProjectTier = 1 | 2 | 3
+
+/** Contexto de la organización a la que pertenece un proyecto (p. ej. Banner Director). */
+export type ProjectOrganization = {
+  name: string
+  summary: string
+  description: string
+  period: string
+  location?: string
+}
+
+/** Pieza de un proyecto unificado (p. ej. la app y la web de una misma solución). */
+export type ProjectPart = {
   title: string
   period: string
   stack: string[]
@@ -14,21 +25,25 @@ export type ProjectSubproject = {
   stats?: string[]
   alert?: string
   active?: boolean
-  images: ProjectImage[]
 }
 
 export type Project = {
   id: string
   order: number
+  tier: ProjectTier
   title: string
   company?: string
+  organization?: ProjectOrganization
   cardDescription: string
   period: string
   stack: string[]
   description: string
   location?: string
+  url?: string
+  stats?: string[]
+  alert?: string
   active?: boolean
-  subprojects: ProjectSubproject[]
+  parts?: ProjectPart[]
   images: ProjectImage[]
 }
 
@@ -48,113 +63,25 @@ function gallery(
   )
 }
 
+function numbered(count: number): string[] {
+  return Array.from({ length: count }, (_, index) => `${index + 1}.webp`)
+}
+
+const BANNER_DIRECTOR: ProjectOrganization = {
+  name: "Banner Director",
+  summary:
+    "Software de gestión y distribución de contenido digital para cartelería de forma centralizada.",
+  description:
+    "Plataforma de Digital Signage que permite a grandes cadenas y franquicias controlar, desde un único lugar, lo que muestran miles de pantallas en múltiples locales: qué se ve, dónde y cuándo, sin intervenir equipo por equipo. Cada pantalla ejecuta su programación de forma autónoma y se mantiene alineada con las decisiones centrales, lo que permite escalar la operación a miles de equipos sin perder el control. Actualmente cuenta con casi 10.000 equipos activos y clientes como Grido, Açaí, Marea, Diarco y Leroma, entre otros.",
+  period: "2021 — 2026",
+  location: "Córdoba, Argentina",
+}
+
 export const projects: Project[] = [
   {
-    id: "banner-director",
-    order: 1,
-    title: "Banner Director",
-    company: "Banner Director",
-    cardDescription:
-      "Software de gestión y distribución de contenido digital para cartelería de forma centralizada.",
-    period: "2021 — 2026",
-    stack: [
-      "Go",
-      "Vue",
-      "PostgreSQL",
-      "TypeScript",
-      "Kotlin",
-      "Docker",
-      "Next.js",
-      "Firebase",
-      "Kubernetes",
-    ],
-    description:
-      "Plataforma de Digital Signage que permite gestionar de forma centralizada el contenido de miles de pantallas en múltiples locales. Actualmente cuenta con casi 10.000 equipos activos y clientes como Grido, Açaí, Marea, Diarco y Leroma, entre otros.",
-    location: "Córdoba, Argentina",
-    images: [],
-    subprojects: [
-      {
-        id: "banner-2",
-        order: 1,
-        title: "Banner 2.0",
-        period: "2023 — 2026",
-        stack: [
-          "Go",
-          "Vue",
-          "PostgreSQL",
-          "TypeScript",
-          "Kotlin",
-          "Docker",
-          "Kubernetes",
-        ],
-        description:
-          "Sistema de Digital Signage para grandes franquicias, basado en tres pilares: interfaz gráfica en Vue, con un potente editor visual para crear y gestionar contenido; backend en Go y base de datos PostgreSQL; y Android / Kotlin para la operación y reproducción de contenido en los equipos. El sistema permite administrar contenidos con configuraciones avanzadas por regiones, fechas, entidades y más.",
-        url: "https://v2.bannerdirector.com",
-        stats: ["+600 equipos funcionando"],
-        images: gallery(
-          "banner-director/banner-2",
-          [
-            "1.webp",
-            "2.webp",
-            "3.webp",
-            "4.webp",
-            "5.webp",
-            "6.webp",
-            "7.webp",
-            "8.webp",
-            "9.webp",
-            "10.webp",
-            "11.webp",
-            "12.webp",
-            "13.webp",
-            "14.webp",
-          ],
-          "Banner 2.0"
-        ),
-      },
-      {
-        id: "app-etiquetas",
-        order: 2,
-        title: "App Etiquetas",
-        period: "2025",
-        stack: ["Flutter"],
-        description:
-          "App mobile para la configuración local — conexión desde la misma red Wi‑Fi a los equipos — para gestionar contenido de forma particular, sin alterar la configuración global. Especialmente útil para la gestión de disponibilidad de productos.",
-        images: gallery(
-          "banner-director/app-etiquetas",
-          ["1.webp", "2.webp"],
-          "App Etiquetas"
-        ),
-      },
-      {
-        id: "web-landing",
-        order: 3,
-        title: "Web Landing",
-        period: "2024",
-        stack: ["Next.js", "Firebase"],
-        description: "Sitio web de la empresa.",
-        url: "https://web.bannerdirector.com/",
-        images: gallery(
-          "banner-director/web-landing",
-          ["1.webp"],
-          "Web Landing de Banner Director"
-        ),
-      },
-      {
-        id: "teams",
-        order: 4,
-        title: "Banner Teams",
-        period: "2026",
-        stack: ["NestJS", "TypeScript", "PostgreSQL", "Prisma", "Next.js"],
-        description:
-          "Sistema interno de la empresa para la gestión de tareas, clientes, ventas, seguimiento de envíos y operación diaria del equipo.",
-        images: gallery("banner-director/teams", ["1.webp"], "Banner Teams"),
-      },
-    ],
-  },
-  {
     id: "vibo",
-    order: 2,
+    order: 1,
+    tier: 1,
     title: "VIBO — Pádel Análisis",
     company: "VIBO",
     cardDescription: "Análisis por video de partidos de pádel.",
@@ -162,132 +89,98 @@ export const projects: Project[] = [
     active: true,
     stack: ["Python", "GCP", "Docker", "Next.js", "Firebase"],
     description:
-      "El usuario registra su partido en video y la plataforma procesa el material mediante una combinación de algoritmos de visión por computadora, inteligencia artificial y modelos matemáticos para extraer datos del juego, reconstruir y analizar diferentes eventos y generar métricas de rendimiento e información relevante para evaluar y mejorar el desempeño.",
+      "Análisis inteligente de partidos de pádel que revela cómo juega realmente cada jugador. VIBO identifica su estilo de juego y si es más ofensivo o defensivo, compara cómo se reparte el juego con su compañero y cuánta cancha cubre en relación con él y con los rivales. Mide su dinámica de movimiento —qué tan rápido y ágil se desplaza y si se cansa a medida que avanza el partido—, muestra qué tipos de golpe ejecuta con más frecuencia y en qué zonas de la cancha se mueve más, y permite compartir los resultados con otros jugadores. Todo se apoya en inteligencia artificial y visión por computadora para convertir cada partido en información concreta para mejorar.",
     location: "Londres, Inglaterra",
-    images: [],
-    subprojects: [
+    url: "https://vibopadel.com/",
+    parts: [
       {
-        id: "padel-video-analisis",
-        order: 1,
         title: "Pádel Video Análisis",
         period: "2025 — 2026",
         stack: ["Python", "GCP", "Docker"],
         description:
-          "Backend en Python. Incluye el entrenamiento de modelos, el desarrollo de algoritmos para la extracción de datos de juego y el despliegue en Google Cloud.",
+          "El motor que entiende el juego de cada jugador: detecta su estilo y su perfil ofensivo o defensivo, el reparto de juego con su compañero, la cancha que cubre frente a compañero y rivales, su velocidad, agilidad y desgaste a lo largo del partido, sus golpes más frecuentes y sus zonas dominantes. Funciona con modelos de inteligencia artificial y visión por computadora entrenados para el pádel y desplegados en la nube.",
         url: "https://vibopadel.com/",
-        images: gallery(
-          "vibo/padel-video-analisis",
-          [
-            "1.webp",
-            "2.webp",
-            "3.webp",
-            "4.webp",
-            "5.webp",
-            "6.webp",
-            "7.webp",
-            "8.webp",
-          ],
-          "Pádel Video Análisis"
-        ),
       },
       {
-        id: "web-demo",
-        order: 2,
         title: "Web Demo",
         period: "2026",
         stack: ["Next.js"],
         description:
-          "Sitio web demo para la presentación inicial e interna del proyecto.",
-        images: gallery(
-          "vibo/web-demo",
-          ["1.webp", "2.webp", "3.webp"],
-          "Web Demo de VIBO"
-        ),
+          "Demo navegable con la que se presentó VIBO por primera vez: llevó a una experiencia visual la propuesta del producto —entender el juego de cada jugador a partir de sus datos— para validar la idea interna e inicialmente antes de construir la plataforma definitiva.",
       },
+    ],
+    images: [
+      ...gallery("vibo/padel-video-analisis", numbered(8), "Pádel Video Análisis"),
+      ...gallery("vibo/web-demo", numbered(3), "Web Demo de VIBO"),
     ],
   },
   {
     id: "naturalis",
-    order: 3,
+    order: 2,
+    tier: 1,
     title: "Naturalis — Centro de estética",
     company: "Naturalis",
     cardDescription:
       "Sistema de gestión de turnos, tratamientos, empleados, blog y mailing de un centro de estética.",
     period: "2024 — 2025",
-    stack: ["Next.js", "Firebase"],
+    stack: ["Next.js", "Firebase", "Node"],
     description:
-      "Plataforma para un centro de estética: el equipo administra turnos, tratamientos, horarios y comunicación, mientras los clientes reservan y consultan su agenda desde la web.",
+      "Plataforma que digitaliza la gestión completa de un centro de estética, formada por dos piezas conectadas: Natuadmin, el panel desde el que el equipo administra turnos, tratamientos, horarios y comunicación, y una web app donde los clientes reservan y siguen su agenda online. Automatiza el trabajo repetitivo —turnos fijos, confirmaciones y cancelaciones por mail, estadísticas de cada cliente— para que el equipo se enfoque en atender y no en administrar.",
     location: "Buenos Aires, Argentina",
-    images: [],
-    subprojects: [
+    url: "https://naturalis.vercel.app/",
+    stats: ["+650 clientes registrados", "+60 turnos por mes"],
+    parts: [
       {
-        id: "natuadmin",
-        order: 1,
         title: "Natuadmin",
         period: "2024 — 2025",
         stack: ["Node", "Firebase", "Next.js"],
         description:
-          "Sistema administrativo. Permite a los empleados gestionar turnos, información de tratamientos, horarios y mails. Incluye un editor de texto enriquecido para el blog y el envío de novedades.",
+          "El centro de operaciones del equipo: turnos (incluidos recurrentes y cancelaciones), tratamientos, horarios, personal, blog y mailing en un solo panel. Permite conocer a cada cliente por su historial, sus notas y sus estadísticas de asistencia y cancelación, que se actualizan solas y alimentan rankings estadísticamente confiables. Incluye un editor de texto enriquecido para el blog y el envío de novedades.",
         stats: ["+650 clientes registrados", "+60 turnos por mes"],
-        images: gallery(
-          "naturalis/natuadmin",
-          [
-            "1.webp",
-            "2.webp",
-            "3.webp",
-            "4.webp",
-            "5.webp",
-            "6.webp",
-            "7.webp",
-            "8.webp",
-          ],
-          "Natuadmin"
-        ),
       },
       {
-        id: "web-app",
-        order: 2,
         title: "Web App",
         period: "2024 — 2025",
         stack: ["Next.js"],
         description:
-          "Interfaz para los clientes. Les permite reservar y consultar turnos, ver los tratamientos disponibles y seguir el estado de su agenda.",
+          "Reserva de turnos online, simple y autónoma: los clientes eligen tratamiento, reservan, reciben la confirmación por mail y siguen el estado de su agenda desde su perfil. Cada reserva impacta directamente en la agenda del equipo.",
         url: "https://naturalis.vercel.app/",
-        images: gallery(
-          "naturalis/app-web",
-          [
-            "1.webp",
-            "2.webp",
-            "3.webp",
-            "4.webp",
-            "5.webp",
-            "6.webp",
-            "7.webp",
-            "8.webp",
-          ],
-          "Web App de Naturalis"
-        ),
       },
+    ],
+    images: [
+      ...gallery("naturalis/natuadmin", numbered(8), "Natuadmin"),
+      ...gallery("naturalis/app-web", numbered(8), "Web App de Naturalis"),
     ],
   },
   {
-    id: "agnt",
-    order: 4,
-    title: "AGNT",
-    company: "AGNT",
-    cardDescription:
-      "Plataforma para agencias de representantes de jugadores de fútbol.",
-    period: "2025 — 2026",
-    stack: ["TypeScript", "Firebase"],
+    id: "banner-2",
+    order: 3,
+    tier: 1,
+    title: "Banner 2.0",
+    company: "Banner Director",
+    organization: BANNER_DIRECTOR,
+    cardDescription: BANNER_DIRECTOR.summary,
+    period: "2023 — 2026",
+    stack: [
+      "Go",
+      "Vue",
+      "PostgreSQL",
+      "TypeScript",
+      "Kotlin",
+      "Docker",
+      "Kubernetes",
+    ],
     description:
-      "Permite a las agencias gestionar representantes, jugadores, órdenes de clubes y traspasos. Se conecta con distintas APIs de fútbol para mantener actualizada la información.",
-    location: "Córdoba, Argentina / Ciudad de México, México",
-    images: gallery("agnt", ["1.webp", "2.webp", "3.webp", "4.webp"], "AGNT"),
-    subprojects: [],
+      "Nueva generación de la plataforma, pensada para grandes franquicias: permite decidir con precisión qué contenido se ve en cada pantalla según región, fecha, entidad y más, y publicarlo en toda la red desde un potente editor visual. Cada equipo recibe su configuración y la reproduce de forma autónoma, con la robustez necesaria para operar a escala. Construida sobre servicios en Go, un panel en Vue y una app Android nativa en Kotlin.",
+    location: "Córdoba, Argentina",
+    url: "https://v2.bannerdirector.com",
+    stats: ["+600 equipos funcionando"],
+    images: gallery("banner-director/banner-2", numbered(14), "Banner 2.0"),
   },
   {
     id: "starbene",
-    order: 5,
+    order: 4,
+    tier: 2,
     title: "Starbene — Medicina estética",
     company: "Starbene",
     cardDescription:
@@ -295,128 +188,180 @@ export const projects: Project[] = [
     period: "2023 — 2025",
     stack: ["React Native", "Next.js", "Firebase"],
     description:
-      "Marca de medicina estética. El trabajo cubrió una app para clientes — gestión de equipos, capacitación, documentación, recambios y servicios de reparación — y un sitio comercial de productos, soluciones y cursos.",
+      "Ecosistema digital para una marca de medicina estética: una app que concentraba toda la posventa de sus equipos —capacitación, documentación, recambios y servicio técnico— y un sitio comercial que presenta productos, soluciones y cursos.",
     location: "Buenos Aires, Argentina",
-    images: [],
-    subprojects: [
+    url: "https://www.starbene.com/",
+    parts: [
       {
-        id: "app-mobile",
-        order: 1,
         title: "App Mobile",
         period: "2023",
         stack: ["React Native"],
         description:
-          "Aplicación mobile para clientes. Permitía gestionar equipos, capacitarse y obtener documentación, comprar recambios y solicitar servicios de reparación.",
+          "Toda la posventa de los equipos en una sola app para clientes: gestión de sus equipos, capacitación, documentación, compra de recambios y solicitud de servicios de reparación.",
         alert:
           "El proyecto se abandonó antes de salir a producción por cambios en las necesidades de la empresa.",
-        images: gallery(
-          "starbene/app-mobile",
-          ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp"],
-          "App Mobile de Starbene"
-        ),
       },
       {
-        id: "web-landing",
-        order: 2,
         title: "Web App",
         period: "2023",
         stack: ["Next.js"],
         description:
-          "Web comercial. Listaba productos, soluciones, cursos y la oferta de la marca.",
+          "Vidriera digital de la marca: presenta de forma clara el catálogo de productos, las soluciones y la oferta de cursos.",
         url: "https://www.starbene.com/",
         alert:
           "Las imágenes son ilustrativas: la empresa cuenta hoy con su propio equipo de desarrollo y el sitio tuvo múltiples modificaciones.",
-        images: gallery(
-          "starbene/web-comercial",
-          ["1.webp", "2.webp", "3.webp"],
-          "Web comercial de Starbene"
-        ),
       },
+    ],
+    images: [
+      ...gallery("starbene/app-mobile", numbered(5), "App Mobile de Starbene"),
+      ...gallery("starbene/web-comercial", numbered(3), "Web comercial de Starbene"),
     ],
   },
   {
-    id: "varios",
-    order: 6,
-    title: "Varios",
-    cardDescription: "Proyectos varios, MVPs, demos y piezas puntuales.",
-    period: "2022 — 2026",
-    stack: ["TypeScript", "Python", "Supabase", "Next.js", "Firebase"],
+    id: "agnt",
+    order: 5,
+    tier: 2,
+    title: "AGNT",
+    company: "AGNT",
+    cardDescription:
+      "Plataforma para agencias de representantes de jugadores de fútbol.",
+    period: "2025 — 2026",
+    stack: ["TypeScript", "Firebase"],
     description:
-      "Proyectos variados: desde productos terminados hasta demos y MVPs que no llegaron a producción.",
+      "Plataforma que ordena el negocio de las agencias de representación de jugadores de fútbol: representantes, cartera de jugadores, órdenes de clubes y traspasos en un único sistema, para seguir cada operación de punta a punta. Se mantiene actualizada de forma automática gracias a la integración con distintas APIs de fútbol, para que las decisiones se tomen siempre sobre datos vigentes.",
+    location: "Córdoba, Argentina / Ciudad de México, México",
+    images: gallery("agnt", numbered(4), "AGNT"),
+  },
+  {
+    id: "cielo-y-mar",
+    order: 6,
+    tier: 2,
+    title: "Cielo y Mar — Suites",
+    cardDescription: "Sitio web para un hotel en Playa del Carmen, México.",
+    period: "2023",
+    stack: ["Next.js", "Firebase"],
+    description:
+      "Vidriera digital de un hotel en Playa del Carmen, México: presenta las suites y la propuesta del hotel para atraer huéspedes.",
+    url: "https://www.suitescieloymar.com/",
+    alert:
+      "Las imágenes son ilustrativas y corresponden a los primeros bocetos; el sitio tuvo múltiples modificaciones posteriores.",
+    images: gallery("varios/cielo-y-mar", numbered(1), "Cielo y Mar Suites"),
+  },
+  {
+    id: "app-etiquetas",
+    order: 7,
+    tier: 2,
+    title: "App Etiquetas",
+    company: "Banner Director",
+    organization: BANNER_DIRECTOR,
+    cardDescription:
+      "Control local del contenido de cada pantalla desde el celular, sin tocar la configuración global.",
+    period: "2025",
+    stack: ["Flutter"],
+    description:
+      "Control local e inmediato del contenido de cada pantalla, sin tocar la configuración global. Desde el celular y conectado a la misma red Wi‑Fi que los equipos, el personal del local ajusta lo que muestra un equipo puntual —especialmente la disponibilidad de productos— mientras la estrategia de contenido sigue gobernada de forma centralizada.",
+    location: "Córdoba, Argentina",
+    images: gallery("banner-director/app-etiquetas", numbered(2), "App Etiquetas"),
+  },
+  {
+    id: "web-landing",
+    order: 8,
+    tier: 2,
+    title: "Web Landing",
+    company: "Banner Director",
+    organization: BANNER_DIRECTOR,
+    cardDescription:
+      "Sitio institucional y puerta de entrada comercial de Banner Director.",
+    period: "2024",
+    stack: ["Next.js", "Firebase"],
+    description:
+      "Puerta de entrada comercial de Banner Director: sitio institucional que comunica la propuesta de cartelería digital centralizada y sus soluciones a potenciales clientes.",
+    location: "Córdoba, Argentina",
+    url: "https://web.bannerdirector.com/",
+    images: gallery(
+      "banner-director/web-landing",
+      numbered(1),
+      "Web Landing de Banner Director"
+    ),
+  },
+  {
+    id: "analisis-rep-politica",
+    order: 9,
+    tier: 2,
+    title: "Análisis de reputación política",
+    cardDescription: "Monitoreo de imagen pública y estrategia para políticos.",
+    period: "2026",
+    active: true,
+    stack: ["NestJS", "Next.js", "Supabase"],
+    description:
+      "Inteligencia de reputación para políticos: monitorea su presencia en noticias y redes, detecta tendencias en su imagen pública y propone estrategias concretas a seguir.",
     images: [],
-    subprojects: [
-      {
-        id: "venta-duplex",
-        order: 1,
-        title: "Venta Duplex",
-        period: "2022",
-        stack: ["React"],
-        description: "Sitio web para la presentación de un dúplex a la venta.",
-        images: gallery(
-          "varios/venta-duplex",
-          ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp"],
-          "Venta Duplex"
-        ),
-      },
-      {
-        id: "agro-ia-tesis",
-        order: 2,
-        title: "Agro IA Tesis",
-        period: "2025",
-        stack: ["Next.js"],
-        description:
-          "Sitio web para la presentación de un proyecto de tesis de un curso de inteligencia artificial en Barcelona, España.",
-        images: [],
-      },
-      {
-        id: "arcor-demo",
-        order: 3,
-        title: "Arcor demo",
-        period: "2023",
-        stack: ["React"],
-        description:
-          "Web app simple para la demo de un sistema de premios en kioscos Arcor.",
-        images: gallery(
-          "varios/arcor-demo",
-          ["1.webp", "2.webp"],
-          "Arcor demo"
-        ),
-      },
-      {
-        id: "cielo-y-mar",
-        order: 4,
-        title: "Cielo y Mar — Suites",
-        period: "2023",
-        stack: ["Next.js", "Firebase"],
-        description:
-          "Sitio web para un hotel en Playa del Carmen, México.",
-        url: "https://www.suitescieloymar.com/",
-        alert:
-          "Las imágenes son ilustrativas y corresponden a los primeros bocetos; el sitio tuvo múltiples modificaciones posteriores.",
-        images: gallery("varios/cielo-y-mar", ["1.webp"], "Cielo y Mar Suites"),
-      },
-      {
-        id: "analisis-rep-politica",
-        order: 5,
-        title: "Análisis de reputación política",
-        period: "2026",
-        active: true,
-        stack: ["NestJS", "Next.js", "Supabase"],
-        description:
-          "App web para políticos: recopila la información del usuario en noticias y redes, analiza tendencias e imagen, y propone estrategias a seguir.",
-        images: [],
-      },
-      {
-        id: "forme",
-        order: 6,
-        title: "Forme — MeLi BR",
-        period: "2025",
-        stack: ["Python", "React"],
-        description:
-          "Demo / MVP para la presentación de un proyecto para ForMe. La plataforma hacía seguimiento de campañas mediante análisis de sentimiento en redes sociales. Se presentó a Mercado Libre Brasil; tras algunas reuniones y avances, se canceló.",
-        images: gallery("varios/forme", ["1.webp"], "Forme"),
-      },
-    ],
+  },
+  {
+    id: "forme",
+    order: 10,
+    tier: 3,
+    title: "Forme — MeLi BR",
+    cardDescription:
+      "Seguimiento de campañas con análisis de sentimiento en redes sociales.",
+    period: "2025",
+    stack: ["Python", "React"],
+    description:
+      "Seguimiento de campañas mediante análisis de sentimiento en redes sociales: una demo / MVP para ForMe que medía la percepción del público para evaluar el impacto de cada campaña. Se presentó a Mercado Libre Brasil; tras algunas reuniones y avances, se canceló.",
+    images: gallery("varios/forme", numbered(1), "Forme"),
+  },
+  {
+    id: "agro-ia-tesis",
+    order: 11,
+    tier: 3,
+    title: "Agro IA Tesis",
+    cardDescription:
+      "Presentación web de una tesis de un curso de inteligencia artificial en Barcelona.",
+    period: "2025",
+    stack: ["Next.js"],
+    description:
+      "Presentación web de un proyecto de tesis de un curso de inteligencia artificial en Barcelona, España: convierte el trabajo de investigación en una experiencia clara y navegable.",
+    images: [],
+  },
+  {
+    id: "venta-duplex",
+    order: 12,
+    tier: 3,
+    title: "Venta Duplex",
+    cardDescription: "Presentación digital de un dúplex a la venta.",
+    period: "2022",
+    stack: ["React"],
+    description:
+      "Presentación digital de un dúplex a la venta: muestra la propiedad de forma atractiva y concentra en un solo lugar la información clave para potenciales compradores.",
+    images: gallery("varios/venta-duplex", numbered(5), "Venta Duplex"),
+  },
+  {
+    id: "arcor-demo",
+    order: 13,
+    tier: 3,
+    title: "Arcor demo",
+    cardDescription: "Prototipo de un sistema de premios para kioscos Arcor.",
+    period: "2023",
+    stack: ["React"],
+    description:
+      "Prototipo funcional de un sistema de premios para kioscos Arcor: una web app liviana para mostrar la mecánica de premios y presentar la propuesta antes de un desarrollo completo.",
+    images: gallery("varios/arcor-demo", numbered(2), "Arcor demo"),
+  },
+  {
+    id: "teams",
+    order: 14,
+    tier: 3,
+    title: "Banner Teams",
+    company: "Banner Director",
+    organization: BANNER_DIRECTOR,
+    cardDescription:
+      "Sistema interno para la operación diaria: tareas, clientes, ventas y envíos.",
+    period: "2026",
+    stack: ["NestJS", "TypeScript", "PostgreSQL", "Prisma", "Next.js"],
+    description:
+      "Una única fuente de verdad para la operación interna de la empresa: tareas, clientes, ventas y seguimiento de envíos en un mismo sistema, para acompañar a cada cliente desde la venta hasta la entrega y coordinar el trabajo diario del equipo desde un solo lugar.",
+    location: "Córdoba, Argentina",
+    images: gallery("banner-director/teams", numbered(1), "Banner Teams"),
   },
 ]
 
@@ -429,41 +374,16 @@ export function getSortedProjects() {
 }
 
 export function getProjectCover(project: Project) {
-  const firstSub = [...project.subprojects].sort((a, b) => a.order - b.order)[0]
-  return firstSub?.images[0]?.src ?? project.images[0]?.src
+  return project.images[0]?.src
 }
 
 export function getProjectInitial(title: string) {
   return title.trim().charAt(0).toUpperCase()
 }
 
-export function getSubprojectById(project: Project, subId?: string) {
-  if (project.subprojects.length === 0) {
-    return null
-  }
-
-  if (!subId) {
-    return [...project.subprojects].sort((a, b) => a.order - b.order)[0]
-  }
-
-  return project.subprojects.find((item) => item.id === subId) ?? null
-}
-
 export function getProjectRoutes() {
-  return getSortedProjects().flatMap((project) => {
-    const base = {
-      params: { slug: project.id },
-      props: {
-        project,
-        subproject: getSubprojectById(project),
-      },
-    }
-
-    const nested = project.subprojects.map((subproject) => ({
-      params: { slug: `${project.id}/${subproject.id}` },
-      props: { project, subproject },
-    }))
-
-    return [base, ...nested]
-  })
+  return getSortedProjects().map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }))
 }

@@ -1,0 +1,81 @@
+---
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Badge } from "@/components/ui/badge"
+import { StackBadge } from "@/components/portfolio/StackBadge"
+import type { ProjectPart } from "@/lib/projects"
+import { displayUrl } from "@/lib/utils"
+
+type Props = {
+  parts: ProjectPart[]
+}
+
+const { parts } = Astro.props
+---
+
+<section class="flex flex-col gap-4">
+  <h3 class="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+    Qué incluye
+  </h3>
+  <ul class="grid gap-4 md:grid-cols-2">
+    {
+      parts.map((part) => (
+        <li class="border-border flex flex-col gap-3 rounded-2xl border p-5">
+          <div class="flex flex-wrap items-center gap-2">
+            <h4 class="text-lg font-semibold tracking-tight text-balance">{part.title}</h4>
+            {part.active && <Badge>En curso</Badge>}
+          </div>
+          <p class="text-muted-foreground text-sm leading-relaxed text-pretty">
+            {part.description}
+          </p>
+          <p class="text-muted-foreground inline-flex items-center gap-1.5 text-xs">
+            <span class="icon-[tabler--calendar] size-3.5 bg-current" aria-hidden="true" />
+            {part.period}
+          </p>
+          {part.alert && (
+            <Alert variant="warning">
+              <span
+                class="icon-[tabler--alert-triangle] mt-0.5 size-4 shrink-0 bg-current"
+                aria-hidden="true"
+              />
+              <div class="flex flex-col gap-1">
+                <AlertTitle>Nota</AlertTitle>
+                <AlertDescription>{part.alert}</AlertDescription>
+              </div>
+            </Alert>
+          )}
+          {part.stats && part.stats.length > 0 && (
+            <p class="text-foreground flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-medium">
+              {part.stats.map((stat) => (
+                <span class="inline-flex items-center gap-1.5">
+                  <span class="icon-[tabler--chart-dots] size-3.5 bg-current text-muted-foreground" aria-hidden="true" />
+                  {stat}
+                </span>
+              ))}
+            </p>
+          )}
+          <ul class="flex flex-wrap gap-1.5">
+            {part.stack.map((tech) => (
+              <li>
+                <StackBadge name={tech} />
+              </li>
+            ))}
+          </ul>
+          {part.url && (
+            <a
+              href={part.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-foreground inline-flex w-fit max-w-full items-center gap-1.5 text-xs font-medium"
+            >
+              <span class="icon-[tabler--link] size-3.5 shrink-0 bg-current" aria-hidden="true" />
+              <span class="truncate underline decoration-primary/50 underline-offset-4">
+                {displayUrl(part.url)}
+              </span>
+              <span class="sr-only">(se abre en una pestaña nueva)</span>
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</section>

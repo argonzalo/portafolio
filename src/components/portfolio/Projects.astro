@@ -47,14 +47,11 @@ const projects = getSortedProjects()
             client:load
             href={`/projects/${project.id}`}
             title={project.title}
+            company={project.company}
             description={project.cardDescription}
             stack={project.stack}
             cover={getProjectCover(project)}
             active={project.active}
-            subprojects={project.subprojects.map((item) => ({
-              title: item.title,
-              description: item.description,
-            }))}
           />
         ))
       }

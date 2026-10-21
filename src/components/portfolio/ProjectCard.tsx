@@ -1,6 +1,5 @@
 import { type ReactNode, useEffect, useId, useRef, useState } from "react"
 import { createPortal } from "react-dom"
-import { ChevronDown, Folders } from "lucide-react"
 
 import { StackBadge } from "@/components/portfolio/StackBadge"
 import { Badge, badgeVariants } from "@/components/ui/badge"
@@ -9,33 +8,27 @@ import { cn } from "@/lib/utils"
 const VISIBLE_STACK = 3
 const PROJECTS_RETURN_URL = "/#proyectos"
 
-export type ProjectSubproject = {
-  title: string
-  description: string
-}
-
 export type ProjectCardProps = {
   href: string
   title: string
+  company?: string
   description: string
   stack: string[]
   cover?: string
   active?: boolean
-  subprojects?: ProjectSubproject[]
 }
 
 export function ProjectCard({
   href,
   title,
+  company,
   description,
   stack,
   cover,
   active = false,
-  subprojects = [],
 }: ProjectCardProps) {
   const visibleStack = stack.slice(0, VISIBLE_STACK)
   const hiddenStack = stack.slice(VISIBLE_STACK)
-  const showSubprojects = subprojects.length > 1
 
   return (
     <article className="group/card border-border bg-card hover:border-foreground/20 relative flex h-full min-w-0 flex-col rounded-2xl border transition-colors">
@@ -62,9 +55,16 @@ export function ProjectCard({
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-5">
-        <h3 className="text-lg font-semibold tracking-tight text-balance">
-          {title}
-        </h3>
+        <div className="flex flex-col gap-0.5">
+          <h3 className="text-lg font-semibold tracking-tight text-balance">
+            {title}
+          </h3>
+          {company && !title.includes(company) && (
+            <p className="text-muted-foreground text-xs font-medium">
+              {company}
+            </p>
+          )}
+        </div>
         <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed text-pretty">
           {description}
         </p>
@@ -96,32 +96,6 @@ export function ProjectCard({
             </ChipPopup>
           )}
 
-          {showSubprojects && (
-            <ChipPopup
-              label={`${subprojects.length} subproyectos`}
-              content={
-                <div className="flex flex-col gap-3">
-                  <p className="text-muted-foreground text-xs font-medium">
-                    Subproyectos
-                  </p>
-                  <ul className="flex min-w-0 flex-col gap-3">
-                    {subprojects.map((item) => (
-                      <li key={item.title} className="flex min-w-0 flex-col gap-0.5">
-                        <p className="font-medium">{item.title}</p>
-                        <p className="text-muted-foreground line-clamp-2 min-w-0 overflow-hidden text-xs leading-relaxed break-words">
-                          {item.description}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              }
-            >
-              <Folders />
-              <span className="tabular-nums">{subprojects.length}</span>
-              <ChevronDown className="transition-transform duration-200 group-data-open/chip:rotate-180" />
-            </ChipPopup>
-          )}
         </div>
       </div>
     </article>

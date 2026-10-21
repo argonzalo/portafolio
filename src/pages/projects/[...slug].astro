@@ -1,12 +1,11 @@
 ---
 import { ProjectGallery } from "@/components/projects/ProjectGallery"
 import ProjectMeta from "@/components/projects/ProjectMeta.astro"
+import ProjectParts from "@/components/projects/ProjectParts.astro"
 import ProjectToolbar from "@/components/projects/ProjectToolbar.astro"
-import SubprojectNav from "@/components/projects/SubprojectNav.astro"
-import { StackBadge } from "@/components/portfolio/StackBadge"
 import ProjectLayout from "@/layouts/ProjectLayout.astro"
 import { getProjectRoutes } from "@/lib/projects"
-import type { Project, ProjectSubproject } from "@/lib/projects"
+import type { Project } from "@/lib/projects"
 
 export function getStaticPaths() {
   return getProjectRoutes()
@@ -14,21 +13,12 @@ export function getStaticPaths() {
 
 type Props = {
   project: Project
-  subproject: ProjectSubproject | null
 }
 
-const { project, subproject } = Astro.props
-const view = subproject ?? {
-  title: project.title,
-  period: project.period,
-  stack: project.stack,
-  description: project.description,
-  images: project.images,
-  active: project.active,
-}
+const { project } = Astro.props
 ---
 
-<ProjectLayout title={view.title} description={project.cardDescription}>
+<ProjectLayout title={project.title} description={project.cardDescription}>
   <ProjectToolbar slot="toolbar" project={project} />
 
   <div class="mx-auto flex w-full max-w-[100rem] flex-col gap-10 px-5 py-8 sm:px-8 lg:px-12">
@@ -36,45 +26,42 @@ const view = subproject ?? {
       {project.description}
     </p>
 
-    <div class="flex flex-col gap-8 lg:flex-row lg:items-start">
-      <SubprojectNav project={project} currentId={subproject?.id} />
+    <div class="flex min-w-0 flex-col gap-8">
+      <ProjectMeta project={project} />
 
-      <div class="flex min-w-0 flex-1 flex-col gap-8">
-        {
-          subproject ? (
-            <ProjectMeta item={subproject} location={project.location} />
-          ) : (
-            <section class="flex flex-col gap-6">
-              <p class="text-muted-foreground flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+      {project.parts && project.parts.length > 0 && <ProjectParts parts={project.parts} />}
+
+      {
+        project.organization && (
+          <section class="border-border bg-muted/30 flex max-w-4xl flex-col gap-2 rounded-2xl border p-5">
+            <h3 class="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+              Sobre {project.organization.name}
+            </h3>
+            <p class="text-muted-foreground text-sm leading-relaxed text-pretty">
+              {project.organization.description}
+            </p>
+            <p class="text-muted-foreground flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
+              <span class="inline-flex items-center gap-1.5">
+                <span class="icon-[tabler--calendar] size-3.5 bg-current" aria-hidden="true" />
+                {project.organization.period}
+              </span>
+              {project.organization.location && (
                 <span class="inline-flex items-center gap-1.5">
-                  <span class="icon-[tabler--calendar] size-4 bg-current" aria-hidden="true" />
-                  {project.period}
+                  <span class="icon-[tabler--map-pin] size-3.5 bg-current" aria-hidden="true" />
+                  {project.organization.location}
                 </span>
-                {project.location && (
-                  <span class="inline-flex items-center gap-1.5">
-                    <span class="icon-[tabler--map-pin] size-4 bg-current" aria-hidden="true" />
-                    {project.location}
-                  </span>
-                )}
-              </p>
-              <ul class="flex flex-wrap gap-1.5">
-                {project.stack.map((tech) => (
-                  <li>
-                    <StackBadge name={tech} />
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )
-        }
+              )}
+            </p>
+          </section>
+        )
+      }
 
-        <section class="flex flex-col gap-3">
-          <h3 class="text-muted-foreground text-sm font-medium tracking-wide uppercase">
-            Galería
-          </h3>
-          <ProjectGallery client:load images={view.images} title={view.title} />
-        </section>
-      </div>
+      <section class="flex flex-col gap-3">
+        <h3 class="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+          Galería
+        </h3>
+        <ProjectGallery client:load images={project.images} title={project.title} />
+      </section>
     </div>
   </div>
 </ProjectLayout>
