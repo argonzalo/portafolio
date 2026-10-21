@@ -8,6 +8,8 @@ export type GpuStatsSnapshot = {
   programs: number
   calls: number
   triangles: number
+  /** Escenas montadas a la vez (presupuesto: ≤ 2, `02` §1). */
+  mountedScenes: number
   /** Heap JS en MB si el browser lo expone (Chrome). */
   jsHeapMB: number | null
   /** Marca de tiempo de la última muestra. */
@@ -20,6 +22,7 @@ let latest: GpuStatsSnapshot = {
   programs: 0,
   calls: 0,
   triangles: 0,
+  mountedScenes: 0,
   jsHeapMB: null,
   at: 0,
 }

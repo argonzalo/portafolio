@@ -10,6 +10,7 @@ import { useFrame } from "@react-three/fiber"
 import type { Group } from "three"
 
 import { useExperienceStore } from "@/experience/hooks"
+import { setGpuStats } from "@/experience/gpuStats"
 import {
   getSpikeScene,
   isSpikeChapter,
@@ -99,6 +100,16 @@ export function SceneDirector() {
       cancelled = true
     }
   }, [chapterId])
+
+  useEffect(() => {
+    setGpuStats({ mountedScenes: slots.length })
+  }, [slots])
+
+  useEffect(() => {
+    return () => {
+      setGpuStats({ mountedScenes: 0 })
+    }
+  }, [])
 
   useFrame((_, delta) => {
     if (!transitioning.current) return
