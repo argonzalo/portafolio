@@ -1,3 +1,4 @@
+import { applyThreadFrame, pathUniforms, type ThreadFrame } from "../forms"
 import { useEffect, useMemo, useRef } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
 import {
@@ -165,9 +166,10 @@ const GAIN: Record<RenderTier, number> = {
 type Props = {
   clock: ThreadClock
   tier: RenderTier
+  frame?: ThreadFrame
 }
 
-export function Swarm({ clock, tier }: Props) {
+export function Swarm({ clock, tier, frame }: Props) {
   const extent = useThreadExtent()
   const dpr = useThree((state) => state.viewport.dpr)
   const count = SWARM_PARTICLES[tier]
@@ -181,6 +183,7 @@ export function Swarm({ clock, tier }: Props) {
         vertexShader: VERTEX,
         fragmentShader: FRAGMENT,
         uniforms: {
+          ...pathUniforms(),
           uPhase: { value: 0 },
           uExtent: { value: new Vector2(1, 1) },
           uMix: { value: 0 },
@@ -212,6 +215,7 @@ export function Swarm({ clock, tier }: Props) {
     const uniforms = pointsRef.current?.material.uniforms
     if (!uniforms) return
 
+    applyThreadFrame(material, frame)
     uniforms.uPhase.value = clock.phase
     uniforms.uMix.value = clock.mix
     uniforms.uFlow.value = clock.flow

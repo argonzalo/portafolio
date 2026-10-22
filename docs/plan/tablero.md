@@ -41,7 +41,7 @@
 | T-A11 | Estructura del recorrido en DOM: capítulos con `data-chapter`, índice overlay, vista lista `/projects`, contacto siempre visible, eliminar `/skills` y decidir el destino de `/about`, `/experience`, `/contact` | T-A04, T-A06, ADR-007 | `src/pages/`, `src/components/journey/`, `src/components/layout/` | hecho (2026-10-21; PR #11) |
 
 | T-A12 | Hero y manifiesto: copy de `05` §2, tags, frases, animación con SplitText, hero 100 % HTML (LCP), punto de entrada del hilo | T-A11 | `src/components/journey/Hero*`, `src/components/journey/Manifesto*`, `src/lib/site.ts` | listo |
-| T-A13 | Hilo conductor v1 (ADR-006: C desktop / A mobile), integrado en `Stage`, con API para que cada escena defina su `ThreadForm` | ADR-006, T-A06 | `src/experience/thread/` | listo |
+| T-A13 | Hilo conductor v1 (ADR-006: C desktop / A mobile), integrado en `Stage`, con API para que cada escena defina su `ThreadForm` | ADR-006, T-A06 | `src/experience/thread/`, `src/experience/Stage.tsx` (montaje) | hecho (2026-10-22; PR #14) |
 | T-A14 | Greybox de las 4 escenas de primera línea (un agente por escena: `T-A14-vibo`, `-pirp`, `-naturalis`, `-banner`): beats, cámaras desktop/mobile, ritmo, en `/lab` y en el recorrido | T-A07, ficha validada (T-H05) | `src/scenes/<id>/` | listo (las 4 fichas validadas) |
 | T-A15 | Paletas por capítulo: interpolación de CSS variables con el progreso, cambio a tema claro en Naturalis, sincronía con el canvas | T-A06, T-A11 | `src/experience/palette.ts`, `src/styles/` (con permiso de plataforma) | listo |
 | T-A16 | Nivel `static`: recorrido sin canvas con pósters provisionales, `prefers-reduced-motion`, `Save-Data`, sin WebGL | T-A07, T-A11 | `src/components/journey/Fallback*`, `public/posters/` | listo |
@@ -56,7 +56,7 @@
 | --- | --- | --- | --- | --- |
 | T-H08 | Persona del guía, FAQs y aprobación de las ofertas proactivas (I-09); el agente propone borradores | ADR-008 | `src/content/guide/` | pendiente |
 | T-H12 | Revisión de arte de cada escena al cerrar su greybox y antes del merge final (recurrente) | — | Comentarios en PR | pendiente |
-| T-A18 | Kit de escena: HUD anclado a 3D, grafo de nodos/agentes, líneas con el shader del hilo, contadores, rig de cámara por beats; ejemplos en `/lab/kit` | T-A07, T-A13 | `src/scenes/kit/` (salvo dispositivos) | pendiente |
+| T-A18 | Kit de escena: HUD anclado a 3D, grafo de nodos/agentes, líneas con el shader del hilo, contadores, rig de cámara por beats; ejemplos en `/lab/kit` | T-A07, T-A13 | `src/scenes/kit/` (salvo dispositivos) | listo |
 | T-A19 | Kit de dispositivos: `Phone`, `Laptop`, `Display` low-poly con pantalla texturizable y capas de UI flotantes | T-A07, T-A09 | `src/scenes/kit/devices/`, `assets-src/kit/`, `public/models/kit/` | pendiente |
 | T-A20 | **Escena Vibo completa** (`03` §3.1, ADR-011): personaje 3D en slow-mo + overlays de detección, interacción, transición Vibo→Pirp (lado saliente) | T-A14-vibo aprobado, T-A18, T-H07 | `src/scenes/vibo/`, `public/models/vibo/`, `public/textures/vibo/` | pendiente |
 | T-A21 | Backend del guía: `/api/guide` con AI SDK, tools de la lista cerrada, contexto generado en build, límites (sesión, IP, global), kill switch, fallback de modelo, tests | T-A03, T-A04, ADR-005, ADR-008 | `src/pages/api/guide.ts`, `src/server/guide/`, `scripts/guide-context.*` | pendiente |
@@ -147,3 +147,7 @@
 | I-09 Persona y FAQs del guía | pendiente | |
 | I-10 Narrativas segunda y tercera línea | pendiente | |
 | I-11 Fotos personales | pendiente | Opcional |
+
+### Alcance T-A13
+
+Integración mínima en `Stage.tsx` incluida para cumplir el criterio explícito de T-A13. Sin cambios en contratos. ADR-006 cerrada: C desktop / A mobile.

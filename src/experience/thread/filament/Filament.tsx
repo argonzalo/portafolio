@@ -1,3 +1,4 @@
+import { applyThreadFrame, pathUniforms, type ThreadFrame } from "../forms"
 import { useEffect, useMemo, useRef } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
 import {
@@ -177,6 +178,7 @@ function createHead(): BufferGeometry {
 
 function sharedUniforms() {
   return {
+    ...pathUniforms(),
     uPhase: { value: 0 },
     uExtent: { value: new Vector2(1, 1) },
     uMix: { value: 0 },
@@ -188,9 +190,10 @@ function sharedUniforms() {
 type Props = {
   clock: ThreadClock
   tier: RenderTier
+  frame?: ThreadFrame
 }
 
-export function Filament({ clock, tier }: Props) {
+export function Filament({ clock, tier, frame }: Props) {
   const extent = useThreadExtent()
   const dpr = useThree((state) => state.viewport.dpr)
   const segments = FILAMENT_SEGMENTS[tier]
@@ -255,6 +258,7 @@ export function Filament({ clock, tier }: Props) {
     if (!line || !tip) return
 
     for (const material of [line, tip]) {
+      applyThreadFrame(material, frame)
       material.uniforms.uPhase.value = clock.phase
       material.uniforms.uMix.value = clock.mix
       material.uniforms.uExtent.value.set(extent.x, extent.y)
