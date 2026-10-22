@@ -1,6 +1,7 @@
 import { Thread } from "@/experience/thread/Thread"
-import { useEffect, useState } from "react"
-import { Canvas } from "@react-three/fiber"
+import { useEffect, useRef, useState } from "react"
+import { Canvas, useFrame } from "@react-three/fiber"
+import { Color } from "three"
 
 import { DebugOverlay, QualityMonitor } from "@/experience/debug"
 import { mountDeepLinks } from "@/experience/deepLink"
@@ -11,10 +12,31 @@ import {
   QUALITY_DPR,
   syncQualityWithPreferences,
 } from "@/experience/quality"
+import {
+  getLivePalette,
+  mountPalette,
+  SITE_PALETTE,
+} from "@/experience/palette"
 import { SceneDirector } from "@/experience/SceneDirector"
 import { experienceStore } from "@/experience/store"
 import { mountChapterScroll } from "@/experience/scroll"
 import { connectStoreSignals } from "@/guide/signals"
+
+/**
+ * Fondo WebGL alineado a la paleta viva (T-A15). Prioridad negativa: corre
+ * después de los rigs de escena que aún escriben `scene.background` fijo.
+ */
+function PaletteBackground() {
+  const color = useRef<Color>(null)
+
+  useFrame(() => {
+    color.current?.set(getLivePalette().background)
+  }, -1)
+
+  return (
+    <color ref={color} attach="background" args={[SITE_PALETTE.background]} />
+  )
+}
 
 type Frameloop = "always" | "demand" | "never"
 
@@ -42,6 +64,7 @@ export function Stage() {
     const disconnectSignals = connectStoreSignals(experienceStore)
     const unbindScroll = mountChapterScroll(experienceStore)
     const unmountDeepLinks = mountDeepLinks(experienceStore)
+    const unbindPalette = mountPalette(experienceStore)
 
     const media = window.matchMedia("(max-width: 768px)")
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)")
@@ -74,6 +97,7 @@ export function Stage() {
     onVisibility()
 
     return () => {
+      unbindPalette()
       unmountDeepLinks()
       disconnectSignals()
       unbindScroll()
@@ -104,7 +128,7 @@ export function Stage() {
             camera={{ position: [0, 0, 5], fov: 45, near: 0.1, far: 100 }}
             style={{ width: "100%", height: "100%" }}
           >
-            <color attach="background" args={["#0a0a0b"]} />
+            <PaletteBackground />
             <SceneDirector />
             <Thread />
             <QualityMonitor />

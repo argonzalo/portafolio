@@ -75,6 +75,7 @@ src/
 │   ├── scroll.ts                  # ScrollTrigger → store
 │   ├── quality.ts                 # detección y adaptación de nivel de calidad
 │   ├── deepLink.ts                # deep links de estado (?chapter, ?progress, ?quality, ?debug)
+│   ├── palette.ts                 # interpolación de paletas → CSS vars + fondo del canvas (T-A15)
 │   ├── thread/                    # hilo conductor
 │   ├── audio.ts                   # mezclador Web Audio (opcional)
 │   ├── debug.tsx                  # overlay ?debug, sampler de calidad (solo dev o con flag)

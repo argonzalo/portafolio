@@ -42,9 +42,9 @@
 | T-A12 | Hero y manifiesto: copy de `05` §2, tags, frases, animación con SplitText, hero 100 % HTML (LCP), punto de entrada del hilo | T-A11 | `src/components/journey/Hero*`, `src/components/journey/Manifesto*`, `src/lib/site.ts` | hecho (2026-10-22; merge local #16) |
 | T-A13 | Hilo conductor v1 (ADR-006: C desktop / A mobile), integrado en `Stage`, con API para que cada escena defina su `ThreadForm` | ADR-006, T-A06 | `src/experience/thread/`, `src/experience/Stage.tsx` (montaje) | hecho (2026-10-22; PR #14) |
 | T-A14 | Greybox de las 4 escenas de primera línea (un agente por escena: `T-A14-vibo`, `-pirp`, `-naturalis`, `-banner`): beats, cámaras desktop/mobile, ritmo, en `/lab` y en el recorrido | T-A07, ficha validada (T-H05) | `src/scenes/<id>/` | hecho (ritmo/estructura 2026-10-22; **arte no aprobado** — ver T-H06/T-H12; calidad final en T-A20/23/24/25 + T-A41/T-A42) |
-| T-A15 | Paletas por capítulo: interpolación de CSS variables con el progreso, cambio a tema claro en Naturalis, sincronía con el canvas | T-A06, T-A11 | `src/experience/palette.ts`, `src/styles/` (con permiso de plataforma) | listo |
+| T-A15 | Paletas por capítulo: interpolación de CSS variables con el progreso, cambio a tema claro en Naturalis, sincronía con el canvas | T-A06, T-A11 | `src/experience/palette.ts`, `src/styles/` (con permiso de plataforma); montaje mínimo en `Stage.tsx` | hecho (2026-10-22; main, sin PR por pedido) |
 | T-A17 | Página de caso `/projects/[id]` con la estructura problema → enfoque → decisiones → desafíos → resultado → piezas → stack; header con escena o póster | T-A04, T-A06 | `src/pages/projects/[...slug].astro`, `src/components/project/` | hecho (2026-10-21; PR #12) |
-| T-A41 | **Pulir transiciones** entre capítulos de primera línea: handoff del hilo (forma/velocidad/color), continuidad de cámara, crossfade solo si hace falta; sin cortes bruscos Vibo→Pirp→Naturalis→Banner | T-A13, T-A15 | `src/experience/thread/`, `src/experience/SceneDirector.tsx`, `src/scenes/*/definition.ts` (encuadres de borde) | pendiente (prioridad post T-A15) |
+| T-A41 | **Pulir transiciones** entre capítulos de primera línea: handoff del hilo (forma/velocidad/color), continuidad de cámara, crossfade solo si hace falta; sin cortes bruscos Vibo→Pirp→Naturalis→Banner | T-A13, T-A15 | `src/experience/thread/`, `src/experience/SceneDirector.tsx`, `src/scenes/*/definition.ts` (encuadres de borde) | listo |
 | T-A42 | **Referencias de captura en escena:** en cada capítulo de primera línea, acceso inmediato a capturas reales (dispositivo 3D con UI texturizada y/o superficie flotante + carousel/lightbox DOM); no depender solo de la página de caso | T-A18, T-A19 (dispositivo), I-04 | `src/scenes/kit/` (pieza compartida), `src/components/journey/` (carousel), integración en `src/scenes/{vibo,pirp,naturalis,banner-2}/` | pendiente |
 
 
@@ -154,6 +154,10 @@
 ### Alcance T-A13
 
 Integración mínima en `Stage.tsx` incluida para cumplir el criterio explícito de T-A13. Sin cambios en contratos. ADR-006 cerrada: C desktop / A mobile.
+
+### Alcance T-A15
+
+`palette.ts` interpola `ScenePalette` del registro (y paleta de sitio en capítulos DOM) en el tramo final de cada capítulo (`progress ≥ 0.82`). Escribe CSS vars shadcn + `--journey-*`; Naturalis quita `.dark` (`scheme: light`). `Stage` monta el loop y pinta el fondo WebGL con `getLivePalette()` (prioridad −1, por encima de los rigs greybox). Sin cambios de contratos ni dependencias.
 
 ### Alcance T-A14
 

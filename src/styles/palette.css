@@ -1,0 +1,21 @@
+/**
+ * Tokens del recorrido (T-A15).
+ *
+ * `palette.ts` escribe estos valores (y los de shadcn) en `:root` según el
+ * capítulo y el progreso. Naturalis usa `scheme: light` y quita `.dark` del body.
+ */
+
+:root {
+  --journey-background: #0a0a0b;
+  --journey-foreground: #f4f7f7;
+  --journey-accent: #6b6fd4;
+  --journey-accent-alt: #a8a3d9;
+}
+
+html[data-palette-bound] {
+  color-scheme: dark;
+}
+
+html[data-palette-bound][data-palette-scheme="light"] {
+  color-scheme: light;
+}
