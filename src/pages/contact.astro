@@ -1,36 +1,7 @@
 ---
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import PageHeader from "@/components/portfolio/PageHeader.astro"
-import BaseLayout from "@/layouts/BaseLayout.astro"
+/**
+ * Decisión T-A11: el contacto vive en el recorrido y siempre en el header.
+ * Sin página propia; redirige al capítulo "Hablemos".
+ */
+return Astro.redirect("/?chapter=contact", 301)
 ---
-
-<BaseLayout
-  title="Contacto"
-  description="Conversemos sobre un proyecto, una colaboración o una oportunidad."
->
-  <section class="mx-auto flex w-full max-w-3xl flex-col gap-10 px-6 py-16">
-    <PageHeader
-      eyebrow="Contact"
-      title="Hablemos."
-      description="Este formulario es una base. Conéctalo a tu proveedor de correo o reemplázalo por un enlace directo."
-    />
-    <form class="flex max-w-md flex-col gap-4" action="mailto:" method="get">
-      <label class="flex flex-col gap-2 text-sm font-medium">
-        Nombre
-        <Input client:load name="name" type="text" autoComplete="name" required />
-      </label>
-      <label class="flex flex-col gap-2 text-sm font-medium">
-        Email
-        <Input
-          client:load
-          name="email"
-          type="email"
-          autoComplete="email"
-          required
-        />
-      </label>
-      <Button client:load type="submit">Enviar</Button>
-    </form>
-  </section>
-</BaseLayout>

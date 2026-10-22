@@ -1,40 +1,7 @@
 ---
-import PageHeader from "@/components/portfolio/PageHeader.astro"
-import { FadeIn } from "@/components/interactive/FadeIn"
-import { buttonVariants } from "@/components/ui/button"
-import BaseLayout from "@/layouts/BaseLayout.astro"
-import { site } from "@/lib/site"
+/**
+ * Decisión T-A11: sin página propia por SEO (contenido en el recorrido).
+ * Redirige al capítulo "Quién soy".
+ */
+return Astro.redirect("/?chapter=about", 301)
 ---
-
-<BaseLayout
-  title="Sobre mí"
-  description=""
->
-  <section class="mx-auto flex w-full max-w-3xl flex-col gap-10 px-6 py-16">
-    <PageHeader
-      eyebrow="About"
-      title="Sobre mí"
-      description=""
-    />
-    <FadeIn client:visible className="text-muted-foreground flex flex-col gap-4 text-base leading-relaxed">
-      <p>
-        Soy desarrollador, pero me cuesta definirme por una tecnología o un lenguaje en particular. Me interesa más entender un problema, explorar posibilidades y encontrar la mejor manera de resolverlo, incluso cuando eso implica aprender algo completamente nuevo.
-      </p>
-      <p>
-        Disfruto especialmente de los proyectos que me permiten crear, experimentar y cruzar distintas disciplinas. La misma curiosidad que encuentro en la tecnología también está presente en otras partes de mi vida: la música, donde participé en bandas y proyectos de producción musical, y el deporte, especialmente el fútbol, el tenis y el pádel.
-      </p>
-      <a
-        href={site.instagram}
-        class={buttonVariants({ variant: "secondary", size: "lg", className: "w-fit" })}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span
-          class="icon-[tabler--brand-instagram] size-5 shrink-0 bg-current"
-          aria-hidden="true"
-        />
-        Instagram
-      </a>
-    </FadeIn>
-  </section>
-</BaseLayout>

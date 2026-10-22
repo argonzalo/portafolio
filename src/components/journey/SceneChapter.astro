@@ -1,0 +1,52 @@
+---
+/**
+ * Contenedor DOM de un capítulo con escena 3D futura.
+ * Greybox visual en T-A14; este bloque solo fija el ancla y el scroll.
+ */
+import ChapterSection from "@/components/journey/ChapterSection.astro"
+import { buttonVariants } from "@/components/ui/button"
+
+type Props = {
+  id: string
+  label: string
+  eyebrow: string
+  summary: string
+  caseHref?: string
+  note?: string
+}
+
+const { id, label, eyebrow, summary, caseHref, note } = Astro.props
+---
+
+<ChapterSection id={id} label={label} class="bg-background/40 backdrop-blur-[2px]">
+  <p class="text-sm font-medium tracking-wide text-sky-300/90 uppercase">
+    {eyebrow}
+  </p>
+  <h2 class="mt-2 max-w-xl text-3xl font-semibold tracking-tight sm:text-4xl">
+    {label}
+  </h2>
+  <p class="text-muted-foreground mt-3 max-w-lg text-base leading-relaxed">
+    {summary}
+  </p>
+  {
+    note && (
+      <p class="text-muted-foreground/80 mt-4 max-w-lg text-sm leading-relaxed">
+        {note}
+      </p>
+    )
+  }
+  {
+    caseHref && (
+      <a
+        href={caseHref}
+        class={buttonVariants({
+          variant: "secondary",
+          size: "lg",
+          className: "mt-8 w-fit",
+        })}
+      >
+        Ver caso completo
+      </a>
+    )
+  }
+</ChapterSection>

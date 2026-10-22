@@ -220,7 +220,8 @@ assets-src/<escena>/*.blend|*.glb  ──►  npm run assets:build  ──►  p
 ## 8. Rutas y contenido
 
 - `/` → recorrido. `/projects` → vista lista. `/projects/<id>` → caso completo. Las redirecciones actuales de `astro.config.ts` se mantienen.
-- Se elimina `/skills` (centrado en tecnologías) y se reubica lo útil; `/about`, `/experience` y `/contact` se convierten en anclas del recorrido con redirección a la home (decidir en T-A11 si alguna conserva página propia por SEO).
+- **Decisión T-A11 (rutas legacy):** ninguna de `/skills`, `/about`, `/experience` ni `/contact` conserva página propia por SEO (el texto útil vive en el recorrido y se indexa desde `/` y `/projects/<id>`). `/skills` → `/`. `/about` y `/experience` → `/?chapter=about`. `/contact` → `/?chapter=contact`. Hoy las redirecciones viven en las páginas Astro; conviene registrarlas también en `astro.config.ts` (pedido a plataforma).
+- Capítulos DOM del recorrido (`data-chapter`, ADR-007): `hero` → `manifesto` → `vibo` → `pirp` → `naturalis` → `banner-2` → `starbene` → `agnt` → `cielo-y-mar` → `archive` → `about` → `contact`.
 - Pirp se agrega como proyecto con id `pirp` (hoy figura como `analisis-rep-politica`, con redirección de la ruta vieja).
 
 ## 9. Herramientas para iterar rápido (clave para agentes)

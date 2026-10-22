@@ -1,0 +1,36 @@
+---
+/**
+ * Placeholder del manifiesto (animación y pulido en T-A12).
+ */
+import ChapterSection from "@/components/journey/ChapterSection.astro"
+
+const phrases = [
+  "Pienso productos",
+  "Diseño experiencias",
+  "Construyo tecnología",
+]
+---
+
+<ChapterSection
+  id="manifesto"
+  label="Cómo pienso"
+  class="bg-background/50 backdrop-blur-[2px]"
+>
+  <p
+    class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+  >
+    Cómo pienso · placeholder T-A12
+  </p>
+  <h2
+    class="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-balance sm:text-4xl"
+  >
+    Tres frases. Un método.
+  </h2>
+  <ul class="mt-10 flex flex-col gap-4" aria-label="Método">
+    {
+      phrases.map((phrase) => (
+        <li class="text-2xl font-medium tracking-tight sm:text-3xl">{phrase}</li>
+      ))
+    }
+  </ul>
+</ChapterSection>
