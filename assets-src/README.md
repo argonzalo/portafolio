@@ -34,6 +34,11 @@ assets-src/
 
 El id de carpeta `<escena>` debe coincidir con el id del proyecto / kit (`vibo`, `pirp`, `kit`, …).
 
+| Carpeta | Contenido |
+| --- | --- |
+| `vibo/` | Insumos escena Vibo (T-H07): exports Firebase, ref MVP, overlays curados, métricas, videos |
+| `kit/` | Modelos fuente del kit (p. ej. `phone*.glb` del MVP UI) |
+
 ## Pipeline
 
 ```bash

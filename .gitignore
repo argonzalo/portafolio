@@ -38,8 +38,11 @@ proyectos-facu.zip
 # notas locales
 recap/
 
+# snapshot local del MVP UI de Vibo (fuente); extraer a assets-src/, no versionar
+ui-mvp-public/
+
 # sistema operativo y editores
 .DS_Store
 Thumbs.db
 .idea/
-ui-mvp-public
+
