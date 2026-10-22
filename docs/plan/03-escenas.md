@@ -34,7 +34,7 @@ Construir esto una vez es lo que hace viable el volumen de escenas. Vive en `src
 | Análisis previo | Validado |
 | --- | --- |
 | **Qué transmite** | Ciencia aplicada al deporte: un video común se convierte en conocimiento preciso sobre cómo juega una persona, con un **toque leve de coaching** (mejora / “cómo jugaste”) |
-| **Estética** | Noche, cancha iluminada (atmósfera de **replay TV**: reflectores, slow-mo comercial). Azul profundo (fondo), azul eléctrico (datos), dorado (momentos clave y resultado). Overlays con acento **HUD gamer** (glow, contraste fuerte), no lab clínico. Personaje **low-poly / silueta clara**. Evitar: cartoon, cyberpunk, infantil |
+| **Estética** | Noche, cancha iluminada (atmósfera de **replay TV**: reflectores, slow-mo comercial). Azul profundo (fondo), azul eléctrico (datos), dorado (momentos clave y resultado). Overlays con acento **HUD gamer** (glow, contraste fuerte), no lab clínico. Techo **cinematic stylized** (T-H06, 2026-10-22): humano creíble, luz/materiales premium, presupuesto web — no photoreal AAA ni low-poly de juguete. Evitar: bloques low-poly, cartoon, cyberpunk, infantil. |
 | **Qué debe generar** | Asombro y confianza: "esto es serio, esto es preciso" |
 | **Integración con el proyecto** | Manda la estética del portafolio para Vibo (`00` / esta ficha). Paleta oscuros/azules/dorado. `ui-mvp-public` solo como referencia suave de producto, no como look a copiar. En el golpe, lectura tipo broadcast; en grafo/métricas, lectura más de software de análisis |
 
@@ -58,7 +58,7 @@ Construir esto una vez es lo que hace viable el volumen de escenas. Vive en `src
 **Técnica** (ADR-011)
 
 - Cancha procedural (líneas y planos), sin modelo pesado.
-- **Personaje 3D animado** estilizado low-poly (p. ej. Mixamo u otro rig con licencia) con animación de golpe en slow motion; material acorde a la paleta. El impacto está en el golpe, no en una trayectoria realista.
+- **Personaje 3D animado** estilizado-realista (rig con licencia tipo Mixamo/Ready Player u otro con calidad de proporciones humanas) con animación de golpe en slow motion; materiales PBR simples + iluminación de reflectores; silueta legible en mobile. El impacto está en el golpe + lectura broadcast, no en una trayectoria realista ni en photoreal de motor AAA.
 - **Overlays de detección** anclados al personaje/espacio (HUD del kit), look con glow/acento fuerte: bounding boxes, pose keypoints y etiquetas, alimentados por JSON curado a partir de `analysisResults` reales (T-H07). Los datos del producto están en perspectiva de cámara y **no** bastan para trayectoria 3D fiel; acreditan el overlay, no reconstruyen el mundo.
 - Trayectoria de pelota **diseñada** (filamento / curva con propósito), inspirada a lo sumo en el seguimiento real.
 - Mapa de calor como shader sobre el plano de la cancha, con datos precalculados en build.

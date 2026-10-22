@@ -103,12 +103,12 @@ Para agregar una decisión: copiar la plantilla del final, siguiente número lib
 
 ## ADR-011 — Vibo: personaje 3D en slow motion + overlays de detección
 
-- **Estado:** aceptada
+- **Estado:** aceptada (enmienda estética 2026-10-22)
 - **Fecha:** 2026-10-21
-- **Contexto:** existen `analysisResults` reales en Firebase (`vibo-beta` / `vibo-beta-2e60f`, colección `videos`), pero están en perspectiva de cámara y no alcanzan para una trayectoria 3D fiel. La escena insignia necesita impacto y propósito, no fidelidad geométrica. El núcleo narrativo es el golpe del jugador.
-- **Decisión:** el beat de razonamiento de Vibo se construye con un **personaje 3D animado en slow motion** y **detecciones como overlay flotante** (bounding boxes, pose keypoints, etiquetas). Los datos reales alimentan y acreditan ese overlay (y métricas anonimizadas); la trayectoria de pelota y el staging 3D se **diseñan** para la escena. No se reconstruye el mundo a partir del tracking.
-- **Alternativas descartadas:** jugador solo con keypoints instanciados + trayectoria de pelota reconstruida desde el pipeline (barato y “auténtico”, pero los datos no soportan una 3D fiel y diluyen el golpe como héroe visual).
-- **Consecuencias:** T-H07 / I-02 pasan a exportar y curar overlays + métricas (no trayectorias 3D); T-A20 prioriza rig/animación de golpe y HUD de detecciones; D-10 se reformula; actualizar ficha `03` §3.1.
+- **Contexto:** existen `analysisResults` reales en Firebase (`vibo-beta` / `vibo-beta-2e60f`, colección `videos`), pero están en perspectiva de cámara y no alcanzan para una trayectoria 3D fiel. La escena insignia necesita impacto y propósito, no fidelidad geométrica. El núcleo narrativo es el golpe del jugador. Tras revisión T-H06, el greybox low-poly se percibió como infantil / amateur.
+- **Decisión:** el beat de razonamiento de Vibo se construye con un **personaje 3D animado en slow motion** y **detecciones como overlay flotante** (bounding boxes, pose keypoints, etiquetas). Los datos reales alimentan y acreditan ese overlay (y métricas anonimizadas); la trayectoria de pelota y el staging 3D se **diseñan** para la escena. No se reconstruye el mundo a partir del tracking. **Barra visual (confirmada T-H06, 2026-10-22):** *cinematic stylized* — humano creíble, luz y materiales premium, dentro de presupuesto web. Queda fuera el low-poly de bloques, el look de juguete y el photoreal AAA.
+- **Alternativas descartadas:** jugador solo con keypoints instanciados + trayectoria de pelota reconstruida desde el pipeline (barato y “auténtico”, pero los datos no soportan una 3D fiel y diluyen el golpe como héroe visual); personaje low-poly de silueta (rechazado en T-H06 por percepción infantil).
+- **Consecuencias:** T-H07 / I-02 pasan a exportar y curar overlays + métricas (no trayectorias 3D); T-A20 prioriza rig/animación de golpe creíble, lighting broadcast y HUD de detecciones; ficha `03` §3.1 actualizada; el greybox T-A14 no cuenta como look aprobado.
 
 ---
 
