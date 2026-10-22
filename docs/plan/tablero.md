@@ -25,7 +25,7 @@
 | T-A05 | Contratos y store: `src/experience/types.ts` (contratos de `01` §4), store mutable de progreso/capítulo/calidad, `registry.ts` vacío, emisor de `JourneySignal`; instalar R3F y drei | ADR-001, ADR-002 | `src/experience/`, `src/scenes/registry.ts`, `src/guide/signals.ts`, `package.json` | hecho (2026-10-21; PR #4) |
 | T-A06 | **Spike del runtime** (ruta crítica): `Stage` persistente con `transition:persist`, ScrollTrigger → store, 2 escenas dummy con montaje/desmontaje y transición, navegación home ↔ caso sin perder el canvas, medición de memoria | T-A05 | `src/experience/`, `src/layouts/`, `src/pages/index.astro` (temporal) | hecho (2026-10-21; PR #6) |
 | T-A07 | Calidad adaptativa (`quality.ts`, `PerformanceMonitor`), overlay `?debug`, deep links de estado, ruta `/lab/[scene]` solo en dev | T-A06 | `src/experience/quality.ts`, `src/experience/debug.tsx`, `src/experience/deepLink.ts`, `src/experience/Stage.tsx` (integración), `src/experience/gpuStats.ts`, `src/experience/SceneDirector.tsx` (métricas), `src/pages/lab/` | hecho (2026-10-21; PR #7) |
-| T-A08 | **Spike del hilo conductor:** opciones A y C de ADR-006 en `/lab/thread`, con transición Vibo→Pirp y versión mobile; best-of-N (una variante por worktree). Default A si no hay elección a tiempo; C solo si cumple mobile | ADR-001 | `src/experience/thread/`, `src/pages/lab/thread.astro` | listo |
+| T-A08 | **Spike del hilo conductor:** opciones A y C de ADR-006 en `/lab/thread`, con transición Vibo→Pirp y versión mobile; best-of-N (una variante por worktree). Default A si no hay elección a tiempo; C solo si cumple mobile | ADR-001 | `src/experience/thread/`, `src/pages/lab/thread.astro` | en revisión ([PR #13](https://github.com/argonzalo/portafolio/pull/13)) |
 | T-A09 | Pipeline de assets: `npm run assets:build` con gltf-transform (meshopt, KTX2, LOD por nivel), verificación de presupuestos, `assets-src/` gitignored + README de convención (ADR-010) | ADR-010 | `scripts/assets/`, `assets-src/README.md`, `.gitignore`, `package.json` (script) | listo |
 | T-A10 | Borradores de narrativa (problema, enfoque, decisiones, desafíos, impacto) de los 4 proyectos de primera línea a partir de `docs/descripciones-proyectos-originales.md`, marcando con `TODO(humano)` lo que solo él sabe | — | `docs/plan/borradores/` | hecho (2026-10-21; PR #2) |
 
@@ -112,6 +112,8 @@
 
 | Fecha | Tarea | Pregunta o bloqueo | Respuesta |
 | --- | --- | --- | --- |
+| 2026-10-21 | T-A08 | **ADR-006 lista para decidir:** A (filamento) y C (enjambre) están en `/lab/thread` del preview, con transición Vibo→Pirp y mobile. Las dos cumplen presupuesto en mobile emulado (CPU ×4); falta probar en iPhone y Android reales y elegir. El color de Pirp es provisional (`#ff5b4f`) hasta I-03. | |
+| 2026-10-21 | T-A08 | Varios agentes locales comparten la carpeta principal del repo y cambian de rama en ella: el trabajo sin commitear de T-A08 terminó en un `git stash` ajeno (recuperado). Pedido: que cada agente local use su propio worktree (`06` §3, paso 2). | |
 | 2026-10-21 | T-A01 / T-A05 | `npm run lint` y `npm run typecheck` ya fallan en `main` por código previo: `LightboxStage.tsx` (ref en render + deps de `useEffect`; `stage` posiblemente `null`) y `ExperienceTimeline.tsx` (`offsetHeight` sobre `Element`). `npm run build` pasa. Bloquea el `npm run check` de T-A02. ¿Lo arregla T-A02 o una tarea de QA? | Resuelto en T-A02: baseline de lint/typecheck en verde y `npm run check` (lint + typecheck + build) disponible. |
 
 ## Pedidos a plataforma

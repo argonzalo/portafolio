@@ -1,0 +1,39 @@
+---
+/**
+ * Laboratorio del hilo conductor (T-A08, ADR-006).
+ *
+ * A diferencia de `/lab/[scene]`, también se publica en los previews de
+ * Vercel: el humano elige la opción en su teléfono, no solo en dev. En
+ * producción la ruta existe pero no carga nada.
+ */
+import { ThreadLab } from "@/experience/thread/ThreadLab"
+import "@/styles/globals.css"
+
+const enabled = import.meta.env.DEV || process.env.VERCEL_ENV === "preview"
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="robots" content="noindex" />
+    <title>Lab · hilo conductor</title>
+  </head>
+  <body class="overflow-hidden bg-[#05070d] text-white antialiased">
+    {
+      enabled ? (
+        <ThreadLab client:only="react" />
+      ) : (
+        <main class="flex min-h-svh items-center justify-center p-6 font-mono text-sm text-white/60">
+          <p>
+            Laboratorio no disponible. <a href="/" class="underline">Volver al sitio</a>
+          </p>
+        </main>
+      )
+    }
+  </body>
+</html>
