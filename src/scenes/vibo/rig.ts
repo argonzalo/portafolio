@@ -67,36 +67,40 @@ export function playerUrls(quality: QualityTier) {
   return [`/models/vibo/jugador.${tier}.glb`, `/models/vibo/paleta.${tier}.glb`]
 }
 
-/** Equipación por zona en pose de reposo (A-pose, metros, frente +Z). */
+/** Maniquí técnico monocromo por zona en pose de reposo (A-pose, metros, frente +Z). */
 const KIT = {
-  skin: new Color("#b98566"),
-  hair: new Color("#211a16"),
-  shirt: new Color("#1d4fc4"),
-  shirtTrim: new Color("#f5c451"),
-  shorts: new Color("#0c1630"),
-  sock: new Color("#e9eef5"),
-  shoe: new Color("#f3f5f8"),
-  sole: new Color("#2a3240"),
+  base: new Color("#2c3035"),
+  shell: new Color("#4a5056"),
+  head: new Color("#5d636a"),
+  joint: new Color("#a3a9b0"),
+  sole: new Color("#16191c"),
 }
+
+/** Bandas finas en articulaciones: (centro y, semiancho) en metros. */
+const JOINT_BANDS: [number, number][] = [
+  [0.5, 0.012], // rodillas
+  [1.0, 0.01], // cintura
+  [1.58, 0.01], // cuello
+]
 
 function kitColor(p: Vector3, out: Color): Color {
   const ax = Math.abs(p.x)
   const y = p.y
   if (y < 0.035) return out.copy(KIT.sole)
-  if (y < 0.11) return out.copy(KIT.shoe)
-  if (y < 0.24) return out.copy(KIT.sock)
-  // Brazos: fuera del torso. Manga corta hasta ~20 cm del hombro.
+  if (y < 0.11) return out.copy(KIT.base)
+  // Brazos: carcasa en el brazo, banda en el codo.
   if (ax > 0.21 && y > 0.78) {
-    const shoulder = Math.hypot(ax - 0.2, y - 1.44)
-    if (shoulder < 0.2) return out.copy(shoulder > 0.175 ? KIT.shirtTrim : KIT.shirt)
-    return out.copy(KIT.skin)
+    const fromShoulder = Math.hypot(ax - 0.2, y - 1.44)
+    if (Math.abs(fromShoulder - 0.29) < 0.012) return out.copy(KIT.joint)
+    return out.copy(fromShoulder < 0.29 ? KIT.shell : KIT.base)
   }
-  if (y < 0.79) return out.copy(KIT.skin)
-  if (y < 1.0) return out.copy(y > 0.975 ? KIT.shirtTrim : KIT.shorts)
-  if (y < 1.5) return out.copy(y > 1.47 && Math.abs(p.z) < 0.06 ? KIT.shirtTrim : KIT.shirt)
-  // Cabeza: pelo arriba y en la nuca.
-  if (y > 1.71 || (y > 1.6 && p.z < -0.035)) return out.copy(KIT.hair)
-  return out.copy(KIT.skin)
+  for (const [center, half] of JOINT_BANDS) {
+    if (Math.abs(y - center) < half) return out.copy(KIT.joint)
+  }
+  if (y > 1.58) return out.copy(KIT.head)
+  // Carcasas: muslos y torso más claros que la base.
+  if ((y > 0.52 && y < 0.98) || (y > 1.02 && y < 1.5)) return out.copy(KIT.shell)
+  return out.copy(KIT.base)
 }
 
 /** Medidas del modelo fuente (metros) para deshacer la cuantización del GLB. */
@@ -148,7 +152,7 @@ export type RimUniforms = {
 }
 
 export function createRim(): RimUniforms {
-  return { uRimColor: { value: new Color("#3d8bff") }, uRim: { value: 0.6 } }
+  return { uRimColor: { value: new Color("#c4ccd4") }, uRim: { value: 0.35 } }
 }
 
 /** Fresnel de contorno estilo replay: refuerza la separación del fondo. */
@@ -206,9 +210,9 @@ export function buildRig(scene: Group, animations: AnimationClip[], rim: RimUnif
   })
   const body = new MeshStandardMaterial({
     vertexColors: true,
-    roughness: 0.62,
-    metalness: 0,
-    envMapIntensity: 0.55,
+    roughness: 0.48,
+    metalness: 0.2,
+    envMapIntensity: 0.7,
   })
   addRim(body, rim)
   const frame = restFrame(meshes)
@@ -237,6 +241,10 @@ export function buildRacket(scene: Group): Racket {
     if (!mesh.isMesh) return
     const mat = mesh.material as MeshStandardMaterial
     mat.envMapIntensity = 1.1
+    // Grises con la misma luminancia: conserva el contraste marco/cara sin color.
+    mat.color.setHSL(0, 0, mat.color.getHSL({ h: 0, s: 0, l: 0 }).l)
+    mat.map?.dispose()
+    mat.map = null
     materials.push(mat)
   })
   // Paleta +Y (cabeza) → eje +Z del socket; cara hacia el frente del golpe.

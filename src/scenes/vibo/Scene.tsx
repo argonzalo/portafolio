@@ -625,8 +625,8 @@ export default function ViboScene(props: SceneProps) {
   )
 }
 
-const GOLD = new Color("#f5c451")
-const BLUE = new Color("#3d8bff")
+const RIM_IDLE = new Color("#c4ccd4")
+const RIM_FOCUS = new Color("#ffffff")
 
 type Runtime = ReturnType<typeof createRuntime>
 
@@ -740,8 +740,8 @@ function animateScene(rt: Runtime, f: AnimateFrame) {
   if (f.key) f.key.intensity = 3.6 * lit * court.dim
 
   const rim = rt.rim
-  rim.uRim.value = MathUtils.lerp(rim.uRim.value, 0.6 + (f.highlight ? 1.4 : 0), 0.12)
-  rim.uRimColor.value.lerp(f.highlight ? GOLD : BLUE, 0.12)
+  rim.uRim.value = MathUtils.lerp(rim.uRim.value, 0.35 + (f.highlight ? 0.9 : 0), 0.12)
+  rim.uRimColor.value.lerp(f.highlight ? RIM_FOCUS : RIM_IDLE, 0.12)
 
   // Panel e inserto 2D: visibles solo durante el golpe.
   const panel = rt.panel

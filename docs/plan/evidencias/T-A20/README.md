@@ -4,7 +4,7 @@
 
 Escena de primera línea **Vibo** (`03` §3.1, ADR-011 + enmienda estética) sobre el ritmo del greybox T-A14:
 
-- **Jugador estilizado-realista:** `jugador.glb` (T-A20-jugador, 6.464 tris, 23 huesos) + `paleta.glb` (T-A20-paleta) optimizados por nivel (meshopt + cuantización). Equipación por zonas de color de vértice (camiseta azul con detalles dorados, short marino, piel, calzado), material PBR semi-mate con rim de contorno (fresnel) que se intensifica en dorado con «Resaltar detección». La volea real del rig se combina con capas procedurales (carga de piernas, giro de tronco) restaurando la pose de reposo cada frame.
+- **Jugador como maniquí técnico:** `jugador.glb` (T-A20-jugador, 6.464 tris, 23 huesos) + `paleta.glb` (T-A20-paleta) optimizados por nivel (meshopt + cuantización). Acabado monocromo sobrio por zonas de color de vértice (base grafito, carcasas de torso/muslos/brazos más claras, bandas finas en rodillas, codos, cintura y cuello), PBR satinado (roughness 0,48, metalness 0,2) y paleta en grises de igual luminancia. El rim de contorno es neutro y «Resaltar detección» lo lleva a blanco: el personaje no usa la paleta de la escena, que queda para el HUD. La volea real del rig se combina con capas procedurales (carga de piernas, giro de tronco) restaurando la pose de reposo cada frame.
 - **Cancha nocturna broadcast:** líneas que se dibujan, reflectores que encienden en cascada con conos volumétricos, cristales templados y malla, key spot cálido + rim azul/dorado + hemisférica de relleno.
 - **Beats:**
   - `mundo` — líneas trazadas y reflectores encendiéndose; el hilo dibuja el contorno de la cancha y se cierra en un halo alrededor del jugador.
