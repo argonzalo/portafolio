@@ -2,10 +2,12 @@ import { applyThreadFrame, pathUniforms, type ThreadFrame } from "../forms"
 import { useEffect, useMemo, useRef } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
 import {
-  AdditiveBlending,
   BufferAttribute,
   BufferGeometry,
   Color,
+  CustomBlending,
+  OneFactor,
+  OneMinusSrcAlphaFactor,
   Points,
   ShaderMaterial,
   Vector2,
@@ -27,8 +29,10 @@ import { useThreadExtent } from "../useThreadExtent"
  * el vertex shader sobre la misma curva que el filamento. En Vibo una parte
  * del enjambre se condensa en la pelota; en la transición cada partícula cruza
  * con su propio retraso, se dispersa y se reordena como la señal de Pirp.
+ * Usa mezcla premultiplicada (`OneFactor`, `OneMinusSrcAlphaFactor`) para
+ * mantener contraste tanto en capítulos oscuros como en el tema claro de Naturalis.
  *
- * Costo: 1 draw call, 0 triángulos; el riesgo es fill rate (overdraw aditivo)
+ * Costo: 1 draw call, 0 triángulos; el riesgo es fill rate (overdraw)
  * en GPUs mobile, por eso la cantidad y el tamaño dependen del nivel.
  */
 
@@ -95,6 +99,7 @@ uniform vec3 uLineB;
 uniform vec3 uHeadA;
 uniform vec3 uHeadB;
 uniform float uGain;
+uniform float uLightScheme;
 
 varying float vEnergy;
 varying float vAlpha;
@@ -108,11 +113,16 @@ void main() {
   float energy = min(vEnergy, 1.5);
   vec3 line = mix(uLineA, uLineB, vMix);
   vec3 head = mix(uHeadA, uHeadB, vMix);
-  vec3 color = mix(line, head, clamp(energy * 0.8, 0.0, 1.0));
-  color *= (mix(0.22, 0.4, vMix) + energy) * soft * vAlpha * uGain;
+  vec3 baseColor = mix(line, head, clamp(energy * 0.75, 0.0, 1.0));
+  vec3 additiveRgb = baseColor * (mix(0.22, 0.4, vMix) + energy) * soft * vAlpha * uGain;
+  float inkAlpha = clamp(soft * vAlpha * (0.38 + energy * 0.48) * min(1.0, uGain * 1.9), 0.0, 0.85);
 
-  gl_FragColor = vec4(color, 1.0);
+  gl_FragColor = vec4(
+    mix(additiveRgb, baseColor, uLightScheme),
+    inkAlpha * uLightScheme
+  );
   #include <colorspace_fragment>
+  gl_FragColor.rgb *= mix(1.0, gl_FragColor.a, uLightScheme);
 }
 `
 
@@ -203,7 +213,9 @@ export function Swarm({ clock, tier, frame }: Props) {
         },
         transparent: true,
         depthWrite: false,
-        blending: AdditiveBlending,
+        blending: CustomBlending,
+        blendSrc: OneFactor,
+        blendDst: OneMinusSrcAlphaFactor,
       }),
     []
   )

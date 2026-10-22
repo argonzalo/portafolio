@@ -2,12 +2,14 @@ import { applyThreadFrame, pathUniforms, type ThreadFrame } from "../forms"
 import { useEffect, useMemo, useRef } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
 import {
-  AdditiveBlending,
   BufferAttribute,
   BufferGeometry,
   Color,
+  CustomBlending,
   DoubleSide,
   Mesh,
+  OneFactor,
+  OneMinusSrcAlphaFactor,
   Points,
   ShaderMaterial,
   Vector2,
@@ -27,8 +29,10 @@ import { useThreadExtent } from "../useThreadExtent"
  *
  * Un listón (triangle strip indexado) cuya forma se calcula entera en el
  * vertex shader: la CPU solo actualiza uniforms. El brillo es falso (núcleo +
- * halo aditivo), sin postprocesado, para que valga igual en `low`.
- * La punta es un `Points` de un vértice: es el lugar natural del guía (`04` §7).
+ * halo), sin postprocesado, para que valga igual en `low`.
+ * Usa mezcla premultiplicada (`OneFactor`, `OneMinusSrcAlphaFactor`): en temas
+ * oscuros (`uLightScheme = 0`, alpha = 0) actúa como aditivo puro; en tema claro
+ * (`Naturalis`, `uLightScheme = 1`) aporta pigmento con contraste sobre `#FAFDFC`.
  *
  * Costo: 2 draw calls y `2 × segmentos` triángulos.
  */
@@ -68,6 +72,7 @@ void main() {
 const RIBBON_FRAGMENT = /* glsl */ `
 uniform float uMix;
 uniform float uDraw;
+uniform float uLightScheme;
 uniform vec3 uLineA;
 uniform vec3 uLineB;
 uniform vec3 uHeadA;
@@ -96,8 +101,16 @@ void main() {
   vec3 color = line * (core + halo) * (base + energy) * drawing;
   color += head * core * energy * 1.2;
 
-  gl_FragColor = vec4(color * ends, 1.0);
+  vec3 additiveRgb = color * ends;
+  float inkAlpha = clamp((core * 0.92 + halo * 0.55) * (0.55 + energy * 0.45) * ends, 0.0, 0.92);
+  vec3 inkColor = mix(line, head, clamp(core * energy * 0.75, 0.0, 1.0));
+
+  gl_FragColor = vec4(
+    mix(additiveRgb, inkColor, uLightScheme),
+    inkAlpha * uLightScheme
+  );
   #include <colorspace_fragment>
+  gl_FragColor.rgb *= mix(1.0, gl_FragColor.a, uLightScheme);
 }
 `
 
@@ -121,6 +134,7 @@ void main() {
 
 const HEAD_FRAGMENT = /* glsl */ `
 uniform float uMix;
+uniform float uLightScheme;
 uniform vec3 uHeadA;
 uniform vec3 uHeadB;
 
@@ -134,9 +148,15 @@ void main() {
   float core = exp(-d * d * 18.0);
   float halo = exp(-d * d * 3.0) * 0.35;
   vec3 head = mix(uHeadA, uHeadB, smoothstep(0.0, 1.0, uMix));
+  vec3 additiveRgb = head * (core * 1.4 + halo) * vWeight;
+  float inkAlpha = clamp((core + halo * 0.65) * vWeight, 0.0, 0.95);
 
-  gl_FragColor = vec4(head * (core * 1.4 + halo) * vWeight, 1.0);
+  gl_FragColor = vec4(
+    mix(additiveRgb, head, uLightScheme),
+    inkAlpha * uLightScheme
+  );
   #include <colorspace_fragment>
+  gl_FragColor.rgb *= mix(1.0, gl_FragColor.a, uLightScheme);
 }
 `
 
@@ -217,7 +237,9 @@ export function Filament({ clock, tier, frame }: Props) {
         },
         transparent: true,
         depthWrite: false,
-        blending: AdditiveBlending,
+        blending: CustomBlending,
+        blendSrc: OneFactor,
+        blendDst: OneMinusSrcAlphaFactor,
         // El listón gira con la curva: según el tramo queda de frente o de espaldas.
         side: DoubleSide,
       }),
@@ -236,7 +258,9 @@ export function Filament({ clock, tier, frame }: Props) {
         },
         transparent: true,
         depthWrite: false,
-        blending: AdditiveBlending,
+        blending: CustomBlending,
+        blendSrc: OneFactor,
+        blendDst: OneMinusSrcAlphaFactor,
       }),
     []
   )

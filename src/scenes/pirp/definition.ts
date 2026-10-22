@@ -1,4 +1,29 @@
+import type { SceneBorderFrames } from "@/experience/thread/forms"
 import type { SceneDefinition } from "../../experience/types"
+
+function smoothstep(value: number, min: number, max: number): number {
+  const t = Math.max(0, Math.min(1, (value - min) / (max - min)))
+  return t * t * (3 - 2 * t)
+}
+
+/** Encuadres de borde para continuidad de cámara Vibo → Pirp → Naturalis (T-A41). */
+export const pirpBorderFrames: SceneBorderFrames = {
+  // Coincide exactamente con `viboBorderFrames.exit`.
+  entry: {
+    desktop: [2.2, 1.8, 9.6],
+    mobile: [2.4, 3.2, 12.6],
+    target: [0, 0.1, 0],
+  },
+  // Coincide exactamente con `naturalisBorderFrames.entry`.
+  exit: {
+    desktop: [3.0, 1.6, 8.2],
+    mobile: [2.5, 2.4, 13.8],
+    target: [-0.35, 0.1, 0],
+    mobileTarget: [-0.85, 0.0, 0],
+  },
+  entrySpan: 0.08,
+  exitStart: 0.9,
+}
 
 export const pirp: SceneDefinition = {
   id: "pirp",
@@ -15,15 +40,27 @@ export const pirp: SceneDefinition = {
   thread: {
     shape: "custom",
     color: "#7A1F2B",
-    anchors: (p) =>
-      Array.from({ length: 18 }, (_, i) => {
-        const x = (i / 17 - 0.5) * 7
+    anchors: (p) => {
+      // En beat 5 ("el ruido se calma") la señal converge al tallo inicial de Naturalis.
+      const toNaturalis = smoothstep(p, 0.82, 1)
+
+      return Array.from({ length: 18 }, (_, i): [number, number, number] => {
+        const u = i / 17
+        const waveX = (u - 0.5) * 7
+        const waveAmp = (0.12 + Math.sin(p * Math.PI) * 0.5) * (1 - toNaturalis * 0.85)
+        const waveY = Math.sin(i * 1.3 + p * 12) * waveAmp
+
+        // Tallo orgánico de entrada en Naturalis (p=0 en naturalis/definition.ts).
+        const stemX = -2.8 + Math.sin(u * Math.PI) * 0.25
+        const stemY = -1.5 + u * 2.8
+
         return [
-          x,
-          Math.sin(i * 1.3 + p * 12) * (0.12 + Math.sin(p * Math.PI) * 0.5),
+          waveX + (stemX - waveX) * toNaturalis,
+          waveY + (stemY - waveY) * toNaturalis,
           0,
         ]
-      }),
+      })
+    },
   },
   beats: [
     { id: "mundo", range: [0, 0.2], label: "Una señal que late" },

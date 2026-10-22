@@ -1,6 +1,30 @@
+import type { SceneBorderFrames } from "@/experience/thread/forms"
 import type { SceneDefinition } from "@/experience/types"
 
+function smoothstep(value: number, min: number, max: number): number {
+  const t = Math.max(0, Math.min(1, (value - min) / (max - min)))
+  return t * t * (3 - 2 * t)
+}
+
 export const conceptLine = "Ver lo invisible del juego"
+
+/** Encuadres de borde para continuidad de cámara (T-A41 / `03-escenas.md` §6). */
+export const viboBorderFrames: SceneBorderFrames = {
+  entry: {
+    desktop: [4.5, 4.2, 9.5],
+    mobile: [5.5, 7.0, 14.0],
+    target: [0, 0.15, 0],
+  },
+  // Coincide exactamente con `pirpBorderFrames.entry`.
+  exit: {
+    desktop: [2.2, 1.8, 9.6],
+    mobile: [2.4, 3.2, 12.6],
+    target: [0, 0.1, 0],
+  },
+  entrySpan: 0.08,
+  exitStart: 0.9,
+}
+
 export const vibo: SceneDefinition = {
   id: "vibo",
   tier: 1,
@@ -16,12 +40,34 @@ export const vibo: SceneDefinition = {
   thread: {
     shape: "trajectory",
     color: "#f5c451",
-    anchors: () => [
-      [-4, 0.05, 2],
-      [-2, 1.5, 0],
-      [0, 2, -1],
-      [3, 0.15, -3],
-    ],
+    anchors: (p) => {
+      const strike = smoothstep(p, 0.15, 0.52)
+      const overhead = smoothstep(p, 0.56, 0.74) * (1 - smoothstep(p, 0.78, 0.92))
+      const toPirp = smoothstep(p, 0.82, 1)
+
+      return Array.from({ length: 18 }, (_, i): [number, number, number] => {
+        const u = i / 17
+        // Trayectoria de pelota en Vibo: golpe alto + pique en u=0.64.
+        const viboX = -4 + u * 7
+        const arc =
+          u < 0.64
+            ? -12.5 * (u - 0.32) ** 2 + (1.35 + strike * 0.85)
+            : 0.12 + 0.95 * (1 - ((u - 0.82) / 0.18) ** 2)
+        const viboY = Math.max(0.05, arc) * (1 - overhead * 0.35)
+        const viboZ = (2 - u * 5) * (1 - overhead * 0.2)
+
+        // Handoff hacia la señal inicial de Pirp (p=0 en pirp/definition.ts).
+        const pirpX = (u - 0.5) * 7
+        const pirpY = Math.sin(i * 1.3) * 0.12
+        const pirpZ = 0
+
+        return [
+          viboX + (pirpX - viboX) * toPirp,
+          viboY + (pirpY - viboY) * toPirp,
+          viboZ + (pirpZ - viboZ) * toPirp,
+        ]
+      })
+    },
   },
   beats: [
     {

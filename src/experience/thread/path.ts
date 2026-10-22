@@ -128,13 +128,16 @@ vec3 pirpPath(float u, float m) {
 }
 
 vec3 threadPath(float u, float m) {
+  vec3 result = vec3(0.0);
   if (uUsePath > 0.5) {
     float index = clamp(u, 0.0, 1.0) * 31.0;
     int a = min(int(floor(index)), 30);
-    return mix(uPath[a], uPath[a + 1], index - float(a));
+    result = mix(uPath[a], uPath[a + 1], index - float(a));
+  } else {
+    vec3 p = mix(viboPath(u), pirpPath(u, m), m);
+    result = vec3(p.x * uExtent.x, p.y * uExtent.y, p.z);
   }
-  vec3 p = mix(viboPath(u), pirpPath(u, m), m);
-  return vec3(p.x * uExtent.x, p.y * uExtent.y, p.z);
+  return result;
 }
 
 // Energía a lo largo del hilo: cola de cometa detrás de cada pulso.

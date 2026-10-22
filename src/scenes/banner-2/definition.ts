@@ -1,4 +1,28 @@
+import type { SceneBorderFrames } from "@/experience/thread/forms"
 import type { SceneDefinition } from "@/experience/types"
+
+function smoothstep(value: number, min: number, max: number): number {
+  const t = Math.max(0, Math.min(1, (value - min) / (max - min)))
+  return t * t * (3 - 2 * t)
+}
+
+/** Encuadres de borde para continuidad de cámara Naturalis → Banner → Segunda línea (T-A41). */
+export const bannerBorderFrames: SceneBorderFrames = {
+  // Coincide exactamente con `naturalisBorderFrames.exit`.
+  entry: {
+    desktop: [2.4, 1.5, 9.4],
+    mobile: [1.8, 2.1, 13.4],
+    target: [0, 0.25, 0],
+    mobileTarget: [-0.2, 0.1, 0],
+  },
+  exit: {
+    desktop: [0, 0.2, 6.2],
+    mobile: [0, 0.25, 7.5],
+    target: [0, 0, 0],
+  },
+  entrySpan: 0.08,
+  exitStart: 0.9,
+}
 
 export const banner: SceneDefinition = {
   id: "banner-2",
@@ -15,13 +39,20 @@ export const banner: SceneDefinition = {
   thread: {
     shape: "split",
     color: "#FFB5A0",
-    anchors: (p) => [
-      [-4, -2, 1],
-      [-2, -1, 1],
-      [0, 0, 1],
-      [1.8, p > 0.6 ? 1.2 : 0, 1],
-      [4, p > 0.6 ? -1 : 0, 1],
-    ],
+    anchors: (p) => {
+      // Bifurcación continua (sin escalón brusco en p=0.6) y cierre hacia segunda línea.
+      const split =
+        smoothstep(p, 0.42, 0.72) * (1 - smoothstep(p, 0.85, 1) * 0.55)
+      const toVignette = smoothstep(p, 0.84, 1)
+
+      return [
+        [-4, -2 * (1 - toVignette * 0.7), 1 - toVignette],
+        [-2, -1 * (1 - toVignette * 0.7), 1 - toVignette],
+        [0, 0, 1 - toVignette],
+        [1.8, split * 1.2, 1 - toVignette],
+        [4, -split * 1.0, 1 - toVignette],
+      ]
+    },
   },
   beats: [
     { id: "mundo", range: [0, 0.2], label: "Una pantalla en la oscuridad" },

@@ -1,0 +1,141 @@
+{
+  "handoffMath": {
+    "viboToPirpCameraMatch": true,
+    "pirpToNaturalisCameraMatch": true,
+    "naturalisToBannerCameraMatch": true,
+    "viboToPirpCurveDelta": 1.942890293094024e-16,
+    "pirpToNaturalisCurveDelta": 4.440892098500626e-16,
+    "naturalisToBannerCurveDelta": 0.19949041421245578,
+    "bannerContinuityAt06": 0.11617665290412116,
+    "naturalisScheme": "light"
+  },
+  "transitionMetrics": [
+    {
+      "transition": "vibo-to-pirp",
+      "mode": "desktop",
+      "quality": "high",
+      "fps": 60,
+      "p95Ms": 16.8,
+      "calls": 4,
+      "triangles": 1828,
+      "mountedScenes": 1,
+      "paletteOut": "#121620",
+      "paletteIn": "#17181A"
+    },
+    {
+      "transition": "pirp-to-naturalis",
+      "mode": "desktop",
+      "quality": "high",
+      "fps": 60,
+      "p95Ms": 16.7,
+      "calls": 36,
+      "triangles": 638,
+      "mountedScenes": 1,
+      "paletteOut": "#c5c8c7",
+      "paletteIn": "#FAFDFC"
+    },
+    {
+      "transition": "naturalis-to-banner-2",
+      "mode": "desktop",
+      "quality": "high",
+      "fps": 60,
+      "p95Ms": 16.8,
+      "calls": 5,
+      "triangles": 18,
+      "mountedScenes": 1,
+      "paletteOut": "#aaacab",
+      "paletteIn": "#151211"
+    },
+    {
+      "transition": "vibo-to-pirp",
+      "mode": "mobile",
+      "quality": "low",
+      "fps": 60,
+      "p95Ms": 16.8,
+      "calls": 5,
+      "triangles": 2108,
+      "mountedScenes": 1,
+      "paletteOut": "#121620",
+      "paletteIn": "#17181A"
+    },
+    {
+      "transition": "pirp-to-naturalis",
+      "mode": "mobile",
+      "quality": "low",
+      "fps": 60,
+      "p95Ms": 16.7,
+      "calls": 26,
+      "triangles": 642,
+      "mountedScenes": 1,
+      "paletteOut": "#c5c8c7",
+      "paletteIn": "#FAFDFC"
+    },
+    {
+      "transition": "naturalis-to-banner-2",
+      "mode": "mobile",
+      "quality": "low",
+      "fps": 60,
+      "p95Ms": 16.8,
+      "calls": 6,
+      "triangles": 298,
+      "mountedScenes": 1,
+      "paletteOut": "#aaacac",
+      "paletteIn": "#151211"
+    }
+  ],
+  "baselineHero": {
+    "chapterId": "hero",
+    "gpu": {
+      "geometries": 1,
+      "textures": 0,
+      "programs": 1,
+      "calls": 1,
+      "triangles": 0,
+      "mountedScenes": 0,
+      "jsHeapMB": 113,
+      "at": 928.7999999523163
+    },
+    "progress": 0,
+    "tip": [
+      -2.226812111317759,
+      0,
+      0
+    ],
+    "visible": true,
+    "palette": {
+      "background": "#0a0a0b",
+      "foreground": "#f4f7f7",
+      "accent": "#6b6fd4",
+      "accentAlt": "#a8a3d9",
+      "scheme": "dark"
+    }
+  },
+  "afterHero": {
+    "chapterId": "hero",
+    "gpu": {
+      "geometries": 1,
+      "textures": 0,
+      "programs": 1,
+      "calls": 1,
+      "triangles": 0,
+      "mountedScenes": 0,
+      "jsHeapMB": 73.6,
+      "at": 856.7999999523163
+    },
+    "progress": 0,
+    "tip": [
+      -2.226812111317759,
+      0,
+      0
+    ],
+    "visible": true,
+    "palette": {
+      "background": "#0a0a0b",
+      "foreground": "#f4f7f7",
+      "accent": "#6b6fd4",
+      "accentAlt": "#a8a3d9",
+      "scheme": "dark"
+    }
+  },
+  "errors": []
+}
