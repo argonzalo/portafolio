@@ -9,10 +9,10 @@ Escena de primera línea **Vibo** (`03` §3.1, ADR-011 + enmienda estética) sob
 - **Paleta:** césped y HUD en azul eléctrico (`#1F7AFF`); el acento dorado se reemplazó por platino casi gris (`#CFD2D6`) en el trazo de líneas, el mapa de calor del jugador A, la estela, la pelota, la tarjeta de resultado y los acentos del HUD. El override vive en `src/scenes/vibo/theme.ts` (`VIBO_THEME`/`PLATINUM_THEME` sobre `KIT_THEMES.vibo`, sin tocar el kit).
 - **Beats:**
   - `mundo` — líneas trazadas y reflectores encendiéndose; el hilo dibuja el contorno de la cancha y se cierra en un halo alrededor del jugador.
-  - `razonamiento` — golpe en cámara lenta ligado al scroll, HUD de visión (bbox con etiqueta y confianza, 17 keypoints con esqueleto, marcador «Golpe detectado» en la cabeza de la paleta, brazo dominante), inserto 2D con los frames reales del MVP (`assets-src/vibo/mvp-ref`, I-02). Los títulos del paso a paso del pipeline quedan ocultos por ahora (se revisan en la etapa final; la última versión, rótulo en el cristal del fondo, está en el commit `3944600`).
+  - `razonamiento` — golpe en cámara lenta ligado al scroll, HUD de visión (bbox con etiqueta y confianza, 17 keypoints con esqueleto, marcador «Golpe detectado» en la cabeza de la paleta, brazo dominante) e inserto 2D «Pose» con el recorte del MVP. Sin controlador de scrub ni pie de métricas del bbox. Los títulos del pipeline quedan ocultos por ahora (commit `3944600`).
   - `solución` — cenital con mapa de calor, cobertura y perfil ofensivo/defensivo (marcadores con datos curados).
-  - `resultado` — tarjeta platino «Tu lectura de partido» (`TelemetryDeck`) junto al jugador y CTA del capítulo.
-- **Interacción:** pausa + scrub obligatorios (slider con `aria-valuetext` en frames/segundos), «Resaltar detección» (`aria-pressed`); todo con botones nativos, por lo que el equivalente táctil es el mismo control. El hover/tap solo resalta.
+  - `resultado` — tarjeta local `MatchCard`: lectura de un partido de 60 min, con radar de estilo (centrado), mapa de calor de zonas y curva de desgaste. Sin `TelemetryDeck`.
+- **Interacción:** el golpe lo mueve solo el scroll. El hover/tap de marcadores del HUD solo resalta.
 - **Mobile:** encuadres propios, una sola pieza de información por vez (HUD + panel durante el golpe → cenital → retrato del jugador sobre la tarjeta), una línea de copy por beat.
 - **Transición Vibo→Pirp:** el hilo sale por la trayectoria de la pelota tras el impacto y se aplana hacia la línea de Pirp (`thread.anchors` en `definition.ts`).
 
@@ -25,13 +25,13 @@ npm run dev
 | Beat | Deep link |
 | --- | --- |
 | mundo | `/?chapter=vibo&progress=0.12&quality=high` |
-| razonamiento (HUD + scrub) | `/?chapter=vibo&progress=0.30&quality=high` · `/?chapter=vibo&progress=0.40&quality=high` |
+| razonamiento (HUD) | `/?chapter=vibo&progress=0.30&quality=high` · `/?chapter=vibo&progress=0.40&quality=high` |
 | razonamiento (terminación del golpe, mobile) | `/?chapter=vibo&progress=0.51&quality=high` |
 | solución | `/?chapter=vibo&progress=0.72&quality=high` |
 | resultado | `/?chapter=vibo&progress=0.90&quality=high` |
 | laboratorio | `/lab/vibo?progress=0.42&quality=medium` |
 
-Agregar `&debug` para el panel de runtime. En `razonamiento`: «Pausar golpe» y arrastrar el slider recorre el golpe; «Resaltar detección» lleva el rim del jugador a blanco.
+Agregar `&debug` para el panel de runtime. El golpe avanza con el scroll del capítulo.
 
 ## 3. Métricas
 
@@ -82,7 +82,7 @@ Sin texturas externas: el mapa de calor y los conos son procedurales; el inserto
 
 ### `prefers-reduced-motion`
 
-Verificado con emulación `reduce`: la escena es estática salvo lo que mueve el scroll o el scrub; el único movimiento por tiempo (sway de cámara) lo anula `interpolateCameraState(..., reduced)` del kit.
+Verificado con emulación `reduce`: la escena es estática salvo lo que mueve el scroll; el único movimiento por tiempo (sway de cámara) lo anula `interpolateCameraState(..., reduced)` del kit.
 
 ## 4. Capturas
 
@@ -98,7 +98,6 @@ Verificado con emulación `reduce`: la escena es estática salvo lo que mueve el
 
 - **Triángulos del jugador:** la rúbrica `03` §8.2 pide 15–25k; el asset aprobado en T-A20-jugador tiene 6.464 (brief 3–8k). La silueta se sostiene con rim + key; subir densidad requiere una nueva subtarea de asset.
 - **Texturas:** no se usó KTX2 (no hay texturas de color); el normal map de la paleta se exporta en WebP dentro del GLB.
-- **Pedido a plataforma (`src/experience/**`):** el contenedor del capítulo tiene `pointer-events: none`, por eso el panel de pausa/scrub se monta en un portal a `document.body` (`BodyLayer`, z-index 30). Convendría una capa de UI interactiva oficial por escena.
-- **Pedido a plataforma:** el botón global «Sonido» (`fixed bottom-6`, ≥ 44 px) se superpone con UI inferior de escenas en mobile; el kit ubica `TelemetryDeck` en `bottom-16` (64 px) y queda tocándolo. Vibo eleva su panel a 80 px en mobile.
+- **Pedido a plataforma:** el botón global «Sonido» (`fixed bottom-6`) se superpone con UI inferior en mobile. La `MatchCard` queda a 88 px del borde.
 - **Pirp (T-A23):** el heading del greybox de Pirp («Todo pasa rápido.») es visible mientras Pirp está montada como escena siguiente porque no respeta la opacidad de presentación.
 - **Pósters `static`:** quedan para T-A35.

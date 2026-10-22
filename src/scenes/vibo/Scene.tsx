@@ -5,7 +5,6 @@ import {
   useEffect,
   useMemo,
   useRef,
-  useState,
 } from "react"
 import { useFrame } from "@react-three/fiber"
 import {
@@ -34,10 +33,8 @@ import {
 } from "@/experience/presentation"
 import { experienceStore } from "@/experience/store"
 import type { SceneProps } from "@/experience/types"
-import { emitInteract } from "@/guide/signals"
 import {
   HudOverlay,
-  TelemetryDeck,
   ThreadLine,
   beatEnvelope,
   interpolateCameraState,
@@ -48,12 +45,13 @@ import {
   type Vec3Tuple,
 } from "@/scenes/kit"
 import { Court } from "./Court"
-import { PLATINUM_THEME, VIBO_COLORS, VIBO_THEME } from "./theme"
-import { COVERAGE, HEAT, HEAT_GRID, INTENSITY, INTENSITY_PEAK, PLAYER, SHOT } from "./data"
-import { createPanelNodes, paintInset } from "./panel"
+import { VIBO_COLORS, VIBO_THEME } from "./theme"
+import { COVERAGE, HEAT, HEAT_GRID, SHOT } from "./data"
+import { MatchCard } from "./MatchCard"
+import { createPanelNodes, paintInset, paintMatchCard } from "./panel"
 import { ViboPlayer } from "./Player"
 import { createContactProbe, createPlayerJoints, createRim, type JointId } from "./rig"
-import { BodyLayer, ViboPanel } from "./ViboPanel"
+import { BodyLayer, PoseInset } from "./ViboPanel"
 import {
   CAMERA_KEYS,
   CONTACT,
@@ -140,11 +138,6 @@ export default function ViboScene(props: SceneProps) {
   const runtime = useMemo(() => createRuntime(), [])
   const { joints, rim, keyTarget, panel } = runtime
   const swing = useRef(0)
-  const scrub = useRef<number | null>(null)
-  const pausedAt = useRef<number | null>(null)
-  const [paused, setPaused] = useState(false)
-  const [highlight, setHighlight] = useState(false)
-  const highlightRef = useRef(false)
 
   const playerRoot = useRef<Group>(null)
   const ballRef = useRef<Mesh>(null)
@@ -217,13 +210,11 @@ export default function ViboScene(props: SceneProps) {
   // Driver: golpe, cámara y estado del mundo antes que el director (-2).
   useFrame(({ camera }, delta) => {
     const p = progress.current
-    const scrolled = ramp(p, TIMELINE.swing[0], TIMELINE.swing[1])
-    swing.current = scrub.current ?? pausedAt.current ?? scrolled
+    swing.current = ramp(p, TIMELINE.swing[0], TIMELINE.swing[1])
     driveWorld(runtime, {
       p,
       delta,
       isMobile,
-      scrubbing: scrub.current !== null,
       reduced: experienceStore.getSnapshot().reducedMotion,
     })
     if (presentation) writeCameraPose(presentation.current, runtime.eye, runtime.target)
@@ -238,8 +229,6 @@ export default function ViboScene(props: SceneProps) {
       p: progress.current,
       s: swing.current,
       alpha: presentation?.current.opacity ?? 1,
-      highlight: highlightRef.current,
-      scrubbing: scrub.current !== null,
       isMobile,
       camera,
       player: playerRoot.current,
@@ -249,35 +238,6 @@ export default function ViboScene(props: SceneProps) {
       key: keyRef.current,
     })
   }, -1)
-
-  useEffect(() => {
-    highlightRef.current = highlight
-  }, [highlight])
-
-  const togglePause = useCallback(() => {
-    if (pausedAt.current === null && scrub.current === null) {
-      pausedAt.current = swing.current
-      setPaused(true)
-    } else {
-      pausedAt.current = null
-      scrub.current = null
-      setPaused(false)
-    }
-    emitInteract("vibo:pause")
-  }, [])
-  const toggleHighlight = useCallback(() => {
-    setHighlight((value) => !value)
-    emitInteract("vibo:overlay")
-  }, [])
-  const onScrub = useCallback((value: number) => {
-    scrub.current = value
-    pausedAt.current = value
-    setPaused(true)
-    emitInteract("vibo:scrub")
-  }, [])
-  const onScrubEnd = useCallback(() => {
-    scrub.current = null
-  }, [])
 
   const pos = (id: JointId | "racketHead") => (): Vec3Tuple => {
     const v = joints[id]
@@ -310,10 +270,6 @@ export default function ViboScene(props: SceneProps) {
         label: "JUGADOR A",
         tag: `${SHOT.label.split(" · ")[0].toUpperCase()} · ${SHOT.hand.toUpperCase()}`,
         confidence: () => SHOT.frames[shotFrameIndex(swing.current)].conf,
-        footerMetrics: [
-          { label: "keypoints", value: "17/17" },
-          { label: "fps", value: "30" },
-        ],
         range: hudRange(isMobile),
       },
     ],
@@ -388,56 +344,6 @@ export default function ViboScene(props: SceneProps) {
       },
     ]
   }, [isMobile])
-
-  const intensitySeries = useMemo(
-    () => ({
-      title: "Desgaste a lo largo del punto",
-      subtitle: `Velocidad del jugador A · ${INTENSITY.length} s`,
-      samples: INTENSITY,
-      peakIndex: INTENSITY_PEAK,
-      peakLabel: "pico",
-      alertText: `Pico de exigencia en el segundo ${INTENSITY_PEAK + 1}`,
-      unitLabel: "km/h rel.",
-      drawRange: [0.81, 0.88] as [number, number],
-    }),
-    []
-  )
-
-  const counters = useMemo(
-    () => [
-      {
-        id: "distancia",
-        label: "Distancia",
-        to: PLAYER.distanceMeters,
-        decimals: 1,
-        suffix: " m",
-        tone: "accent" as const,
-        range: [0.8, 0.86] as [number, number],
-      },
-      {
-        id: "velocidad",
-        label: "Velocidad máx.",
-        to: PLAYER.maxSpeedKmh,
-        decimals: 1,
-        suffix: " km/h",
-        tone: "primary" as const,
-        range: [0.8, 0.86] as [number, number],
-      },
-    ],
-    []
-  )
-
-  const bars = useMemo(
-    () =>
-      PLAYER.shotMix.slice(0, isMobile ? 2 : 4).map((shot) => ({
-        id: shot.label,
-        label: shot.label,
-        value: Math.round((shot.count / PLAYER.totalShots) * 100),
-        displayValue: `${shot.count} de ${PLAYER.totalShots}`,
-        tone: "accent" as const,
-      })),
-    [isMobile]
-  )
 
   const trailOpacity = useCallback(
     (p: number) => envelope(p, CONTACT_P - 0.01, 0.6, 0.03),
@@ -528,39 +434,13 @@ export default function ViboScene(props: SceneProps) {
         defaultSelectedId="zona-a"
       />
 
-      <TelemetryDeck
-        progress={progress}
-        isMobile={isMobile}
-        active={active}
-        theme={PLATINUM_THEME}
-        eyebrow={`VIBO · ${PLAYER.name.toUpperCase()}`}
-        heading="Tu lectura de partido"
-        summary={`${PLAYER.hand} · ${PLAYER.tags.join(" · ")}. Estilo, repertorio y desgaste leídos de un punto real.`}
-        counters={counters}
-        bars={bars}
-        trend={intensitySeries}
-        range={[...TIMELINE.card]}
-        placement="right"
-      />
-
       <BodyLayer>
-        <ViboPanel
-          nodes={panel}
-          isMobile={isMobile}
-          paused={paused}
-          highlight={highlight}
-          onTogglePause={togglePause}
-          onToggleHighlight={toggleHighlight}
-          onScrub={onScrub}
-          onScrubEnd={onScrubEnd}
-        />
+        <PoseInset nodes={panel} isMobile={isMobile} />
+        <MatchCard nodes={panel} isMobile={isMobile} />
       </BodyLayer>
     </group>
   )
 }
-
-const RIM_IDLE = new Color("#c4ccd4")
-const RIM_FOCUS = new Color("#ffffff")
 
 type Runtime = ReturnType<typeof createRuntime>
 
@@ -602,7 +482,7 @@ function setEnvMap(material: MeshPhysicalMaterial, envMap: Texture | null) {
 /** Cámara y estado del mundo, antes de que el director lea la pose (-2). */
 function driveWorld(
   rt: Runtime,
-  f: { p: number; delta: number; isMobile: boolean; scrubbing: boolean; reduced: boolean }
+  f: { p: number; delta: number; isMobile: boolean; reduced: boolean }
 ) {
   const { p, isMobile } = f
   const cam = interpolateCameraState(CAMERA_KEYS, p, isMobile, f.reduced)
@@ -613,8 +493,6 @@ function driveWorld(
     rt.eye.x += Math.sin(rt.elapsed * 0.7) * cam.sway
     rt.eye.y += Math.cos(rt.elapsed * 0.5) * cam.sway * 0.6
   }
-  // En mobile el encuadre cerrado se abre un poco mientras se explora el golpe.
-  if (isMobile && f.scrubbing) rt.eye.sub(rt.target).multiplyScalar(1.18).add(rt.target)
 
   const court = rt.court
   court.lines = ramp(p, TIMELINE.lines[0], TIMELINE.lines[1])
@@ -630,8 +508,6 @@ type AnimateFrame = {
   p: number
   s: number
   alpha: number
-  highlight: boolean
-  scrubbing: boolean
   isMobile: boolean
   camera: Camera
   player: Group | null
@@ -673,27 +549,13 @@ function animateScene(rt: Runtime, f: AnimateFrame) {
   const lit = (court.lights[0] + court.lights[1] + court.lights[2] + court.lights[3]) / 4
   if (f.key) f.key.intensity = 3.6 * lit * court.dim
 
-  const rim = rt.rim
-  rim.uRim.value = MathUtils.lerp(rim.uRim.value, 0.35 + (f.highlight ? 0.9 : 0), 0.12)
-  rim.uRimColor.value.lerp(f.highlight ? RIM_FOCUS : RIM_IDLE, 0.12)
-
-  // Panel e inserto 2D: visibles solo durante el golpe.
+  // Inserto 2D: visible solo durante el golpe.
   const panel = rt.panel
-  const panelRange: Range4 = f.isMobile ? MOBILE_HUD : [...TIMELINE.panel]
-  const panelAlpha = alpha * beatEnvelope(p, ...panelRange)
-  if (panel.root) {
-    panel.root.style.opacity = panelAlpha.toFixed(3)
-    panel.root.style.visibility = panelAlpha > 0.01 ? "visible" : "hidden"
-    panel.root.inert = panelAlpha < 0.5
-  }
-  if (panel.slider) {
-    if (!f.scrubbing) panel.slider.value = s.toFixed(3)
-    panel.slider.setAttribute("aria-valuetext", `${Math.round(s * 100)}% del golpe`)
-  }
   if (panel.inset) {
     const insetAlpha = alpha * beatEnvelope(p, 0.22, 0.27, f.isMobile ? 0.42 : 0.54, f.isMobile ? 0.46 : 0.58)
     panel.inset.style.opacity = insetAlpha.toFixed(3)
     panel.inset.style.visibility = insetAlpha > 0.01 ? "visible" : "hidden"
     paintInset(panel, shotFrameIndex(s))
   }
+  paintMatchCard(panel, alpha * beatEnvelope(p, ...TIMELINE.card), ramp(p, TIMELINE.card[1], TIMELINE.card[1] + 0.05))
 }

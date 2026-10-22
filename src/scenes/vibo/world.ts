@@ -55,7 +55,6 @@ export const TIMELINE = {
   swing: [0.25, 0.5] as const,
   hud: [0.21, 0.25, 0.55, 0.59] as const,
   graph: [0.24, 0.28, 0.55, 0.6] as const,
-  panel: [0.21, 0.24, 0.56, 0.6] as const,
   heat: [0.59, 0.67, 0.8, 0.86] as const,
   card: [0.77, 0.82, 0.92, 0.97] as const,
 } as const
