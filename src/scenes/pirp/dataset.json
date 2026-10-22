@@ -1,0 +1,84 @@
+{
+  "context": "Dataset 100% ficticio para el torrente de noticias, grafo de tópicos y motor de alertas de la escena Pirp (T-A23). Sin nombres propios ni métricas reales.",
+  "topics": [
+    { "id": "diplomacia", "label": "Relaciones Exteriores", "color": "#7A1F2B" },
+    { "id": "economia", "label": "Costo de Vida y Tarifas", "color": "#D9534F" },
+    { "id": "medios", "label": "Debate con Prensa", "color": "#F0AD4E" },
+    { "id": "alianzas", "label": "Gabinete y Bloque Legislativo", "color": "#5BC0DE" }
+  ],
+  "headlines": [
+    {
+      "source": "Radio Metrópolis",
+      "headline": "El Ejecutivo descartó acciones unilaterales en diferendo marítimo",
+      "snippet": "Declaraciones oficiales ratifican la vía diplomática y herramientas de negociación comercial ante el foro regional.",
+      "topic": "diplomacia",
+      "sentiment": "neutral",
+      "time": "Hace 25 min"
+    },
+    {
+      "source": "Eco Político",
+      "headline": "Cruces en el bloque oficialista por el nuevo esquema tarifario",
+      "snippet": "Referentes parlamentarios debaten el impacto en la clase media antes del tratamiento en comisiones.",
+      "topic": "economia",
+      "sentiment": "negative",
+      "time": "Hace 38 min"
+    },
+    {
+      "source": "El Observador Digital",
+      "headline": "Fuerte réplica oficial ante cuestionamientos de corresponsales extranjeros",
+      "snippet": "El vocero defendió la postura del mandatario y acusó a medios internacionales de descontextualizar la rueda de prensa.",
+      "topic": "medios",
+      "sentiment": "negative",
+      "time": "Hace 44 min"
+    },
+    {
+      "source": "Minuto 24",
+      "headline": "Cumbre de gabinete: alinean discurso público y descartan cambios inmediatos",
+      "snippet": "Tras una reunión de dos horas, coordinadores ratificaron el rumbo y definieron prioridades legislativas.",
+      "topic": "alianzas",
+      "sentiment": "positive",
+      "time": "Hace 50 min"
+    },
+    {
+      "source": "Diario Federal",
+      "headline": "Sondeos muestran polarización creciente en el debate económico",
+      "snippet": "La recuperación dispar de ingresos domina la conversación ciudadana en las principales capitales.",
+      "topic": "economia",
+      "sentiment": "negative",
+      "time": "Hace 58 min"
+    },
+    {
+      "source": "Pulso Nacional",
+      "headline": "Cancillería ratifica canales abiertos con delegaciones europeas",
+      "snippet": "Pese a la fricción mediática, la agenda de cooperación bilateral sigue su curso normal.",
+      "topic": "diplomacia",
+      "sentiment": "positive",
+      "time": "Hace 1 h"
+    }
+  ],
+  "sceneBeats": {
+    "beat4_alert": {
+      "level": "CRITICAL",
+      "title": "Alerta de Sentimiento",
+      "change": "-42% en 60 minutos",
+      "summary": "Pico de negatividad tras declaraciones sobre relaciones exteriores y debate por costo de vida en portales nacionales y redes sociales.",
+      "topTopics": ["Relaciones Exteriores", "Costo de Vida y Tarifas"]
+    },
+    "beat5_strategy": {
+      "title": "Recomendación Estratégica Generada",
+      "actions": [
+        "1. Emitir minuta técnica de vocería a las 11:30 hs aclarando el alcance de los dichos.",
+        "2. Enfocar la agenda pública en el anuncio del paquete de alivio tarifario.",
+        "3. Pausar réplicas y declaraciones espontáneas en redes por 12 horas."
+      ]
+    }
+  },
+  "uiCaptures": {
+    "format": "mobile-vertical",
+    "files": [
+      "public/images/proyects/varios/pirp/1.webp",
+      "public/images/proyects/varios/pirp/2.webp"
+    ],
+    "notes": "Todas las capturas de Pirp son en formato mobile (vertical); renderizar en Phone 3D o tarjeta flotante vertical con aspect ratio 9:19."
+  }
+}

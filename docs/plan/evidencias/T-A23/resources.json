@@ -1,0 +1,32 @@
+[
+  {
+    "geometries": 2,
+    "textures": 1,
+    "programs": 2,
+    "calls": 2,
+    "triangles": 720,
+    "mountedScenes": 0,
+    "jsHeapMB": 82,
+    "at": 9740.100000023842
+  },
+  {
+    "geometries": 2,
+    "textures": 1,
+    "programs": 2,
+    "calls": 2,
+    "triangles": 720,
+    "mountedScenes": 0,
+    "jsHeapMB": 83.2,
+    "at": 18287.5
+  },
+  {
+    "geometries": 2,
+    "textures": 1,
+    "programs": 2,
+    "calls": 2,
+    "triangles": 720,
+    "mountedScenes": 0,
+    "jsHeapMB": 83,
+    "at": 26319
+  }
+]

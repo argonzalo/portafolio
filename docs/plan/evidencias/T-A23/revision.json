@@ -1,0 +1,32 @@
+{
+  "checks": [
+    "desktop: paginación bajo teléfono, captura 2, ampliación actual y retorno de foco",
+    "mobile: paginación bajo teléfono, captura 2, ampliación actual y retorno de foco"
+  ],
+  "samples": [
+    {
+      "mobile": false,
+      "beat": "agrupamiento",
+      "geometries": 1,
+      "textures": 2,
+      "programs": 1,
+      "calls": 1,
+      "triangles": 3264,
+      "mountedScenes": 2,
+      "jsHeapMB": 74.3,
+      "at": 4673.199999928474
+    },
+    {
+      "mobile": true,
+      "beat": "agrupamiento",
+      "geometries": 1,
+      "textures": 2,
+      "programs": 1,
+      "calls": 1,
+      "triangles": 1224,
+      "mountedScenes": 2,
+      "jsHeapMB": 80.4,
+      "at": 3984.2999999523163
+    }
+  ]
+}
