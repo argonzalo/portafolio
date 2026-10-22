@@ -1,0 +1,21 @@
+{
+  "general": {
+    "stuck": "¿Querés recorrerlo paso a paso? Podés arrastrar la línea o usar las flechas.",
+    "fast": "Vas rápido. ¿Buscás algo puntual? Te abro el índice de proyectos.",
+    "final": "Recorriste todo. ¿Querés que te resuma lo principal o preferís dejarle un mensaje a Gonzalo?"
+  },
+  "scenes": {
+    "vibo": {
+      "idle": "¿Querés conocer el mayor desafío técnico detrás del análisis de video en tiempo real de Vibo?"
+    },
+    "pirp": {
+      "idle": "¿Querés ver el mayor desafío técnico para procesar y clasificar miles de noticias por minuto en Pirp?"
+    },
+    "naturalis": {
+      "idle": "¿Querés conocer el desafío de integrar sensores físicos y software interactivo en Naturalis?"
+    },
+    "banner-2": {
+      "idle": "¿Querés ver el mayor desafío técnico de la arquitectura multi-tenant y generación dinámica de Banner?"
+    }
+  }
+}

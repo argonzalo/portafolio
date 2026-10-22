@@ -54,12 +54,12 @@
 
 | ID | Tarea y criterio de terminado | Depende de | Zona | Estado |
 | --- | --- | --- | --- | --- |
-| T-H08 | Persona del guía, FAQs y aprobación de las ofertas proactivas (I-09); el agente propone borradores | ADR-008 | `src/content/guide/` | pendiente |
+| T-H08 | Persona del guía, FAQs y aprobación de las ofertas proactivas (I-09); el agente propone borradores | ADR-008 | `src/content/guide/` | hecho (grilling 2026-10-22; persona, faqs y ofertas en `src/content/guide/`) |
 | T-H12 | Revisión de arte de cada escena al cerrar su greybox y antes del merge final (recurrente) | — | Comentarios en PR | hecho (grilling 2026-10-22: barra *cinematic stylized* cerrada, rúbrica técnica vinculante en `03` §8; revisiones recurrentes continuarán en cada PR de escena) |
 | T-A18 | Kit de escena: HUD anclado a 3D, grafo de nodos/agentes, líneas con el shader del hilo, contadores, rig de cámara por beats; ejemplos en `/lab/kit`. **Vara:** piezas con look de producto, no placeholders grises. | T-A07, T-A13 | `src/scenes/kit/` (salvo dispositivos) | hecho (2026-10-22: rig de cámara por beats, `ThreadLine` con shader del hilo, `HudOverlay` 3D con bbox/pose/ángulo/callouts 44×44, `AgentGraph` con tira vertical mobile, `TelemetryDeck` con contadores `tabular-nums` y curva SVG progresiva, `ParticleField` GPU, 4 paletas de marca y `/lab/kit`; evidencia en `docs/plan/evidencias/T-A18/`) |
 | T-A19 | Kit de dispositivos: `Phone`, `Laptop`, `Display` con proporción realista, materiales creíbles, pantalla texturizable y capas de UI flotantes (no look “juguete”) | T-A07, T-A09 | `src/scenes/kit/devices/`, `assets-src/kit/`, `public/models/kit/` (+ integración mínima lab: `KitShowcaseScene`/`KitLab`/`index`/`theme`) | hecho (2026-10-22: `Phone` 6,1", `Laptop` 14" con teclado fusionado en 1 malla y tapa articulada, `Display` 27" monitor/signage, 5 acabados PBR con PMREM de estudio compartido, `DeviceScreen` `.webp`/`.mp4` y capas de UI flotantes 3D; integrado en `/lab/kit`; evidencia en `docs/plan/evidencias/T-A19/`) |
 | T-A20 | **Escena Vibo completa** (`03` §3.1, ADR-011 + enmienda estética): personaje **estilizado-realista** (proporciones humanas, materiales/luz de replay TV), overlays de detección, interacción, transición Vibo→Pirp; fuera de alcance: low-poly infantil / silueta de bloques | T-A14 (ritmo), T-A18, T-H07, ficha actualizada | `src/scenes/vibo/`, `public/models/vibo/`, `public/textures/vibo/` | listo |
-| T-A21 | Backend del guía: `/api/guide` con AI SDK, tools de la lista cerrada, contexto generado en build, límites (sesión, IP, global), kill switch, fallback de modelo, tests | T-A03, T-A04, ADR-005, ADR-008 | `src/pages/api/guide.ts`, `src/server/guide/`, `scripts/guide-context.*` | pendiente |
+| T-A21 | Backend del guía: `/api/guide` con AI SDK, tools de la lista cerrada, contexto generado en build, límites (sesión, IP, global), kill switch, fallback de modelo, tests | T-A03, T-A04, ADR-005, ADR-008 | `src/pages/api/guide.ts`, `src/server/guide/`, `scripts/guide-context.*` | listo |
 | T-A22 | Observador y motor de reglas del guía (`04` §3) con panel de debug que muestra el estado detectado | T-A05, T-A11 | `src/guide/` | pendiente |
 
 ## F3 — Resto de la primera línea e interfaz del guía · Compuerta G3
@@ -147,7 +147,7 @@
 | I-06 Audio | pendiente | |
 | I-07 Logos de clientes de Banner | nombres OK | Grido, Açaí, Marea, Diarco, Leroma autorizados en copy; faltan archivos de logo si se muestran en escena |
 | I-08 Alcance de Pirp + dataset | parcial | Arranque en `assets-src/pirp/README.md`: escena ficticia, capturas UI sí, no nombrar clientes; dataset/textos → T-H10 |
-| I-09 Persona y FAQs del guía | pendiente | |
+| I-09 Persona y FAQs del guía | listo | T-H08 cerrado; persona, faqs y ofertas en `src/content/guide/` |
 | I-10 Narrativas segunda y tercera línea | pendiente | |
 | I-11 Fotos personales | pendiente | Opcional |
 
