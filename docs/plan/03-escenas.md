@@ -142,6 +142,8 @@ Construir esto una vez es lo que hace viable el volumen de escenas. Vive en `src
 
 **Insumos del humano (T-H09):** modelado o assets con licencia (Poly Haven CC0, Sketchfab con licencia comercial) de macetas, plantas, camilla y cortina; pista de audio con licencia; capturas actualizadas de ambas apps.
 
+**Investigación de assets 3D:** [`insumos/naturalis-3d.md`](./insumos/naturalis-3d.md) — recursos con licencias (CC0 / CC BY), qué falta modelar (camilla, cortina, piedras, sala) y optimización (pipeline, presupuestos, decisión abierta de triángulos).
+
 ### 3.4 Banner 2.0 — "Una decisión, diez mil pantallas"
 
 > **Ficha validada** (grilling T-H05, 2026-10-22). Marca en `assets-src/banner/brand/`.
