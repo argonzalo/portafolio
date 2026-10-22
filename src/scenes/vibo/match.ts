@@ -15,14 +15,29 @@ export const STYLE = [
   { label: "Aceleración", value: 0.82 },
 ] as const
 
-/** Manchas del mapa de calor en [x, y, radio, peso], red arriba y fondo abajo. */
-export const HEAT_BLOBS: readonly { x: number; y: number; r: number; w: number; tone: "blue" | "light" }[] = [
-  { x: 28, y: 78, r: 22, w: 0.95, tone: "light" },
-  { x: 62, y: 84, r: 18, w: 0.7, tone: "blue" },
-  { x: 40, y: 50, r: 20, w: 0.62, tone: "blue" },
-  { x: 58, y: 34, r: 16, w: 0.48, tone: "blue" },
-  { x: 30, y: 16, r: 14, w: 0.42, tone: "blue" },
+/** Grilla del mapa de calor: 8 columnas (ancho) × 10 filas (red → fondo). */
+export const HEAT_COLS = 8
+export const HEAT_ROWS = 10
+
+const BLOBS: readonly [x: number, y: number, r: number, w: number][] = [
+  [5.4, 7.6, 1.7, 1],
+  [4.2, 5.2, 1.6, 0.55],
+  [3.6, 1.6, 1.3, 0.38],
+  [6.4, 8.8, 1.1, 0.5],
 ]
+
+export const MATCH_HEAT: readonly number[] = (() => {
+  const cells: number[] = []
+  for (let row = 0; row < HEAT_ROWS; row++)
+    for (let col = 0; col < HEAT_COLS; col++) {
+      let v = 0
+      for (const [x, y, r, w] of BLOBS)
+        v += w * Math.exp(-((col + 0.5 - x) ** 2 + (row + 0.5 - y) ** 2) / (r * r))
+      cells.push(v)
+    }
+  const max = Math.max(...cells)
+  return cells.map((v) => v / max)
+})()
 
 /** Intensidad relativa por minuto (1 = pico del partido). */
 export const WEAR: readonly number[] = Array.from({ length: MATCH_MINUTES + 1 }, (_, m) => {

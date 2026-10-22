@@ -1,5 +1,5 @@
 import { PLAYER } from "./data"
-import { HEAT_BLOBS, MATCH_MINUTES, STYLE, WEAR, WEAR_DROP } from "./match"
+import { HEAT_COLS, HEAT_ROWS, MATCH_HEAT, MATCH_MINUTES, STYLE, WEAR, WEAR_DROP } from "./match"
 import { setNode, type PanelNodes } from "./panel"
 import { VIBO_COLORS, VIBO_THEME } from "./theme"
 
@@ -76,53 +76,67 @@ function Radar({ nodes, size }: { nodes: PanelNodes; size: number }) {
 }
 
 function Heatmap({ width }: { width: number }) {
-  const w = 80
-  const h = 100
+  // Medio campo de pádel visto desde arriba: 10×10 m (red arriba, fondo abajo).
+  const size = 100
+  const cellW = size / HEAT_COLS
+  const cellH = size / HEAT_ROWS
+  // Medio campo 10 m: saque a 3 m del fondo (7 m de la red).
+  const serviceY = 70
   const bands = [
-    { y: 10, label: "Red" },
-    { y: 44, label: "Medio" },
-    { y: 80, label: "Fondo" },
+    { y: 22, label: "Red" },
+    { y: 48, label: "Medio" },
+    { y: 88, label: "Fondo" },
   ]
   return (
-    <svg width={width} height={(width * h) / w} viewBox={`0 0 ${w} ${h}`} className="block" aria-hidden="true">
+    <svg width={width} height={width} viewBox={`0 0 ${size} ${size}`} className="block" aria-hidden="true">
       <defs>
-        <filter id="vibo-heat-blur" x="-40%" y="-40%" width="180%" height="180%">
-          <feGaussianBlur stdDeviation={3.2} />
+        <filter id="vibo-heat-blur" x="-35%" y="-35%" width="170%" height="170%">
+          <feGaussianBlur stdDeviation={7.5} />
         </filter>
         <clipPath id="vibo-heat-court">
-          <rect width={w} height={h} />
+          <rect width={size} height={size} />
         </clipPath>
       </defs>
-      <rect width={w} height={h} fill="#152033" />
+      <rect width={size} height={size} fill="rgba(8, 18, 34, 0.98)" />
       <g clipPath="url(#vibo-heat-court)" filter="url(#vibo-heat-blur)">
-        {HEAT_BLOBS.map((blob, i) => (
-          <circle
-            key={i}
-            cx={blob.x}
-            cy={blob.y}
-            r={blob.r}
-            fill={blob.tone === "light" ? "#f2f4f6" : "#6eb4ff"}
-            opacity={Math.min(1, blob.w + 0.15)}
-          />
-        ))}
+        {MATCH_HEAT.map((v, i) =>
+          v < 0.08 ? null : (
+            <rect
+              key={i}
+              x={(i % HEAT_COLS) * cellW}
+              y={Math.floor(i / HEAT_COLS) * cellH}
+              width={cellW}
+              height={cellH}
+              fill={v > 0.85 ? "#9ec4ff" : VIBO_COLORS.blue}
+              opacity={(0.12 + v ** 0.9 * 0.62).toFixed(3)}
+            />
+          )
+        )}
       </g>
-      <g fill="none" stroke="rgba(255, 255, 255, 0.18)" strokeWidth={0.7} vectorEffect="non-scaling-stroke">
-        <rect x={0.4} y={0.4} width={w - 0.8} height={h - 0.8} />
-        <line x1={w / 2} y1={0} x2={w / 2} y2={h} />
-        <line x1={0} y1={h / 3} x2={w} y2={h / 3} />
-        <line x1={0} y1={(h * 2) / 3} x2={w} y2={(h * 2) / 3} />
+      <g fill="none" stroke="rgba(255, 255, 255, 0.28)" strokeWidth={0.9} vectorEffect="non-scaling-stroke">
+        <rect x={0.5} y={0.5} width={size - 1} height={size - 1} />
+        <line x1={0} y1={serviceY} x2={size} y2={serviceY} />
+        <line x1={size / 2} y1={0} x2={size / 2} y2={serviceY} />
       </g>
-      <line x1={0} y1={0.7} x2={w} y2={0.7} stroke="rgba(255,255,255,0.4)" strokeWidth={1.1} vectorEffect="non-scaling-stroke" />
+      <line
+        x1={0}
+        y1={1}
+        x2={size}
+        y2={1}
+        stroke="rgba(255,255,255,0.55)"
+        strokeWidth={1.4}
+        vectorEffect="non-scaling-stroke"
+      />
       {bands.map((band) => (
         <text
           key={band.label}
-          x={w / 2}
+          x={size / 2}
           y={band.y}
           textAnchor="middle"
           dominantBaseline="middle"
-          fontSize={6.2}
-          letterSpacing={0.9}
-          fill="rgba(255,255,255,0.55)"
+          fontSize={4.6}
+          letterSpacing={0.7}
+          fill="rgba(255,255,255,0.32)"
           fontFamily="Poppins, sans-serif"
         >
           {band.label.toUpperCase()}
@@ -195,7 +209,7 @@ export function MatchCard({ nodes, isMobile }: { nodes: PanelNodes; isMobile: bo
       <div className={`mt-4 mb-2 text-center ${LABEL}`} style={{ color: MUTED }}>
         Estilo
       </div>
-      <Radar nodes={nodes} size={isMobile ? 132 : 220} />
+      <Radar nodes={nodes} size={isMobile ? 196 : 220} />
 
       <div className="mt-4 grid grid-cols-2 gap-5 border-t pt-3.5" style={{ borderColor: GRID }}>
         <div>
