@@ -68,12 +68,12 @@
 
 | ID | Tarea y criterio de terminado | Depende de | Zona | Estado |
 | --- | --- | --- | --- | --- |
-| T-H09 | Assets de Naturalis (I-05) y pista de audio (I-06) | — | `assets-src/naturalis/`, `licencias.md` | pendiente |
-| T-H10 | Insumos de Pirp (I-03, I-08): marca, capturas, validación del dataset ficticio y de los textos de estrategia | — | `assets-src/pirp/` | pendiente |
-| T-H11 | Insumos de Banner (I-07): permiso de logos, capturas elegidas | — | `assets-src/banner/` | pendiente |
-| T-A23 | Escena Pirp (`03` §3.2) + transición Pirp→Naturalis (lado saliente) | T-A14-pirp aprobado, T-A18, T-H10 | `src/scenes/pirp/`, assets de pirp | pendiente |
-| T-A24 | Escena Naturalis (`03` §3.3) + transición Naturalis→Banner (lado saliente) | T-A14-naturalis aprobado, T-A18, T-A19, T-H09 | `src/scenes/naturalis/`, assets de naturalis | pendiente |
-| T-A25 | Escena Banner 2.0 (`03` §3.4) + transición hacia la segunda línea | T-A14-banner aprobado, T-A18, T-A19, T-H11 | `src/scenes/banner/`, assets de banner | pendiente |
+| T-H09 | Assets de Naturalis (I-05) y pista de audio (I-06) | — | `assets-src/naturalis/`, `licencias.md` | hecho (grilling 2026-10-22; audio en `public/audio/naturalis.mp3`, capturas `1.webp`, ensamble CC0 + override local) |
+| T-H10 | Insumos de Pirp (I-03, I-08): marca, capturas, validación del dataset ficticio y de los textos de estrategia | — | `assets-src/pirp/` | hecho (grilling 2026-10-22; dataset en `assets-src/pirp/dataset-ficticio.json`, copies alerta/estrategia, capturas mobile) |
+| T-H11 | Insumos de Banner (I-07): permiso de logos, capturas elegidas | — | `assets-src/banner/` | hecho (grilling 2026-10-22; logos SVG en `assets-src/banner/brand/clients/`, capturas editor y satélites aprobadas) |
+| T-A23 | Escena Pirp (`03` §3.2) + transición Pirp→Naturalis (lado saliente) | T-A14-pirp aprobado, T-A18, T-H10 | `src/scenes/pirp/`, assets de pirp | listo |
+| T-A24 | Escena Naturalis (`03` §3.3) + transición Naturalis→Banner (lado saliente) | T-A14-naturalis aprobado, T-A18, T-A19, T-H09 | `src/scenes/naturalis/`, assets de naturalis | listo |
+| T-A25 | Escena Banner 2.0 (`03` §3.4) + transición hacia la segunda línea | T-A14-banner aprobado, T-A18, T-A19, T-H11 | `src/scenes/banner/`, assets de banner | listo |
 | T-A26 | Sistema de audio (Web Audio): mezclador, activación por gesto, control visible, silenciado al ocultar | T-A06 | `src/experience/audio.ts`, `public/audio/` | listo |
 | T-A27 | Interfaz del guía integrada con el hilo (`04` §7): burbuja, panel, sheet mobile, ejecución de `GuideAction`, accesibilidad | T-A13, T-A21, T-A22, T-A20 | `src/components/guide/`, `src/guide/actions.ts` | pendiente |
 | T-A28 | Evals del guía (`npm run guide:eval`), calibración de umbrales con sesiones de prueba, estimación de costos con el precio real del modelo | T-A27 | `scripts/guide-eval.*`, `tests/guide/` | pendiente |

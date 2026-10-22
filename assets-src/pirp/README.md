@@ -4,17 +4,17 @@
 
 Ver [`brand/README.md`](./brand/README.md) y `brand/palette.json`.
 
-## Alcance narrativo (I-08) — arranque T-H03
+## Alcance narrativo (I-08) — cerrado en T-H10 (2026-10-22)
 
 Confirmado por el humano (2026-10-22):
 
 | Sí | No |
 | --- | --- |
 | Contar el producto en términos generales (panel de reputación, señales, estrategia) | Nombrar clientes / políticos reales |
-| Usar capturas de UI existentes (`public/images/proyects/varios/pirp/`) | Mostrar datos o métricas internas reales |
-| Escena y demos con **dataset 100 % ficticio** (personas, medios, titulares inventados) | Reutilizar la paleta bordó asociándola al nombre del cliente |
+| Usar capturas de UI existentes (`public/images/proyects/varios/pirp/`, en formato mobile vertical) | Mostrar datos o métricas internas reales |
+| Escena y demos con **dataset 100 % ficticio** (política, diplomacia y costo de vida ficcionalizados en `dataset-ficticio.json`) | Reutilizar la paleta bordó asociándola al nombre del cliente |
 
-Cierre (dataset demo + textos de estrategia): **T-H10**.
+Dataset curado y textos de alerta / estrategia: [`dataset-ficticio.json`](./dataset-ficticio.json).
 
 ## Acento (decidido 2026-10-22)
 
