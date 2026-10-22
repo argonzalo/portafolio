@@ -1,4 +1,5 @@
 import { Thread } from "@/experience/thread/Thread"
+import { mountAudio } from "@/experience/audio"
 import { useEffect, useState } from "react"
 import { Canvas } from "@react-three/fiber"
 
@@ -39,6 +40,7 @@ export function Stage() {
 
   useEffect(() => {
     initQuality()
+    const unmountAudio = mountAudio(experienceStore)
 
     const disconnectSignals = connectStoreSignals(experienceStore)
     const unbindScroll = mountChapterScroll(experienceStore)
@@ -76,6 +78,7 @@ export function Stage() {
     onVisibility()
 
     return () => {
+      unmountAudio()
       unbindPalette()
       unmountDeepLinks()
       disconnectSignals()
