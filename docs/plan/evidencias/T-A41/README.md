@@ -1,3 +1,5 @@
+> Evidencia histórica de la primera entrega, rechazada por el humano. La corrección y validación vigente están en [revision/README.md](./revision/README.md).
+
 # Evidencia — T-A41: Pulido de transiciones entre capítulos de primera línea
 
 ## 1. Alcance cumplido

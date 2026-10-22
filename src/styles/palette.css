@@ -19,3 +19,43 @@ html[data-palette-bound] {
 html[data-palette-bound][data-palette-scheme="light"] {
   color-scheme: light;
 }
+
+/* The canvas supplies the entire environment. Scrolling translucent section
+   rectangles over it creates moving seams even when the WebGL color is smooth. */
+html[data-palette-bound] [data-chapter] {
+  background: transparent !important;
+  border-color: transparent;
+  backdrop-filter: none;
+}
+
+/* .dark defines tokens on body; let the animated root tokens win instead of
+   masking them with the site's static dark palette. */
+html[data-palette-bound] body {
+  --background: inherit;
+  --foreground: inherit;
+  --primary: inherit;
+  --primary-foreground: inherit;
+  --primary-soft: inherit;
+  --primary-hard: inherit;
+  --accent: inherit;
+  --accent-foreground: inherit;
+  --muted: inherit;
+  --muted-foreground: inherit;
+  --card: inherit;
+  --card-foreground: inherit;
+  --popover: inherit;
+  --popover-foreground: inherit;
+  --secondary: inherit;
+  --secondary-foreground: inherit;
+  --border: inherit;
+  --input: inherit;
+  --ring: inherit;
+  --sidebar: inherit;
+  --sidebar-foreground: inherit;
+  --sidebar-primary: inherit;
+  --sidebar-primary-foreground: inherit;
+  --sidebar-accent: inherit;
+  --sidebar-accent-foreground: inherit;
+  --sidebar-border: inherit;
+  --sidebar-ring: inherit;
+}

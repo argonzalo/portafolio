@@ -1,4 +1,5 @@
 import { Color, MathUtils } from "three"
+import { HANDOFF_START, ease } from "@/experience/choreography"
 
 import { journeyChapters } from "@/components/journey/chapters"
 import type { ExperienceStore } from "@/experience/store"
@@ -17,7 +18,7 @@ import { getSceneByChapter } from "@/scenes/registry"
  */
 
 /** Empieza a mezclar con el capítulo siguiente en el tramo final del scroll. */
-const BLEND_START = 0.82
+const BLEND_START = HANDOFF_START
 
 /** Paleta del sitio fuera de escenas 3D (hero, manifiesto, archivo, cierre). */
 export const SITE_PALETTE: ScenePalette = {
@@ -94,7 +95,7 @@ function mixPalettes(
   t: number,
   reducedMotion: boolean
 ): LivePalette {
-  const amount = reducedMotion ? (t < 0.5 ? 0 : 1) : MathUtils.smoothstep(t, 0, 1)
+  const amount = reducedMotion ? (t < 0.5 ? 0 : 1) : ease(t)
   const scheme =
     from.scheme === to.scheme
       ? from.scheme
@@ -185,8 +186,14 @@ function applyCss(palette: LivePalette): void {
   root.style.setProperty("--primary", palette.accent)
   root.style.setProperty("--primary-foreground", primaryForeground)
   root.style.setProperty("--primary-soft", palette.accentAlt)
-  root.style.setProperty("--primary-hard", lerpHex(palette.accent, "#000000", 0.35))
-  root.style.setProperty("--accent", lerpHex(palette.background, palette.accent, 0.22))
+  root.style.setProperty(
+    "--primary-hard",
+    lerpHex(palette.accent, "#000000", 0.35)
+  )
+  root.style.setProperty(
+    "--accent",
+    lerpHex(palette.background, palette.accent, 0.22)
+  )
   root.style.setProperty("--accent-foreground", palette.foreground)
   root.style.setProperty("--muted", muted)
   root.style.setProperty(

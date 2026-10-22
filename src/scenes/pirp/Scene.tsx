@@ -1,10 +1,16 @@
-import { useMemo, useRef, useState } from "react"
+import { useContext, useMemo, useRef, useState } from "react"
 import { Html, Line } from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
 import { Color, Group, InstancedMesh, Object3D } from "three"
 import type { SceneProps } from "../../experience/types"
 import { phase, useGreyboxRig } from "../greybox/runtime"
 import { pirp } from "./definition"
+import { envelope, ramp } from "@/experience/choreography"
+import {
+  PresentationContext,
+  reveal,
+  revealHtml,
+} from "@/experience/presentation"
 import { emitInteract } from "@/guide/signals"
 
 const cameras = [
@@ -21,6 +27,7 @@ const topics: [number, number, number][] = [
   [1.6, -0.1, 0],
 ]
 const sentiments = ["#6F9C88", "#EFE9DD", "#A8434F"]
+const sentimentColors = sentiments.map((color) => new Color(color))
 const copy = [
   [
     "01 / SEÑAL",
@@ -73,6 +80,7 @@ const strategy =
 
 /** Greybox: tarjetas geométricas instanciadas; atlas y capturas finales en T-A23. */
 export default function PirpScene(props: SceneProps) {
+  const presentation = useContext(PresentationContext)
   useGreyboxRig(props, pirp.palette.background, cameras)
   const stream = useRef<InstancedMesh>(null)
   const signal = useRef<Group>(null)
@@ -85,6 +93,7 @@ export default function PirpScene(props: SceneProps) {
   const strategyText = useRef<HTMLParagraphElement>(null)
   const strategyPanel = useRef<HTMLDivElement>(null)
   const alert = useRef<HTMLDivElement>(null)
+  const disclaimer = useRef<HTMLDivElement>(null)
   const lastBeat = useRef(-1)
   const [selected, setSelected] = useState<number | null>(null)
   const count = props.quality === "low" || props.isMobile ? 36 : 84
@@ -110,33 +119,31 @@ export default function PirpScene(props: SceneProps) {
       if (heading.current) heading.current.textContent = copy[beat][1]
       if (caption.current) caption.current.textContent = copy[beat][2]
     }
-    if (signal.current) {
-      signal.current.visible = p < 0.23
-      signal.current.scale.setScalar(0.8 + Math.sin(p * 65) * 0.08)
-    }
-    if (graph.current) graph.current.visible = p >= 0.39 && p < 0.61
-    if (dashboard.current) dashboard.current.visible = p >= 0.6 && p < 0.81
-    if (result.current) result.current.visible = p >= 0.8
-    if (cardPanel.current)
-      cardPanel.current.style.display =
-        p >= 0.2 && p < 0.6 && props.active ? "block" : "none"
-    if (strategyPanel.current)
-      strategyPanel.current.style.display = p >= 0.8 ? "block" : "none"
-    if (strategyText.current)
-      strategyText.current.textContent = strategy.slice(
-        0,
-        Math.floor(phase(p, 0.81, 0.98) * strategy.length)
-      )
-    if (alert.current)
-      alert.current.style.display = p >= 0.7 && p < 0.81 ? "block" : "none"
+    const alpha = presentation?.current.opacity ?? 1
+    revealHtml(disclaimer.current, alpha)
+    reveal(signal.current, 1 - ramp(p, 0.17, 0.26))
+    if (signal.current)
+      signal.current.scale.setScalar(0.9 + Math.sin(p * 22) * 0.025)
+    reveal(graph.current, envelope(p, 0.35, 0.65, 0.08))
+    reveal(dashboard.current, envelope(p, 0.55, 0.86, 0.08))
+    reveal(result.current, envelope(p, 0.78, 2, 0.08))
+    revealHtml(cardPanel.current, alpha * envelope(p, 0.2, 0.6, 0.06))
+    revealHtml(strategyPanel.current, alpha * envelope(p, 0.78, 2, 0.06))
+    if (strategyText.current) strategyText.current.textContent = strategy
+    revealHtml(alert.current, alpha * envelope(p, 0.68, 0.84))
     if (stream.current) {
-      stream.current.visible = p >= 0.17 && p < 0.61
+      reveal(stream.current, envelope(p, 0.15, 0.65, 0.07))
       const organized = phase(p, 0.38, 0.56)
       for (let i = 0; i < count; i++) {
         const topic = i % 3
-        const t = (i * 0.618033 + p * 4) % 1
-        const x = props.isMobile ? Math.sin(i * 2.3) * 1.7 : (t - 0.5) * 13
-        const y = props.isMobile ? (t - 0.5) * 12 : Math.sin(i * 2.3) * 2.1
+        const t = (i * 0.618033) % 1
+        const travel = (p - 0.17) * 3
+        const x = props.isMobile
+          ? Math.sin(i * 2.3) * 1.7
+          : (t - 0.5) * 10 + travel
+        const y = props.isMobile
+          ? (t - 0.5) * 5 + travel * 0.4 - 0.5
+          : Math.sin(i * 2.3) * 2.1
         const target = topics[topic]
         dummy.position.set(
           x * (1 - organized) +
@@ -151,20 +158,16 @@ export default function PirpScene(props: SceneProps) {
         stream.current.setMatrixAt(i, dummy.matrix)
         stream.current.setColorAt(
           i,
-          color.set(
-            organized > 0.1
-              ? sentiments[topic]
-              : i % 7 === 0
-                ? "#EFE9DD"
-                : "#434346"
-          )
+          color
+            .set(i % 7 === 0 ? "#EFE9DD" : "#434346")
+            .lerp(sentimentColors[topic], organized)
         )
       }
       stream.current.instanceMatrix.needsUpdate = true
       if (stream.current.instanceColor)
         stream.current.instanceColor.needsUpdate = true
     }
-  })
+  }, -1)
 
   const selectCard = (index: number) => {
     if (!props.active) return
@@ -295,7 +298,7 @@ export default function PirpScene(props: SceneProps) {
         <div
           ref={alert}
           style={{
-            display: "none",
+            visibility: "hidden",
             background: "#7A1F2B",
             color: "#EFE9DD",
             padding: "12px 16px",
@@ -332,7 +335,7 @@ export default function PirpScene(props: SceneProps) {
         <div
           ref={strategyPanel}
           style={{
-            display: "none",
+            visibility: "hidden",
             padding: 22,
             background: "#242425",
             borderLeft: "3px solid #A8434F",
@@ -365,7 +368,7 @@ export default function PirpScene(props: SceneProps) {
           fontFamily: "Poppins, sans-serif",
         }}
       >
-        <div ref={cardPanel} style={{ display: "none", color: "#EFE9DD" }}>
+        <div ref={cardPanel} style={{ visibility: "hidden", color: "#EFE9DD" }}>
           <div style={{ display: "flex", gap: 6 }}>
             {cards.map((card, i) => (
               <button
@@ -422,7 +425,7 @@ export default function PirpScene(props: SceneProps) {
           letterSpacing: "0.08em",
         }}
       >
-        Titulares, datos y estrategia ficticios
+        <div ref={disclaimer}>Titulares, datos y estrategia ficticios</div>
       </Html>
     </group>
   )

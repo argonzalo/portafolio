@@ -5,6 +5,9 @@ import { Color, Group, MeshBasicMaterial } from "three"
 import type { SceneProps } from "@/experience/types"
 import { phase, useGreyboxRig } from "../greybox/runtime"
 
+import { envelope, ramp } from "@/experience/choreography"
+import { inheritedReveal, reveal, revealHtml } from "@/experience/presentation"
+
 const SAGE = "#56857D"
 const CREAM = "#FAFDFC"
 const NIGHT = new Color("#263E42")
@@ -12,38 +15,38 @@ const DAY = new Color(CREAM)
 const DAWN = new Color("#F2EADD")
 const frames = [
   {
-    mobileTarget: [-0.5, 0.2, 0] as [number, number, number],
+    mobileTarget: [0, 0.2, 0] as [number, number, number],
     at: 0,
     desktop: [6, 3.2, 8] as [number, number, number],
-    mobile: [4, 4, 15] as [number, number, number],
+    mobile: [5, 5, 23] as [number, number, number],
     target: [-0.7, 0.2, 0] as [number, number, number],
   },
   {
-    mobileTarget: [-0.5, 0.2, 0] as [number, number, number],
+    mobileTarget: [0, 0.2, 0] as [number, number, number],
     at: 0.28,
     desktop: [4.7, 3.7, 6.5] as [number, number, number],
-    mobile: [4, 4.5, 14] as [number, number, number],
+    mobile: [4, 4.5, 21] as [number, number, number],
     target: [0.5, -0.1, 0.7] as [number, number, number],
   },
   {
-    mobileTarget: [-0.5, 0.2, 0] as [number, number, number],
+    mobileTarget: [0, 0.2, 0] as [number, number, number],
     at: 0.5,
     desktop: [4, 2.6, 6.5] as [number, number, number],
-    mobile: [3, 3.5, 13] as [number, number, number],
+    mobile: [3, 3.5, 19] as [number, number, number],
     target: [1.1, 0.4, 0.8] as [number, number, number],
   },
   {
-    mobileTarget: [-0.5, 0.2, 0] as [number, number, number],
+    mobileTarget: [0, 0.2, 0] as [number, number, number],
     at: 0.7,
     desktop: [6, 3.8, 8.5] as [number, number, number],
-    mobile: [4, 4, 15] as [number, number, number],
+    mobile: [5, 5, 23] as [number, number, number],
     target: [0, 0.2, 0] as [number, number, number],
   },
   {
-    mobileTarget: [-0.5, 0.2, 0] as [number, number, number],
+    mobileTarget: [0, 0.2, 0] as [number, number, number],
     at: 1,
     desktop: [5.3, 2.6, 8.7] as [number, number, number],
-    mobile: [4, 4, 15] as [number, number, number],
+    mobile: [5, 5, 23] as [number, number, number],
     target: [0, 0.5, 0] as [number, number, number],
   },
 ]
@@ -79,13 +82,7 @@ function Label({
   const anchor = useRef<Group>(null)
   const label = useRef<HTMLDivElement>(null)
   useFrame(() => {
-    let parent = anchor.current
-    let visible = true
-    while (parent) {
-      if (!parent.visible) visible = false
-      parent = parent.parent as Group | null
-    }
-    if (label.current) label.current.style.display = visible ? "block" : "none"
+    revealHtml(label.current, inheritedReveal(anchor.current))
   })
   return (
     <group ref={anchor} position={position}>
@@ -126,22 +123,24 @@ export default function NaturalisScene(props: SceneProps) {
 
   useFrame(() => {
     const p = props.progress.current
-    const reveal = phase(p, 0.08, 0.2)
+    const roomReveal = ramp(p, 0.035, 0.18)
     const darkness = phase(p, 0.59, 0.68) * (1 - phase(p, 0.78, 0.9))
     if (room.current) {
-      room.current.visible = p > 0.07
-      room.current.scale.setScalar(0.92 + reveal * 0.08)
+      reveal(room.current, roomReveal)
+      room.current.position.y = -0.12 * (1 - roomReveal)
     }
     if (plant.current) plant.current.scale.y = 0.05 + phase(p, 0, 0.15) * 0.95
-    if (paper.current) paper.current.visible = p >= 0.19 && p < 0.43
+    reveal(paper.current, envelope(p, 0.17, 0.47, 0.07))
     if (devices.current) {
-      devices.current.visible = p >= 0.38
+      reveal(devices.current, ramp(p, 0.36, 0.47))
       devices.current.position.y = -0.3 * (1 - phase(p, 0.38, 0.47))
     }
     if (leaves.current) {
-      leaves.current.visible = p >= 0.42 && p < 0.62
+      reveal(leaves.current, envelope(p, 0.42, 0.65, 0.06))
       leaves.current.children.forEach((leaf, i) => {
-        const travel = (phase(p, 0.42, 0.6) * 2 + i / 4) % 1
+        const travel = phase(p, 0.42 + i * 0.015, 0.59 + i * 0.015)
+        const size = Math.sin(travel * Math.PI)
+        leaf.scale.set(0.11 * size, 0.19 * size, 0.04 * size)
         leaf.position.set(
           -0.05 + travel * 2.1,
           0.7 + Math.sin(travel * Math.PI) * 0.65,
@@ -149,15 +148,15 @@ export default function NaturalisScene(props: SceneProps) {
         )
       })
     }
-    if (night.current) night.current.visible = p >= 0.6 && p < 0.82
-    if (result.current) result.current.visible = p >= 0.82
+    reveal(night.current, envelope(p, 0.58, 0.85, 0.06))
+    reveal(result.current, ramp(p, 0.79, 0.85))
     if (wall.current)
       wall.current.color
         .copy(DAY)
         .lerp(NIGHT, darkness * 0.85)
         .lerp(DAWN, phase(p, 0.8, 0.94) * 0.4)
     if (window.current) window.current.color.copy(DAWN).lerp(NIGHT, darkness)
-  })
+  }, -1)
 
   return (
     <group>

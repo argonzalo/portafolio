@@ -1,75 +1,64 @@
-# Hilo conductor v1 y transiciones — T-A13 / T-A41
+# Hilo conductor y continuidad — T-A13 / T-A41
 
-`Stage` monta `Thread` dentro del único Canvas. El hilo toma `SceneDefinition.thread`
-del registro por `chapterId`; no requiere imports ni efectos desde la escena.
-Los capítulos todavía sin definición usan presets provisionales en `forms.ts`.
-No se modificaron los contratos congelados.
+`Stage` mantiene un Canvas. `Thread` lee `SceneDefinition.thread` sin modificar
+los contratos públicos de escena. C es el enjambre desktop; A es el filamento
+mobile/low. `static` conserva los pósters existentes.
 
-## API de escena y encuadres de borde
+## Un solo progreso
 
-```ts
-export const viboBorderFrames: SceneBorderFrames = {
-  entry: { desktop: [4.5, 4.2, 9.5], mobile: [5.5, 7.0, 14.0], target: [0, 0.15, 0] },
-  exit: { desktop: [2.2, 1.8, 9.6], mobile: [2.4, 3.2, 12.6], target: [0, 0.1, 0] },
-  entrySpan: 0.08,
-  exitStart: 0.9,
-}
+`scroll.ts` amortigua la posición absoluta del documento (constante de tiempo
+120 ms), calcula todos los progresos y recién después publica el capítulo.
+El scroll nativo sigue disponible. Los deep links posicionan el cursor mediante
+`experience:seek`; no reproducen todos los capítulos intermedios.
 
-thread: {
-  shape: "trajectory",
-  color: "#f5c451",
-  anchors: (progress) => [
-    [-4, 0.05, 2],
-    [0, 2, -1],
-    [3, 0.15, -3],
-  ],
-}
-```
+`choreography.ts` define `HANDOFF_START = 0.86` y una rampa quíntica con velocidad
+y aceleración nulas en los extremos. Cámara, paleta, hilo y fundidos usan ese
+mismo intervalo. No hay una transición autónoma de 550 ms ni un segundo filtro
+que retrase el hilo respecto de la cámara.
 
-`anchors(progress)` recibe el progreso local 0..1 y devuelve puntos ordenados
-que el hilo recorre. Con 3 o más puntos, `sampleForm` aplica interpolación C¹
-Catmull-Rom (conservando extremos exactos) sobre 32 muestras uniformes que
-alimentan ambos shaders.
+## Cámara y mundos
 
-### Handoff entre capítulos (`T-A41` / `03-escenas.md` §6)
+`SceneDirector` mantiene el capítulo actual y el siguiente, con claves estables.
+La escena entrante ya está montada en progreso cero antes de la frontera; al
+cruzarla conserva geometrías, materiales, transformaciones y cámara. Los módulos
+anterior/siguiente se precargan también para la navegación inversa.
 
-En el tramo final de cada capítulo (`progress ≥ 0.82`, sincronizado con `BLEND_START`
-de `palette.ts`):
+Los rigs publican ojo y objetivo en `PresentationContext`. Solo el director
+escribe la cámara del recorrido, interpolando ambos encuadres durante el handoff.
+No se aplican los antiguos `BorderFrames`, deriva vertical ni cambios de escala
+al grupo raíz. El último mundo vuelve al encuadre neutro antes del siguiente
+capítulo DOM. Las escenas en `/lab` conservan su rig local.
 
-1. **Forma y color del hilo:** `updateThread` interpola los 32 puntos del capítulo
-   actual (`progress`) hacia el estado inicial (`0`) del capítulo siguiente, junto
-   con el color de línea, color de cabeza y contraste de esquema (`lightMix` para
-   el tema claro de Naturalis mediante mezcla premultiplicada `OneFactor` / `OneMinusSrcAlphaFactor`).
-2. **Velocidad y fase continua:** cada capítulo define su perfil en `CHAPTER_THREAD_PROFILES`
-   (`mix` y `speed`). La fase avanza en el círculo `[0..1)` desde `0.86` hasta `1.08`
-   (`0.08 mod 1`), coincidiendo sin rebobinado con la fase de entrada (`0.08`) del
-   capítulo siguiente. `flow` y `time` son acumulativos por capítulo.
-3. **Continuidad de cámara y crossfade (`SceneDirector.tsx`):**
-   - Precarga de los módulos de escena vecinos para cambio instantáneo sin espera asíncrona.
-   - Los pares `vibo.exit == pirp.entry`, `pirp.exit == naturalis.entry` y
-     `naturalis.exit == banner.entry` comparten el mismo encuadre de borde en `[0.90..1.0]`
-     y `[0.0..0.08]`, más puente cuaterniónico (`slerp` + `lerp`) ante saltos de índice.
-   - Crossfade de opacidad de materiales y deriva vertical/profundidad alineada con
-     la dirección del scroll, ocultando etiquetas DOM salientes y manteniendo
-     `scene.background` sincronizado con `getLivePalette().background`.
+Orden de frame: envolvente de capítulo (-4), rigs (-3), cámara/paleta (-2),
+animación e hilo (-1), composición de materiales y proyección HTML (0).
 
-El guía puede importar `threadTip` de `runtime.ts`: `position` es un Vector3
-mutable en coordenadas de mundo, compartido por A/C, y `visible` indica si
-hay hilo. Leer dentro de `useFrame` y proyectar con la cámara para anclar DOM.
+## Revelados y HTML
 
-## Selección y movimiento
+`presentation.ts` compone las envolventes de los objetos con la opacidad del
+capítulo, conservando opacidad, transparencia y profundidad originales de cada
+material. Los shaders propios participan mediante `uOpacity`. Las etiquetas HTML
+usan la misma envolvente; no flotan sobre una escena que ya desapareció.
 
-- C: landscape de más de 768 px, `high` o `medium`.
-- A: ancho ≤768 px, portrait/cuadrado, `low`, movimiento reducido o `medium`
-  adaptado por el monitor. `static`: sin Canvas, conforme a Stage.
-- Curva, color y punta convergen al nuevo capítulo sin reiniciar el runtime.
-  El scroll controla la fase, también al retroceder; no hay reloj autónomo.
-- Resize y calidad conservan el store y el Canvas. El renderer saliente libera
-  geometría y materiales.
+Los títulos permanecen anclados al viewport, sin placas de degradado. Los fondos
+de sección no cubren el canvas con rectángulos translúcidos. Los tokens del body
+heredan la paleta viva en lugar de taparla con los valores estáticos de `.dark`.
+
+## Hilo
+
+`anchors(progress)` devuelve coordenadas de mundo; `sampleForm` interpola 32
+muestras Catmull-Rom. En el handoff se mezclan forma, color, energía y contraste
+con la entrada del siguiente capítulo. Fase, flujo y tiempo son continuos en la
+frontera. `threadTip` sigue disponible como referencia mutable para el guía.
 
 ## Verificación
 
 ```sh
 npm run check
+# Con el servidor dev de este checkout; A41_BASE_URL permite otra dirección.
 node src/experience/thread/verify.mjs
 ```
+
+La verificación actual recorre la página real en ambas direcciones y observa la
+cámara y el path efectivamente conectado al shader; no deduce continuidad de
+constantes de cámara que el render pudiera no usar. Capturas y límites en
+`docs/plan/evidencias/T-A41/revision/`.

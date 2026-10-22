@@ -1,26 +1,11 @@
 import { Color, Vector3, type ShaderMaterial } from "three"
 import type { ThreadForm } from "../types"
 import { THREAD_STYLES } from "./path"
+import { HANDOFF_START } from "@/experience/choreography"
 
 export const PATH_SAMPLES = 32
-/** Coincide con `BLEND_START = 0.82` de `palette.ts` (T-A15 / `03-escenas.md` §6). */
-export const THREAD_HANDOFF_START = 0.82
-
-export type BorderPose = {
-  desktop: [number, number, number]
-  mobile: [number, number, number]
-  target: [number, number, number]
-  mobileTarget?: [number, number, number]
-}
-
-export type SceneBorderFrames = {
-  entry: BorderPose
-  exit: BorderPose
-  /** Tramo inicial (0..entrySpan) donde el encuadre de entrada converge al rig de la escena. */
-  entrySpan?: number
-  /** Inicio del tramo final (exitStart..1) donde el rig converge al encuadre de salida. */
-  exitStart?: number
-}
+/** Shared with camera, chapter reveals and palette. */
+export const THREAD_HANDOFF_START = HANDOFF_START
 
 export type ThreadFrame = {
   points: Vector3[]
