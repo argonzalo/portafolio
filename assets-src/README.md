@@ -36,8 +36,13 @@ El id de carpeta `<escena>` debe coincidir con el id del proyecto / kit (`vibo`,
 
 | Carpeta | Contenido |
 | --- | --- |
-| `vibo/` | Insumos escena Vibo (T-H07): exports Firebase, ref MVP, overlays curados, métricas, videos |
+| `vibo/` | Insumos escena Vibo (T-H07): exports Firebase, ref MVP, overlays curados, métricas, videos; marca en `brand/` (I-03) |
+| `pirp/` | Marca en `brand/` (I-03); alcance narrativo en este README (I-08); dataset ficticio → T-H10 |
+| `banner/` | Marca Banner Director / 2.0 en `brand/` (I-03); logos de clientes → I-07 |
+| `naturalis/` | Marca en `brand/` (I-03); assets 3D / audio → T-H09 |
 | `kit/` | Modelos fuente del kit (p. ej. `phone*.glb` del MVP UI) |
+
+Cada `*/brand/README.md` documenta **rutas de origen** (repos locales), paleta, tipografía (enlaces Google Fonts, no archivos) y permiso. Capturas de producto: `public/images/proyects/` (índice en `docs/plan/insumos/capturas.md`). Registro: `docs/plan/licencias.md`.
 
 ## Pipeline
 

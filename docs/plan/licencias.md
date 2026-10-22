@@ -1,24 +1,18 @@
-# Licencias, permisos y atribuciones
+# Licencias y permisos
 
-Registro de assets y datos de terceros o sensibles usados en el portafolio.
+Registro obligatorio antes de mergear assets de terceros o de cliente a `public/` (`05-contenido.md` §5).
 
-## Vibo (I-02 / T-H07)
+| Archivo o carpeta | Fuente | Licencia / permiso | Atribución | Fecha |
+| --- | --- | --- | --- | --- |
+| `assets-src/vibo/brand/*` | Repos locales Vibo (`vibo/beta-front`, `vibo/ui-mvp`, …); rutas en `brand/README.md` | Uso en portafolio: **sí** (Gonzalo) | — | 2026-10-22 |
+| `assets-src/pirp/brand/*` | Repo local `PIRP/frontend`; rutas en `brand/README.md` | Uso en portafolio: **sí** (Gonzalo). No nombrar al cliente dueño de la paleta bordó | — | 2026-10-22 |
+| `assets-src/banner/brand/*` | `banner-director/webui` (+ geometría de `banner-docs`); rutas en `brand/README.md` | Uso en portafolio: **sí** (Gonzalo). Logos de clientes → I-07 | — | 2026-10-22 |
+| `assets-src/naturalis/brand/*` | Repos locales Naturalis (`natuadmin`, `naturalis`); rutas en `brand/README.md` | Uso en portafolio: **sí** (Gonzalo). Escena: atmósfera sin copiar marca en escena (`03` §3.3) | — | 2026-10-22 |
+| Tipografías de marca (Poppins, Inter, Geist, Geist Mono, etc.) | [Google Fonts](https://fonts.google.com/) — enlaces en cada `assets-src/*/brand/README.md` | OFL / licencia Google Fonts; no se versionan archivos `.ttf`/`.woff` en el repo | Según fuente si se exige | 2026-10-22 |
+| `public/images/proyects/**` | Capturas propias de producto | Uso en portafolio: **sí**; el humano puede reemplazarlas después | — | 2026-10-22 |
 
-| Ítem | Detalle |
-| --- | --- |
-| Origen Firebase | Proyecto propio `vibo-beta-2e60f`, colección `videos` → `analysisResults` |
-| Origen MVP UI | Snapshot local `ui-mvp-public/` (gitignored); extractos en `assets-src/vibo/mvp-ref/` |
-| Uso | Overlays y métricas de la escena Vibo (ADR-011) |
-| Anonimización | Sin `userId`, emails, URLs de storage ni nombres de archivo en el paquete curado |
-| Pose / bbox | Reales del pipeline (export MVP `analyze-video-1.json`); no inventados |
-| Videos / frames | `demo_point.mp4`, `video_padel.mp4`, `punto_1.mp4`, stills de golpes — material propio de demos Vibo |
-| Permiso | Datos de entorno beta propio; OK mostrar métricas y eventos de golpe anonimizados |
-| Ruta local | `assets-src/vibo/` |
+## Notas
 
-## Kit dispositivos (fuente)
-
-| Ítem | Detalle |
-| --- | --- |
-| Modelos | `assets-src/kit/models/phone*.glb` copiados del MVP UI |
-| Uso previsto | T-A19 (kit Phone/Laptop); optimizar antes de `public/models/` |
-| Permiso | Assets propios del MVP Vibo |
+- Los binarios bajo `assets-src/` no se versionan (salvo `**/README.md`). Backup local / Drive.
+- Paleta bordó de Pirp: es del cliente; en copy y metadatos decir solo “paleta del cliente”. **Decisión 2026-10-22:** usarla tal cual (`#7A1F2B` y escala en `assets-src/pirp/brand/palette.json`); no definir acento propio.
+- I-07 (logos Grido, Açaí, Marea, Diarco, Leroma): nombres OK en copy; faltan archivos si se muestran en escena.

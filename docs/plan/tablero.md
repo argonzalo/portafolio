@@ -15,7 +15,7 @@
 | --- | --- | --- | --- | --- |
 | T-H01 | Leer `00` y `decisiones.md`; aceptar o corregir ADR-001 a 005, 007, 008, 009 | — | `docs/plan/decisiones.md` | hecho (grilling 2026-10-21; ADR-006 spike A+C pendiente de elección visual) |
 | T-H02 | Cuentas y secretos: vincular repo a Vercel, instalar Upstash Redis desde el Marketplace, configurar tope de gasto mensual en OpenAI, confirmar `OPEN_AI_MODEL` y elegir `OPEN_AI_MODEL_FALLBACK` | — | Paneles externos, `.env` local | hecho (2026-10-21; modelo `gpt-6-luna`, fallback `gpt-5.4-mini`; Upstash `upstash-kv-lime-lantern`; preview https://portafolio-coral-zeta-55.vercel.app) |
-| T-H03 | Arrancar la recolección de insumos de primera línea: I-03 (marcas), I-08 (qué se puede contar de Pirp), I-04 (capturas) | — | `assets-src/`, `docs/plan/licencias.md` | listo |
+| T-H03 | Arrancar la recolección de insumos de primera línea: I-03 (marcas), I-08 (qué se puede contar de Pirp), I-04 (capturas) | — | `assets-src/`, `docs/plan/licencias.md` | hecho (2026-10-22; brand en `assets-src/*/brand/`; capturas = `public/images/proyects/`; I-08 parcial → T-H10; `licencias.md` + `insumos/capturas.md`) |
 | T-H05 | Moodboard y validación de la ficha de Vibo (`03` §3.1 + ADR-011: golpe en slow-mo + overlays); después Pirp, Naturalis y Banner | — | `docs/plan/03-escenas.md` | en curso (humano; Vibo ficha validada grilling 2026-10-21; faltan Pirp, Naturalis, Banner) |
 | T-H07 | I-02 / ADR-011: exportar de Firebase (`vibo-beta-2e60f` → `videos.analysisResults`) 1–2 clips anonimizados; curar JSON de overlays (bboxes + keypoints en la ventana del golpe) + métricas de jugador; sin trayectoria 3D fiel | — | `assets-src/vibo/` | hecho (2026-10-21; overlays con bbox/pose reales del MVP + stats Firebase; `ui-mvp-public/` gitignored) |
 | T-A01 | Higiene del repo: README actualizado, scripts de `package.json` documentados, quitar `proyectos-facu/` y `.zip`, `.gitignore` (incl. `assets-src/` salvo README) | ADR-009, ADR-010 | Raíz (`README.md`, `.gitignore`), `proyectos-facu/` | hecho (2026-10-21; PR #3) |
@@ -115,7 +115,8 @@
 
 | Fecha | Tarea | Pregunta o bloqueo | Respuesta |
 | --- | --- | --- | --- |
-| 2026-10-21 | T-A08 | **ADR-006 lista para decidir:** A (filamento) y C (enjambre) están en `/lab/thread` del preview, con transición Vibo→Pirp y mobile. Las dos cumplen presupuesto en mobile emulado (CPU ×4); falta probar en iPhone y Android reales y elegir. El color de Pirp es provisional (`#ff5b4f`) hasta I-03. | |
+| 2026-10-21 | T-A08 | **ADR-006 lista para decidir:** A (filamento) y C (enjambre) están en `/lab/thread` del preview, con transición Vibo→Pirp y mobile. Las dos cumplen presupuesto en mobile emulado (CPU ×4); falta probar en iPhone y Android reales y elegir. El color de Pirp es provisional (`#ff5b4f`) hasta I-03. | I-03 listo (2026-10-22); acento Pirp sigue abierto — ver fila siguiente |
+| 2026-10-22 | T-H03 / I-03 | **Acento Pirp:** ¿usar el bordó del cliente (`#7A1F2B`, sin nombrarlo) o definir un acento propio para portafolio/hilo? Hoy el hilo usa `#ff5b4f`. | **Bordó del cliente** (`#7A1F2B` / escala en `assets-src/pirp/brand/palette.json`); no nombrar al cliente. Reemplazar el provisional `#ff5b4f` del hilo cuando toque (T-A13 / escenas Pirp). |
 | 2026-10-21 | T-A08 | Varios agentes locales comparten la carpeta principal del repo y cambian de rama en ella: el trabajo sin commitear de T-A08 terminó en un `git stash` ajeno (recuperado). Pedido: que cada agente local use su propio worktree (`06` §3, paso 2). | |
 | 2026-10-21 | T-A01 / T-A05 | `npm run lint` y `npm run typecheck` ya fallan en `main` por código previo: `LightboxStage.tsx` (ref en render + deps de `useEffect`; `stage` posiblemente `null`) y `ExperienceTimeline.tsx` (`offsetHeight` sobre `Element`). `npm run build` pasa. Bloquea el `npm run check` de T-A02. ¿Lo arregla T-A02 o una tarea de QA? | Resuelto en T-A02: baseline de lint/typecheck en verde y `npm run check` (lint + typecheck + build) disponible. |
 
@@ -137,12 +138,12 @@
 | --- | --- | --- |
 | I-01 Narrativas primera línea | listo | T-H04 cerrado; MDX en `src/content/projects/` (vibo, pirp, naturalis, banner-2) |
 | I-02 Datos reales de Vibo | listo para T-A20 | Overlays curados con bbox/pose reales (MVP `analyze-video-1`) + stats Firebase. Videos/frames en `assets-src/vibo/mvp-ref/`. `ui-mvp-public/` ignorado |
-| I-03 Marcas y paletas | pendiente | |
-| I-04 Capturas en alta | pendiente | |
+| I-03 Marcas y paletas | listo | Logos + `palette.json` + tipografías (enlaces GF) en `assets-src/{vibo,pirp,banner,naturalis}/brand/`; permiso sí; registro en `licencias.md`. Pirp: acento = bordó cliente `#7A1F2B` (sin nombrarlo) |
+| I-04 Capturas en alta | listo (usar existentes) | Índice en `docs/plan/insumos/capturas.md` → `public/images/proyects/`; el humano puede reemplazar después |
 | I-05 Assets Naturalis | pendiente | |
 | I-06 Audio | pendiente | |
 | I-07 Logos de clientes de Banner | nombres OK | Grido, Açaí, Marea, Diarco, Leroma autorizados en copy; faltan archivos de logo si se muestran en escena |
-| I-08 Alcance de Pirp + dataset | parcial | Escena 100 % ficticia; capturas UI sí; no nombrar clientes; dataset demo pendiente T-H10 |
+| I-08 Alcance de Pirp + dataset | parcial | Arranque en `assets-src/pirp/README.md`: escena ficticia, capturas UI sí, no nombrar clientes; dataset/textos → T-H10 |
 | I-09 Persona y FAQs del guía | pendiente | |
 | I-10 Narrativas segunda y tercera línea | pendiente | |
 | I-11 Fotos personales | pendiente | Opcional |
