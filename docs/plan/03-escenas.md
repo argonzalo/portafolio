@@ -29,32 +29,47 @@ Construir esto una vez es lo que hace viable el volumen de escenas. Vive en `src
 
 ### 3.1 Vibo — "Ver lo invisible del juego"
 
-| Análisis previo | Propuesta |
-| --- | --- |
-| **Qué transmite** | Ciencia aplicada al deporte: un video común se convierte en conocimiento preciso sobre cómo juega una persona |
-| **Estética** | Noche, cancha iluminada. Azul profundo (fondo), azul eléctrico (datos), dorado (momentos clave y resultado). Líneas finas de precisión, números tabulares, estética de laboratorio deportivo |
-| **Qué debe generar** | Asombro y confianza: "esto es serio, esto es preciso" |
-| **Integración con el proyecto** | Toma la paleta de Vibo (oscuros, azules, dorado); el HUD imita el lenguaje de un análisis de rendimiento profesional |
+> **Ficha validada** (grilling T-H05, 2026-10-21). Frase concepto = placeholder (`conceptLine`); se cambiará después. Moodboard escrito basta para greybox.
 
-**Beats**
+| Análisis previo | Validado |
+| --- | --- |
+| **Qué transmite** | Ciencia aplicada al deporte: un video común se convierte en conocimiento preciso sobre cómo juega una persona, con un **toque leve de coaching** (mejora / “cómo jugaste”) |
+| **Estética** | Noche, cancha iluminada (atmósfera de **replay TV**: reflectores, slow-mo comercial). Azul profundo (fondo), azul eléctrico (datos), dorado (momentos clave y resultado). Overlays con acento **HUD gamer** (glow, contraste fuerte), no lab clínico. Personaje **low-poly / silueta clara**. Evitar: cartoon, cyberpunk, infantil |
+| **Qué debe generar** | Asombro y confianza: "esto es serio, esto es preciso" |
+| **Integración con el proyecto** | Manda la estética del portafolio para Vibo (`00` / esta ficha). Paleta oscuros/azules/dorado. `ui-mvp-public` solo como referencia suave de producto, no como look a copiar. En el golpe, lectura tipo broadcast; en grafo/métricas, lectura más de software de análisis |
+
+**Concepto (placeholder):** `"Ver lo invisible del juego"` — guardar en variable de copy (`conceptLine`); no tratarlo como texto final.
+
+**Beats** (4; el “problema” no es un acto aparte)
 
 1. **Mundo** — el filamento dibuja las líneas de la cancha en la oscuridad; se encienden los reflectores.
-2. **Problema** — un fragmento de video crudo (plano, sin datos) flota sobre la cancha: "Un partido grabado no dice cómo jugaste".
-3. **Razonamiento (núcleo)** — un personaje 3D ejecuta un golpe en *slow motion*. Sobre él flotan las detecciones del producto como overlay (bounding boxes, pose keypoints, etiquetas de golpe/zona). En paralelo, un grafo de agentes ejecuta el pipeline: detección → seguimiento → calibración de cancha → detección de golpes → clasificación. Cada nodo se enciende cuando "decide". La trayectoria de la pelota puede ser estilizada (filamento); no hace falta reconstrucción 3D fiel.
-4. **Solución** — la cámara sube a vista cenital: mapa de calor de zonas, cobertura de cancha frente al compañero y los rivales, perfil ofensivo/defensivo.
-5. **Resultado** — tarjeta de jugador con métricas (estilo, golpes más frecuentes, desgaste a lo largo del partido) en dorado; CTA al caso completo.
+2. **Razonamiento (núcleo; problema implícito)** — se pasa del video plano a un personaje 3D que ejecuta un golpe en *slow motion*. El problema (el video solo no explica el juego) se **insinúa**, sin énfasis ni copy largo. Sobre el jugador flotan detecciones como overlay (bounding boxes, pose keypoints, etiquetas). En paralelo, un grafo de agentes muestra el pipeline: detección → seguimiento → calibración de cancha → detección de golpes → clasificación; cada nodo se enciende cuando “decide”. Héroe visual = el **golpe**. Trayectoria de pelota estilizada (filamento); sin reconstrucción 3D fiel (ADR-011).
+3. **Solución** — la cámara sube a vista cenital: mapa de calor de zonas, cobertura de cancha frente al compañero y los rivales, perfil ofensivo/defensivo.
+4. **Resultado** — tarjeta de jugador con métricas (estilo, golpes más frecuentes, desgaste a lo largo del partido) en dorado; CTA al caso completo.
 
-**Interacción:** en el beat 3, el visitante puede pausar el golpe en slow motion y arrastrar para recorrerlo; en desktop, hover sobre un keypoint o caja del overlay muestra su dato.
+**Interacción**
+
+- Scrub del golpe **obligatorio** en desktop y mobile (pause + arrastrar). En mobile: gesto amplio / control grande, sin pedir precisión fina.
+- Overlays entran **solos** con la coreografía del beat (set fijo). Hover/tap = **solo highlight**, sin panel de dato.
+- Grafo del pipeline: **solo visual** (progreso), no interactivo.
+- Fuera de alcance: minijuegos, score, “jugá un punto”.
+- Forma del hilo en Vibo: **sin fijar**; se decide en greybox.
 
 **Técnica** (ADR-011)
 
 - Cancha procedural (líneas y planos), sin modelo pesado.
-- **Personaje 3D animado** (p. ej. Mixamo u otro rig con licencia) con animación de golpe en slow motion; material estilizado acorde a la paleta. El impacto de la escena está en el golpe, no en una trayectoria realista.
-- **Overlays de detección** anclados al personaje/espacio (HUD del kit): bounding boxes, pose keypoints y etiquetas, alimentados por un JSON curado a partir de `analysisResults` reales (referencia; ver T-H07). Los datos del producto vienen en perspectiva de cámara y **no** bastan para una trayectoria 3D fiel; se usan para credibilidad visual del overlay, no para reconstruir el mundo.
+- **Personaje 3D animado** estilizado low-poly (p. ej. Mixamo u otro rig con licencia) con animación de golpe en slow motion; material acorde a la paleta. El impacto está en el golpe, no en una trayectoria realista.
+- **Overlays de detección** anclados al personaje/espacio (HUD del kit), look con glow/acento fuerte: bounding boxes, pose keypoints y etiquetas, alimentados por JSON curado a partir de `analysisResults` reales (T-H07). Los datos del producto están en perspectiva de cámara y **no** bastan para trayectoria 3D fiel; acreditan el overlay, no reconstruyen el mundo.
 - Trayectoria de pelota **diseñada** (filamento / curva con propósito), inspirada a lo sumo en el seguimiento real.
 - Mapa de calor como shader sobre el plano de la cancha, con datos precalculados en build.
 
-**Mobile:** encuadre cerrado al jugador en el beat 3 (el golpe es el héroe); overlays de a uno por tap; el grafo del pipeline pasa a ser una tira vertical.
+**Mobile**
+
+- Beat núcleo: encuadre **cerrado** al jugador que **abre un poco** al scrubear.
+- Overlays: set fijo coreografiado; tap solo para highlight.
+- Grafo: tira vertical.
+- Beats solución y resultado: ambos, con UI simplificada.
+- Copy en DOM: **mínimo, 1 línea por beat**.
 
 **Insumos del humano (T-H07):** export anonimizado de `analysisResults` (Firebase `vibo-beta` / `vibo-beta-2e60f`, colección `videos`) de 1–2 clips con al menos un golpe claro; JSON curado de overlays (bboxes + keypoints en la ventana del golpe); métricas de un jugador anonimizadas; confirmación de paleta y logo; permiso para mostrar datos. No se exige trayectoria 3D reconstruida.
 
