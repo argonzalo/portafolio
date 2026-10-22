@@ -42,7 +42,7 @@
 
 | T-A12 | Hero y manifiesto: copy de `05` §2, tags, frases, animación con SplitText, hero 100 % HTML (LCP), punto de entrada del hilo | T-A11 | `src/components/journey/Hero*`, `src/components/journey/Manifesto*`, `src/lib/site.ts` | listo |
 | T-A13 | Hilo conductor v1 (ADR-006: C desktop / A mobile), integrado en `Stage`, con API para que cada escena defina su `ThreadForm` | ADR-006, T-A06 | `src/experience/thread/`, `src/experience/Stage.tsx` (montaje) | hecho (2026-10-22; PR #14) |
-| T-A14 | Greybox de las 4 escenas de primera línea (un agente por escena: `T-A14-vibo`, `-pirp`, `-naturalis`, `-banner`): beats, cámaras desktop/mobile, ritmo, en `/lab` y en el recorrido | T-A07, ficha validada (T-H05) | `src/scenes/<id>/` | listo (las 4 fichas validadas) |
+| T-A14 | Greybox de las 4 escenas de primera línea (un agente por escena: `T-A14-vibo`, `-pirp`, `-naturalis`, `-banner`): beats, cámaras desktop/mobile, ritmo, en `/lab` y en el recorrido | T-A07, ficha validada (T-H05) | `src/scenes/<id>/` | en revisión (Codex; greyboxes implementados, capturas y métricas en `evidencias/T-A14/`; falta revisión humana T-H06/T-H12) |
 | T-A15 | Paletas por capítulo: interpolación de CSS variables con el progreso, cambio a tema claro en Naturalis, sincronía con el canvas | T-A06, T-A11 | `src/experience/palette.ts`, `src/styles/` (con permiso de plataforma) | listo |
 | T-A16 | Nivel `static`: recorrido sin canvas con pósters provisionales, `prefers-reduced-motion`, `Save-Data`, sin WebGL | T-A07, T-A11 | `src/components/journey/Fallback*`, `public/posters/` | listo |
 | T-A17 | Página de caso `/projects/[id]` con la estructura problema → enfoque → decisiones → desafíos → resultado → piezas → stack; header con escena o póster | T-A04, T-A06 | `src/pages/projects/[...slug].astro`, `src/components/project/` | hecho (2026-10-21; PR #12) |
@@ -151,3 +151,7 @@
 ### Alcance T-A13
 
 Integración mínima en `Stage.tsx` incluida para cumplir el criterio explícito de T-A13. Sin cambios en contratos. ADR-006 cerrada: C desktop / A mobile.
+
+### Alcance T-A14
+
+Greyboxes de las cuatro escenas integrados en el recorrido y en lab. La conexión mínima incluye `SceneDirector`, `deepLink`, rutas lab, contenedor DOM de escenas, registro, rig interno compartido, pósters y scripts/evidencia de QA. `ui-mvp-public/` se excluye de lint/typecheck como fuente local de referencia. Sin cambios de contratos ni dependencias. La aprobación humana de los greyboxes sigue pendiente; no se habilitan automáticamente las escenas finales ni se aprueba G1.

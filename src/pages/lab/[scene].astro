@@ -8,6 +8,7 @@
  * del spike; cuando lleguen las reales (T-A14+) el índice sale del registry.
  */
 import { SPIKE_SCENES } from "@/experience/spike/scenes"
+import { scenes } from "@/scenes/registry"
 import { LabScene } from "./_LabScene"
 import "@/styles/globals.css"
 
@@ -16,7 +17,14 @@ export function getStaticPaths() {
     return []
   }
 
-  return SPIKE_SCENES.map((scene) => ({
+  return [
+    ...SPIKE_SCENES,
+    ...scenes.map((scene) => ({
+      chapterId: scene.chapterId,
+      label: scene.id,
+      accent: scene.palette.accent,
+    })),
+  ].map((scene) => ({
     params: { scene: scene.chapterId },
     props: {
       chapterId: scene.chapterId,

@@ -7,17 +7,14 @@ import {
   type RefObject,
 } from "react"
 import { useFrame } from "@react-three/fiber"
-import type { Group } from "three"
+import { Color, type Group } from "three"
 
 import { useExperienceStore } from "@/experience/hooks"
 import { setGpuStats } from "@/experience/gpuStats"
-import {
-  getSpikeScene,
-  isSpikeChapter,
-  type SpikeSceneEntry,
-} from "@/experience/spike/scenes"
+import { getSpikeScene, type SpikeSceneEntry } from "@/experience/spike/scenes"
 import { experienceStore } from "@/experience/store"
 import type { SceneProps } from "@/experience/types"
+import { getSceneByChapter } from "@/scenes/registry"
 
 const TRANSITION_SECONDS = 0.55
 
@@ -40,18 +37,35 @@ export function SceneDirector() {
   const transitioning = useRef(false)
   const pendingUnmount = useRef(false)
   const activeChapter = useRef<string | null>(null)
+  const beatKey = useRef("")
 
   useEffect(() => {
-    if (!chapterId || !isSpikeChapter(chapterId)) {
-      return
+    const definition = chapterId ? getSceneByChapter(chapterId) : undefined
+    const entry = definition
+      ? {
+          ...definition,
+          sceneId: definition.id,
+          label: definition.id,
+          accent: definition.palette.accent,
+        }
+      : chapterId
+        ? getSpikeScene(chapterId)
+        : undefined
+    if (!chapterId || !entry) {
+      let cancelled = false
+      queueMicrotask(() => {
+        if (!cancelled) setSlots([])
+      })
+      activeChapter.current = null
+      experienceStore.setBeat(null)
+      return () => {
+        cancelled = true
+      }
     }
 
     if (chapterId === activeChapter.current) {
       return
     }
-
-    const entry = getSpikeScene(chapterId)
-    if (!entry) return
 
     let cancelled = false
 
@@ -89,11 +103,12 @@ export function SceneDirector() {
         })
 
         activeChapter.current = chapterId
+        beatKey.current = ""
         // `connectStoreSignals` emite `beat:enter` al cambiar el beat.
         experienceStore.setBeat({ sceneId: entry.sceneId, beatId: "mundo" })
       })
       .catch((error: unknown) => {
-        console.error("[experience] no se pudo cargar la escena spike", error)
+        console.error("[experience] no se pudo cargar la escena", error)
       })
 
     return () => {
@@ -111,7 +126,27 @@ export function SceneDirector() {
     }
   }, [])
 
-  useFrame((_, delta) => {
+  useFrame(({ camera, scene }, delta) => {
+    const definition = chapterId ? getSceneByChapter(chapterId) : undefined
+    if (definition && activeChapter.current === chapterId) {
+      const p = experienceStore.progress(definition.chapterId).current
+      const beat = definition.beats.find(
+        (b) => p >= b.range[0] && (p < b.range[1] || b.range[1] === 1)
+      )
+      const key = `${definition.id}/${beat?.id}`
+      if (beat && beatKey.current !== key) {
+        beatKey.current = key
+        queueMicrotask(() => {
+          if (experienceStore.getSnapshot().chapterId === definition.chapterId)
+            experienceStore.setBeat({ sceneId: definition.id, beatId: beat.id })
+        })
+      }
+    } else if (!chapterId || !getSpikeScene(chapterId)) {
+      camera.position.set(0, 0, 5)
+      camera.lookAt(0, 0, 0)
+      if (scene.background instanceof Color) scene.background.set("#0a0a0b")
+      beatKey.current = ""
+    }
     if (!transitioning.current) return
 
     blend.current = Math.min(1, blend.current + delta / TRANSITION_SECONDS)

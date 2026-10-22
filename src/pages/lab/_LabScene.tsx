@@ -16,6 +16,9 @@ import {
 } from "@/experience/quality"
 import { SceneDirector } from "@/experience/SceneDirector"
 import { experienceStore } from "@/experience/store"
+import { forceQuality, isQualityTier } from "@/experience/quality"
+import { getSceneByChapter } from "@/scenes/registry"
+import { Thread } from "@/experience/thread/Thread"
 
 type Props = {
   chapterId: string
@@ -34,6 +37,15 @@ export function LabScene({ chapterId, label, accent }: Props) {
 
   useEffect(() => {
     initQuality()
+    const params = new URLSearchParams(window.location.search)
+    const tier = params.get("quality")
+    if (isQualityTier(tier)) forceQuality(tier)
+    const initial = Number(params.get("progress") ?? 0)
+    const value = Number.isFinite(initial)
+      ? Math.min(1, Math.max(0, initial))
+      : 0
+    queueMicrotask(() => setProgress(value))
+    experienceStore.setProgress(chapterId, value)
 
     const media = window.matchMedia("(max-width: 768px)")
     const syncLayout = () => {
@@ -58,6 +70,9 @@ export function LabScene({ chapterId, label, accent }: Props) {
 
     setProgress(value)
     experienceStore.setProgress(chapterId, value)
+    const url = new URL(window.location.href)
+    url.searchParams.set("progress", value.toFixed(2))
+    window.history.replaceState(null, "", url)
   }
 
   return (
@@ -81,9 +96,25 @@ export function LabScene({ chapterId, label, accent }: Props) {
         >
           <color attach="background" args={["#0a0a0b"]} />
           <SceneDirector />
+          <Thread />
           <QualityMonitor />
           <GpuStatsProbe />
         </Canvas>
+      ) : getSceneByChapter(chapterId) ? (
+        <picture>
+          <source
+            media="(max-width:768px)"
+            srcSet={
+              getSceneByChapter(chapterId)!.fallback.posterMobile ??
+              getSceneByChapter(chapterId)!.fallback.poster
+            }
+          />
+          <img
+            src={getSceneByChapter(chapterId)!.fallback.poster}
+            alt={`Vista estática de ${label}`}
+            className="h-full w-full object-cover"
+          />
+        </picture>
       ) : null}
 
       <div className="pointer-events-none fixed inset-x-0 top-0 z-40 flex justify-center p-3">
