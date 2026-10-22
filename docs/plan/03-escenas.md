@@ -75,51 +75,62 @@ Construir esto una vez es lo que hace viable el volumen de escenas. Vive en `src
 
 ### 3.2 Pirp — "Todo pasa rápido, y aun así se entiende"
 
-| Análisis previo | Propuesta |
+> **Ficha validada** (grilling T-H05, 2026-10-22). Marca en `assets-src/pirp/brand/`. No nombrar al cliente del producto.
+
+| Análisis previo | Validado |
 | --- | --- |
 | **Qué transmite** | Tiempo real: el ruido de noticias y redes se convierte en una lectura clara de reputación y en una estrategia |
-| **Estética** | Redacción de noticias + terminal de datos. Base oscura o papel según la marca de Pirp (verificar en pirp.com.ar), tipografía editorial para titulares, un color de señal para alertas, verde/rojo sobrios para sentimiento |
+| **Estética** | **Mixto, principalmente oscuro** (`dark.background` `#17181A`, superficies `#242425`). Destellos de papel/crema (`#EFE9DD`) en titulares o paneles puntuales, no como tema dominante. Acento/alerta: bordó `#7A1F2B` (dark accent `#A8434F`). Tipografía: **Poppins** + contraste tipográfico fuerte en titulares (peso/escala, no otra familia obligatoria). Sentimiento: verde/rojo sobrios |
 | **Qué debe generar** | Vértigo controlado: sensación de velocidad seguida de claridad |
-| **Integración con el proyecto** | Toma el lenguaje visual de Pirp (paleta y tipografía de su landing) y el tono de inteligencia política |
+| **Integración con el proyecto** | Lenguaje visual de Pirp (paleta y tipografía de marca). Se pueden usar **capturas reales de UI** en escena; titulares/políticos/medios del torrente y dataset de demo = **ficticios** (T-H10) |
 
-**Beats**
+**Beats** (5)
 
-1. **Mundo** — el filamento se acelera y se convierte en una señal que late; el ritmo del scroll se siente más rápido.
+1. **Mundo** — el hilo se acelera y se convierte en una señal que late; el ritmo del scroll se siente más rápido.
 2. **Problema** — un torrente de titulares y posts (tarjetas instanciadas) atraviesa la pantalla: imposible de leer.
 3. **Razonamiento** — agentes (nodos) atrapan tarjetas, las clasifican por sentimiento (color) y por tema; el torrente se organiza en un grafo de temas que se agrupan.
 4. **Solución** — aparece el termómetro de reputación con una curva de tendencia en vivo; un pico dispara una alerta.
 5. **Resultado** — la alerta se resuelve en una propuesta de estrategia que se escribe sola (texto que se tipea); el ruido se calma.
 
-**Interacción:** el visitante puede "tocar" una tarjeta del torrente para verla clasificada; arrastrar en el grafo lo deforma con inercia.
+**Interacción**
+
+- **Obligatorio:** tocar/tap una tarjeta del torrente para verla clasificada.
+- **Grafo:** solo visual (progreso); no arrastrar ni deformar (nice-to-have descartado para greybox/G1).
 
 **Técnica**
 
 - Titulares como **atlas de texturas** pre-renderizado en build (miles de tarjetas = un draw call), no texto SDF por tarjeta.
 - Layout del grafo precalculado en build; en el navegador solo se interpola.
-- **Datos ficticios** (políticos, medios y titulares inventados) para evitar problemas legales y de confidencialidad.
+- Capturas de producto reales como texturas de UI; datos del torrente/estrategia ficticios.
 
-**Mobile:** el torrente pasa a ser vertical (como un feed), el grafo se compacta, la curva ocupa el ancho.
+**Mobile:** el torrente pasa a ser vertical (como un feed), el grafo se compacta, la curva ocupa el ancho. Hilo = filamento (ADR-006).
 
-**Insumos del humano (T-H10):** marca de Pirp (logo, paleta, tipografía), 3–5 capturas del producto, validación del dataset ficticio y de los textos de estrategia, confirmación de qué se puede contar del proyecto (está activo).
+**Insumos del humano (T-H10):** validación del dataset ficticio y de los textos de estrategia; alcance de qué se puede contar (I-08). Marca y capturas base ya en repo (I-03 / I-04).
 
 ### 3.3 Naturalis — "Orden sin esfuerzo"
 
-| Análisis previo | Propuesta |
+> **Ficha validada** (grilling T-H05, 2026-10-22). Marca en `assets-src/naturalis/brand/`.
+
+| Análisis previo | Validado |
 | --- | --- |
 | **Qué transmite** | Calma y cuidado: la tecnología trabaja en silencio para que el equipo se dedique a atender |
-| **Estética** | Luz de día, tonos claros y cálidos (crema, salvia, terracota, madera clara), plantas y macetas, cortina de lino que respira, camilla, sombras suaves horneadas, grano sutil. Ritmo lento. Es el único capítulo en tema claro |
+| **Estética** | **Marca:** salvia/teal (`primary` `#56857D`, accent `#81AAA4`) sobre crema suave `#FAFDFC` / blanco. Luz de día, plantas y macetas, cortina de lino, camilla, sombras suaves horneadas, grano sutil. Ritmo lento. **Único capítulo en tema claro** (obligatorio) |
 | **Qué debe generar** | Relax; una pausa después de la velocidad de Pirp |
-| **Integración con el proyecto** | Ambiente de centro de estética sin copiar su marca; minimalismo y naturaleza. Música suave opcional |
+| **Integración con el proyecto** | Ambiente de centro de estética alineado a la paleta Naturalis; logo discreto permitido. Música suave cuando exista pista (I-06) |
 
-**Beats**
+**Beats** (5)
 
-1. **Mundo** — el filamento se vuelve un tallo que crece y abre hojas; el fondo pasa de oscuro a claro (transición de tema de todo el sitio).
+1. **Mundo** — el hilo se vuelve un tallo que crece y abre hojas; el fondo pasa de oscuro a claro (transición de tema de todo el sitio).
 2. **Problema** — la sala aparece con una agenda de papel desordenada: turnos tachados, mensajes, cancelaciones.
 3. **Razonamiento** — dos piezas conectadas: un teléfono (web app de clientes) y una notebook (Natuadmin) del kit de dispositivos; los turnos viajan como hojas del teléfono a la agenda del panel.
 4. **Solución** — anochece en la sala: pequeñas luces hacen el trabajo repetitivo (turnos fijos generados, mails de confirmación, estadísticas) "mientras el equipo descansa".
 5. **Resultado** — amanece: +650 clientes registrados, +60 turnos por mes. Calma total.
 
-**Interacción:** arrastrar mueve la cortina y la luz; activar el sonido ambiente (control visible en este capítulo).
+**Interacción**
+
+- Greybox/G1: scroll y cámara bastan.
+- Arrastrar cortina/luz: **nice-to-have** (no bloquea greybox).
+- Audio ambiente: **fuera del greybox**; entra cuando haya pista licenciada (T-H09 / I-06), con control visible.
 
 **Técnica**
 
@@ -127,37 +138,41 @@ Construir esto una vez es lo que hace viable el volumen de escenas. Vive en `src
 - Plantas low-poly o tarjetas alfa; cortina con shader de viento en vértices (barato).
 - Ciclo día/noche resuelto mezclando dos lightmaps horneados, no con luces en tiempo real.
 
-**Mobile:** encuadre vertical de una esquina de la sala (planta + camilla); el teléfono pasa al primer plano.
+**Mobile:** encuadre vertical de una esquina de la sala (planta + camilla); el teléfono pasa al primer plano. Hilo = filamento (ADR-006).
 
 **Insumos del humano (T-H09):** modelado o assets con licencia (Poly Haven CC0, Sketchfab con licencia comercial) de macetas, plantas, camilla y cortina; pista de audio con licencia; capturas actualizadas de ambas apps.
 
 ### 3.4 Banner 2.0 — "Una decisión, diez mil pantallas"
 
-| Análisis previo | Propuesta |
+> **Ficha validada** (grilling T-H05, 2026-10-22). Marca en `assets-src/banner/brand/`.
+
+| Análisis previo | Validado |
 | --- | --- |
 | **Qué transmite** | Escala con control: desde un único lugar se gobierna lo que muestran miles de pantallas |
-| **Estética** | Oscuro industrial, las pantallas como única fuente de luz y color; paleta de Banner Director; precisión de sala de control |
+| **Estética** | Oscuro industrial (`#151211` / `#0F0D0C`); pantallas como única fuente de luz y color; acento naranja/coral de marca (`#DA3E00` / `#FFB5A0`). Precisión de sala de control |
 | **Qué debe generar** | Sensación de potencia y escala |
-| **Integración con el proyecto** | Usa el editor visual real (capturas existentes) como pieza flotante y la identidad de Banner Director |
+| **Integración con el proyecto** | Editor visual real (capturas existentes) como pieza flotante; identidad Banner Director |
 
-**Beats**
+**Beats** (5 del mundo Banner; satélites aparte)
 
 1. **Mundo** — una sola pantalla en la oscuridad.
 2. **Problema** — junto a ella aparecen cientos de pantallas descoordinadas, cada una mostrando algo distinto.
 3. **Razonamiento** — el editor visual (capas de UI flotantes del kit) arma una plantilla; planos de filtro aplican las reglas (región, fecha, entidad).
-4. **Solución** — publicar: el filamento se divide en miles de señales que atraviesan el broker de colas y los workers (grafo) y llegan a un mapa de ~10.000 pantallas que se encienden por región.
-5. **Resultado** — zoom a un local: un videowall sincronizado. "≈10.000 equipos activos", logos de clientes (si hay permiso).
+4. **Solución** — publicar: el hilo se divide en miles de señales que atraviesan el broker de colas y los workers (grafo) y llegan a un mapa de ~10.000 pantallas que se encienden por región.
+5. **Resultado** — zoom a un local: un videowall sincronizado. "≈10.000 equipos activos"; logos de clientes con placeholders en greybox (archivos reales en T-H11).
 
-**Satélites (beats extra dentro del mismo mundo):**
+**Satélites** (T-A29, no en greybox T-A14-banner):
 
 - **App Etiquetas** — un teléfono en el local, ondas Wi‑Fi hacia una pantalla puntual que cambia a "sin stock" sin alterar las demás.
 - **Web Landing** — una notebook del kit muestra la landing con sus secciones flotando: "la puerta de entrada comercial".
 
+**Interacción (greybox):** solo scroll/cámara; el “publicar” es animación coreografiada, no gesto obligatorio.
+
 **Técnica:** 10.000 pantallas como un único `InstancedMesh` con estado por instancia en un shader; mapa estilizado como grilla de puntos; grafo de colas del kit.
 
-**Mobile:** el mapa se recorta a una región; el videowall pasa a ser 2×2.
+**Mobile:** el mapa se recorta a una región; el videowall pasa a ser 2×2. Hilo = filamento (ADR-006).
 
-**Insumos del humano (T-H11):** paleta y logo de Banner Director, permiso para mostrar logos de clientes, 2–3 capturas del editor en alta resolución (ya hay 14 en el repo: elegir).
+**Insumos del humano (T-H11):** archivos de logo de clientes autorizados (nombres OK en copy); 2–3 capturas del editor elegidas en alta (hay set en `public/images/proyects/`). Paleta/logo Banner ya en `assets-src/banner/brand/`.
 
 ## 4. Segunda línea (viñetas con el kit)
 
@@ -175,7 +190,7 @@ Sección 2D interactiva, sin WebGL propio: una lista tipográfica grande donde c
 
 Toda transición tiene tres capas sincronizadas por el mismo progreso de scroll:
 
-1. **Hilo conductor:** termina su forma en la escena saliente y empieza la nueva (por ejemplo, la trayectoria de la pelota de Vibo se acelera y se convierte en la señal de Pirp).
+1. **Hilo conductor (ADR-006):** misma curva en desktop (enjambre) y mobile (filamento); termina su forma en la escena saliente y empieza la nueva (por ejemplo, la trayectoria de la pelota de Vibo se acelera y se convierte en la señal de Pirp).
 2. **Paleta:** las CSS variables del DOM interpolan hacia la paleta del capítulo entrante (`ScenePalette`), así texto y canvas cambian juntos.
 3. **Cámara/escena:** crossfade por render target solo si hace falta; preferentemente, la escena entrante arranca en un encuadre que continúa al de la saliente.
 

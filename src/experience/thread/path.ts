@@ -23,8 +23,8 @@ export type ThreadStyle = {
 
 export const THREAD_STYLES = {
   vibo: { line: "#3d8bff", head: "#f5c451", background: "#040a18" },
-  // TODO(humano): reemplazar por la paleta de Pirp cuando llegue I-03.
-  pirp: { line: "#ff5b4f", head: "#fff1e0", background: "#0d0a0c" },
+  // Acento Pirp = bordó de marca (ADR-006 / I-03); no nombrar al cliente.
+  pirp: { line: "#7A1F2B", head: "#EFE9DD", background: "#17181A" },
 } as const satisfies Record<"vibo" | "pirp", ThreadStyle>
 
 export type RenderTier = Exclude<QualityTier, "static">

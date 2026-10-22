@@ -61,12 +61,17 @@ Para agregar una decisión: copiar la plantilla del final, siguiente número lib
 
 ## ADR-006 — Hilo conductor visual
 
-- **Estado:** abierta (alcance del spike acotado el 2026-10-21)
-- **Opciones a explorar:** A. filamento de luz · C. enjambre de partículas. Detalle en `00` §4.
-- **Descartada para el spike:** B. forma geométrica mutante (no explorar).
-- **Cómo se decide:** spike T-A08 con A y C en `/lab/thread`, cada una con transición Vibo→Pirp y versión mobile; el humano elige en desktop y teléfono.
-- **Fecha límite:** antes de G1. Si no se decide a tiempo, se implementa **A** por defecto.
-- **Condición:** C solo se acepta si cumple presupuestos mobile de `02`; si no, gana A.
+- **Estado:** aceptada
+- **Fecha:** 2026-10-22
+- **Decisión (híbrido por viewport):** **C (enjambre) en desktop** · **A (filamento) en mobile**. Misma curva/`ThreadForm` y la misma coreografía de scroll; solo cambia el renderer. Detalle de opciones en `00` §4; spike en T-A08 (`/lab/thread`).
+- **Reglas de selección (T-A13):**
+  - **A (filamento):** viewport estrecho / portrait, nivel `low`, o cuando el monitor de rendimiento baje de tier; también con `prefers-reduced-motion` si el canvas sigue activo.
+  - **C (enjambre):** desktop landscape con calidad `high` o `medium`.
+  - Al cruzar el umbral (resize / cambio de quality) se cambia el renderer sin reiniciar el progreso del capítulo.
+  - El guía usa la **punta** del hilo (cabeza del filamento o centro denso del enjambre): misma API de atractores.
+- **Descartada:** B. forma geométrica mutante (no explorada en el spike).
+- **Color Pirp del hilo:** bordó de marca `#7A1F2B` / cabeza clara (reemplaza el provisional `#ff5b4f` del lab).
+- **Alternativas descartadas:** solo A en todos lados; solo C en todos lados (C no se fuerza en mobile).
 
 ## ADR-007 — Orden del recorrido
 
