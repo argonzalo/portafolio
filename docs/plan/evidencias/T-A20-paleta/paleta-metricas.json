@@ -1,0 +1,42 @@
+{
+  "triangles": 2340,
+  "vertices": 1088,
+  "mesh_objects": 1,
+  "materials": 2,
+  "body_dimensions_m": [
+    0.25180673599243164,
+    0.038,
+    0.455
+  ],
+  "cord_included_bounds_m": [
+    0.25180673599243164,
+    0.03799999877810478,
+    0.5184000134468079
+  ],
+  "origin_blender": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "rotation_blender": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "scale": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "through_holes": 40,
+  "textures": 1,
+  "texture_resolution": [
+    512,
+    512
+  ],
+  "compression": "none",
+  "gltf_up": "+Y",
+  "gltf_front": "+Z",
+  "glb_bytes": 144028,
+  "renders": "Three.js / GLTFLoader, del GLB entregado"
+}

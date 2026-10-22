@@ -1,0 +1,21 @@
+{
+  "triangles": 2340,
+  "renderMeshes": 2,
+  "bounds": [
+    0.25180673599243164,
+    0.5184000059962273,
+    0.03799999877810478
+  ],
+  "rootPosition": [
+    0,
+    0,
+    0
+  ],
+  "rootScale": [
+    1,
+    1,
+    1
+  ],
+  "webgl": true,
+  "pageErrors": []
+}

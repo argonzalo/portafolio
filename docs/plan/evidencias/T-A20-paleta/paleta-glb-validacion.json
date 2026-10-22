@@ -1,0 +1,19 @@
+{
+  "format": "glTF 2.0 binary",
+  "bytes": 144028,
+  "triangles": 2340,
+  "mesh": 1,
+  "primitives": 2,
+  "materials": 2,
+  "textures_px": [
+    512,
+    512
+  ],
+  "uv_overlaps_above_1e_9": 0,
+  "max_uv_overlap_area": 1.1094591911842144e-10,
+  "node_transform": "identity; +Y long axis; +Z front",
+  "compression": "none",
+  "animations": 0,
+  "cameras": 0,
+  "lights": 0
+}

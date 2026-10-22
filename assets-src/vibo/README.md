@@ -3,6 +3,22 @@
 Paquete para T-A14-vibo / T-A20: overlays de detección + métricas.
 Dirección creativa: **ADR-011** (personaje 3D + HUD; sin trayectoria 3D fiel).
 
+## Paleta 3D — entrega T-A20-paleta (2026-10-22)
+
+- Fuente: `paleta.blend`, una sola malla conectada y cerrada; textura normal empaquetada y copia en `textures/paleta-normal.png`.
+- Export: `paleta.glb`, glTF 2.0 binario **sin compresión** (sin Draco/meshopt/KTX2 en esta etapa): **144.028 bytes**, **2.340 triángulos**, 2 materiales PBR / 2 primitivas de render. Normal map **512×512**; color por vértice. Materiales semimate, caras traseras descartadas.
+- Vistas definitivas: `paleta-frente.png`, `paleta-perfil.png`, `paleta-tres-cuartos.png`. Son renders del **GLB final en Three.js**, sobre fondo `#121418`; copias explícitas `paleta-web-*.png`.
+- Cuerpo: **45,5 cm** de largo, **25,18 cm** de ancho, **38 mm** de espesor. Correa flexible incluida: bounding box total de 51,84 cm de alto; el largo del cuerpo excluye el cordón.
+- Pivot: centro del agarre `(0,0,0)`. glTF **+Y hacia la cabeza, +Z hacia el frente, +X hacia la derecha**. Transformación de nodo identidad; escala real en metros. En Blender, eje longitudinal +Z y frente −Y.
+- Forma: cabeza redondeada con garganta en lágrima, corazón triangular abierto, marco con bevel dorado, cara azul profunda, grip gris azulado con costura espiral horneada y correa en la base. Sin logos ni marcas reales.
+- Compromiso técnico frente a las referencias: **40 perforaciones reales de 11 mm y 8 lados**, con paredes suavizadas; se redujo cantidad/resolución para respetar 2.500 triángulos. Sin máscaras alpha ni discos negros.
+- Validación: 0 bordes abiertos/no manifold, 0 vértices sueltos, 0 caras degeneradas, 1 componente conectado, volumen con orientación positiva, modificadores aplicados. UV0 único y empaquetado; 0 solapes con área > `1e-9` (máximo residual numérico `1,11e-10`).
+- Evidencia: `paleta-metricas.json`, `paleta-validacion.json` (medición Blender previa al ajuste de tolerancia), `paleta-glb-validacion.json` (auditoría independiente del export final), `paleta-web-validacion.json` (GLTFLoader + WebGL: 2.340 triángulos, escala/origen correctos, sin errores de página).
+- Copias versionadas de los renders e informes para revisión: [`docs/plan/evidencias/T-A20-paleta/`](../../docs/plan/evidencias/T-A20-paleta/README.md).
+- `npm run check` terminó correctamente. El build emite avisos sobre directivas MDX / tamaño de chunks; esta entrega no modifica código ni dependencias del sitio. `assets:check` aún no evalúa esta fuente, porque no hay GLB optimizados publicados en `public/models/`.
+- Se modeló en el archivo abierto `pala.blend` y se guardó como `paleta.blend`; el archivo de partida se conserva, también en `pala-inicial.blend`. El fuente final quedó abierto en una nueva ventana de Blender después de que la sesión original dejara de responder en un cierre de render.
+- Scripts de construcción y verificación en `modelado/`. **Fuentes ignoradas por Git según ADR-010**: respaldar la carpeta de assets junto al `.blend`. La integración en el jugador y el pipeline de optimización corresponden a T-A20.
+
 ## Origen de datos
 
 | Qué | Fuente |
