@@ -1,7 +1,6 @@
 import { Thread } from "@/experience/thread/Thread"
-import { useEffect, useRef, useState } from "react"
-import { Canvas, useFrame } from "@react-three/fiber"
-import { Color } from "three"
+import { useEffect, useState } from "react"
+import { Canvas } from "@react-three/fiber"
 
 import { DebugOverlay, QualityMonitor } from "@/experience/debug"
 import { mountDeepLinks } from "@/experience/deepLink"
@@ -12,31 +11,11 @@ import {
   QUALITY_DPR,
   syncQualityWithPreferences,
 } from "@/experience/quality"
-import {
-  getLivePalette,
-  mountPalette,
-  SITE_PALETTE,
-} from "@/experience/palette"
+import { mountPalette } from "@/experience/palette"
 import { SceneDirector } from "@/experience/SceneDirector"
 import { experienceStore } from "@/experience/store"
 import { mountChapterScroll } from "@/experience/scroll"
 import { connectStoreSignals } from "@/guide/signals"
-
-/**
- * Fondo WebGL alineado a la paleta viva (T-A15). Prioridad negativa: corre
- * después de los rigs de escena que aún escriben `scene.background` fijo.
- */
-function PaletteBackground() {
-  const color = useRef<Color>(null)
-
-  useFrame(() => {
-    color.current?.set(getLivePalette().background)
-  }, -1)
-
-  return (
-    <color ref={color} attach="background" args={[SITE_PALETTE.background]} />
-  )
-}
 
 type Frameloop = "always" | "demand" | "never"
 
@@ -128,7 +107,6 @@ export function Stage() {
             camera={{ position: [0, 0, 5], fov: 45, near: 0.1, far: 100 }}
             style={{ width: "100%", height: "100%" }}
           >
-            <PaletteBackground />
             <SceneDirector />
             <Thread />
             <QualityMonitor />

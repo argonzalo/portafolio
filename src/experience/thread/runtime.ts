@@ -3,6 +3,7 @@ import { experienceStore } from "../store"
 import type { QualityTier } from "../types"
 import { getSceneByChapter } from "@/scenes/registry"
 import { createThreadClock } from "./clock"
+import { ease } from "@/experience/choreography"
 import {
   CHAPTER_SEQUENCE,
   THREAD_HANDOFF_START,
@@ -52,14 +53,9 @@ export function updateThread(
   extent: ThreadExtent,
   delta: number
 ) {
-  const {
-    clock,
-    frame,
-    target,
-    nextTarget,
-    scratchLineNext,
-    scratchHeadNext,
-  } = runtime
+  void delta // Kept for the lab renderer API; journey damping happens in scroll.ts.
+  const { clock, frame, target, nextTarget, scratchLineNext, scratchHeadNext } =
+    runtime
   const chapter = chapterId ?? "hero"
   const progress = experienceStore.progress(chapter).current
   const form = getSceneByChapter(chapter)?.thread ?? fallbackForm(chapter)
@@ -80,11 +76,7 @@ export function updateThread(
       0,
       1
     )
-    handoff = reducedMotion
-      ? raw < 0.5
-        ? 0
-        : 1
-      : MathUtils.smoothstep(raw, 0, 1)
+    handoff = reducedMotion ? (raw < 0.5 ? 0 : 1) : ease(raw)
 
     const nextForm =
       getSceneByChapter(nextChapter)?.thread ?? fallbackForm(nextChapter)
@@ -108,10 +100,9 @@ export function updateThread(
     targetMix = MathUtils.lerp(profile.mix, nextProfile.mix, handoff)
   }
 
-  const blend =
-    !runtime.initialized || reducedMotion
-      ? 1
-      : 1 - Math.exp(-Math.min(delta, 0.05) * 10)
+  // The document playhead is already damped. A second filter would make the
+  // thread trail behind the world/camera and break reversible scrubbing.
+  const blend = 1
 
   frame.points.forEach((point, index) =>
     point.lerp(target.points[index], blend)
@@ -131,7 +122,8 @@ export function updateThread(
 
   const idx = chapterIndexOf(chapter)
   const targetFlow =
-    (((CUMULATIVE_FLOW[idx] ?? 0) + progress * profile.speed * 0.15) % 1 + 1) %
+    ((((CUMULATIVE_FLOW[idx] ?? 0) + progress * profile.speed * 0.15) % 1) +
+      1) %
     1
   const targetTime = (CUMULATIVE_TIME[idx] ?? 0) + progress * profile.speed * 4
 

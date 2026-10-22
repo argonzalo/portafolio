@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useContext, useRef, useState } from "react"
 import { useFrame } from "@react-three/fiber"
 import { Html } from "@react-three/drei"
 import { Group, InstancedMesh, Object3D } from "three"
@@ -6,11 +6,18 @@ import type { SceneProps } from "@/experience/types"
 import { emitInteract } from "@/guide/signals"
 import { phase, useGreyboxRig, type CameraFrame } from "../greybox/runtime"
 
+import { envelope, ramp } from "@/experience/choreography"
+import {
+  PresentationContext,
+  reveal,
+  revealHtml,
+} from "@/experience/presentation"
+
 const cameras: CameraFrame[] = [
   { at: 0, desktop: [10, 9, 13], mobile: [12, 15, 21], target: [0, 0, 0] },
   { at: 0.3, desktop: [5, 3.5, 7], mobile: [4, 3.8, 9], target: [0, 1, 0] },
   { at: 0.55, desktop: [4, 4, 8], mobile: [5, 5, 11], target: [0, 1, 0] },
-  { at: 0.7, desktop: [0, 15, 0.1], mobile: [0, 22, 0.1], target: [0, 0, 0] },
+  { at: 0.7, desktop: [2, 13, 9], mobile: [2, 19, 12], target: [0, 0, 0] },
   { at: 1, desktop: [8, 7, 11], mobile: [9, 12, 17], target: [0, 0, 0] },
 ]
 const pipeline = [
@@ -22,6 +29,7 @@ const pipeline = [
 ]
 
 export default function ViboScene(props: SceneProps) {
+  const presentation = useContext(PresentationContext)
   useGreyboxRig(props, "#071426", cameras)
   const player = useRef<Group>(null)
   const arm = useRef<Group>(null)
@@ -43,21 +51,22 @@ export default function ViboScene(props: SceneProps) {
     if (!paused.current && scrub.current === null)
       pose.current = phase(p, 0.22, 0.54)
     const t = scrub.current ?? pose.current
-    if (resultRef.current) resultRef.current.hidden = !props.active || p < 0.8
+    const alpha = presentation?.current.opacity ?? 1
+    revealHtml(resultRef.current, alpha * ramp(p, 0.77, 0.84))
     if (arm.current) arm.current.rotation.z = -1.6 + t * 2.6
     if (player.current) player.current.rotation.y = -0.45 + t * 0.8
-    if (overlay.current) overlay.current.visible = p >= 0.23 && p < 0.6
-    if (ui.current) ui.current.hidden = !props.active || p < 0.2 || p >= 0.58
+    reveal(overlay.current, envelope(p, 0.21, 0.62, 0.06))
+    revealHtml(ui.current, alpha * envelope(p, 0.2, 0.6, 0.04))
     if (pipelineRef.current) {
-      pipelineRef.current.style.visibility =
-        !props.active || p < 0.25 || p >= 0.58 ? "hidden" : "visible"
+      revealHtml(pipelineRef.current, alpha * envelope(p, 0.24, 0.6, 0.04))
       Array.from(pipelineRef.current.children).forEach((node, i) => {
-        ;(node as HTMLElement).style.opacity =
-          p > 0.25 + i * 0.055 ? "1" : "0.25"
+        ;(node as HTMLElement).style.opacity = String(
+          0.25 + 0.75 * ramp(p, 0.25 + i * 0.055, 0.29 + i * 0.055)
+        )
       })
     }
     if (heat.current) {
-      heat.current.visible = p >= 0.58
+      reveal(heat.current, ramp(p, 0.56, 0.67))
       for (let i = 0; i < 24; i++) {
         dummy.position.set(
           ((i % 4) - 1.5) * 1.7,
@@ -73,7 +82,7 @@ export default function ViboScene(props: SceneProps) {
       }
       heat.current.instanceMatrix.needsUpdate = true
     }
-  })
+  }, -1)
   return (
     <group>
       <mesh rotation-x={-Math.PI / 2}>
@@ -184,7 +193,6 @@ export default function ViboScene(props: SceneProps) {
       <Html fullscreen style={{ pointerEvents: "none" }}>
         <div
           ref={resultRef}
-          hidden
           style={{
             position: "absolute",
             top: "45%",
@@ -210,7 +218,6 @@ export default function ViboScene(props: SceneProps) {
         </div>
         <div
           ref={ui}
-          hidden
           style={{
             position: "absolute",
             bottom: props.isMobile ? "24%" : "15%",

@@ -1,0 +1,2021 @@
+{
+  "views": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "quality": "high",
+      "cpu": 1,
+      "beats": [
+        {
+          "id": "vibo",
+          "p": 0.1,
+          "chapter": "vibo",
+          "camera": [
+            8.950617283950617,
+            7.845679012345679,
+            11.74074074074074
+          ],
+          "quaternion": [
+            -0.22397460445561013,
+            0.3108850155946318,
+            0.07563759724637294,
+            0.9205785341406099
+          ],
+          "tip": [
+            -2.8051162790697677,
+            1.0686731360259418,
+            1.146511627906977
+          ],
+          "gpu": {
+            "geometries": 24,
+            "textures": 0,
+            "programs": 2,
+            "calls": 24,
+            "triangles": 298,
+            "mountedScenes": 2,
+            "jsHeapMB": 72,
+            "at": 3863.7999999523163
+          },
+          "background": "071426",
+          "caption": [
+            {
+              "id": "vibo",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "vibo",
+          "p": 0.2998536395162239,
+          "chapter": "vibo",
+          "camera": [
+            5.000000005801764,
+            3.500000006381941,
+            7.000000006962118
+          ],
+          "quaternion": [
+            -0.13421970677837414,
+            0.30213104750071,
+            0.043012725507010185,
+            0.9427893751485055
+          ],
+          "tip": [
+            -1.5362780560946725,
+            1.6415192935662315,
+            0.24019861149619448
+          ],
+          "gpu": {
+            "geometries": 29,
+            "textures": 0,
+            "programs": 3,
+            "calls": 25,
+            "triangles": 330,
+            "mountedScenes": 2,
+            "jsHeapMB": 77.1,
+            "at": 4863.399999976158
+          },
+          "background": "071426",
+          "caption": [
+            {
+              "id": "vibo",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "vibo",
+          "p": 0.4998536088039843,
+          "chapter": "vibo",
+          "camera": [
+            4.058370701345431,
+            3.9708146493272847,
+            7.941629298654569
+          ],
+          "quaternion": [
+            -0.15563617974096083,
+            0.23100572896519359,
+            0.03746287274591759,
+            0.9596927976735691
+          ],
+          "tip": [
+            -0.2665108092212156,
+            1.6329407582950966,
+            -0.6667779934134173
+          ],
+          "gpu": {
+            "geometries": 29,
+            "textures": 0,
+            "programs": 3,
+            "calls": 26,
+            "triangles": 342,
+            "mountedScenes": 2,
+            "jsHeapMB": 73.9,
+            "at": 5863
+          },
+          "background": "071426",
+          "caption": [
+            {
+              "id": "vibo",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "vibo",
+          "p": 0.6998534942429114,
+          "chapter": "vibo",
+          "camera": [
+            2.000000018607321,
+            12.999999916267056,
+            8.99999999069634
+          ],
+          "quaternion": [
+            -0.4563417472920826,
+            0.09693862110589975,
+            0.05009365113017099,
+            0.8830887495223481
+          ],
+          "tip": [
+            1.003255905309648,
+            0.5147077154894856,
+            -1.298991034973067
+          ],
+          "gpu": {
+            "geometries": 30,
+            "textures": 0,
+            "programs": 4,
+            "calls": 23,
+            "triangles": 658,
+            "mountedScenes": 2,
+            "jsHeapMB": 77.7,
+            "at": 6862.699999928474
+          },
+          "background": "071426",
+          "caption": [
+            {
+              "id": "vibo",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "vibo",
+          "p": 0.8398823074681233,
+          "chapter": "vibo",
+          "camera": [
+            4.621735764801281,
+            10.378264235198719,
+            9.873911921600428
+          ],
+          "quaternion": [
+            -0.3624277573096071,
+            0.2016257488840343,
+            0.08062422157334607,
+            0.906362462271123
+          ],
+          "tip": [
+            1.9092295879802825,
+            0.8002635559953284,
+            -1.874546233038517
+          ],
+          "gpu": {
+            "geometries": 30,
+            "textures": 0,
+            "programs": 4,
+            "calls": 23,
+            "triangles": 658,
+            "mountedScenes": 2,
+            "jsHeapMB": 75.6,
+            "at": 7862.399999976158
+          },
+          "background": "071426",
+          "caption": [
+            {
+              "id": "vibo",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "pirp",
+          "p": 0.099854806065886,
+          "chapter": "pirp",
+          "camera": [
+            0.10458002851541918,
+            0,
+            9.209160057030838
+          ],
+          "quaternion": [
+            0,
+            0.005677769241186834,
+            0,
+            0.9999838813383163
+          ],
+          "tip": [
+            -2.306038091721235,
+            -0.24493102328906408,
+            0
+          ],
+          "gpu": {
+            "geometries": 4,
+            "textures": 0,
+            "programs": 4,
+            "calls": 4,
+            "triangles": 1828,
+            "mountedScenes": 2,
+            "jsHeapMB": 79.2,
+            "at": 8862.100000023842
+          },
+          "background": "17181a",
+          "caption": [
+            {
+              "id": "pirp",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "pirp",
+          "p": 0.299853726474083,
+          "chapter": "pirp",
+          "camera": [
+            0.49999999942085727,
+            0,
+            9.999999998841714
+          ],
+          "quaternion": [
+            0,
+            0.024976600244618216,
+            0,
+            0.9996880360593603
+          ],
+          "tip": [
+            -1.0362775040133805,
+            -0.47532014616690055,
+            0
+          ],
+          "gpu": {
+            "geometries": 5,
+            "textures": 0,
+            "programs": 6,
+            "calls": 2,
+            "triangles": 1008,
+            "mountedScenes": 2,
+            "jsHeapMB": 79.4,
+            "at": 9861.899999976158
+          },
+          "background": "17181a",
+          "caption": [
+            {
+              "id": "pirp",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "pirp",
+          "p": 0.4998534769538144,
+          "chapter": "pirp",
+          "camera": [
+            1.9639051496156412e-9,
+            0.3999999984288759,
+            9.000000003927811
+          ],
+          "quaternion": [
+            -0.022205782188385842,
+            1.0907893841218354e-10,
+            2.4227805539989887e-12,
+            0.999753421218153
+          ],
+          "tip": [
+            0.23348835368351856,
+            -0.4965730993998987,
+            0
+          ],
+          "gpu": {
+            "geometries": 8,
+            "textures": 0,
+            "programs": 7,
+            "calls": 6,
+            "triangles": 1530,
+            "mountedScenes": 2,
+            "jsHeapMB": 78.8,
+            "at": 10861.399999976158
+          },
+          "background": "17181a",
+          "caption": [
+            {
+              "id": "pirp",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "pirp",
+          "p": 0.6998535990039628,
+          "chapter": "pirp",
+          "camera": [
+            0,
+            1.5672024789026295e-9,
+            9
+          ],
+          "quaternion": [
+            -8.706680438347941e-11,
+            0,
+            0,
+            1
+          ],
+          "tip": [
+            1.5032565704205088,
+            -0.4107237406797848,
+            0
+          ],
+          "gpu": {
+            "geometries": 15,
+            "textures": 0,
+            "programs": 8,
+            "calls": 8,
+            "triangles": 252,
+            "mountedScenes": 2,
+            "jsHeapMB": 77.3,
+            "at": 11861.199999928474
+          },
+          "background": "17181a",
+          "caption": [
+            {
+              "id": "pirp",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "pirp",
+          "p": 0.8398823014479984,
+          "chapter": "pirp",
+          "camera": [
+            0,
+            0,
+            8.781522038241988
+          ],
+          "quaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "tip": [
+            2.2202627224204257,
+            -0.08687411065848115,
+            0
+          ],
+          "gpu": {
+            "geometries": 15,
+            "textures": 0,
+            "programs": 8,
+            "calls": 9,
+            "triangles": 276,
+            "mountedScenes": 2,
+            "jsHeapMB": 77,
+            "at": 12860.799999952316
+          },
+          "background": "17181a",
+          "caption": [
+            {
+              "id": "pirp",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "naturalis",
+          "p": 0.09985581341133648,
+          "chapter": "naturalis",
+          "camera": [
+            5.680785891985536,
+            3.3227746569286403,
+            7.631676029214081
+          ],
+          "quaternion": [
+            -0.15034248865055674,
+            0.3312294315668886,
+            0.05354866033824916,
+            0.9299552358830031
+          ],
+          "tip": [
+            -2.6724864052169974,
+            -1.0155998398619595,
+            0
+          ],
+          "gpu": {
+            "geometries": 36,
+            "textures": 0,
+            "programs": 3,
+            "calls": 36,
+            "triangles": 638,
+            "mountedScenes": 2,
+            "jsHeapMB": 77,
+            "at": 13860.5
+          },
+          "background": "fafdfc",
+          "caption": [
+            {
+              "id": "naturalis",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "naturalis",
+          "p": 0.29985348272454576,
+          "chapter": "naturalis",
+          "camera": [
+            4.6955267775364815,
+            3.6929706504144706,
+            6.5
+          ],
+          "quaternion": [
+            -0.2294215436697424,
+            0.2987614866635775,
+            0.07423127108955627,
+            0.9233618184542777
+          ],
+          "tip": [
+            -2.5631652497784954,
+            -0.4656904249000766,
+            0.005580580673516215
+          ],
+          "gpu": {
+            "geometries": 48,
+            "textures": 0,
+            "programs": 3,
+            "calls": 48,
+            "triangles": 782,
+            "mountedScenes": 2,
+            "jsHeapMB": 81.4,
+            "at": 14860.100000023842
+          },
+          "background": "fafdfc",
+          "caption": [
+            {
+              "id": "naturalis",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "naturalis",
+          "p": 0.4998537261554617,
+          "chapter": "naturalis",
+          "camera": [
+            4.000000002055402,
+            2.6000000032299173,
+            6.5
+          ],
+          "quaternion": [
+            -0.16035925537523335,
+            0.22996244815647138,
+            0.038448110138645325,
+            0.9591266467365763
+          ],
+          "tip": [
+            -0.9824079182533423,
+            0.4841856190735752,
+            0.47647300034530854
+          ],
+          "gpu": {
+            "geometries": 64,
+            "textures": 0,
+            "programs": 3,
+            "calls": 52,
+            "triangles": 926,
+            "mountedScenes": 2,
+            "jsHeapMB": 85.3,
+            "at": 15859.799999952316
+          },
+          "background": "fafdfc",
+          "caption": [
+            {
+              "id": "naturalis",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "naturalis",
+          "p": 0.6998536042684468,
+          "chapter": "naturalis",
+          "camera": [
+            5.999999992164831,
+            3.7999999952988985,
+            8.499999992164831
+          ],
+          "quaternion": [
+            -0.15802069275545727,
+            0.2983297884106961,
+            0.05015381954341064,
+            0.9399539309950895
+          ],
+          "tip": [
+            0.682958468480512,
+            0.893035813013417,
+            0.5853123864350716
+          ],
+          "gpu": {
+            "geometries": 69,
+            "textures": 0,
+            "programs": 3,
+            "calls": 53,
+            "triangles": 962,
+            "mountedScenes": 2,
+            "jsHeapMB": 77.2,
+            "at": 16859.399999976158
+          },
+          "background": "fafdfc",
+          "caption": [
+            {
+              "id": "naturalis",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "naturalis",
+          "p": 0.8398824055010551,
+          "chapter": "naturalis",
+          "camera": [
+            5.694130402439517,
+            3.2756521184677423,
+            8.587391313588709
+          ],
+          "quaternion": [
+            -0.132827283482086,
+            0.2858031722775242,
+            0.04003662450536293,
+            0.9481932968425214
+          ],
+          "tip": [
+            1.2435739603841471,
+            0.9049801512868779,
+            0.3793681528811754
+          ],
+          "gpu": {
+            "geometries": 69,
+            "textures": 0,
+            "programs": 3,
+            "calls": 53,
+            "triangles": 962,
+            "mountedScenes": 2,
+            "jsHeapMB": 80.4,
+            "at": 17859.199999928474
+          },
+          "background": "fafdfc",
+          "caption": [
+            {
+              "id": "naturalis",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "banner-2",
+          "p": 0.09985581341259926,
+          "chapter": "banner-2",
+          "camera": [
+            0.12549901462620827,
+            0.6418330048754027,
+            10.418330048754028
+          ],
+          "quaternion": [
+            -0.030756549424834707,
+            0.0060198138218926405,
+            0.0001852396984093801,
+            0.9995087604394878
+          ],
+          "tip": [
+            -2.704688992531524,
+            -1.352344496265762,
+            1
+          ],
+          "gpu": {
+            "geometries": 5,
+            "textures": 0,
+            "programs": 3,
+            "calls": 5,
+            "triangles": 18,
+            "mountedScenes": 1,
+            "jsHeapMB": 78.1,
+            "at": 18859.100000023842
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "banner-2",
+          "p": 0.2998534775988325,
+          "chapter": "banner-2",
+          "camera": [
+            0.5999999993014765,
+            0.7999999997671589,
+            11.999999997671589
+          ],
+          "quaternion": [
+            -0.03322618609302879,
+            0.02496280100185171,
+            0.0008301361403003821,
+            0.9991357215102672
+          ],
+          "tip": [
+            -1.1744852359700106,
+            -0.542990890286354,
+            1
+          ],
+          "gpu": {
+            "geometries": 6,
+            "textures": 0,
+            "programs": 5,
+            "calls": 6,
+            "triangles": 378,
+            "mountedScenes": 1,
+            "jsHeapMB": 79.8,
+            "at": 19858.799999952316
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "banner-2",
+          "p": 0.49985360423796293,
+          "chapter": "banner-2",
+          "camera": [
+            0.6,
+            0.8,
+            11.000000003917584
+          ],
+          "quaternion": [
+            -0.036224650678712625,
+            0.02722446414348155,
+            0.0009872112741362415,
+            0.998972286226803
+          ],
+          "tip": [
+            0.24592380563987343,
+            0.07028037426443667,
+            1
+          ],
+          "gpu": {
+            "geometries": 13,
+            "textures": 0,
+            "programs": 5,
+            "calls": 12,
+            "triangles": 42,
+            "mountedScenes": 1,
+            "jsHeapMB": 81.3,
+            "at": 20858.299999952316
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "banner-2",
+          "p": 0.6998534821917549,
+          "chapter": "banner-2",
+          "camera": [
+            2.3564331597114574e-9,
+            0.5000000011782166,
+            11.999999996072612
+          ],
+          "quaternion": [
+            -0.02081978520896875,
+            9.816343297065712e-11,
+            2.0441846775225294e-12,
+            0.9997832447805136
+          ],
+          "tip": [
+            1.5279876643954171,
+            1.184185911412252,
+            1
+          ],
+          "gpu": {
+            "geometries": 23,
+            "textures": 0,
+            "programs": 7,
+            "calls": 15,
+            "triangles": 20194,
+            "mountedScenes": 1,
+            "jsHeapMB": 83.5,
+            "at": 21858.199999928474
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "banner-2",
+          "p": 0.8398823127322191,
+          "chapter": "banner-2",
+          "camera": [
+            0.24422682097647175,
+            0.43894329475588206,
+            10.778865895117642
+          ],
+          "quaternion": [
+            -0.02034212460688257,
+            0.011324442110037008,
+            0.0002304256776356698,
+            0.9997289141969345
+          ],
+          "tip": [
+            2.671715800814598,
+            0.5471668479029932,
+            1
+          ],
+          "gpu": {
+            "geometries": 56,
+            "textures": 0,
+            "programs": 7,
+            "calls": 48,
+            "triangles": 20350,
+            "mountedScenes": 1,
+            "jsHeapMB": 86.1,
+            "at": 22857.899999976158
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "quality": "medium",
+          "chapter": "banner-2",
+          "p": 0.6998812926522959,
+          "camera": [
+            1.2534498994298815e-9,
+            0.5000000006267249,
+            11.999999997910917
+          ],
+          "quaternion": [
+            -0.02081978518284944,
+            5.221575866002763e-11,
+            1.0873565686723968e-12,
+            0.9997832447810576
+          ],
+          "tip": [
+            1.528180664401698,
+            1.184239141447259,
+            1
+          ],
+          "gpu": {
+            "geometries": 23,
+            "textures": 0,
+            "programs": 7,
+            "calls": 15,
+            "triangles": 5194,
+            "mountedScenes": 1,
+            "jsHeapMB": 87.8,
+            "at": 50900.299999952316
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "quality": "low",
+          "chapter": "banner-2",
+          "p": 0.6999484099993513,
+          "camera": [
+            1.0294176622238638e-10,
+            0.5000000000514708,
+            11.99999999982843
+          ],
+          "quaternion": [
+            -0.02081978515560472,
+            4.28831054411835e-12,
+            8.930106067996726e-14,
+            0.999783244781625
+          ],
+          "tip": [
+            1.5286464477131319,
+            1.1843673928807972,
+            1
+          ],
+          "gpu": {
+            "geometries": 24,
+            "textures": 0,
+            "programs": 7,
+            "calls": 16,
+            "triangles": 2274,
+            "mountedScenes": 1,
+            "jsHeapMB": 87.8,
+            "at": 50900.299999952316
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "quality": "high",
+          "chapter": "banner-2",
+          "p": 0.7,
+          "camera": [
+            0,
+            0.5,
+            12
+          ],
+          "quaternion": [
+            -0.020819785153167004,
+            0,
+            0,
+            0.9997832447816758
+          ],
+          "tip": [
+            1.5290044738031545,
+            1.184465768865387,
+            1
+          ],
+          "gpu": {
+            "geometries": 23,
+            "textures": 0,
+            "programs": 7,
+            "calls": 15,
+            "triangles": 20194,
+            "mountedScenes": 1,
+            "jsHeapMB": 87.8,
+            "at": 50900.299999952316
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        }
+      ],
+      "joins": [
+        {
+          "id": "vibo",
+          "next": "pirp",
+          "positionDelta": 3.000477901889606e-7,
+          "rotationDelta": 1.639359419892867e-8,
+          "tipDelta": 0.0009579765566671568,
+          "reversePositionError": 3.2086701934216595e-8,
+          "reverseTipError": 4.591892340533359e-9
+        },
+        {
+          "id": "pirp",
+          "next": "naturalis",
+          "positionDelta": 0.0000011204729865042808,
+          "rotationDelta": 4.5131593359038204e-8,
+          "tipDelta": 0.0003997650076620704,
+          "reversePositionError": 0.0000010348525902916565,
+          "reverseTipError": 9.688263050009719e-8
+        },
+        {
+          "id": "naturalis",
+          "next": "banner-2",
+          "positionDelta": 9.810611551101878e-7,
+          "rotationDelta": 4.663100575873221e-8,
+          "tipDelta": 0.0011985406794697141,
+          "reversePositionError": 9.071138753287134e-7,
+          "reverseTipError": 2.7804701820634915e-7
+        }
+      ],
+      "motion": [
+        {
+          "id": "vibo",
+          "next": "pirp",
+          "frames": 181,
+          "fps": 60.01923268229597,
+          "p95": 16.799999999999272,
+          "maxCalls": 27,
+          "maxTriangles": 2498,
+          "maxCameraStep": 0.3692423211484416,
+          "crossed": true
+        },
+        {
+          "id": "pirp",
+          "next": "naturalis",
+          "frames": 181,
+          "fps": 60.01923268229589,
+          "p95": 16.80000000000291,
+          "maxCalls": 36,
+          "maxTriangles": 638,
+          "maxCameraStep": 0.23407550452080114,
+          "crossed": true
+        },
+        {
+          "id": "naturalis",
+          "next": "banner-2",
+          "frames": 178,
+          "fps": 59.02248159692281,
+          "p95": 16.80000000000291,
+          "maxCalls": 53,
+          "maxTriangles": 962,
+          "maxCameraStep": 0.3830571764091509,
+          "crossed": true
+        }
+      ],
+      "memory": [
+        {
+          "cycle": 0,
+          "geometries": 1,
+          "textures": 0,
+          "programs": 1,
+          "calls": 1,
+          "triangles": 0,
+          "mountedScenes": 0,
+          "jsHeapMB": 97.5,
+          "at": 52999.60000002384
+        },
+        {
+          "cycle": 1,
+          "geometries": 1,
+          "textures": 0,
+          "programs": 1,
+          "calls": 1,
+          "triangles": 0,
+          "mountedScenes": 0,
+          "jsHeapMB": 89.3,
+          "at": 56165.299999952316
+        },
+        {
+          "cycle": 2,
+          "geometries": 1,
+          "textures": 0,
+          "programs": 1,
+          "calls": 1,
+          "triangles": 0,
+          "mountedScenes": 0,
+          "jsHeapMB": 113.9,
+          "at": 59747.5
+        }
+      ],
+      "reducedMotion": "static, sin canvas"
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "quality": "low",
+      "cpu": 4,
+      "beats": [
+        {
+          "id": "vibo",
+          "p": 0.09982227488151658,
+          "chapter": "vibo",
+          "camera": [
+            10.3280026487774,
+            12.65920370828836,
+            18.4920039731661
+          ],
+          "quaternion": [
+            -0.25411842207317875,
+            0.2430923290006069,
+            0.0661547056336168,
+            0.9337845051544965
+          ],
+          "tip": [
+            -2.8062446269150225,
+            1.4823121249570983,
+            1.1473175906535875
+          ],
+          "gpu": {
+            "geometries": 21,
+            "textures": 0,
+            "programs": 3,
+            "calls": 21,
+            "triangles": 506,
+            "mountedScenes": 2,
+            "jsHeapMB": 73.1,
+            "at": 4008.2999999523163
+          },
+          "background": "071426",
+          "caption": [
+            {
+              "id": "vibo",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "vibo",
+          "p": 0.2999127078094897,
+          "chapter": "vibo",
+          "camera": [
+            4.000000001969984,
+            3.8000000027579777,
+            9.000000002954977
+          ],
+          "quaternion": [
+            -0.13504469735477068,
+            0.20560379309378168,
+            0.02865843623949695,
+            0.9688491647383067
+          ],
+          "tip": [
+            -1.5359030411164958,
+            2.0559040093261083,
+            0.2399307436546398
+          ],
+          "gpu": {
+            "geometries": 26,
+            "textures": 0,
+            "programs": 4,
+            "calls": 25,
+            "triangles": 574,
+            "mountedScenes": 2,
+            "jsHeapMB": 76.9,
+            "at": 4540.100000023842
+          },
+          "background": "071426",
+          "caption": [
+            {
+              "id": "vibo",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "vibo",
+          "p": 0.49985362930715166,
+          "chapter": "vibo",
+          "camera": [
+            4.941629361916931,
+            4.929955234300317,
+            10.883258723833862
+          ],
+          "quaternion": [
+            -0.15458506424153665,
+            0.20884001290641704,
+            0.03345184333260876,
+            0.9650752722458171
+          ],
+          "tip": [
+            -0.2665106790499446,
+            2.04715425027625,
+            -0.6667780863928966
+          ],
+          "gpu": {
+            "geometries": 26,
+            "textures": 0,
+            "programs": 4,
+            "calls": 25,
+            "triangles": 574,
+            "mountedScenes": 2,
+            "jsHeapMB": 74,
+            "at": 5541.399999976158
+          },
+          "background": "071426",
+          "caption": [
+            {
+              "id": "vibo",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "vibo",
+          "p": 0.6998132975595702,
+          "chapter": "vibo",
+          "camera": [
+            2.0000000577412607,
+            18.999999730540786,
+            11.999999980752913
+          ],
+          "quaternion": [
+            -0.4783502498065686,
+            0.07235821793960392,
+            0.03958947823283342,
+            0.8742871381988014
+          ],
+          "tip": [
+            1.0030007031107602,
+            0.9288416628897906,
+            -1.2989136732540774
+          ],
+          "gpu": {
+            "geometries": 28,
+            "textures": 0,
+            "programs": 5,
+            "calls": 22,
+            "triangles": 698,
+            "mountedScenes": 2,
+            "jsHeapMB": 78.1,
+            "at": 6573.899999976158
+          },
+          "background": "071426",
+          "caption": [
+            {
+              "id": "vibo",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "vibo",
+          "p": 0.8398917946953973,
+          "chapter": "vibo",
+          "camera": [
+            5.059103027077591,
+            15.94089697292241,
+            14.185073590769708
+          ],
+          "quaternion": [
+            -0.38997137713669316,
+            0.15653947280895325,
+            0.0674605643036145,
+            0.9049125873423597
+          ],
+          "tip": [
+            1.909305360443708,
+            1.214473252106833,
+            -1.8745649162735227
+          ],
+          "gpu": {
+            "geometries": 28,
+            "textures": 0,
+            "programs": 5,
+            "calls": 22,
+            "triangles": 698,
+            "mountedScenes": 2,
+            "jsHeapMB": 75.8,
+            "at": 7606.799999952316
+          },
+          "background": "071426",
+          "caption": [
+            {
+              "id": "vibo",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "pirp",
+          "p": 0.09987356765894896,
+          "chapter": "pirp",
+          "camera": [
+            0,
+            0,
+            11.209252580914209
+          ],
+          "quaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "tip": [
+            -2.3059189774210913,
+            0.1693081029114815,
+            0
+          ],
+          "gpu": {
+            "geometries": 5,
+            "textures": 0,
+            "programs": 5,
+            "calls": 5,
+            "triangles": 2108,
+            "mountedScenes": 2,
+            "jsHeapMB": 76.6,
+            "at": 8873.899999976158
+          },
+          "background": "17181a",
+          "caption": [
+            {
+              "id": "pirp",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "pirp",
+          "p": 0.2998726140202787,
+          "chapter": "pirp",
+          "camera": [
+            0,
+            0,
+            11.999999999234891
+          ],
+          "quaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "tip": [
+            -1.0361575900572997,
+            -0.061079206362617655,
+            0
+          ],
+          "gpu": {
+            "geometries": 6,
+            "textures": 0,
+            "programs": 7,
+            "calls": 3,
+            "triangles": 712,
+            "mountedScenes": 2,
+            "jsHeapMB": 76.7,
+            "at": 9921.899999976158
+          },
+          "background": "17181a",
+          "caption": [
+            {
+              "id": "pirp",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "pirp",
+          "p": 0.4998725015019298,
+          "chapter": "pirp",
+          "camera": [
+            0,
+            0,
+            11.000000002588271
+          ],
+          "quaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "tip": [
+            0.23360913744248554,
+            -0.08219815091762456,
+            0
+          ],
+          "gpu": {
+            "geometries": 9,
+            "textures": 0,
+            "programs": 7,
+            "calls": 7,
+            "triangles": 1234,
+            "mountedScenes": 2,
+            "jsHeapMB": 79.7,
+            "at": 10456.299999952316
+          },
+          "background": "17181a",
+          "caption": [
+            {
+              "id": "pirp",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "pirp",
+          "p": 0.6998726076653257,
+          "chapter": "pirp",
+          "camera": [
+            0,
+            0,
+            11
+          ],
+          "quaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "tip": [
+            1.503377253317068,
+            0.003731783089278795,
+            0
+          ],
+          "gpu": {
+            "geometries": 16,
+            "textures": 0,
+            "programs": 9,
+            "calls": 9,
+            "triangles": 532,
+            "mountedScenes": 2,
+            "jsHeapMB": 73.1,
+            "at": 11506.600000023842
+          },
+          "background": "17181a",
+          "caption": [
+            {
+              "id": "pirp",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "pirp",
+          "p": 0.839891849948768,
+          "chapter": "pirp",
+          "camera": [
+            0,
+            0,
+            10.562984939641774
+          ],
+          "quaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "tip": [
+            2.220162393551865,
+            0.32729134001249205,
+            0
+          ],
+          "gpu": {
+            "geometries": 16,
+            "textures": 0,
+            "programs": 9,
+            "calls": 10,
+            "triangles": 556,
+            "mountedScenes": 2,
+            "jsHeapMB": 76.4,
+            "at": 12554.399999976158
+          },
+          "background": "17181a",
+          "caption": [
+            {
+              "id": "pirp",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "naturalis",
+          "p": 0.09985582130926146,
+          "chapter": "naturalis",
+          "camera": [
+            4.7544506415944,
+            4.8772253207972005,
+            22.508901283188802
+          ],
+          "quaternion": [
+            -0.09957756719889854,
+            0.10337290075278223,
+            0.010401896336268738,
+            0.9895909013594022
+          ],
+          "tip": [
+            -2.6724864004536233,
+            -0.6013862566068416,
+            0
+          ],
+          "gpu": {
+            "geometries": 28,
+            "textures": 0,
+            "programs": 4,
+            "calls": 28,
+            "triangles": 714,
+            "mountedScenes": 2,
+            "jsHeapMB": 74.5,
+            "at": 13670.600000023842
+          },
+          "background": "fafdfc",
+          "caption": [
+            {
+              "id": "naturalis",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "naturalis",
+          "p": 0.2998725021722973,
+          "chapter": "naturalis",
+          "camera": [
+            3.99359218574528,
+            4.49359218574528,
+            20.98718437149056
+          ],
+          "quaternion": [
+            -0.09856691670977417,
+            0.09341986220844985,
+            0.009294620872659056,
+            0.9906921329545906
+          ],
+          "tip": [
+            -2.5631326461167756,
+            -0.051411442818453945,
+            0.005591243929734143
+          ],
+          "gpu": {
+            "geometries": 40,
+            "textures": 0,
+            "programs": 4,
+            "calls": 40,
+            "triangles": 858,
+            "mountedScenes": 2,
+            "jsHeapMB": 77.7,
+            "at": 14204
+          },
+          "background": "fafdfc",
+          "caption": [
+            {
+              "id": "naturalis",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "naturalis",
+          "p": 0.4998534639355307,
+          "chapter": "naturalis",
+          "camera": [
+            3.0000000029521035,
+            3.5000000029521035,
+            19.000000005904205
+          ],
+          "quaternion": [
+            -0.08459028334377063,
+            0.07793886495050417,
+            0.006637068161542845,
+            0.9933408109104682
+          ],
+          "tip": [
+            -0.9824111147001107,
+            0.8983980490866047,
+            0.47647227276894194
+          ],
+          "gpu": {
+            "geometries": 54,
+            "textures": 0,
+            "programs": 4,
+            "calls": 42,
+            "triangles": 930,
+            "mountedScenes": 2,
+            "jsHeapMB": 81.7,
+            "at": 15236.700000047684
+          },
+          "background": "fafdfc",
+          "caption": [
+            {
+              "id": "naturalis",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "naturalis",
+          "p": 0.6998726076264902,
+          "chapter": "naturalis",
+          "camera": [
+            4.999999994836368,
+            4.999999996127276,
+            22.999999989672737
+          ],
+          "quaternion": [
+            -0.09984279773962558,
+            0.10628614757171263,
+            0.01072720187624868,
+            0.9892520395297625
+          ],
+          "tip": [
+            0.6830289265944967,
+            1.3072586134781203,
+            0.5852859094444912
+          ],
+          "gpu": {
+            "geometries": 57,
+            "textures": 0,
+            "programs": 4,
+            "calls": 43,
+            "triangles": 966,
+            "mountedScenes": 2,
+            "jsHeapMB": 84.7,
+            "at": 16287.899999976158
+          },
+          "background": "fafdfc",
+          "caption": [
+            {
+              "id": "naturalis",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "naturalis",
+          "p": 0.8398917203428864,
+          "chapter": "naturalis",
+          "camera": [
+            5,
+            5,
+            23
+          ],
+          "quaternion": [
+            -0.09984279777107571,
+            0.10628614763129753,
+            0.010727201885746426,
+            0.9892520395200833
+          ],
+          "tip": [
+            1.2436551107960976,
+            1.3191658874475998,
+            0.37937046500590615
+          ],
+          "gpu": {
+            "geometries": 57,
+            "textures": 0,
+            "programs": 4,
+            "calls": 43,
+            "triangles": 966,
+            "mountedScenes": 2,
+            "jsHeapMB": 75.2,
+            "at": 17320.299999952316
+          },
+          "background": "fafdfc",
+          "caption": [
+            {
+              "id": "naturalis",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "banner-2",
+          "p": 0.0998559413363445,
+          "chapter": "banner-2",
+          "camera": [
+            0,
+            0.5209165655187775,
+            12.627496965563324
+          ],
+          "quaternion": [
+            -0.020613131052539306,
+            0,
+            0,
+            0.9997875268416838
+          ],
+          "tip": [
+            -2.704687914149489,
+            -0.9381303947016494,
+            1
+          ],
+          "gpu": {
+            "geometries": 6,
+            "textures": 0,
+            "programs": 4,
+            "calls": 6,
+            "triangles": 298,
+            "mountedScenes": 1,
+            "jsHeapMB": 78.1,
+            "at": 18521
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "banner-2",
+          "p": 0.29985357899610326,
+          "chapter": "banner-2",
+          "camera": [
+            0,
+            0.5999999998838207,
+            14.999999996514621
+          ],
+          "quaternion": [
+            -0.019988012385832542,
+            0,
+            0,
+            0.9998002197243526
+          ],
+          "tip": [
+            -1.1744844881924368,
+            -0.12877689976418494,
+            1
+          ],
+          "gpu": {
+            "geometries": 7,
+            "textures": 0,
+            "programs": 6,
+            "calls": 7,
+            "triangles": 658,
+            "mountedScenes": 1,
+            "jsHeapMB": 79.3,
+            "at": 19021.100000023842
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "banner-2",
+          "p": 0.49985358603977553,
+          "chapter": "banner-2",
+          "camera": [
+            0,
+            0.5000000003919047,
+            13.000000007838096
+          ],
+          "quaternion": [
+            -0.019220111458479232,
+            0,
+            0,
+            0.9998152765963939
+          ],
+          "tip": [
+            0.24592368594271832,
+            0.4844938951888802,
+            1
+          ],
+          "gpu": {
+            "geometries": 14,
+            "textures": 0,
+            "programs": 6,
+            "calls": 13,
+            "triangles": 322,
+            "mountedScenes": 1,
+            "jsHeapMB": 80.7,
+            "at": 20035.299999952316
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "banner-2",
+          "p": 0.6998726076653239,
+          "chapter": "banner-2",
+          "camera": [
+            0,
+            0.5,
+            17.99999998709093
+          ],
+          "quaternion": [
+            -0.01388487212462556,
+            0,
+            0,
+            0.9999036005166112
+          ],
+          "tip": [
+            1.5281203920254938,
+            1.5984360860563647,
+            1
+          ],
+          "gpu": {
+            "geometries": 24,
+            "textures": 0,
+            "programs": 8,
+            "calls": 15,
+            "triangles": 2272,
+            "mountedScenes": 1,
+            "jsHeapMB": 72.8,
+            "at": 21035.200000047684
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "id": "banner-2",
+          "p": 0.8398917203429109,
+          "chapter": "banner-2",
+          "camera": [
+            0,
+            0.5,
+            14.336186266988287
+          ],
+          "quaternion": [
+            -0.01743044128431467,
+            0,
+            0,
+            0.9998480783182182
+          ],
+          "tip": [
+            2.6718034057201896,
+            0.9612853472158064,
+            1
+          ],
+          "gpu": {
+            "geometries": 41,
+            "textures": 0,
+            "programs": 8,
+            "calls": 28,
+            "triangles": 2260,
+            "mountedScenes": 1,
+            "jsHeapMB": 74.9,
+            "at": 22051.299999952316
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "quality": "medium",
+          "chapter": "banner-2",
+          "p": 0.699881492363688,
+          "camera": [
+            0,
+            0.5,
+            17.99999998960719
+          ],
+          "quaternion": [
+            -0.013884872122685687,
+            0,
+            0,
+            0.9999036005166381
+          ],
+          "tip": [
+            1.5281820503657977,
+            1.5984530858867134,
+            1
+          ],
+          "gpu": {
+            "geometries": 24,
+            "textures": 0,
+            "programs": 8,
+            "calls": 15,
+            "triangles": 5672,
+            "mountedScenes": 1,
+            "jsHeapMB": 92.7,
+            "at": 51729
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "quality": "low",
+          "chapter": "banner-2",
+          "p": 0.7,
+          "camera": [
+            0,
+            0.5,
+            18
+          ],
+          "quaternion": [
+            -0.0138848721146735,
+            0,
+            0,
+            0.9999036005167493
+          ],
+          "tip": [
+            1.5290044738031545,
+            1.5986793312384822,
+            1
+          ],
+          "gpu": {
+            "geometries": 24,
+            "textures": 0,
+            "programs": 8,
+            "calls": 15,
+            "triangles": 2272,
+            "mountedScenes": 1,
+            "jsHeapMB": 93.8,
+            "at": 52227.799999952316
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        },
+        {
+          "quality": "high",
+          "chapter": "banner-2",
+          "p": 0.7,
+          "camera": [
+            0,
+            0.5,
+            18
+          ],
+          "quaternion": [
+            -0.0138848721146735,
+            0,
+            0,
+            0.9999036005167493
+          ],
+          "tip": [
+            1.5290044738031545,
+            1.5986793312384822,
+            1
+          ],
+          "gpu": {
+            "geometries": 24,
+            "textures": 0,
+            "programs": 8,
+            "calls": 15,
+            "triangles": 20912,
+            "mountedScenes": 1,
+            "jsHeapMB": 93.8,
+            "at": 52227.799999952316
+          },
+          "background": "151211",
+          "caption": [
+            {
+              "id": "banner-2",
+              "y": 0,
+              "background": "none"
+            }
+          ]
+        }
+      ],
+      "joins": [
+        {
+          "id": "vibo",
+          "next": "pirp",
+          "positionDelta": 5.869817760305367e-7,
+          "rotationDelta": 2.4809228473745118e-8,
+          "tipDelta": 0.0011781577124345478,
+          "reversePositionError": 1.30673752335787e-7,
+          "reverseTipError": 1.252068561628232e-8
+        },
+        {
+          "id": "pirp",
+          "next": "naturalis",
+          "positionDelta": 0.000002737618885652408,
+          "rotationDelta": 1.1234097403922492e-8,
+          "tipDelta": 0.0004555522794085174,
+          "reversePositionError": 0.000002395516397855037,
+          "reverseTipError": 1.0332919421821786e-7
+        },
+        {
+          "id": "naturalis",
+          "next": "banner-2",
+          "positionDelta": 0.000002116087940052091,
+          "rotationDelta": 4.319464239782677e-8,
+          "tipDelta": 0.0013954519016246565,
+          "reversePositionError": 0.0000018934303353333835,
+          "reverseTipError": 2.616102345498942e-7
+        }
+      ],
+      "motion": [
+        {
+          "id": "vibo",
+          "next": "pirp",
+          "frames": 97,
+          "fps": 32.16500315018071,
+          "p95": 66.70000000000073,
+          "maxCalls": 24,
+          "maxTriangles": 2514,
+          "maxCameraStep": 2.308002428528167,
+          "crossed": true
+        },
+        {
+          "id": "pirp",
+          "next": "naturalis",
+          "frames": 90,
+          "fps": 29.51787471302066,
+          "p95": 66.70000000000437,
+          "maxCalls": 28,
+          "maxTriangles": 714,
+          "maxCameraStep": 1.8996396331252465,
+          "crossed": true
+        },
+        {
+          "id": "naturalis",
+          "next": "banner-2",
+          "frames": 100,
+          "fps": 33.15869752636113,
+          "p95": 66.60000000000582,
+          "maxCalls": 44,
+          "maxTriangles": 966,
+          "maxCameraStep": 1.531843023562138,
+          "crossed": true
+        }
+      ],
+      "memory": [
+        {
+          "cycle": 0,
+          "geometries": 2,
+          "textures": 0,
+          "programs": 2,
+          "calls": 2,
+          "triangles": 720,
+          "mountedScenes": 0,
+          "jsHeapMB": 87.3,
+          "at": 54943.200000047684
+        },
+        {
+          "cycle": 1,
+          "geometries": 2,
+          "textures": 0,
+          "programs": 2,
+          "calls": 2,
+          "triangles": 720,
+          "mountedScenes": 0,
+          "jsHeapMB": 78.7,
+          "at": 60023.200000047684
+        },
+        {
+          "cycle": 2,
+          "geometries": 2,
+          "textures": 0,
+          "programs": 2,
+          "calls": 2,
+          "triangles": 720,
+          "mountedScenes": 0,
+          "jsHeapMB": 76.1,
+          "at": 65388.700000047684
+        }
+      ],
+      "reducedMotion": "static, sin canvas"
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.",
+    "[deep-link] no hay ningún [data-chapter=\"vibo\"] en esta página"
+  ]
+}

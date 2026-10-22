@@ -1,4 +1,3 @@
-import type { SceneBorderFrames } from "@/experience/thread/forms"
 import type { SceneDefinition } from "@/experience/types"
 
 function smoothstep(value: number, min: number, max: number): number {
@@ -7,23 +6,6 @@ function smoothstep(value: number, min: number, max: number): number {
 }
 
 export const conceptLine = "Ver lo invisible del juego"
-
-/** Encuadres de borde para continuidad de cámara (T-A41 / `03-escenas.md` §6). */
-export const viboBorderFrames: SceneBorderFrames = {
-  entry: {
-    desktop: [4.5, 4.2, 9.5],
-    mobile: [5.5, 7.0, 14.0],
-    target: [0, 0.15, 0],
-  },
-  // Coincide exactamente con `pirpBorderFrames.entry`.
-  exit: {
-    desktop: [2.2, 1.8, 9.6],
-    mobile: [2.4, 3.2, 12.6],
-    target: [0, 0.1, 0],
-  },
-  entrySpan: 0.08,
-  exitStart: 0.9,
-}
 
 export const vibo: SceneDefinition = {
   id: "vibo",

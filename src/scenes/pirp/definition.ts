@@ -1,28 +1,8 @@
-import type { SceneBorderFrames } from "@/experience/thread/forms"
 import type { SceneDefinition } from "../../experience/types"
 
 function smoothstep(value: number, min: number, max: number): number {
   const t = Math.max(0, Math.min(1, (value - min) / (max - min)))
   return t * t * (3 - 2 * t)
-}
-
-/** Encuadres de borde para continuidad de cámara Vibo → Pirp → Naturalis (T-A41). */
-export const pirpBorderFrames: SceneBorderFrames = {
-  // Coincide exactamente con `viboBorderFrames.exit`.
-  entry: {
-    desktop: [2.2, 1.8, 9.6],
-    mobile: [2.4, 3.2, 12.6],
-    target: [0, 0.1, 0],
-  },
-  // Coincide exactamente con `naturalisBorderFrames.entry`.
-  exit: {
-    desktop: [3.0, 1.6, 8.2],
-    mobile: [2.5, 2.4, 13.8],
-    target: [-0.35, 0.1, 0],
-    mobileTarget: [-0.85, 0.0, 0],
-  },
-  entrySpan: 0.08,
-  exitStart: 0.9,
 }
 
 export const pirp: SceneDefinition = {

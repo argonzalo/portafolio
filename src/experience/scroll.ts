@@ -1,137 +1,94 @@
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-
 import type { ExperienceStore } from "@/experience/store"
 import { emitScrollReverse } from "@/guide/signals"
 
 gsap.registerPlugin(ScrollTrigger)
+export type BindChapterScrollOptions = { root?: ParentNode }
 
-const CHAPTER_SELECTOR = "[data-chapter]"
-
-export type BindChapterScrollOptions = {
-  /** Raíz donde buscar capítulos. Por defecto `document`. */
-  root?: ParentNode
-}
-
-/**
- * ScrollTrigger → store (`01-arquitectura.md` §2).
- *
- * Cada `[data-chapter]` escribe su progreso 0..1 en el store sin provocar
- * renders de React. El capítulo activo se actualiza cuando el trigger está
- * en zona (onToggle / onUpdate).
- *
- * Re-llamar tras `astro:page-load`: destruye los triggers previos.
+/** A single damped document cursor drives every chapter. Damping independent
+ * progress values would leave the old chapter at .98 when the next becomes active.
+ * Native scrolling is untouched; only the visual playhead is softened.
  */
 export function bindChapterScroll(
   store: ExperienceStore,
   options: BindChapterScrollOptions = {}
-): () => void {
-  const root = options.root ?? document
+) {
   const sections = Array.from(
-    root.querySelectorAll<HTMLElement>(CHAPTER_SELECTOR)
+    (options.root ?? document).querySelectorAll<HTMLElement>("[data-chapter]")
   )
-
-  if (sections.length === 0) {
+  if (!sections.length) {
     store.setChapter(null)
-    return () => {
-      /* nada que limpiar */
-    }
+    return () => {}
   }
-
-  const lastProgress = new Map<string, number>()
-  const triggers: ScrollTrigger[] = []
-
-  for (const section of sections) {
-    const chapterId = section.dataset.chapter
-
-    if (!chapterId) {
-      continue
-    }
-
-    lastProgress.set(chapterId, 0)
-
-    const trigger = ScrollTrigger.create({
-      trigger: section,
-      // Zona “capítulo activo”: el bloque cruza el centro del viewport.
-      start: "top center",
-      end: "bottom center",
-      scrub: true,
-      onUpdate: (self) => {
-        const previous = lastProgress.get(chapterId) ?? 0
-        const next = self.progress
-
-        store.setProgress(chapterId, next)
-
-        if (
-          next < previous - 0.02 &&
-          store.getSnapshot().chapterId === chapterId
-        ) {
-          emitScrollReverse(chapterId)
-        }
-
-        lastProgress.set(chapterId, next)
-      },
-      onToggle: (self) => {
-        if (self.isActive) {
-          store.setChapter(chapterId)
-        }
-      },
-    })
-
-    triggers.push(trigger)
-  }
-
-  // Capítulo inicial: el que esté más centrado en el viewport.
-  const initial = pickActiveChapter(sections)
-  if (initial) {
-    store.setChapter(initial)
-  }
-
-  ScrollTrigger.refresh()
-
-  return () => {
-    for (const trigger of triggers) {
-      trigger.kill()
-    }
-  }
-}
-
-function pickActiveChapter(sections: HTMLElement[]): string | null {
-  const viewportMid = window.innerHeight * 0.45
-  let best: { id: string; distance: number } | null = null
-
-  for (const section of sections) {
+  const tracks = sections.flatMap((section) => {
     const id = section.dataset.chapter
-    if (!id) continue
-
-    const rect = section.getBoundingClientRect()
-    if (rect.bottom < 0 || rect.top > window.innerHeight) continue
-
-    const mid = (rect.top + rect.bottom) / 2
-    const distance = Math.abs(mid - viewportMid)
-
-    if (!best || distance < best.distance) {
-      best = { id, distance }
-    }
+    if (!id) return []
+    return [
+      {
+        id,
+        trigger: ScrollTrigger.create({
+          trigger: section,
+          start: "top center",
+          end: "bottom center",
+        }),
+      },
+    ]
+  })
+  ScrollTrigger.refresh()
+  let cursor = window.scrollY
+  let lastTime = 0
+  let frame = 0
+  let previousChapter: string | null = null
+  let reverseDistance = 0
+  const onSeek = () => {
+    cursor = window.scrollY
   }
-
-  return best?.id ?? sections[0]?.dataset.chapter ?? null
+  window.addEventListener("experience:seek", onSeek)
+  const tick = (time: number) => {
+    const dt = lastTime ? Math.min((time - lastTime) / 1000, 0.05) : 1
+    lastTime = time
+    const previous = cursor
+    cursor +=
+      (window.scrollY - cursor) *
+      (store.getSnapshot().reducedMotion ? 1 : 1 - Math.exp(-dt / 0.12))
+    if (Math.abs(window.scrollY - cursor) < 0.1) cursor = window.scrollY
+    const active =
+      tracks.find(
+        ({ trigger }) => cursor >= trigger.start && cursor < trigger.end
+      ) ??
+      (cursor < tracks[0].trigger.start ? tracks[0] : tracks[tracks.length - 1])
+    // Commit all progress refs before publishing the discrete chapter change.
+    for (const { id, trigger } of tracks)
+      store.setProgress(
+        id,
+        (cursor - trigger.start) / (trigger.end - trigger.start)
+      )
+    store.setChapter(active.id)
+    if (previousChapter !== active.id || cursor >= previous) reverseDistance = 0
+    else reverseDistance += previous - cursor
+    if (reverseDistance > window.innerHeight * 0.2) {
+      emitScrollReverse(active.id)
+      reverseDistance = 0
+    }
+    previousChapter = active.id
+    frame = requestAnimationFrame(tick)
+  }
+  frame = requestAnimationFrame(tick)
+  return () => {
+    cancelAnimationFrame(frame)
+    window.removeEventListener("experience:seek", onSeek)
+    tracks.forEach(({ trigger }) => trigger.kill())
+  }
 }
 
-/**
- * Engancha `bindChapterScroll` al ciclo de View Transitions de Astro.
- * Devuelve cleanup global (quita listeners + mata triggers actuales).
- */
-export function mountChapterScroll(store: ExperienceStore): () => void {
+export function mountChapterScroll(store: ExperienceStore) {
   let unbind = bindChapterScroll(store)
-
   const onPageLoad = () => {
     unbind()
     unbind = bindChapterScroll(store)
   }
-
   document.addEventListener("astro:page-load", onPageLoad)
-
   return () => {
     document.removeEventListener("astro:page-load", onPageLoad)
     unbind()

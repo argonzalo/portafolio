@@ -86,6 +86,7 @@ function scrollToChapterProgress(section: HTMLElement, progress: number): void {
 
   // Ignorar scroll-behavior:smooth para que el enlace sea un estado exacto.
   window.scrollTo({ top: Math.max(0, Math.round(target)), behavior: "instant" })
+  window.dispatchEvent(new Event("experience:seek"))
 }
 
 /**
@@ -126,6 +127,7 @@ export function applyDeepLinkState(
   // Un frame para que fuentes e imágenes asienten el layout antes de medir.
   // `mountDeepLinks` ya espera dos frames desde el page-load.
   requestAnimationFrame(() => {
+    if (!section.isConnected) return
     scrollToChapterProgress(section, progress)
     store.setProgress(chapterId, progress)
   })
@@ -155,13 +157,16 @@ export function mountDeepLinks(store: ExperienceStore): () => void {
   }
 
   const onPageLoad = () => run()
+  const onBeforeSwap = () => cancelAnimationFrame(frame)
 
   document.addEventListener("astro:page-load", onPageLoad)
+  document.addEventListener("astro:before-swap", onBeforeSwap)
   run()
 
   return () => {
     cancelled = true
     cancelAnimationFrame(frame)
     document.removeEventListener("astro:page-load", onPageLoad)
+    document.removeEventListener("astro:before-swap", onBeforeSwap)
   }
 }

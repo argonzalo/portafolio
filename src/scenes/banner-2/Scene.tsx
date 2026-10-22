@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef } from "react"
+import { useContext, useLayoutEffect, useMemo, useRef } from "react"
 import { useFrame } from "@react-three/fiber"
 import { Html } from "@react-three/drei"
 import {
@@ -12,11 +12,18 @@ import {
 import type { SceneProps } from "@/experience/types"
 import { phase, useGreyboxRig } from "@/scenes/greybox/runtime"
 
+import { envelope, ramp } from "@/experience/choreography"
+import {
+  PresentationContext,
+  reveal,
+  revealHtml,
+} from "@/experience/presentation"
+
 const FRAMES = [
   { at: 0, desktop: [0, 0.6, 10], mobile: [0, 0.5, 12], target: [0, 0, 0] },
-  { at: 0.3, desktop: [0.6, 1, 15], mobile: [0, 0.8, 17], target: [0, 0, 0] },
-  { at: 0.5, desktop: [1.2, 1, 10], mobile: [0, 0.5, 13], target: [0, 0, 0] },
-  { at: 0.7, desktop: [0, 0.5, 14], mobile: [0, 0.5, 18], target: [0, 0, 0] },
+  { at: 0.3, desktop: [0.6, 0.8, 12], mobile: [0, 0.6, 15], target: [0, 0, 0] },
+  { at: 0.5, desktop: [0.6, 0.8, 11], mobile: [0, 0.5, 13], target: [0, 0, 0] },
+  { at: 0.7, desktop: [0, 0.5, 12], mobile: [0, 0.5, 18], target: [0, 0, 0] },
   {
     at: 0.95,
     desktop: [0.4, 0.4, 10],
@@ -82,7 +89,10 @@ function ScreenField({
           ? 2500
           : 900
   const side = Math.ceil(Math.sqrt(count))
-  const uniforms = useMemo(() => ({ uProgress: { value: 0 } }), [])
+  const uniforms = useMemo(
+    () => ({ uProgress: { value: 0 }, uOpacity: { value: 1 } }),
+    []
+  )
   useLayoutEffect(() => {
     const mesh = ref.current
     if (!mesh) return
@@ -128,12 +138,24 @@ function ScreenField({
     const mesh = ref.current
     if (!mesh) return
     const p = progress.current
-    mesh.visible = mode === "chaos" ? p >= 0.2 && p < 0.4 : p >= 0.6 && p < 0.8
+    reveal(
+      mesh,
+      mode === "chaos"
+        ? envelope(p, 0.16, 0.46, 0.08)
+        : envelope(p, 0.57, 0.86, 0.09)
+    )
     if (material.current)
       material.current.uniforms.uProgress.value = phase(p, 0.63, 0.78)
-    if (mode === "chaos") mesh.rotation.y = phase(p, 0.2, 0.4) * 0.3
-    else mesh.scale.setScalar(isMobile ? 0.77 : 1)
-  })
+    if (mode === "chaos") {
+      mesh.rotation.y = phase(p, 0.16, 0.46) * 0.12
+      const spread = 0.7 + 0.3 * ramp(p, 0.16, 0.3) - 0.4 * ramp(p, 0.32, 0.46)
+      mesh.scale.set(
+        spread * (isMobile ? 0.38 : 1),
+        spread * (isMobile ? 0.6 : 1),
+        spread
+      )
+    } else mesh.scale.setScalar(isMobile ? 0.77 : 1)
+  }, -1)
   return (
     <instancedMesh ref={ref} args={[undefined, undefined, count]}>
       <planeGeometry args={[1, 1]} />
@@ -146,9 +168,12 @@ function ScreenField({
           vertexShader={`varying vec3 vColor; varying float vRegion;
         void main() { vColor = instanceColor; vRegion = (instanceMatrix[3].x + 5.5) / 11.0;
           gl_Position = projectionMatrix * modelViewMatrix * instanceMatrix * vec4(position, 1.0); }`}
-          fragmentShader={`uniform float uProgress; varying vec3 vColor; varying float vRegion;
+          fragmentShader={`uniform float uProgress; uniform float uOpacity; varying vec3 vColor; varying float vRegion;
         void main() { float on = smoothstep(vRegion - 0.06, vRegion + 0.06, uProgress);
-          gl_FragColor = vec4(mix(vec3(0.12,0.09,0.08), vColor, on), 1.0); }`}
+          gl_FragColor = vec4(mix(vec3(0.025,0.019,0.017), vColor, on), uOpacity);
+          #include <tonemapping_fragment>
+          #include <colorspace_fragment>
+        }`}
           toneMapped={false}
         />
       )}
@@ -157,7 +182,8 @@ function ScreenField({
 }
 
 export default function BannerScene(props: SceneProps) {
-  const { progress, active, isMobile } = props
+  const { progress, isMobile } = props
+  const presentation = useContext(PresentationContext)
   const hero = useRef<Group>(null)
   const editor = useRef<Group>(null)
   const graph = useRef<Group>(null)
@@ -169,35 +195,48 @@ export default function BannerScene(props: SceneProps) {
   useFrame(() => {
     const p = progress.current
     const beat = Math.min(4, Math.floor(p * 5))
-    if (hero.current) hero.current.visible = p < 0.4
-    if (editor.current) editor.current.visible = p >= 0.4 && p < 0.6
-    if (graph.current) graph.current.visible = p >= 0.6 && p < 0.8
-    if (wall.current) wall.current.visible = p >= 0.8
+    const alpha = presentation?.current.opacity ?? 1
+    if (hero.current) {
+      // The SAME screen becomes the editor's preview, then the publisher node.
+      const edit = ramp(p, 0.32, 0.46)
+      const publish = ramp(p, 0.53, 0.66)
+      hero.current.position.set(
+        -0.8 * edit + (-3.5 + 0.8) * publish,
+        0.35 * edit + (2.3 - 0.35) * publish,
+        0.2 * edit * (1 - publish)
+      )
+      hero.current.scale.setScalar(
+        (1.4 - 0.45 * edit) * (1 - publish) + 0.32 * publish
+      )
+      reveal(hero.current, 1 - ramp(p, 0.75, 0.85))
+    }
+    reveal(editor.current, envelope(p, 0.34, 0.64, 0.09))
+    reveal(graph.current, envelope(p, 0.56, 0.86, 0.09))
+    reveal(wall.current, ramp(p, 0.76, 0.86))
     if (layers.current) {
       layers.current.position.z = phase(p, 0.4, 0.59) * 1.2
       layers.current.rotation.y = -phase(p, 0.4, 0.6) * 0.2
     }
     if (pulse.current) {
       pulse.current.position.x = -4.4 + phase(p, 0.6, 0.73) * 8.8
-      pulse.current.scale.setScalar(p < 0.74 ? 1 : 0)
+      pulse.current.scale.setScalar(envelope(p, 0.59, 0.78, 0.04))
     }
     if (caption.current) {
       caption.current.textContent = COPY[beat]
-      caption.current.style.visibility = active ? "visible" : "hidden"
+      revealHtml(caption.current, alpha)
     }
-  })
+  }, -1)
   const columns = isMobile ? 2 : 4
   return (
     <group>
       <group ref={hero}>
-        <Panel scale={[1.4, 1.4, 1.4]} />
+        <Panel />
       </group>
       <ScreenField {...props} mode="chaos" />
       <ScreenField {...props} mode="map" />
       <group ref={editor} scale={isMobile ? 0.8 : 1}>
         <Panel position={[-0.3, 0, -0.4]} scale={[2, 2, 1]} color="#2D211D" />
         <group ref={layers}>
-          <Panel position={[-0.8, 0.35, 0.2]} scale={[0.95, 0.95, 1]} />
           <mesh position={[1.1, 0.3, 0.5]}>
             <planeGeometry args={[0.9, 1.9]} />
             <meshBasicMaterial color="#FFB5A0" transparent opacity={0.5} />
@@ -213,10 +252,6 @@ export default function BannerScene(props: SceneProps) {
         </group>
       </group>
       <group ref={graph} position={[0, 2.3, 0]} scale={isMobile ? 0.8 : 1}>
-        <mesh position={[-3.5, 0, 0]}>
-          <boxGeometry args={[0.8, 0.7, 0.2]} />
-          <meshBasicMaterial color="#DA3E00" />
-        </mesh>
         <mesh position={[0, 0, 0]}>
           <boxGeometry args={[1.2, 0.8, 0.3]} />
           <meshBasicMaterial color="#FFB5A0" />
@@ -262,7 +297,11 @@ export default function BannerScene(props: SceneProps) {
           />
         ))}
       </group>
-      <Html position={[0, 3.5, 0]} center style={{ pointerEvents: "none" }}>
+      <Html
+        position={[0, isMobile ? -3.2 : 3.5, 0]}
+        center
+        style={{ pointerEvents: "none" }}
+      >
         <div
           ref={caption}
           style={{
