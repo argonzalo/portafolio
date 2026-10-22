@@ -73,6 +73,8 @@ Construir esto una vez es lo que hace viable el volumen de escenas. Vive en `src
 
 **Insumos del humano (T-H07):** export anonimizado de `analysisResults` (Firebase `vibo-beta` / `vibo-beta-2e60f`, colección `videos`) de 1–2 clips con al menos un golpe claro; JSON curado de overlays (bboxes + keypoints en la ventana del golpe); métricas de un jugador anonimizadas; confirmación de paleta y logo; permiso para mostrar datos. No se exige trayectoria 3D reconstruida.
 
+**Decisión de assets 3D (I-12):** [`insumos/vibo-3d.md`](./insumos/vibo-3d.md) — jugador y paleta modelados a mano (jugador como esqueleto simple para flexión leve de rodillas y brazos; paleta optimizada), argumentos y nota sobre la animación simple del golpe (referencia volea).
+
 ### 3.2 Pirp — "Todo pasa rápido, y aun así se entiende"
 
 > **Ficha validada** (grilling T-H05, 2026-10-22). Marca en `assets-src/pirp/brand/`. No nombrar al cliente del producto.
