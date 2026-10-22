@@ -1,9 +1,9 @@
 export const site = {
   name: "Gonzalo Aravena",
   firstName: "Gonzalo",
-  tagline: "Full Stack Developer",
+  tagline: "Ideas ambiciosas, productos funcionales",
   description:
-    "Portafolio de desarrollador.",
+    "Diseño y construyo productos digitales, automatizaciones y soluciones de inteligencia artificial para negocios que estén listos para un siguiente paso.",
   locale: "es",
   url: "https://gonzaloaravena.com",
   avatar: "/images/profile-circle-4.webp",
@@ -15,14 +15,29 @@ export const site = {
   instagram: "https://www.instagram.com/gonaravena/",
 } as const
 
-const heroHighlight = "Desarrollo software end-to-end"
+const tags = [
+  "Software",
+  "Inteligencia artificial aplicada",
+  "Automatización",
+  "Software customizado",
+  "Productos conectados",
+] as const
 
 export const hero = {
+  title: "Tu próxima gran idea hecha realidad",
+  description: site.description,
+  bridge: "Desde ideas ambiciosas a productos funcionales",
+  tags,
+  // Compatibilidad con el hero anterior, aún compilado por Astro.
   greeting: "Hola, soy",
-  highlight: heroHighlight,
-  description: `+5 años de experiencia. ${heroHighlight}, con foco tanto en la lógica de producto como en la solidez técnica. Construyo interfaces, arquitecturas backend y bases de datos, despliego en infraestructura cloud, y entreno modelos de visión por computadora para sistemas de análisis inteligente. Disfruto tanto de pensar el problema de negocio como de resolverlo en código.`,
-  skillsLabel: "Principales habilidades",
-  skills: ["TypeScript", "Python", "PostgreSQL", "Firebase", "GCP", "Vue", "React", "Node"	],
+  highlight: "productos digitales",
+  skillsLabel: "Qué construyo",
+  skills: tags,
+} as const
+
+export const manifesto = {
+  title: "Desde ideas ambiciosas a productos funcionales",
+  phrases: ["Pienso productos", "Diseño experiencias", "Construyo tecnología"],
 } as const
 
 export const contacts = [
