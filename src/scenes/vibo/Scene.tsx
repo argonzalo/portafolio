@@ -36,15 +36,12 @@ import { experienceStore } from "@/experience/store"
 import type { SceneProps } from "@/experience/types"
 import { emitInteract } from "@/guide/signals"
 import {
-  AgentGraph,
   HudOverlay,
   TelemetryDeck,
   ThreadLine,
   beatEnvelope,
   interpolateCameraState,
   useStudioEnvironment,
-  type AgentEdgeDef,
-  type AgentNodeDef,
   type HudBoundingBox3D,
   type HudMarkerItem,
   type HudPoseSkeleton3D,
@@ -54,6 +51,7 @@ import { Court } from "./Court"
 import { PLATINUM_THEME, VIBO_COLORS, VIBO_THEME } from "./theme"
 import { COVERAGE, HEAT, HEAT_GRID, INTENSITY, INTENSITY_PEAK, PLAYER, SHOT } from "./data"
 import { createPanelNodes, paintInset } from "./panel"
+import { ViboPipeline, type PipelineStep } from "./Pipeline"
 import { ViboPlayer } from "./Player"
 import { createContactProbe, createPlayerJoints, createRim, type JointId } from "./rig"
 import { BodyLayer, ViboPanel } from "./ViboPanel"
@@ -107,19 +105,19 @@ function heatCentroid(grid: readonly number[]): Vec3Tuple {
   return courtToWorld(sx / sum, sz / sum, 0.1)
 }
 
-const PIPELINE: AgentNodeDef[] = [
-  { id: "deteccion", label: "Detección", decision: "4 jugadores + pelota", metric: `f${SHOT.keyFrame}` },
-  { id: "seguimiento", label: "Seguimiento", decision: "IDs estables · 713 f", metric: "30 fps" },
-  { id: "calibracion", label: "Calibración", decision: "12 puntos → metros", metric: "10×20 m" },
-  { id: "golpes", label: "Golpes", decision: `${PLAYER.totalShots} golpes en el punto`, metric: `${SHOT.tSec} s` },
-  { id: "clasificacion", label: "Clasificación", decision: "drive · derecha", metric: "fondo" },
-].map((node, i) => ({
-  ...node,
-  // Columna vertical sobre el cristal del fondo: se lee igual en toda la órbita de cámara.
-  desktop: [-2.3, 3.0 - i * 0.6, COURT.length / 2 - 0.25] as Vec3Tuple,
-  mobile: [-0.2, 3.0 - i * 0.43, COURT.length / 2 - 0.25] as Vec3Tuple,
-  triggerAt: 0.28 + i * 0.05,
-}))
+const PIPELINE = [
+  { id: "deteccion", label: "Detección" },
+  { id: "seguimiento", label: "Seguimiento" },
+  { id: "calibracion", label: "Calibración" },
+  { id: "golpes", label: "Golpes" },
+  { id: "clasificacion", label: "Clasificación" },
+]
+
+/** Rótulo de etapa sobre el cristal del fondo, detrás y a un lado del jugador. */
+const PIPELINE_LABEL = {
+  desktop: { position: [-1.75, 2.3, COURT.length / 2 - 0.03] as Vec3Tuple, width: 3.4 },
+  mobile: { position: [-0.9, 2.25, COURT.length / 2 - 0.03] as Vec3Tuple, width: 4.4 },
+}
 
 type Range4 = [number, number, number, number]
 
@@ -131,20 +129,12 @@ function hudRange(isMobile: boolean): Range4 {
   return isMobile ? MOBILE_HUD : [...TIMELINE.hud]
 }
 
-/** El layout "mobile" del kit es el de columna (etiquetas alternadas a los lados). */
-function columnNodes(isMobile: boolean): AgentNodeDef[] {
+function pipelineSteps(isMobile: boolean): PipelineStep[] {
   return PIPELINE.map((node, i) => ({
     ...node,
-    mobile: isMobile ? node.mobile : node.desktop,
-    triggerAt: isMobile ? MOBILE_GRAPH[1] + i * 0.02 : node.triggerAt,
+    triggerAt: isMobile ? MOBILE_GRAPH[1] - 0.01 + i * 0.022 : 0.28 + i * 0.05,
   }))
 }
-
-const PIPELINE_EDGES: AgentEdgeDef[] = PIPELINE.slice(1).map((node, i) => ({
-  from: PIPELINE[i].id,
-  to: node.id,
-  arcHeight: 0.04,
-}))
 
 
 const SHADOW_FRAGMENT = /* glsl */ `
@@ -326,20 +316,9 @@ export default function ViboScene(props: SceneProps) {
         .map((id) => ({
           id,
           position: pos(id),
-          accent: id === "wristR" || id === "kneeR",
+          accent: id === "wristR",
         })),
       bones: SKELETON_BONES,
-      angleGauge: {
-        vertexId: "kneeR",
-        armAId: "hipR",
-        armBId: "ankleR",
-        label: "RODILLA",
-        degrees: () => {
-          const a = joints.hipR.clone().sub(joints.kneeR)
-          const b = joints.ankleR.clone().sub(joints.kneeR)
-          return MathUtils.radToDeg(a.angleTo(b))
-        },
-      },
       range: hudRange(isMobile),
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -488,7 +467,7 @@ export default function ViboScene(props: SceneProps) {
     (p: number) => envelope(p, CONTACT_P - 0.01, 0.6, 0.03),
     []
   )
-  const pipeline = useMemo(() => columnNodes(isMobile), [isMobile])
+  const pipeline = useMemo(() => pipelineSteps(isMobile), [isMobile])
   const outgoingTrail = useCallback(() => trailPoints(runtime), [runtime])
   const trailDraw = useCallback(() => {
     const s = swing.current
@@ -565,12 +544,10 @@ export default function ViboScene(props: SceneProps) {
         defaultSelectedId="impacto"
       />
 
-      <AgentGraph
-        nodes={pipeline}
-        edges={PIPELINE_EDGES}
+      <ViboPipeline
+        steps={pipeline}
         progress={progress}
-        quality={quality}
-        isMobile
+        {...(isMobile ? PIPELINE_LABEL.mobile : PIPELINE_LABEL.desktop)}
         active={active}
         theme={THEME}
         range={isMobile ? MOBILE_GRAPH : [...TIMELINE.graph]}

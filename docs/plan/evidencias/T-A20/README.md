@@ -9,11 +9,11 @@ Escena de primera línea **Vibo** (`03` §3.1, ADR-011 + enmienda estética) sob
 - **Paleta:** césped y HUD en azul eléctrico (`#1F7AFF`); el acento dorado se reemplazó por platino casi gris (`#CFD2D6`) en el trazo de líneas, el mapa de calor del jugador A, la estela, la pelota, la tarjeta de resultado y los acentos del HUD. El override vive en `src/scenes/vibo/theme.ts` (`VIBO_THEME`/`PLATINUM_THEME` sobre `KIT_THEMES.vibo`, sin tocar el kit).
 - **Beats:**
   - `mundo` — líneas trazadas y reflectores encendiéndose; el hilo dibuja el contorno de la cancha y se cierra en un halo alrededor del jugador.
-  - `razonamiento` — golpe en cámara lenta ligado al scroll, HUD de visión (bbox con etiqueta y confianza, 17 keypoints con esqueleto, ángulo de rodilla, marcador «Golpe detectado» en la cabeza de la paleta, brazo dominante), inserto 2D con los frames reales del MVP (`assets-src/vibo/mvp-ref`, I-02) y pipeline detección → seguimiento → calibración → golpes → clasificación como columna sobre el cristal del fondo.
+  - `razonamiento` — golpe en cámara lenta ligado al scroll, HUD de visión (bbox con etiqueta y confianza, 17 keypoints con esqueleto, marcador «Golpe detectado» en la cabeza de la paleta, brazo dominante), inserto 2D con los frames reales del MVP (`assets-src/vibo/mvp-ref`, I-02) y pipeline detección → seguimiento → calibración → golpes → clasificación: solo el nombre de la etapa en curso, como rótulo grande impreso en el cristal del fondo (plano en mundo, se mueve con la cancha); cada etapa sale antes de que entre la siguiente (`ViboPipeline`, reemplaza a `AgentGraph` del kit en esta escena).
   - `solución` — cenital con mapa de calor, cobertura y perfil ofensivo/defensivo (marcadores con datos curados).
   - `resultado` — tarjeta platino «Tu lectura de partido» (`TelemetryDeck`) junto al jugador y CTA del capítulo.
 - **Interacción:** pausa + scrub obligatorios (slider con `aria-valuetext` en frames/segundos), «Resaltar detección» (`aria-pressed`); todo con botones nativos, por lo que el equivalente táctil es el mismo control. El hover/tap solo resalta.
-- **Mobile:** encuadres propios, una sola pieza de información por vez (HUD + panel durante el golpe → pipeline en tira vertical → cenital → retrato del jugador sobre la tarjeta), una línea de copy por beat.
+- **Mobile:** encuadres propios, una sola pieza de información por vez (HUD + panel durante el golpe → rótulo de etapa en el fondo → cenital → retrato del jugador sobre la tarjeta), una línea de copy por beat.
 - **Transición Vibo→Pirp:** el hilo sale por la trayectoria de la pelota tras el impacto y se aplana hacia la línea de Pirp (`thread.anchors` en `definition.ts`).
 
 ## 2. Cómo verificar
@@ -25,8 +25,8 @@ npm run dev
 | Beat | Deep link |
 | --- | --- |
 | mundo | `/?chapter=vibo&progress=0.12&quality=high` |
-| razonamiento (HUD + scrub) | `/?chapter=vibo&progress=0.30&quality=high` · `/?chapter=vibo&progress=0.42&quality=high` |
-| razonamiento (pipeline, mobile) | `/?chapter=vibo&progress=0.53&quality=high` |
+| razonamiento (HUD + scrub) | `/?chapter=vibo&progress=0.30&quality=high` · `/?chapter=vibo&progress=0.40&quality=high` |
+| razonamiento (pipeline, mobile) | `/?chapter=vibo&progress=0.51&quality=high` |
 | solución | `/?chapter=vibo&progress=0.72&quality=high` |
 | resultado | `/?chapter=vibo&progress=0.90&quality=high` |
 | laboratorio | `/lab/vibo?progress=0.42&quality=medium` |
@@ -89,8 +89,8 @@ Verificado con emulación `reduce`: la escena es estática salvo lo que mueve el
 | Beat | Desktop 1440×900 | Mobile 390×844 |
 | --- | --- | --- |
 | mundo (0.12) | [`vibo-desktop-1-mundo.webp`](./vibo-desktop-1-mundo.webp) | [`vibo-mobile-1-mundo.webp`](./vibo-mobile-1-mundo.webp) |
-| razonamiento (0.42 · mobile 0.30) | [`vibo-desktop-2-razonamiento.webp`](./vibo-desktop-2-razonamiento.webp) | [`vibo-mobile-2a-razonamiento-hud.webp`](./vibo-mobile-2a-razonamiento-hud.webp) |
-| razonamiento — pipeline (mobile 0.53) | (incluido en la captura anterior) | [`vibo-mobile-2b-razonamiento-grafo.webp`](./vibo-mobile-2b-razonamiento-grafo.webp) |
+| razonamiento (0.40 · mobile 0.30) | [`vibo-desktop-2-razonamiento.webp`](./vibo-desktop-2-razonamiento.webp) | [`vibo-mobile-2a-razonamiento-hud.webp`](./vibo-mobile-2a-razonamiento-hud.webp) |
+| razonamiento — pipeline (mobile 0.51) | (incluido en la captura anterior) | [`vibo-mobile-2b-razonamiento-grafo.webp`](./vibo-mobile-2b-razonamiento-grafo.webp) |
 | solución (0.72 · mobile 0.71) | [`vibo-desktop-3-solucion.webp`](./vibo-desktop-3-solucion.webp) | [`vibo-mobile-3-solucion.webp`](./vibo-mobile-3-solucion.webp) |
 | resultado (0.90) | [`vibo-desktop-4-resultado.webp`](./vibo-desktop-4-resultado.webp) | [`vibo-mobile-4-resultado.webp`](./vibo-mobile-4-resultado.webp) |
 
