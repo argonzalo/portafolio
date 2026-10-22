@@ -89,9 +89,9 @@
 | --- | --- | --- | --- | --- |
 | T-H14 | Narrativas cortas de segunda y tercera línea (I-10) sobre borradores del agente | T-A04 | `src/content/projects/` | pendiente |
 | T-A29 | Satélites de Banner: App Etiquetas y Web Landing dentro del mundo Banner | T-A25 | `src/scenes/banner/satellites/` | pendiente |
-| T-A30 | Viñeta Starbene | T-A18, T-A19 | `src/scenes/starbene/` | listo |
-| T-A31 | Viñeta AGNT | T-A18, T-A19 | `src/scenes/agnt/` | listo |
-| T-A32 | Viñeta Cielo y Mar | T-A18, T-A19 | `src/scenes/cielo-y-mar/` | listo |
+| T-A30 | Viñeta Starbene | T-A18, T-A19 | `src/scenes/starbene/` | hecho (2026-10-22; equipo médico en vista explosionada + app en `Phone` + web en `Laptop` + HUD/TelemetryDeck; ≤ 35 draws / 32,9k tris desktop a 60 FPS, ≤ 25 draws / 9,3k tris mobile CPU×4; pósters `starbene*.png`; evidencia en `docs/plan/evidencias/T-A30/`) |
+| T-A31 | Viñeta AGNT | T-A18, T-A19 | `src/scenes/agnt/` | hecho (2026-10-22; pizarra táctica 3D con shader + fichas PBR + `AgentGraph` + arcos de traspasos + `Display`/`Laptop` API-Football; ≤ 36 draws / 29,0k tris desktop a 60 FPS, ≤ 28 draws / 8,5k tris mobile CPU×4; pósters `agnt*.png`; evidencia en `docs/plan/evidencias/T-A31/`) |
+| T-A32 | Viñeta Cielo y Mar | T-A18, T-A19 | `src/scenes/cielo-y-mar/` | hecho (2026-10-22; shader de mar al atardecer + postal enmarcada de suite + transformación a `Laptop` + partículas/HUD/TelemetryDeck; ≤ 29 draws / 28,2k tris desktop a 60 FPS, ≤ 18 draws / 8,8k tris mobile CPU×4; pósters `cielo-y-mar*.png`; evidencia en `docs/plan/evidencias/T-A32/`) |
 | T-A33 | Archivo de tercera línea (2D interactivo) + páginas de caso breves | T-A11, T-A17 | `src/components/journey/Archive*` | pendiente |
 | T-A34 | Quién soy + Hablemos + cierre cíclico hacia el hero | T-A13, T-A11 | `src/components/journey/About*`, `src/components/journey/Contact*` | pendiente |
 | T-A35 | Imágenes de proyectos a `astro:assets` (AVIF/WebP responsive) + pósters definitivos generados con Playwright desde cada escena | T-A20 a T-A25 | `src/assets/projects/`, `public/posters/`, `scripts/posters.*` | pendiente |

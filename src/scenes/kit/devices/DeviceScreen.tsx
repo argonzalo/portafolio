@@ -391,12 +391,12 @@ function FloatingLayer({
 
     for (const material of Object.values(layerMats)) {
       if (material === layerMats.layer) material.color.setScalar(lightLevel.current)
-      if (material === layerMats.hole && holeRef.current) material.opacity = 0.42 * local
+      if (material === layerMats.hole && holeRef.current) material.opacity = 0.08 * local
       if (material === layerMats.shadow && shadowRef.current) {
-        material.opacity = 0.5 * local
+        material.opacity = 0.14 * local
       }
       if (material === layerMats.halo && haloRef.current) {
-        material.opacity = 0.75 * local
+        material.opacity = 0.18 * local
       }
     }
 
@@ -421,7 +421,7 @@ function FloatingLayer({
 
   return (
     <group ref={groupRef} position={[layout.x, layout.y, 0]} visible={false}>
-      {richTier && cropsScreen ? (
+      {richTier && !cropsScreen ? (
         <mesh
           ref={holeRef}
           geometry={holeGeometry}
