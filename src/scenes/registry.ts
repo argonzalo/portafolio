@@ -1,20 +1,24 @@
 import type { ProjectId, SceneDefinition } from "@/experience/types"
+import { vibo } from "./vibo/definition"
+import { pirp } from "./pirp/definition"
+import { naturalis } from "./naturalis/definition"
+import { banner } from "./banner-2/definition"
 
 /**
  * Registro de escenas (`01-arquitectura.md` §3).
  *
- * Está vacío a propósito: las escenas llegan de T-A14 en adelante. Cada una se
- * registra al final de su propio PR con **una línea** acá (excepción permitida
- * a la regla de archivos calientes, `06-coordinacion.md` §4):
- *
- * ```ts
- * import { vibo } from "./vibo/definition"
- * ```
+ * Greyboxes de primera línea de T-A14. Cada definición mantiene su chunk lazy;
+ * el registro solo importa metadatos, nunca el componente de la escena.
  *
  * El orden del array es el orden de precarga, no el del recorrido: el recorrido
  * lo define el DOM (`data-chapter`) y ADR-007.
  */
-export const scenes: readonly SceneDefinition[] = []
+export const scenes: readonly SceneDefinition[] = [
+  vibo,
+  pirp,
+  naturalis,
+  banner,
+]
 
 const byId = new Map<string, SceneDefinition>(
   scenes.map((scene) => [scene.id, scene])

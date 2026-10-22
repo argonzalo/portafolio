@@ -1,7 +1,7 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
+  "exclude": ["dist", "ui-mvp-public"],
   "compilerOptions": {
     "baseUrl": ".",
     "jsx": "react-jsx",
