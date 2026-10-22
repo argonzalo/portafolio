@@ -32,6 +32,7 @@ import {
   type KitCounterDef,
   type KitTrendSeries,
 } from "./CountersAndCharts"
+import { DeviceShowcase } from "./devices"
 import {
   HudOverlay,
   type HudBoundingBox3D,
@@ -75,23 +76,23 @@ const CAMERA_FRAMES: readonly BeatCameraFrame[] = [
   },
   {
     at: 0.74,
-    desktop: [-3.1, 3.3, 6.2],
-    mobile: [-0.8, 3.8, 8.8],
-    target: [0.7, 1.1, -0.3],
-    mobileTarget: [0.0, 0.9, -0.2],
-    fov: 43,
+    desktop: [-2.8, 2.75, 5.8],
+    mobile: [0.0, 2.85, 7.6],
+    target: [0.15, 1.45, -0.35],
+    mobileTarget: [0.0, 1.75, -0.25],
+    fov: 42,
     mobileFov: 50,
     sway: 0.03,
   },
   {
     at: 1.0,
-    desktop: [4.2, 3.6, 7.4],
-    mobile: [0.4, 4.4, 9.8],
-    target: [0.3, 1.2, -0.3],
-    mobileTarget: [0.0, 1.0, -0.2],
-    fov: 44,
-    mobileFov: 50,
-    sway: 0.035,
+    desktop: [-2.2, 2.55, 5.4],
+    mobile: [0.1, 2.75, 7.4],
+    target: [0.2, 1.48, -0.3],
+    mobileTarget: [0.0, 1.78, -0.2],
+    fov: 40,
+    mobileFov: 48,
+    sway: 0.03,
   },
 ]
 
@@ -373,9 +374,9 @@ export type KitShowcaseSceneProps = SceneProps & {
 }
 
 /**
- * Escena demostrativa completa del Kit T-A18 para `/lab/kit`.
- * Integra Rig de cámara por beats, ThreadLine, HudOverlay, AgentGraph,
- * TelemetryDeck y ParticleField con estética de producto real.
+ * Escena demostrativa del Kit T-A18 + dispositivos T-A19 para `/lab/kit`.
+ * Integra rig de cámara, ThreadLine, HudOverlay, AgentGraph, TelemetryDeck,
+ * ParticleField y el trío Phone / Laptop / Display con capas flotantes.
  */
 export default function KitShowcaseScene({
   progress,
@@ -627,7 +628,10 @@ export default function KitShowcaseScene({
     }
 
     if (athleteGroupRef.current) {
+      const athleteFade = 1 - phase(p, 0.58, 0.66)
+      athleteGroupRef.current.visible = athleteFade > 0.02
       athleteGroupRef.current.rotation.y = -0.32 + swing * 0.58
+      athleteGroupRef.current.scale.setScalar(0.92 + athleteFade * 0.08)
     }
 
     if (shoulderPivotRef.current) {
@@ -834,7 +838,11 @@ export default function KitShowcaseScene({
       />
 
       {/* Podio holográfico 3D para los beats de Tendencia y Contadores (0.64..1.0) */}
-      <group ref={dataPodiumRef} position={[-1.1, 1.15, -0.3]} visible={false}>
+      <group
+        ref={dataPodiumRef}
+        position={isMobile ? [0, 2.35, -0.35] : [-1.15, 0.18, -0.35]}
+        visible={false}
+      >
         <mesh rotation-x={Math.PI / 2} geometry={geos.podiumRing}>
           <meshBasicMaterial color={theme.primary} transparent opacity={0.75} />
         </mesh>
@@ -847,6 +855,14 @@ export default function KitShowcaseScene({
           <meshBasicMaterial color={theme.accent} transparent opacity={0.85} />
         </mesh>
       </group>
+
+      {/* 3b. Kit de dispositivos (T-A19) — beats 04–05 */}
+      <DeviceShowcase
+        progress={progress}
+        quality={quality}
+        isMobile={isMobile}
+        theme={theme}
+      />
 
       {/* 4. Campo de partículas GPU con presupuesto automático por nivel */}
       <ParticleField

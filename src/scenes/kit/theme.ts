@@ -45,13 +45,13 @@ export const KIT_LAB_BEATS = [
     id: "tendencia",
     range: [0.66, 0.84] as [number, number],
     progress: 0.75,
-    label: "04 · Curva en vivo + Alerta y barras",
+    label: "04 · Dispositivos 3D + Curva y alerta",
   },
   {
     id: "resultado",
     range: [0.84, 1.0] as [number, number],
     progress: 0.92,
-    label: "05 · Contadores + Síntesis multi-escena",
+    label: "05 · Capas de UI flotantes + Contadores",
   },
 ] as const
 

@@ -1,9 +1,47 @@
 /**
- * Kit reutilizable de escena (`03-escenas.md` §2 · T-A18).
- *
- * Nota: los dispositivos 3D (`Phone`, `Laptop`, `Display`) viven en
- * `src/scenes/kit/devices/` y corresponden a la tarea T-A19.
+ * Kit reutilizable de escena (`03-escenas.md` §2 · T-A18 + T-A19).
  */
+
+export {
+  PHONE_SPEC,
+  LAPTOP_SPEC,
+  DISPLAY_SPEC,
+  DEVICE_FINISHES,
+  DEVICE_FINISH_IDS,
+  resolveScalar,
+  toRenderTier,
+  useScreenTexture,
+  computeFitTransform,
+  getTextureAspect,
+  isVideoSource,
+  DeviceScreen,
+  layoutLayerRect,
+  useStudioEnvironment,
+  useDeviceMaterials,
+  Phone,
+  PHONE_SCREEN,
+  Laptop,
+  LAPTOP_SCREEN,
+  Display,
+  getDisplayScreenSize,
+  DeviceShowcase,
+  type DynamicScalar,
+  type RenderTier,
+  type DeviceFinish,
+  type DeviceFinishSpec,
+  type ScreenFit,
+  type ScreenAlign,
+  type UvTransform,
+  type DeviceLayer,
+  type DeviceScreenContent,
+  type DeviceMaterials,
+  type DeviceMaterialOptions,
+  type PhoneProps,
+  type DeviceBaseProps,
+  type LaptopProps,
+  type DisplayProps,
+  type DeviceShowcaseProps,
+} from "./devices"
 
 export {
   KIT_THEMES,

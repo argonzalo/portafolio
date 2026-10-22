@@ -1,12 +1,13 @@
-# Kit de escena — T-A18 (`src/scenes/kit/`)
+# Kit de escena y dispositivos — T-A18 + T-A19 (`src/scenes/kit/`)
 
 Piezas reutilizables de primera y segunda línea según `docs/plan/03-escenas.md` §2.
-Los dispositivos 3D (`Phone`, `Laptop`, `Display`) viven en `src/scenes/kit/devices/` y pertenecen a **T-A19**.
+Los dispositivos 3D (`Phone`, `Laptop`, `Display`) viven en `src/scenes/kit/devices/` (**T-A19**) y se re-exportan desde `src/scenes/kit/`.
 
 ## Piezas incluidas
 
 | Módulo | Export principal | Qué resuelve | Costo GPU |
 | --- | --- | --- | --- |
+| `devices/` (`Phone.tsx`, `Laptop.tsx`, `Display.tsx`, `DeviceScreen.tsx`) | `Phone`, `Laptop`, `Display`, `DeviceScreen`, `useScreenTexture`, `DEVICE_FINISHES` | Dispositivos 3D con proporciones físicas reales (`1 unidad = 10 cm`), 5 acabados anodizados (`space-black`, `silver`, `graphite`, `midnight`, `titanium`), mapa de entorno HDR de estudio compartido (`PMREMGenerator`), pantalla texturizable (`.webp`/`.png`/`.mp4`) con encaje sin deformación (`fit`/`align`) y **capas de UI que se despegan y flotan en 3D** (`layers` + `separation`) con sombra suave y halo. | `0 KiB` de descarga GLB · teclado fusionado en 1 malla · PMREM compartido |
 | `cameraRig.ts` | `useBeatCameraRig`, `interpolateCameraState`, `phase`, `smootherPhase`, `beatEnvelope` | Interpola encuadres por beat (`desktop` / `mobile`, `target`, `fov`, `sway`) con splines Catmull-Rom C2 y amortiguación sin re-renders. Respeta `prefers-reduced-motion`. | 0 draw calls |
 | `ThreadLine.tsx` | `ThreadLine`, `resampleCurvePoints` | Líneas y trayectorias 3D gruesas (listón indexado en espacio de vista) con el mismo shader del filamento del hilo conductor (`Filament.tsx`): núcleo + halo aditivo, dibujado progresivo (`draw`) y pulsos de energía con cabeza opcional. | 1–2 draw calls (`52–144` segs según tier) |
 | `HudOverlay.tsx` | `HudOverlay` | HUD anclado a coordenadas 3D proyectadas en `useFrame` sobre un único `<Html fullscreen>`. Incluye bounding boxes 3D con esquinas broadcast, esqueleto de pose SVG con arco de ángulo en vivo y marcadores con línea guía. En mobile (`02` §4) muestra pines táctiles (`≥ 44×44 px`) y despliega una tarjeta a la vez al hacer tap. | 0 draw calls WebGL |

@@ -57,7 +57,7 @@
 | T-H08 | Persona del guía, FAQs y aprobación de las ofertas proactivas (I-09); el agente propone borradores | ADR-008 | `src/content/guide/` | pendiente |
 | T-H12 | Revisión de arte de cada escena al cerrar su greybox y antes del merge final (recurrente) | — | Comentarios en PR | en curso (barra *cinematic stylized*; greybox no aprueba look final — #1/#5; capturas en escena → T-A42; continuidad ya OK) |
 | T-A18 | Kit de escena: HUD anclado a 3D, grafo de nodos/agentes, líneas con el shader del hilo, contadores, rig de cámara por beats; ejemplos en `/lab/kit`. **Vara:** piezas con look de producto, no placeholders grises. | T-A07, T-A13 | `src/scenes/kit/` (salvo dispositivos) | hecho (2026-10-22: rig de cámara por beats, `ThreadLine` con shader del hilo, `HudOverlay` 3D con bbox/pose/ángulo/callouts 44×44, `AgentGraph` con tira vertical mobile, `TelemetryDeck` con contadores `tabular-nums` y curva SVG progresiva, `ParticleField` GPU, 4 paletas de marca y `/lab/kit`; evidencia en `docs/plan/evidencias/T-A18/`) |
-| T-A19 | Kit de dispositivos: `Phone`, `Laptop`, `Display` con proporción realista, materiales creíbles, pantalla texturizable y capas de UI flotantes (no look “juguete”) | T-A07, T-A09 | `src/scenes/kit/devices/`, `assets-src/kit/`, `public/models/kit/` | pendiente |
+| T-A19 | Kit de dispositivos: `Phone`, `Laptop`, `Display` con proporción realista, materiales creíbles, pantalla texturizable y capas de UI flotantes (no look “juguete”) | T-A07, T-A09 | `src/scenes/kit/devices/`, `assets-src/kit/`, `public/models/kit/` (+ integración mínima lab: `KitShowcaseScene`/`KitLab`/`index`/`theme`) | hecho (2026-10-22: `Phone` 6,1", `Laptop` 14" con teclado fusionado en 1 malla y tapa articulada, `Display` 27" monitor/signage, 5 acabados PBR con PMREM de estudio compartido, `DeviceScreen` `.webp`/`.mp4` y capas de UI flotantes 3D; integrado en `/lab/kit`; evidencia en `docs/plan/evidencias/T-A19/`) |
 | T-A20 | **Escena Vibo completa** (`03` §3.1, ADR-011 + enmienda estética): personaje **estilizado-realista** (proporciones humanas, materiales/luz de replay TV), overlays de detección, interacción, transición Vibo→Pirp; fuera de alcance: low-poly infantil / silueta de bloques | T-A14 (ritmo), T-A18, T-H07, ficha actualizada | `src/scenes/vibo/`, `public/models/vibo/`, `public/textures/vibo/` | pendiente (bloqueada por barra de arte T-H12) |
 | T-A21 | Backend del guía: `/api/guide` con AI SDK, tools de la lista cerrada, contexto generado en build, límites (sesión, IP, global), kill switch, fallback de modelo, tests | T-A03, T-A04, ADR-005, ADR-008 | `src/pages/api/guide.ts`, `src/server/guide/`, `scripts/guide-context.*` | pendiente |
 | T-A22 | Observador y motor de reglas del guía (`04` §3) con panel de debug que muestra el estado detectado | T-A05, T-A11 | `src/guide/` | pendiente |
@@ -86,9 +86,9 @@
 | --- | --- | --- | --- | --- |
 | T-H14 | Narrativas cortas de segunda y tercera línea (I-10) sobre borradores del agente | T-A04 | `src/content/projects/` | pendiente |
 | T-A29 | Satélites de Banner: App Etiquetas y Web Landing dentro del mundo Banner | T-A25 | `src/scenes/banner/satellites/` | pendiente |
-| T-A30 | Viñeta Starbene | T-A18, T-A19 | `src/scenes/starbene/` | pendiente |
-| T-A31 | Viñeta AGNT | T-A18, T-A19 | `src/scenes/agnt/` | pendiente |
-| T-A32 | Viñeta Cielo y Mar | T-A18, T-A19 | `src/scenes/cielo-y-mar/` | pendiente |
+| T-A30 | Viñeta Starbene | T-A18, T-A19 | `src/scenes/starbene/` | listo |
+| T-A31 | Viñeta AGNT | T-A18, T-A19 | `src/scenes/agnt/` | listo |
+| T-A32 | Viñeta Cielo y Mar | T-A18, T-A19 | `src/scenes/cielo-y-mar/` | listo |
 | T-A33 | Archivo de tercera línea (2D interactivo) + páginas de caso breves | T-A11, T-A17 | `src/components/journey/Archive*` | pendiente |
 | T-A34 | Quién soy + Hablemos + cierre cíclico hacia el hero | T-A13, T-A11 | `src/components/journey/About*`, `src/components/journey/Contact*` | pendiente |
 | T-A35 | Imágenes de proyectos a `astro:assets` (AVIF/WebP responsive) + pósters definitivos generados con Playwright desde cada escena | T-A20 a T-A25 | `src/assets/projects/`, `public/posters/`, `scripts/posters.*` | pendiente |
