@@ -51,14 +51,12 @@ import { Court } from "./Court"
 import { PLATINUM_THEME, VIBO_COLORS, VIBO_THEME } from "./theme"
 import { COVERAGE, HEAT, HEAT_GRID, INTENSITY, INTENSITY_PEAK, PLAYER, SHOT } from "./data"
 import { createPanelNodes, paintInset } from "./panel"
-import { ViboPipeline, type PipelineStep } from "./Pipeline"
 import { ViboPlayer } from "./Player"
 import { createContactProbe, createPlayerJoints, createRim, type JointId } from "./rig"
 import { BodyLayer, ViboPanel } from "./ViboPanel"
 import {
   CAMERA_KEYS,
   CONTACT,
-  COURT,
   FLOODLIGHTS,
   HERO_POSITION,
   createCourtState,
@@ -105,35 +103,13 @@ function heatCentroid(grid: readonly number[]): Vec3Tuple {
   return courtToWorld(sx / sum, sz / sum, 0.1)
 }
 
-const PIPELINE = [
-  { id: "deteccion", label: "Detección" },
-  { id: "seguimiento", label: "Seguimiento" },
-  { id: "calibracion", label: "Calibración" },
-  { id: "golpes", label: "Golpes" },
-  { id: "clasificacion", label: "Clasificación" },
-]
-
-/** Rótulo de etapa sobre el cristal del fondo, detrás y a un lado del jugador. */
-const PIPELINE_LABEL = {
-  desktop: { position: [-1.75, 2.3, COURT.length / 2 - 0.03] as Vec3Tuple, width: 3.4 },
-  mobile: { position: [-0.9, 2.25, COURT.length / 2 - 0.03] as Vec3Tuple, width: 4.4 },
-}
-
 type Range4 = [number, number, number, number]
 
-/** En mobile el golpe y el pipeline se suceden: un bloque de información por vez. */
+/** En mobile el HUD del golpe cede la pantalla antes que en desktop. */
 const MOBILE_HUD: Range4 = [0.21, 0.25, 0.43, 0.47]
-const MOBILE_GRAPH: Range4 = [0.43, 0.47, 0.56, 0.6]
 
 function hudRange(isMobile: boolean): Range4 {
   return isMobile ? MOBILE_HUD : [...TIMELINE.hud]
-}
-
-function pipelineSteps(isMobile: boolean): PipelineStep[] {
-  return PIPELINE.map((node, i) => ({
-    ...node,
-    triggerAt: isMobile ? MOBILE_GRAPH[1] - 0.01 + i * 0.022 : 0.28 + i * 0.05,
-  }))
 }
 
 
@@ -467,7 +443,6 @@ export default function ViboScene(props: SceneProps) {
     (p: number) => envelope(p, CONTACT_P - 0.01, 0.6, 0.03),
     []
   )
-  const pipeline = useMemo(() => pipelineSteps(isMobile), [isMobile])
   const outgoingTrail = useCallback(() => trailPoints(runtime), [runtime])
   const trailDraw = useCallback(() => {
     const s = swing.current
@@ -542,15 +517,6 @@ export default function ViboScene(props: SceneProps) {
         skeleton={skeleton}
         markers={isMobile ? strikeMarkers.slice(0, 1) : strikeMarkers}
         defaultSelectedId="impacto"
-      />
-
-      <ViboPipeline
-        steps={pipeline}
-        progress={progress}
-        {...(isMobile ? PIPELINE_LABEL.mobile : PIPELINE_LABEL.desktop)}
-        active={active}
-        theme={THEME}
-        range={isMobile ? MOBILE_GRAPH : [...TIMELINE.graph]}
       />
 
       <HudOverlay

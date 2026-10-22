@@ -1,16 +1,18 @@
 import {
-  AnimationMixer,
   BufferAttribute,
   Color,
   Euler,
   MathUtils,
   Mesh,
   MeshStandardMaterial,
+  PropertyBinding,
   Quaternion,
   SkinnedMesh,
   Vector3,
   type Bone,
   type Group,
+  type Interpolant,
+  type KeyframeTrack,
   type Object3D,
   type Texture,
 } from "three"
@@ -192,9 +194,43 @@ export type Rig = {
   bones: Map<string, Bone>
   meshes: SkinnedMesh[]
   body: MeshStandardMaterial
-  mixer: AnimationMixer
+  /** Pistas del clip del golpe muestreadas a mano en cada pose. */
+  channels: Channel[]
   /** Pose de reposo de los huesos que toca la capa procedural. */
   rest: Map<Bone, { position: Vector3; quaternion: Quaternion }>
+}
+
+type Channel = {
+  target: Object3D
+  property: "position" | "quaternion" | "scale"
+  interpolant: Interpolant
+}
+
+/**
+ * Sin `AnimationMixer`: solo escribe en la escena cuando el valor cambia entre
+ * frames, y `poseRig` restaura el reposo en cada frame; con el golpe quieto el
+ * clip no se aplicaría.
+ */
+function bindClip(scene: Group, clip: AnimationClip | undefined): Channel[] {
+  if (!clip) return []
+  const channels: Channel[] = []
+  for (const track of clip.tracks) {
+    const { nodeName, propertyName } = PropertyBinding.parseTrackName(track.name)
+    const target = scene.getObjectByName(nodeName)
+    if (!target) continue
+    if (propertyName !== "position" && propertyName !== "quaternion" && propertyName !== "scale")
+      continue
+    // `createInterpolant` existe en runtime (GLTFLoader lo sobrescribe para CUBICSPLINE) pero no en los tipos.
+    const interpolant = (track as KeyframeTrack & { createInterpolant: () => Interpolant }).createInterpolant()
+    channels.push({ target, property: propertyName, interpolant })
+  }
+  return channels
+}
+
+function sampleClip(channels: Channel[], time: number) {
+  for (const { target, property, interpolant } of channels) {
+    target[property].fromArray(interpolant.evaluate(time))
+  }
 }
 
 export function buildRig(scene: Group, animations: AnimationClip[], rim: RimUniforms): Rig {
@@ -222,14 +258,13 @@ export function buildRig(scene: Group, animations: AnimationClip[], rim: RimUnif
     for (const m of Array.isArray(previous) ? previous : [previous]) m.dispose()
     mesh.material = body
   }
-  const mixer = new AnimationMixer(scene)
-  mixer.clipAction(animations[0]).play()
+  const channels = bindClip(scene, animations[0])
   const rest = new Map<Bone, { position: Vector3; quaternion: Quaternion }>()
   for (const name of LAYERED_BONES) {
     const bone = bones.get(name)
     if (bone) rest.set(bone, { position: bone.position.clone(), quaternion: bone.quaternion.clone() })
   }
-  return { scene, bones, meshes, body, mixer, rest }
+  return { scene, bones, meshes, body, channels, rest }
 }
 
 export type Racket = { scene: Group; materials: MeshStandardMaterial[] }
@@ -268,8 +303,6 @@ export function attachRacket(rig: Rig, racket: Racket) {
 }
 
 export function disposeRig(rig: Rig, racket: Racket) {
-  rig.mixer.stopAllAction()
-  rig.mixer.uncacheRoot(rig.scene)
   rig.body.dispose()
   for (const mesh of rig.meshes) mesh.geometry.dispose()
   for (const skeleton of new Set(rig.meshes.map((mesh) => mesh.skeleton))) skeleton.dispose()
@@ -320,7 +353,7 @@ export function poseRig(rig: Rig, racket: Racket, s: number, joints: PlayerJoint
     bone.position.copy(pose.position)
     bone.quaternion.copy(pose.quaternion)
   }
-  rig.mixer.setTime(MathUtils.lerp(SWING.clipStart, SWING.clipEnd, s))
+  sampleClip(rig.channels, MathUtils.lerp(SWING.clipStart, SWING.clipEnd, s))
 
   // Capa procedural sobre el clip: carga de piernas y giro de torso.
   const load =
