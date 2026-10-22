@@ -1,0 +1,65 @@
+{
+  "results": [
+    {
+      "name": "desktop",
+      "chapter": "vibo",
+      "debug": "DEBUG · RUNTIME\n\n×\nnivel\nhigh (forced)\nmodo\nforzado\nfps\n60.0 · 16.7 ms · p95 17 ms\ncapítulo\nvibo\nbeat\n—\nprogreso\n0.45\nescenas\n0\ndraw calls\n1\ntriangles\n0\ntextures\n0\ngeometries\n1\nprograms\n1\njs heap\n45.8 MB\ndpr\n1.00 · render 1.00 · 1440px\nhigh\nmedium\nlow\nstatic\nauto\n\n/?chapter=vibo&progress=0.45&quality=high&debug\n\nDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "name": "desktop",
+      "chapter": "pirp",
+      "debug": "DEBUG · RUNTIME\n\n×\nnivel\nhigh (forced)\nmodo\nforzado\nfps\nmidiendo · 16.7 ms · p95 16.8 ms\ncapítulo\npirp\nbeat\n—\nprogreso\n0.45\nescenas\n0\ndraw calls\n1\ntriangles\n0\ntextures\n0\ngeometries\n1\nprograms\n1\njs heap\n48.8 MB\ndpr\n1.00 · render 1.00 · 1440px\nhigh\nmedium\nlow\nstatic\nauto\n\n/?chapter=pirp&progress=0.45&quality=high&debug\n\nDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "name": "desktop",
+      "chapter": "naturalis",
+      "debug": "DEBUG · RUNTIME\n\n×\nnivel\nhigh (forced)\nmodo\nforzado\nfps\nmidiendo · 16.7 ms · p95 16.9 ms\ncapítulo\nnaturalis\nbeat\n—\nprogreso\n0.45\nescenas\n0\ndraw calls\n1\ntriangles\n0\ntextures\n0\ngeometries\n1\nprograms\n1\njs heap\n47.6 MB\ndpr\n1.00 · render 1.00 · 1440px\nhigh\nmedium\nlow\nstatic\nauto\n\n/?chapter=naturalis&progress=0.45&quality=high&debug\n\nDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "name": "desktop",
+      "chapter": "banner-2",
+      "debug": "DEBUG · RUNTIME\n\n×\nnivel\nhigh (forced)\nmodo\nforzado\nfps\nmidiendo · 16.7 ms · p95 16.8 ms\ncapítulo\nbanner-2\nbeat\n—\nprogreso\n0.45\nescenas\n0\ndraw calls\n1\ntriangles\n0\ntextures\n0\ngeometries\n1\nprograms\n1\njs heap\n52.7 MB\ndpr\n1.00 · render 1.00 · 1440px\nhigh\nmedium\nlow\nstatic\nauto\n\n/?chapter=banner-2&progress=0.45&quality=high&debug\n\nDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "name": "mobile",
+      "chapter": "vibo",
+      "debug": "DEBUG · RUNTIME\n\n×\nnivel\nmedium (forced)\nmodo\nforzado\nfps\n60.1 · 16.7 ms · p95 18.4 ms\ncapítulo\nvibo\nbeat\n—\nprogreso\n0.45\nescenas\n0\ndraw calls\n2\ntriangles\n480\ntextures\n0\ngeometries\n2\nprograms\n2\njs heap\n51.7 MB\ndpr\n1.00 · render 1.00 · 390px\nhigh\nmedium\nlow\nstatic\nauto\n\n/?chapter=vibo&progress=0.45&quality=medium&debug\n\nDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "name": "mobile",
+      "chapter": "pirp",
+      "debug": "DEBUG · RUNTIME\n\n×\nnivel\nmedium (forced)\nmodo\nforzado\nfps\nmidiendo · 16.7 ms · p95 17.2 ms\ncapítulo\npirp\nbeat\n—\nprogreso\n0.45\nescenas\n0\ndraw calls\n2\ntriangles\n480\ntextures\n0\ngeometries\n2\nprograms\n2\njs heap\n63.8 MB\ndpr\n1.00 · render 1.00 · 390px\nhigh\nmedium\nlow\nstatic\nauto\n\n/?chapter=pirp&progress=0.45&quality=medium&debug\n\nDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "name": "mobile",
+      "chapter": "naturalis",
+      "debug": "DEBUG · RUNTIME\n\n×\nnivel\nmedium (forced)\nmodo\nforzado\nfps\nmidiendo · 16.7 ms · p95 17.3 ms\ncapítulo\nnaturalis\nbeat\n—\nprogreso\n0.45\nescenas\n0\ndraw calls\n2\ntriangles\n480\ntextures\n0\ngeometries\n2\nprograms\n2\njs heap\n48.2 MB\ndpr\n1.00 · render 1.00 · 390px\nhigh\nmedium\nlow\nstatic\nauto\n\n/?chapter=naturalis&progress=0.45&quality=medium&debug\n\nDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "name": "mobile",
+      "chapter": "banner-2",
+      "debug": "DEBUG · RUNTIME\n\n×\nnivel\nmedium (forced)\nmodo\nforzado\nfps\n60.0 · 16.7 ms · p95 17.1 ms\ncapítulo\nbanner-2\nbeat\n—\nprogreso\n0.45\nescenas\n0\ndraw calls\n2\ntriangles\n480\ntextures\n0\ngeometries\n2\nprograms\n2\njs heap\n63 MB\ndpr\n1.00 · render 1.00 · 390px\nhigh\nmedium\nlow\nstatic\nauto\n\n/?chapter=banner-2&progress=0.45&quality=medium&debug\n\nDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "name": "low",
+      "chapter": "vibo",
+      "debug": "DEBUG · RUNTIME\n\n×\nnivel\nlow (forced)\nmodo\nforzado\nfps\nmidiendo · 16.7 ms · p95 16.8 ms\ncapítulo\nvibo\nbeat\n—\nprogreso\n0.45\nescenas\n0\ndraw calls\n2\ntriangles\n280\ntextures\n0\ngeometries\n2\nprograms\n2\njs heap\n54.7 MB\ndpr\n1.00 · render 1.00 · 1440px\nhigh\nmedium\nlow\nstatic\nauto\n\n/?chapter=vibo&progress=0.45&quality=low&debug\n\nDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "name": "low",
+      "chapter": "pirp",
+      "debug": "DEBUG · RUNTIME\n\n×\nnivel\nlow (forced)\nmodo\nforzado\nfps\nmidiendo · 16.7 ms · p95 16.8 ms\ncapítulo\npirp\nbeat\n—\nprogreso\n0.45\nescenas\n0\ndraw calls\n2\ntriangles\n280\ntextures\n0\ngeometries\n2\nprograms\n2\njs heap\n54.7 MB\ndpr\n1.00 · render 1.00 · 1440px\nhigh\nmedium\nlow\nstatic\nauto\n\n/?chapter=pirp&progress=0.45&quality=low&debug\n\nDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "name": "low",
+      "chapter": "naturalis",
+      "debug": "DEBUG · RUNTIME\n\n×\nnivel\nlow (forced)\nmodo\nforzado\nfps\nmidiendo · 16.7 ms · p95 16.8 ms\ncapítulo\nnaturalis\nbeat\n—\nprogreso\n0.45\nescenas\n0\ndraw calls\n2\ntriangles\n280\ntextures\n0\ngeometries\n2\nprograms\n2\njs heap\n54.9 MB\ndpr\n1.00 · render 1.00 · 1440px\nhigh\nmedium\nlow\nstatic\nauto\n\n/?chapter=naturalis&progress=0.45&quality=low&debug\n\nDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "name": "low",
+      "chapter": "banner-2",
+      "debug": "DEBUG · RUNTIME\n\n×\nnivel\nlow (forced)\nmodo\nforzado\nfps\nmidiendo · 16.7 ms · p95 16.8 ms\ncapítulo\nbanner-2\nbeat\n—\nprogreso\n0.45\nescenas\n0\ndraw calls\n2\ntriangles\n280\ntextures\n0\ngeometries\n2\nprograms\n2\njs heap\n55.3 MB\ndpr\n1.00 · render 1.00 · 1440px\nhigh\nmedium\nlow\nstatic\nauto\n\n/?chapter=banner-2&progress=0.45&quality=low&debug\n\nDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    }
+  ],
+  "errors": []
+}

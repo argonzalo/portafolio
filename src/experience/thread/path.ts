@@ -23,8 +23,8 @@ export type ThreadStyle = {
 
 export const THREAD_STYLES = {
   vibo: { line: "#3d8bff", head: "#f5c451", background: "#040a18" },
-  // TODO(humano): reemplazar por la paleta de Pirp cuando llegue I-03.
-  pirp: { line: "#ff5b4f", head: "#fff1e0", background: "#0d0a0c" },
+  // Acento Pirp = bordó de marca (ADR-006 / I-03); no nombrar al cliente.
+  pirp: { line: "#7A1F2B", head: "#EFE9DD", background: "#17181A" },
 } as const satisfies Record<"vibo" | "pirp", ThreadStyle>
 
 export type RenderTier = Exclude<QualityTier, "static">
@@ -76,6 +76,8 @@ export function threadExtent(width: number, height: number): ThreadExtent {
 export const THREAD_PATH_GLSL = /* glsl */ `
 uniform float uPhase;
 uniform vec2 uExtent;
+uniform float uUsePath;
+uniform vec3 uPath[32];
 
 const float THREAD_PI = 3.141592653589793;
 const int PULSES = 3;
@@ -126,6 +128,11 @@ vec3 pirpPath(float u, float m) {
 }
 
 vec3 threadPath(float u, float m) {
+  if (uUsePath > 0.5) {
+    float index = clamp(u, 0.0, 1.0) * 31.0;
+    int a = min(int(floor(index)), 30);
+    return mix(uPath[a], uPath[a + 1], index - float(a));
+  }
   vec3 p = mix(viboPath(u), pirpPath(u, m), m);
   return vec3(p.x * uExtent.x, p.y * uExtent.y, p.z);
 }

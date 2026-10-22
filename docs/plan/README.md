@@ -60,7 +60,7 @@ Lo que retrasa todo si se demora; se prioriza por encima de cualquier otra tarea
 
 1. **Cerrar decisiones de F0** (`decisiones.md`: ADR-001 a ADR-005) → desbloquea a todos los agentes.
 2. **Spike del runtime 3D persistente** (T-A06) → sin esto no se puede producir ninguna escena con seguridad.
-3. **Decisión del hilo conductor** (ADR-006, tras el spike T-A08) → afecta a la transición de todas las escenas.
+3. **Decisión del hilo conductor** (ADR-006: C desktop / A mobile, cerrada 2026-10-22) → T-A13 integra el híbrido; afecta a la transición de todas las escenas.
 4. **Insumos de Vibo** (overlays + métricas reales, T-H07 / ADR-011) → la escena insignia depende de ellos.
 5. **Aprobación de Vibo** (G2) → fija la vara de calidad que replican las demás escenas.
 

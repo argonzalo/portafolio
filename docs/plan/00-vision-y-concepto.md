@@ -65,17 +65,17 @@ Cada proyecto tiene además su **página propia** (`/projects/<id>`) con el caso
 
 ## 4. Hilo conductor visual
 
-La descripción deja la decisión abierta. El plan la **acota en el tiempo** porque afecta la arquitectura (el hilo tiene que vivir en una capa persistente por encima de todas las escenas): se prototipan tres opciones en F0 (T-A08) y el humano elige antes de G1 (ADR-006).
+La descripción dejaba la decisión abierta. Quedó cerrada en **ADR-006** (2026-10-22): **enjambre (C) en desktop** y **filamento (A) en mobile**, misma curva y coreografía. El spike A/C está en `/lab/thread` (T-A08).
 
 | Opción | Cómo se ve | Cómo muta por escena | Pros | Contras |
 | --- | --- | --- | --- | --- |
-| **A. El filamento** (recomendada) | Una única línea de luz continua que se dibuja con el scroll | Vibo: líneas de la cancha y trayectoria de la pelota · Pirp: señal que se ramifica en un grafo de temas · Naturalis: tallo que crece y se vuelve planta · Banner: cable que se divide en miles de señales hacia las pantallas | Barata (una curva + shader), legible en mobile, se integra con cualquier estética, expresa "pensamiento que conecta" | Riesgo de verse genérica si no se trabaja el shader |
-| **B. La forma mutante** | Un objeto geométrico que cambia de forma (morphing) | Pelota → nodo → semilla → pantalla | Muy icónica, fuerte para el hero | Más costosa de modelar; morphing entre topologías distintas es complejo |
-| **C. El enjambre** | Nube de partículas que se reorganiza | Forma el jugador, el titular, la hoja, el mapa | Espectacular | La más cara en GPU; riesgo alto en mobile |
+| **A. El filamento** (mobile / low) | Una única línea de luz continua que se dibuja con el scroll | Vibo: líneas de la cancha y trayectoria de la pelota · Pirp: señal que se ramifica en un grafo de temas · Naturalis: tallo que crece y se vuelve planta · Banner: cable que se divide en miles de señales hacia las pantallas | Barata (una curva + shader), legible en mobile, se integra con cualquier estética, expresa "pensamiento que conecta" | Riesgo de verse genérica si no se trabaja el shader |
+| **B. La forma mutante** | Un objeto geométrico que cambia de forma (morphing) | Pelota → nodo → semilla → pantalla | Muy icónica, fuerte para el hero | Más costosa de modelar; morphing entre topologías distintas es complejo — **descartada** |
+| **C. El enjambre** (desktop high/medium) | Nube de partículas que se reorganiza | Forma el jugador, el titular, la hoja, el mapa | Espectacular | Más cara en GPU; no se usa como renderer en mobile |
 
-**Recomendación:** A como hilo principal, con la posibilidad de que en momentos puntuales el filamento "se condense" en una forma (toma lo mejor de B sin su costo). El sonido (textura que cambia por escena) queda como capa secundaria opcional.
+**Sonido** (textura que cambia por escena): capa secundaria opcional.
 
-**Sinergia clave con el agente de IA:** el guía atento puede *ser* la punta del filamento. Cuando el agente habla, el hilo se acerca; cuando ejecuta una acción ("te llevo a cómo se detectan los golpes"), el visitante ve al hilo moverse y llevarlo. Así el agente es visible trabajando sin agregar un avatar ajeno al concepto.
+**Sinergia clave con el agente de IA:** el guía atento puede *ser* la punta del hilo (cabeza del filamento o centro denso del enjambre). Cuando el agente habla, el hilo se acerca; cuando ejecuta una acción ("te llevo a cómo se detectan los golpes"), el visitante ve al hilo moverse y llevarlo. Así el agente es visible trabajando sin agregar un avatar ajeno al concepto.
 
 ## 5. Voz y tono del texto
 

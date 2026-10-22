@@ -13,10 +13,10 @@
 
 | ID | Tarea y criterio de terminado | Depende de | Zona | Estado |
 | --- | --- | --- | --- | --- |
-| T-H01 | Leer `00` y `decisiones.md`; aceptar o corregir ADR-001 a 005, 007, 008, 009 | — | `docs/plan/decisiones.md` | hecho (grilling 2026-10-21; ADR-006 spike A+C pendiente de elección visual) |
+| T-H01 | Leer `00` y `decisiones.md`; aceptar o corregir ADR-001 a 005, 007, 008, 009 | — | `docs/plan/decisiones.md` | hecho (grilling 2026-10-21; ADR-006 cerrada 2026-10-22: C desktop / A mobile) |
 | T-H02 | Cuentas y secretos: vincular repo a Vercel, instalar Upstash Redis desde el Marketplace, configurar tope de gasto mensual en OpenAI, confirmar `OPEN_AI_MODEL` y elegir `OPEN_AI_MODEL_FALLBACK` | — | Paneles externos, `.env` local | hecho (2026-10-21; modelo `gpt-6-luna`, fallback `gpt-5.4-mini`; Upstash `upstash-kv-lime-lantern`; preview https://portafolio-coral-zeta-55.vercel.app) |
 | T-H03 | Arrancar la recolección de insumos de primera línea: I-03 (marcas), I-08 (qué se puede contar de Pirp), I-04 (capturas) | — | `assets-src/`, `docs/plan/licencias.md` | hecho (2026-10-22; brand en `assets-src/*/brand/`; capturas = `public/images/proyects/`; I-08 parcial → T-H10; `licencias.md` + `insumos/capturas.md`) |
-| T-H05 | Moodboard y validación de la ficha de Vibo (`03` §3.1 + ADR-011: golpe en slow-mo + overlays); después Pirp, Naturalis y Banner | — | `docs/plan/03-escenas.md` | en curso (humano; Vibo ficha validada grilling 2026-10-21; faltan Pirp, Naturalis, Banner) |
+| T-H05 | Moodboard y validación de la ficha de Vibo (`03` §3.1 + ADR-011: golpe en slow-mo + overlays); después Pirp, Naturalis y Banner | — | `docs/plan/03-escenas.md` | hecho (2026-10-22; Vibo + Pirp + Naturalis + Banner fichas validadas en `03`) |
 | T-H07 | I-02 / ADR-011: exportar de Firebase (`vibo-beta-2e60f` → `videos.analysisResults`) 1–2 clips anonimizados; curar JSON de overlays (bboxes + keypoints en la ventana del golpe) + métricas de jugador; sin trayectoria 3D fiel | — | `assets-src/vibo/` | hecho (2026-10-21; overlays con bbox/pose reales del MVP + stats Firebase; `ui-mvp-public/` gitignored) |
 | T-A01 | Higiene del repo: README actualizado, scripts de `package.json` documentados, quitar `proyectos-facu/` y `.zip`, `.gitignore` (incl. `assets-src/` salvo README) | ADR-009, ADR-010 | Raíz (`README.md`, `.gitignore`), `proyectos-facu/` | hecho (2026-10-21; PR #3) |
 | T-A02 | Tooling de calidad: script `npm run check`, GitHub Actions (lint, typecheck, build), Lighthouse CI con presupuestos de `02` §1 sobre el preview, `rollup-plugin-visualizer`, Playwright con un smoke test | — | `package.json` (scripts, devDeps), `.github/`, `lighthouserc.*`, `playwright.config.*`, `tests/`, `README.md`, `src/components/projects/LightboxStage.tsx`, `src/components/interactive/ExperienceTimeline.tsx`, `src/experience/SceneDirector.tsx` (tipos), `astro.config.ts` (visualizer), `scripts/analyze.mjs`, `scripts/serve-preview.mjs` | hecho (2026-10-21; PR #9) |
@@ -40,11 +40,11 @@
 | T-H06 | Revisión del esqueleto en dispositivos reales (matriz de `02` §5); lista de ajustes | T-A11 a T-A16 | `docs/plan/tablero.md` | pendiente |
 | T-A11 | Estructura del recorrido en DOM: capítulos con `data-chapter`, índice overlay, vista lista `/projects`, contacto siempre visible, eliminar `/skills` y decidir el destino de `/about`, `/experience`, `/contact` | T-A04, T-A06, ADR-007 | `src/pages/`, `src/components/journey/`, `src/components/layout/` | hecho (2026-10-21; PR #11) |
 
-| T-A12 | Hero y manifiesto: copy de `05` §2, tags, frases, animación con SplitText, hero 100 % HTML (LCP), punto de entrada del hilo | T-A11 | `src/components/journey/Hero*`, `src/components/journey/Manifesto*`, `src/lib/site.ts` | pendiente |
-| T-A13 | Hilo conductor v1 con la opción elegida, integrado en `Stage`, con API para que cada escena defina su `ThreadForm` | ADR-006, T-A06 | `src/experience/thread/` | pendiente |
-| T-A14 | Greybox de las 4 escenas de primera línea (un agente por escena: `T-A14-vibo`, `-pirp`, `-naturalis`, `-banner`): beats, cámaras desktop/mobile, ritmo, en `/lab` y en el recorrido | T-A07, ficha validada (T-H05) | `src/scenes/<id>/` | pendiente |
-| T-A15 | Paletas por capítulo: interpolación de CSS variables con el progreso, cambio a tema claro en Naturalis, sincronía con el canvas | T-A06, T-A11 | `src/experience/palette.ts`, `src/styles/` (con permiso de plataforma) | pendiente |
-| T-A16 | Nivel `static`: recorrido sin canvas con pósters provisionales, `prefers-reduced-motion`, `Save-Data`, sin WebGL | T-A07, T-A11 | `src/components/journey/Fallback*`, `public/posters/` | pendiente |
+| T-A12 | Hero y manifiesto: copy de `05` §2, tags, frases, animación con SplitText, hero 100 % HTML (LCP), punto de entrada del hilo | T-A11 | `src/components/journey/Hero*`, `src/components/journey/Manifesto*`, `src/lib/site.ts` | listo |
+| T-A13 | Hilo conductor v1 (ADR-006: C desktop / A mobile), integrado en `Stage`, con API para que cada escena defina su `ThreadForm` | ADR-006, T-A06 | `src/experience/thread/`, `src/experience/Stage.tsx` (montaje) | en revisión ([PR #14](https://github.com/argonzalo/portafolio/pull/14)) |
+| T-A14 | Greybox de las 4 escenas de primera línea (un agente por escena: `T-A14-vibo`, `-pirp`, `-naturalis`, `-banner`): beats, cámaras desktop/mobile, ritmo, en `/lab` y en el recorrido | T-A07, ficha validada (T-H05) | `src/scenes/<id>/` | listo (las 4 fichas validadas) |
+| T-A15 | Paletas por capítulo: interpolación de CSS variables con el progreso, cambio a tema claro en Naturalis, sincronía con el canvas | T-A06, T-A11 | `src/experience/palette.ts`, `src/styles/` (con permiso de plataforma) | listo |
+| T-A16 | Nivel `static`: recorrido sin canvas con pósters provisionales, `prefers-reduced-motion`, `Save-Data`, sin WebGL | T-A07, T-A11 | `src/components/journey/Fallback*`, `public/posters/` | listo |
 | T-A17 | Página de caso `/projects/[id]` con la estructura problema → enfoque → decisiones → desafíos → resultado → piezas → stack; header con escena o póster | T-A04, T-A06 | `src/pages/projects/[...slug].astro`, `src/components/project/` | hecho (2026-10-21; PR #12) |
 
 
@@ -115,8 +115,8 @@
 
 | Fecha | Tarea | Pregunta o bloqueo | Respuesta |
 | --- | --- | --- | --- |
-| 2026-10-21 | T-A08 | **ADR-006 lista para decidir:** A (filamento) y C (enjambre) están en `/lab/thread` del preview, con transición Vibo→Pirp y mobile. Las dos cumplen presupuesto en mobile emulado (CPU ×4); falta probar en iPhone y Android reales y elegir. El color de Pirp es provisional (`#ff5b4f`) hasta I-03. | I-03 listo (2026-10-22); acento Pirp sigue abierto — ver fila siguiente |
-| 2026-10-22 | T-H03 / I-03 | **Acento Pirp:** ¿usar el bordó del cliente (`#7A1F2B`, sin nombrarlo) o definir un acento propio para portafolio/hilo? Hoy el hilo usa `#ff5b4f`. | **Bordó del cliente** (`#7A1F2B` / escala en `assets-src/pirp/brand/palette.json`); no nombrar al cliente. Reemplazar el provisional `#ff5b4f` del hilo cuando toque (T-A13 / escenas Pirp). |
+| 2026-10-21 | T-A08 | **ADR-006 lista para decidir:** A (filamento) y C (enjambre) están en `/lab/thread` del preview, con transición Vibo→Pirp y mobile. Las dos cumplen presupuesto en mobile emulado (CPU ×4); falta probar en iPhone y Android reales y elegir. El color de Pirp es provisional (`#ff5b4f`) hasta I-03. | **Cerrado 2026-10-22:** C en desktop, A en mobile (ADR-006). Acento Pirp `#7A1F2B` (fila siguiente). |
+| 2026-10-22 | T-H03 / I-03 | **Acento Pirp:** ¿usar el bordó del cliente (`#7A1F2B`, sin nombrarlo) o definir un acento propio para portafolio/hilo? Hoy el hilo usa `#ff5b4f`. | **Bordó del cliente** (`#7A1F2B` / escala en `assets-src/pirp/brand/palette.json`); no nombrar al cliente. Aplicar en T-A13 (reemplazar `#ff5b4f`). |
 | 2026-10-21 | T-A08 | Varios agentes locales comparten la carpeta principal del repo y cambian de rama en ella: el trabajo sin commitear de T-A08 terminó en un `git stash` ajeno (recuperado). Pedido: que cada agente local use su propio worktree (`06` §3, paso 2). | |
 | 2026-10-21 | T-A01 / T-A05 | `npm run lint` y `npm run typecheck` ya fallan en `main` por código previo: `LightboxStage.tsx` (ref en render + deps de `useEffect`; `stage` posiblemente `null`) y `ExperienceTimeline.tsx` (`offsetHeight` sobre `Element`). `npm run build` pasa. Bloquea el `npm run check` de T-A02. ¿Lo arregla T-A02 o una tarea de QA? | Resuelto en T-A02: baseline de lint/typecheck en verde y `npm run check` (lint + typecheck + build) disponible. |
 
@@ -147,3 +147,7 @@
 | I-09 Persona y FAQs del guía | pendiente | |
 | I-10 Narrativas segunda y tercera línea | pendiente | |
 | I-11 Fotos personales | pendiente | Opcional |
+
+### Alcance T-A13
+
+Integración mínima en `Stage.tsx` incluida para cumplir el criterio explícito de T-A13. Sin cambios en contratos. El índice de ADR-006 todavía dice abierta, pero su resolución fechada y T-H01/T-A13 confirman la elección aceptada C desktop / A mobile.
