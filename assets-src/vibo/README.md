@@ -78,3 +78,33 @@ node assets-src/vibo/_curate-from-mvp.mjs
 ## Permiso
 
 Datos de entorno beta propio (Vibo) + export local del MVP UI. Anonimizados. Ver `docs/plan/licencias.md`.
+
+## Jugador — modelo y rig (2026-10-22)
+
+Entregables locales: [`jugador.blend`](./jugador.blend), [`jugador.glb`](./jugador.glb), [reposo](./jugador-reposo.png), [volea](./jugador-volea.png) y [rangos máximos](./jugador-rangos.png). Es trabajo original, sin referencias externas incorporadas. Las imágenes anunciadas en el brief todavía no se habían adjuntado al modelar; proporciones y estilo se resolvieron desde el brief escrito.
+
+- Altura: **1,80 m**, origen entre los pies al nivel del suelo; pose A. En Blender: Z arriba y frente −Y. En glTF: Y arriba y frente +Z. Objetos con escala 1 y rotación 0.
+- **6.464 triángulos**, 3.234 vértices en la fuente; una superficie conectada y cerrada. Sin bordes abiertos, vértices sueltos, caras degeneradas ni n-gons. Normales orientadas hacia afuera.
+- Dos Principled BSDF: `Cuerpo_gris_8A8D91` y `Articulaciones_5A5D61`; roughness 0,65, metallic 0; sin texturas. UV0 empaquetadas en 0–1, sin solapes de área a tolerancia 1e-9.
+- Una malla fuente skinneada, máximo cuatro influencias por vértice y pesos normalizados. Subdivisión y triangulación aplicadas; se conserva **solo Armature**, necesario para editar el rig. Los dos materiales se exportan como dos primitivas y Three.js los representa como dos SkinnedMesh / dos draw calls por pasada.
+- GLB sin compresión, cámaras ni luces: **321.728 bytes** (321,7 KB / 314,2 KiB).
+- Acción FK `Volea_prueba_2.5s`: **2,53 s en GLB**, frames 1–76 a 30 fps; preparación, gesto y seguimiento, con corrección de apoyo del root. Para verla en Blender: seleccionar `Rig_Jugador`, abrir Action Editor y elegir esa acción. La fuente se abre en reposo, con la acción conservada como datablock. La acción sirve para validar el rig; la coreografía final y el anclaje de la paleta se hacen al integrar.
+- Escena `Jugador_Vibo`: solo malla y rig. `Estudio_Jugador`: luces, cámara y suelo para reproducir los renders; no exportada. La escena inicial se conserva aparte, y `modelado/jugador-inicial.blend` conserva el archivo inicial.
+
+**23 huesos**, con sufijos simétricos `.L` / `.R`:
+
+```text
+root
+└─ hips
+   ├─ spine.01 → spine.02 → neck → head
+   │               ├─ clavicle.L → upper_arm.L → forearm.L → hand.L
+   │               └─ clavicle.R → upper_arm.R → forearm.R → hand.R → racket_socket
+   ├─ thigh.L → shin.L → foot.L → toe.L
+   └─ thigh.R → shin.R → foot.R → toe.R
+```
+
+`root` y `racket_socket` son controles sin pesos; los otros 21 huesos deforman. El socket es hijo de `hand.R`; orientar la paleta al conectarla. GLTFLoader sanitiza puntos de nombres: por ejemplo `hand.R` pasa a `handR`, mientras `racket_socket` conserva el nombre.
+
+Validación: [geometría y UV](./jugador-validacion.json), [métricas y huesos](./jugador-metricas.json), [carga y skinning Three.js](./jugador-web-validacion.json). Se revisaron visualmente reposo, volea, rodillas a 60° y codo a 110°. Three.js evaluó 77 muestras de la animación con posiciones finitas y apoyo a nivel del suelo (error vertical menor que 0,000001 m). No implica validación de rendimiento en teléfonos ni integración al portafolio.
+
+Scripts locales reproducibles en `modelado/`: `jugador.py` (construcción), `jugador-presentar.py` (estudio y primera validación), `jugador-ajustar.py` (acción final y pulgares) y `jugador-verificar-web.mjs` (GLTFLoader y skinning). Los scripts Python se ejecutan dentro de Blender; las tres etapas registran su estado en archivos locales.
