@@ -1,3 +1,4 @@
+import { Thread } from "@/experience/thread/Thread"
 import { useEffect, useState } from "react"
 import { Canvas } from "@react-three/fiber"
 
@@ -105,6 +106,7 @@ export function Stage() {
           >
             <color attach="background" args={["#0a0a0b"]} />
             <SceneDirector />
+            <Thread />
             <QualityMonitor />
             <GpuStatsProbe />
           </Canvas>

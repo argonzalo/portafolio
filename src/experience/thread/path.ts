@@ -76,6 +76,8 @@ export function threadExtent(width: number, height: number): ThreadExtent {
 export const THREAD_PATH_GLSL = /* glsl */ `
 uniform float uPhase;
 uniform vec2 uExtent;
+uniform float uUsePath;
+uniform vec3 uPath[32];
 
 const float THREAD_PI = 3.141592653589793;
 const int PULSES = 3;
@@ -126,6 +128,11 @@ vec3 pirpPath(float u, float m) {
 }
 
 vec3 threadPath(float u, float m) {
+  if (uUsePath > 0.5) {
+    float index = clamp(u, 0.0, 1.0) * 31.0;
+    int a = min(int(floor(index)), 30);
+    return mix(uPath[a], uPath[a + 1], index - float(a));
+  }
   vec3 p = mix(viboPath(u), pirpPath(u, m), m);
   return vec3(p.x * uExtent.x, p.y * uExtent.y, p.z);
 }
