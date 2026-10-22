@@ -1,0 +1,47 @@
+[
+  {
+    "name": "desktop",
+    "chapter": "hero",
+    "rafFPS": 60,
+    "debug": [
+      "nivel\nhigh (forced)\nmodo\nforzado\nfps\nmidiendo · 16.7 ms · p95 16.8 ms\ncapítulo\nhero\nbeat\n—\nprogreso\n0.50\nescenas\n0\ndraw calls\n1\ntriangles\n0\ntextures\n0\ngeometries\n1\nprograms\n1\njs heap\n8.4 MB\ndpr\n1.00 · render 1.00 · 1440px"
+    ]
+  },
+  {
+    "name": "desktop",
+    "chapter": "manifesto",
+    "rafFPS": 60,
+    "debug": [
+      "nivel\nhigh (forced)\nmodo\nforzado\nfps\nmidiendo · 16.7 ms · p95 16.8 ms\ncapítulo\nmanifesto\nbeat\n—\nprogreso\n0.50\nescenas\n0\ndraw calls\n1\ntriangles\n0\ntextures\n0\ngeometries\n1\nprograms\n1\njs heap\n11.1 MB\ndpr\n1.00 · render 1.00 · 1440px"
+    ]
+  },
+  {
+    "name": "desktop",
+    "errors": [],
+    "checks": "overflow, high/medium/low/static, reduced motion, navigation"
+  },
+  {
+    "name": "mobile",
+    "chapter": "hero",
+    "rafFPS": 60,
+    "debug": [
+      "nivel\nhigh (forced)\nmodo\nforzado\nfps\nmidiendo · 16.7 ms · p95 18.1 ms\ncapítulo\nhero\nbeat\n—\nprogreso\n0.50\nescenas\n0\ndraw calls\n2\ntriangles\n720\ntextures\n0\ngeometries\n2\nprograms\n2\njs heap\n8.8 MB\ndpr\n1.00 · render 1.00 · 390px"
+    ]
+  },
+  {
+    "name": "mobile",
+    "chapter": "manifesto",
+    "rafFPS": 61,
+    "debug": [
+      "nivel\nhigh (forced)\nmodo\nforzado\nfps\nmidiendo · 16.8 ms · p95 17.1 ms\ncapítulo\nmanifesto\nbeat\n—\nprogreso\n0.50\nescenas\n0\ndraw calls\n2\ntriangles\n720\ntextures\n0\ngeometries\n2\nprograms\n2\njs heap\n14.1 MB\ndpr\n1.00 · render 1.00 · 390px"
+    ]
+  },
+  {
+    "name": "mobile",
+    "errors": [],
+    "checks": "overflow, high/medium/low/static, reduced motion, navigation"
+  },
+  {
+    "noJS": "Hero y manifiesto visibles, enlaces HTML disponibles"
+  }
+]

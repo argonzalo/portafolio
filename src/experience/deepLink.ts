@@ -84,7 +84,8 @@ function scrollToChapterProgress(section: HTMLElement, progress: number): void {
   const height = section.offsetHeight || section.getBoundingClientRect().height
   const target = top - window.innerHeight / 2 + progress * height
 
-  window.scrollTo({ top: Math.max(0, Math.round(target)), behavior: "auto" })
+  // Ignorar scroll-behavior:smooth para que el enlace sea un estado exacto.
+  window.scrollTo({ top: Math.max(0, Math.round(target)), behavior: "instant" })
 }
 
 /**

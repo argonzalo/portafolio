@@ -1,31 +1,94 @@
 ---
-/**
- * Placeholder del hero (copy y animación en T-A12).
- * 100 % HTML para LCP; sin canvas en este bloque.
- */
 import ChapterSection from "@/components/journey/ChapterSection.astro"
+import { hero, site } from "@/lib/site"
 ---
 
-<ChapterSection id="hero" label="Apertura" class="bg-background/70 backdrop-blur-sm">
+<ChapterSection id="hero" label="Apertura" class="hero-chapter">
+  <p class="mb-7 text-sm text-muted-foreground">{site.name}</p>
+  <h1 class="hero-title">{hero.title}</h1>
   <p
-    class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    class="mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
   >
-    Hero · placeholder T-A12
+    {hero.description}
   </p>
-  <h1
-    class="mt-3 max-w-3xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl"
-  >
-    Tu próxima gran idea hecha realidad
-  </h1>
-  <p
-    class="text-muted-foreground mt-5 max-w-2xl text-base leading-relaxed text-pretty sm:text-lg"
-  >
-    Diseño y construyo productos digitales, automatizaciones y soluciones de
-    inteligencia artificial para negocios que estén listos para un siguiente
-    paso.
-  </p>
-  <p class="text-muted-foreground/80 mt-8 max-w-xl text-sm leading-relaxed">
-    El copy definitivo, tags y animación con SplitText llegan en T-A12. El hilo
-    conductor arranca aquí cuando exista T-A13.
-  </p>
+  <ul class="hero-tags" aria-label="Qué construyo">
+    {hero.tags.map((tag) => <li>{tag}</li>)}
+  </ul>
+  <div class="mt-9 flex flex-wrap items-center gap-6">
+    <a class="hero-start" href="#manifesto">
+      <span class="hero-thread" aria-hidden="true"></span>
+      Explorar cómo trabajo
+    </a>
+    <a class="hero-list" href="/projects">Ver todos los proyectos</a>
+  </div>
 </ChapterSection>
+
+<style>
+  :global(#hero.hero-chapter) {
+    background: color-mix(in oklch, var(--background) 88%, transparent);
+  }
+  .hero-title {
+    max-width: 15ch;
+    font-size: clamp(2.65rem, 6vw, 5.5rem);
+    font-weight: 600;
+    letter-spacing: -0.055em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.3rem;
+    max-width: 48rem;
+    margin-top: 2rem;
+    color: var(--muted-foreground);
+    font-size: 0.8rem;
+  }
+  .hero-tags li {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.4rem;
+  }
+  .hero-start {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-height: 44px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .hero-thread {
+    display: block;
+    width: 3rem;
+    height: 2px;
+    background: #91baff;
+    position: relative;
+  }
+  .hero-thread::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #91baff;
+  }
+  .hero-list {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--muted-foreground);
+    font-size: 0.85rem;
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+  a:focus-visible {
+    outline: 2px solid #91baff;
+    outline-offset: 6px;
+  }
+  @media (max-width: 639px) {
+    :global(#hero.hero-chapter) {
+      min-height: 100svh;
+    }
+  }
+</style>

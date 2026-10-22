@@ -1,36 +1,100 @@
 ---
-/**
- * Placeholder del manifiesto (animación y pulido en T-A12).
- */
 import ChapterSection from "@/components/journey/ChapterSection.astro"
-
-const phrases = [
-  "Pienso productos",
-  "Diseño experiencias",
-  "Construyo tecnología",
-]
+import { manifesto } from "@/lib/site"
 ---
 
-<ChapterSection
-  id="manifesto"
-  label="Cómo pienso"
-  class="bg-background/50 backdrop-blur-[2px]"
->
-  <p
-    class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
-  >
-    Cómo pienso · placeholder T-A12
-  </p>
-  <h2
-    class="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-balance sm:text-4xl"
-  >
-    Tres frases. Un método.
+<ChapterSection id="manifesto" label="Cómo pienso" class="manifesto-chapter">
+  <h2 class="max-w-md text-lg leading-relaxed text-muted-foreground sm:text-xl">
+    {manifesto.title}
   </h2>
-  <ul class="mt-10 flex flex-col gap-4" aria-label="Método">
-    {
-      phrases.map((phrase) => (
-        <li class="text-2xl font-medium tracking-tight sm:text-3xl">{phrase}</li>
-      ))
-    }
+  <ul class="manifesto-phrases" aria-label="Mi forma de trabajar">
+    {manifesto.phrases.map((phrase) => <li data-manifesto-phrase>{phrase}</li>)}
   </ul>
+  <a class="manifesto-next" href="#vibo">Así toma forma en Vibo</a>
 </ChapterSection>
+
+<style>
+  :global(#manifesto.manifesto-chapter) {
+    background: color-mix(in oklch, var(--background) 80%, transparent);
+  }
+  .manifesto-phrases {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    margin-top: 3rem;
+  }
+  .manifesto-phrases li {
+    font-size: clamp(1.9rem, 4.7vw, 4.3rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.045em;
+  }
+  .manifesto-next {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    text-underline-offset: 0.4em;
+  }
+  .manifesto-next:focus-visible {
+    outline: 2px solid #91baff;
+    outline-offset: 6px;
+  }
+</style>
+
+<script>
+  import gsap from "gsap"
+  import { SplitText } from "gsap/SplitText"
+
+  gsap.registerPlugin(SplitText)
+  let cleanup: (() => void) | undefined
+
+  function mountManifesto() {
+    cleanup?.()
+    const root = document.querySelector("#manifesto")
+    if (!root) return
+
+    const media = gsap.matchMedia()
+    media.add("(prefers-reduced-motion: no-preference)", () => {
+      const splits: SplitText[] = []
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue
+            observer.unobserve(entry.target)
+            const split = SplitText.create(entry.target, {
+              type: "words",
+              aria: "auto",
+            })
+            splits.push(split)
+            // El texto siempre está visible en HTML; solo se anima al entrar.
+            gsap.from(split.words, {
+              yPercent: 35,
+              duration: 0.65,
+              stagger: 0.09,
+              ease: "power2.out",
+            })
+          }
+        },
+        { threshold: 0.7 }
+      )
+      root
+        .querySelectorAll("[data-manifesto-phrase]")
+        .forEach((phrase) => observer.observe(phrase))
+      return () => {
+        observer.disconnect()
+        splits.forEach((split) => {
+          gsap.killTweensOf(split.words)
+          split.revert()
+        })
+      }
+    })
+    cleanup = () => media.revert()
+  }
+
+  document.addEventListener("astro:page-load", mountManifesto)
+  document.addEventListener("astro:before-swap", () => cleanup?.())
+  mountManifesto()
+</script>
