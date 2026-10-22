@@ -213,9 +213,10 @@ assets-src/<escena>/*.blend|*.glb  ──►  npm run assets:build  ──►  p
                                           KTX2 / resize 2048·1024·512)
 ```
 
-- Las fuentes pesadas (`assets-src/`) no se publican; si superan el tamaño razonable para Git, se versionan con Git LFS o se guardan fuera del repo (decidir en T-A09).
+- Las fuentes pesadas (`assets-src/`) no se publican ni van a Git LFS (ADR-010): viven en el equipo del humano con backup en Dropbox/Drive. En el repo solo se versionan los README de convención y las salidas optimizadas.
+- Scripts: `npm run assets:build` (optimiza + verifica presupuestos) y `npm run assets:check` (solo verifica `public/models` / `public/textures`). KTX2 requiere `toktx` (KTX-Software) en el PATH.
 - Iluminación **horneada** en Blender siempre que se pueda (una textura de luz es mucho más barata que sombras en tiempo real).
-- Un `manifest` por escena (`src/scenes/<id>/assets.ts`) declara qué archivo usar por nivel; el pipeline verifica que se cumplan los presupuestos y falla si no.
+- Un `manifest` por escena (`src/scenes/<id>/assets.ts`) declara qué archivo usar por nivel; el pipeline verifica que se cumplan los presupuestos de `02` §2 y falla si no.
 
 ## 8. Rutas y contenido
 
@@ -229,4 +230,4 @@ assets-src/<escena>/*.blend|*.glb  ──►  npm run assets:build  ──►  p
 - **Deep links de estado:** `/?chapter=vibo&progress=0.45&quality=low&debug` deja la experiencia en un punto exacto. Permite a un agente sacar capturas reproducibles y al humano revisar un beat concreto. `deepLink.ts` parsea `chapter`, `progress`, `quality` y `debug`; mueve el scroll al punto equivalente del trigger y escribe el progreso en el store, así la escena arranca en ese beat aunque todavía no esté montada. Se reengancha en cada `astro:page-load`.
 - **Laboratorio de escenas:** `/lab/<escena>` monta una sola escena con un slider de progreso, selector de nivel y panel de métricas. Solo existe en desarrollo: en producción `getStaticPaths` devuelve una lista vacía y no se genera el archivo. Hoy sirve las escenas dummy del spike (`/lab/spike-alpha`, `/lab/spike-beta`); cuando lleguen las reales, el índice sale del registry.
 - **Overlay `?debug`:** FPS, frame time (promedio y p95), draw calls, triángulos, texturas y geometrías vivas, escenas montadas, nivel de calidad con su motivo, beat activo y el deep link del estado actual. Permite forzar `high`/`medium`/`low`/`static` y volver a `auto`.
-- **Script `npm run check`:** lint + typecheck + build + verificación de presupuestos de assets. Es lo mínimo antes de abrir un PR. Implementado en T-A02 con lint, typecheck y build; la verificación de presupuestos de assets se suma cuando exista el pipeline de T-A09.
+- **Script `npm run check`:** lint + typecheck + build + `assets:check` (presupuestos de assets). Es lo mínimo antes de abrir un PR.

@@ -15,7 +15,9 @@
     "lint": "eslint .",
     "format": "prettier --write \"**/*.{ts,tsx,astro}\"",
     "typecheck": "astro check",
-    "check": "npm run lint && npm run typecheck && npm run build",
+    "check": "npm run lint && npm run typecheck && npm run build && npm run assets:check",
+    "assets:build": "node scripts/assets/build.mjs",
+    "assets:check": "node scripts/assets/check-budgets.mjs",
     "analyze": "node scripts/analyze.mjs",
     "lhci": "lhci autorun --config=./lighthouserc.cjs",
     "test:e2e": "playwright test",
@@ -48,6 +50,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9",
     "@eslint/js": "^10",
+    "@gltf-transform/cli": "^4.5.1",
     "@iconify-json/logos": "^1.2.13",
     "@iconify-json/tabler": "^1.2.38",
     "@iconify/tailwind4": "^1.2.3",

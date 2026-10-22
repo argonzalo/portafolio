@@ -26,9 +26,10 @@ pnpm-debug.log*
 
 # fuentes de assets 3D: viven solo en el equipo del humano (ADR-010).
 # En el repo se versionan las salidas optimizadas (public/models, public/textures…)
-# y la convención de carpetas.
-assets-src/*
-!assets-src/README.md
+# y los README de convención bajo assets-src/.
+assets-src/**
+!assets-src/**/
+!assets-src/**/README.md
 
 # duplicados eliminados del repo (ADR-009); siguen en el historial de Git
 proyectos-facu/

@@ -26,7 +26,7 @@
 | T-A06 | **Spike del runtime** (ruta crítica): `Stage` persistente con `transition:persist`, ScrollTrigger → store, 2 escenas dummy con montaje/desmontaje y transición, navegación home ↔ caso sin perder el canvas, medición de memoria | T-A05 | `src/experience/`, `src/layouts/`, `src/pages/index.astro` (temporal) | hecho (2026-10-21; PR #6) |
 | T-A07 | Calidad adaptativa (`quality.ts`, `PerformanceMonitor`), overlay `?debug`, deep links de estado, ruta `/lab/[scene]` solo en dev | T-A06 | `src/experience/quality.ts`, `src/experience/debug.tsx`, `src/experience/deepLink.ts`, `src/experience/Stage.tsx` (integración), `src/experience/gpuStats.ts`, `src/experience/SceneDirector.tsx` (métricas), `src/pages/lab/` | hecho (2026-10-21; PR #7) |
 | T-A08 | **Spike del hilo conductor:** opciones A y C de ADR-006 en `/lab/thread`, con transición Vibo→Pirp y versión mobile; best-of-N (una variante por worktree). Default A si no hay elección a tiempo; C solo si cumple mobile | ADR-001 | `src/experience/thread/`, `src/pages/lab/thread.astro` | en revisión ([PR #13](https://github.com/argonzalo/portafolio/pull/13)) |
-| T-A09 | Pipeline de assets: `npm run assets:build` con gltf-transform (meshopt, KTX2, LOD por nivel), verificación de presupuestos, `assets-src/` gitignored + README de convención (ADR-010) | ADR-010 | `scripts/assets/`, `assets-src/README.md`, `.gitignore`, `package.json` (script) | listo |
+| T-A09 | Pipeline de assets: `npm run assets:build` con gltf-transform (meshopt, KTX2, LOD por nivel), verificación de presupuestos, `assets-src/` gitignored + README de convención (ADR-010) | ADR-010 | `scripts/assets/`, `assets-src/README.md`, `.gitignore`, `package.json` (script) | en revisión (https://github.com/argonzalo/portafolio/pull/10) |
 | T-A10 | Borradores de narrativa (problema, enfoque, decisiones, desafíos, impacto) de los 4 proyectos de primera línea a partir de `docs/descripciones-proyectos-originales.md`, marcando con `TODO(humano)` lo que solo él sabe | — | `docs/plan/borradores/` | hecho (2026-10-21; PR #2) |
 
 ## F1 — Esqueleto del recorrido · Compuerta G1
@@ -124,6 +124,7 @@
 | --- | --- | --- | --- |
 | 2026-10-21 | T-H02 | `.gitignore` ignora `.env*` y también excluye `.env.example`. Hay que exceptuar `!.env.example` para versionar el esquema de variables. | T-A01 (resuelto en `t/A01-higiene`) |
 | 2026-10-21 | T-A11 | Registrar en `astro.config.ts` redirects 301: `/skills` → `/`, `/about` y `/experience` → `/?chapter=about`, `/contact` → `/?chapter=contact` (hoy están en páginas Astro). Opcional: ampliar `hashScroll` en `src/lib/hashScroll.ts` a cualquier `#capítulo` del recorrido (hoy solo `#proyectos`). | plataforma / orquestador |
+| 2026-10-21 | T-A09 | Documentar en `README.md` (tabla Scripts) `assets:build`, `assets:check` y que `check` incluye presupuestos de assets. Fuera de la zona de T-A09. | orquestador / higiene |
 
 ## Estado de insumos del humano
 
