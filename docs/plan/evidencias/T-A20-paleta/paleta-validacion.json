@@ -1,0 +1,22 @@
+{
+  "boundary_edges": 0,
+  "non_manifold_edges": 0,
+  "loose_vertices": 0,
+  "degenerate_faces": 0,
+  "signed_volume_m3": 0.0020990701999129605,
+  "modifiers": 0,
+  "objects": [
+    "MESH"
+  ],
+  "connected_components": [
+    1088
+  ],
+  "uv_positive_area_overlaps": 1,
+  "uv_max_overlap_area": 1.1094591911842144e-10,
+  "uv_bounds": [
+    0.0,
+    0.0,
+    1.0,
+    1.0
+  ]
+}
