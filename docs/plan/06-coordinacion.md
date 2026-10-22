@@ -54,7 +54,7 @@ pendiente → listo → en curso → en revisión → hecho
 | Fase | Carriles en paralelo |
 | --- | --- |
 | F0 | Plataforma (A01→A02, A03) · Contenido (A04, A10) · Runtime (A05→A06→A07) · Creativo (A08) · Assets (A09) · Humano (H01–H05) |
-| F1 | Recorrido DOM (A11, A12) · Runtime visual (A13, A15, A16) · Greybox ×4 (A14, idealmente un agente por escena) · Caso (A17) |
+| F1 | Recorrido DOM (A11, A12) · Runtime visual (A13, A15) · Greybox ×4 (A14, idealmente un agente por escena) · Caso (A17) · *(A16 diferido/opcional → F5, ADR-012)* |
 | F2 | Kit (A18, A19) · Vibo (A20, empieza con greybox ya aprobado y avanza con el kit) · Guía (A21→A22) |
 | F3 | Pirp (A23) · Naturalis (A24) · Banner (A25) · Guía UI (A27) — un agente por escena |
 | F4 | Viñetas (A29–A32) · Archivo (A33) · Quién soy y contacto (A34) · Imágenes y pósters (A35) |
@@ -99,7 +99,7 @@ pendiente → listo → en curso → en revisión → hecho
 - [ ] Presupuestos de `02` cumplidos en la matriz de dispositivos.
 - [ ] Lighthouse mobile: Performance ≥ 90, Accesibilidad ≥ 95, SEO ≥ 95, Best Practices ≥ 95.
 - [ ] Recorrido completo sin errores en Chrome, Safari (macOS e iOS), Firefox y Chrome Android.
-- [ ] Nivel `static` completo y navegable.
+- [ ] Nivel `static` completo y navegable **(opcional — ADR-012 / T-A16; no bloquea lanzamiento si se omite)**.
 - [ ] Todos los proyectos accesibles desde la vista lista y con página de caso.
 - [ ] OG image por proyecto, sitemap, robots, metadatos.
 - [ ] Guía con límites activos, tope de gasto en OpenAI configurado, `GUIDE_ENABLED` verificado.

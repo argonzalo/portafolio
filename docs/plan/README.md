@@ -46,7 +46,7 @@ F0 Fundaciones ──► G0 ──► F1 Esqueleto ──► G1 ──► F2 Esc
 | Fase | Duración orientativa | Resultado | Compuerta |
 | --- | --- | --- | --- |
 | **F0 Fundaciones** | 1 semana | Decisiones cerradas, contratos, runtime 3D probado, CI con presupuestos, contenido migrado | **G0**: spike del runtime con 2 escenas de prueba a 60 fps en desktop y ≥ 50 fps en un Android medio, sin fugas de memoria al navegar; contratos aprobados |
-| **F1 Esqueleto** | 1–1,5 semanas | Recorrido completo de la home con escenas en greybox, hilo conductor prototipo, hero nuevo, fallbacks, deploy de preview | **G1**: el recorrido entero en preview cumple los presupuestos de `02` en mobile y desktop; el humano aprueba ritmo y orden |
+| **F1 Esqueleto** | 1–1,5 semanas | Recorrido completo de la home con escenas en greybox, hilo conductor prototipo, hero nuevo, deploy de preview | **G1**: el recorrido entero en preview cumple los presupuestos de `02` en mobile y desktop; el humano aprueba ritmo y orden. Nivel `static` (T-A16) opcional al final (ADR-012) |
 | **F2 Escena insignia** | 1,5–2 semanas | Vibo terminada (define la vara de calidad), kits de escena, backend del guía IA | **G2**: Vibo aprobada por el humano y dentro de presupuesto; endpoint del guía con límites funcionando |
 | **F3 Primera línea** | 2–3 semanas | Pirp, Naturalis y Banner 2.0 en paralelo; interfaz y observador del guía | **G3**: las cuatro escenas de primera línea aprobadas; guía funcionando de punta a punta |
 | **F4 Segunda y tercera línea** | 1,5–2 semanas | Viñetas con el kit, archivo de tercera línea, páginas de proyecto, sobre mí, contacto, cierre cíclico | **G4**: sitio completo en contenido; todos los proyectos accesibles también en la vista lista |

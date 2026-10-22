@@ -32,18 +32,17 @@
 
 ## F1 — Esqueleto del recorrido · Compuerta G1
 
-> **G1:** recorrido completo en el preview con escenas en greybox, hilo conductor v1, hero nuevo, fallbacks y vista lista; presupuestos de `02` cumplidos; el humano aprueba ritmo, orden y sensaciones en su teléfono y en desktop.
+> **G1:** recorrido completo en el preview con escenas en greybox, hilo conductor v1, hero nuevo y vista lista; presupuestos de `02` cumplidos; el humano aprueba ritmo, orden y sensaciones en su teléfono y en desktop. *(Nivel `static` / T-A16: diferido, ADR-012 — no bloquea G1.)*
 
 | ID | Tarea y criterio de terminado | Depende de | Zona | Estado |
 | --- | --- | --- | --- | --- |
 | T-H04 | Corregir y completar las narrativas de primera línea (I-01) sobre los borradores de T-A10 | T-A10 | `docs/plan/borradores/`, `src/content/projects/` | hecho (2026-10-22; grilling Vibo/Pirp/Naturalis/Banner) |
-| T-H06 | Revisión del esqueleto en dispositivos reales (matriz de `02` §5); lista de ajustes | T-A11 a T-A16 | `docs/plan/tablero.md` | en curso (humano; feedback 2026-10-22 abajo; falta cerrar tras T-A15/T-A16 + ajustes) |
+| T-H06 | Revisión del esqueleto en dispositivos reales (matriz de `02` §5); lista de ajustes | T-A11 a T-A15, T-A17 | `docs/plan/tablero.md` | en curso (humano; feedback 2026-10-22 abajo; falta cerrar tras T-A15 + ajustes; T-A16 fuera de alcance) |
 | T-A11 | Estructura del recorrido en DOM: capítulos con `data-chapter`, índice overlay, vista lista `/projects`, contacto siempre visible, eliminar `/skills` y decidir el destino de `/about`, `/experience`, `/contact` | T-A04, T-A06, ADR-007 | `src/pages/`, `src/components/journey/`, `src/components/layout/` | hecho (2026-10-21; PR #11) |
 | T-A12 | Hero y manifiesto: copy de `05` §2, tags, frases, animación con SplitText, hero 100 % HTML (LCP), punto de entrada del hilo | T-A11 | `src/components/journey/Hero*`, `src/components/journey/Manifesto*`, `src/lib/site.ts` | hecho (2026-10-22; merge local #16) |
 | T-A13 | Hilo conductor v1 (ADR-006: C desktop / A mobile), integrado en `Stage`, con API para que cada escena defina su `ThreadForm` | ADR-006, T-A06 | `src/experience/thread/`, `src/experience/Stage.tsx` (montaje) | hecho (2026-10-22; PR #14) |
 | T-A14 | Greybox de las 4 escenas de primera línea (un agente por escena: `T-A14-vibo`, `-pirp`, `-naturalis`, `-banner`): beats, cámaras desktop/mobile, ritmo, en `/lab` y en el recorrido | T-A07, ficha validada (T-H05) | `src/scenes/<id>/` | hecho (ritmo/estructura 2026-10-22; **arte no aprobado** — ver T-H06/T-H12; calidad final en T-A20/23/24/25 + T-A41/T-A42) |
 | T-A15 | Paletas por capítulo: interpolación de CSS variables con el progreso, cambio a tema claro en Naturalis, sincronía con el canvas | T-A06, T-A11 | `src/experience/palette.ts`, `src/styles/` (con permiso de plataforma) | listo |
-| T-A16 | Nivel `static`: recorrido sin canvas con pósters provisionales, `prefers-reduced-motion`, `Save-Data`, sin WebGL | T-A07, T-A11 | `src/components/journey/Fallback*`, `public/posters/` | listo |
 | T-A17 | Página de caso `/projects/[id]` con la estructura problema → enfoque → decisiones → desafíos → resultado → piezas → stack; header con escena o póster | T-A04, T-A06 | `src/pages/projects/[...slug].astro`, `src/components/project/` | hecho (2026-10-21; PR #12) |
 | T-A41 | **Pulir transiciones** entre capítulos de primera línea: handoff del hilo (forma/velocidad/color), continuidad de cámara, crossfade solo si hace falta; sin cortes bruscos Vibo→Pirp→Naturalis→Banner | T-A13, T-A15 | `src/experience/thread/`, `src/experience/SceneDirector.tsx`, `src/scenes/*/definition.ts` (encuadres de borde) | pendiente (prioridad post T-A15) |
 | T-A42 | **Referencias de captura en escena:** en cada capítulo de primera línea, acceso inmediato a capturas reales (dispositivo 3D con UI texturizada y/o superficie flotante + carousel/lightbox DOM); no depender solo de la página de caso | T-A18, T-A19 (dispositivo), I-04 | `src/scenes/kit/` (pieza compartida), `src/components/journey/` (carousel), integración en `src/scenes/{vibo,pirp,naturalis,banner-2}/` | pendiente |
@@ -96,14 +95,15 @@
 
 ## F5 — Pulido y lanzamiento · Compuerta G5
 
-> **G5:** checklist de lanzamiento de `06` §8 completo.
+> **G5:** checklist de lanzamiento de `06` §8 completo. T-A16 es **opcional** (ADR-012).
 
 | ID | Tarea y criterio de terminado | Depende de | Zona | Estado |
 | --- | --- | --- | --- | --- |
 | T-H13 | QA en dispositivos reales (matriz completa) | G4 | `docs/plan/tablero.md` | pendiente |
 | T-H15 | Revisión final de textos y lanzamiento (dominio, variables de producción, `GUIDE_ENABLED`) | T-H13 | Vercel | pendiente |
+| T-A16 | **(Opcional)** Nivel `static`: recorrido sin canvas con pósters, `prefers-reduced-motion`, `Save-Data`, sin WebGL. Diferido al final; no bloquea G1–G4 | T-A07, T-A11, preferible tras T-A35 (pósters definitivos) | `src/components/journey/Fallback*`, `public/posters/` | diferido / opcional (ADR-012; 2026-10-22) |
 | T-A36 | Endurecimiento de rendimiento: auditoría de bundle, warmup de shaders, INP, pesos de assets, Lighthouse en todas las rutas | G4 | Según hallazgos (coordinar con el orquestador) | pendiente |
-| T-A37 | Auditoría de accesibilidad: teclado, foco, contraste por paleta, lectores de pantalla, nivel `static` | G4 | Según hallazgos | pendiente |
+| T-A37 | Auditoría de accesibilidad: teclado, foco, contraste por paleta, lectores de pantalla; nivel `static` solo si T-A16 se hace | G4 | Según hallazgos | pendiente |
 | T-A38 | SEO: metadatos por página, OG image por proyecto (render de su escena), sitemap, datos estructurados | G4 | `src/components/layout/Seo.astro`, `public/og/` | pendiente |
 | T-A39 | Analítica: Vercel Web Analytics + Speed Insights + eventos del recorrido y del guía | G4 | `src/lib/analytics.ts`, layout | pendiente |
 | T-A40 | QA automatizado: Playwright con capturas por capítulo en Chrome, WebKit y Firefox, desktop y mobile | G4 | `tests/` | pendiente |
@@ -116,6 +116,7 @@
 
 | Fecha | Tarea | Pregunta o bloqueo | Respuesta |
 | --- | --- | --- | --- |
+| 2026-10-22 | T-A16 | ¿Mantener el nivel `static` como requisito de G1 o diferirlo? | **ADR-012 (2026-10-22):** diferido a F5 como **opcional**; no bloquea G1–G4. Agentes: no tomar. |
 | 2026-10-22 | T-H06 / T-H12 | **Feedback de sensaciones (parcial):** (1) Vibo too low-poly / look infantil → subir a realismo estilizado broadcast; (2) transiciones entre escenas principales bruscas; (3) rendimiento OK; (4) capturas/galería deben estar integradas en el mundo 3D o en superficie flotante con carousel; (5) las 4 escenas 3D lucen poco profesionales / de principiante. Rendimiento no es el problema; la vara de arte sí. | **Techo cerrado 2026-10-22:** *cinematic stylized* — humano creíble + luz/materiales premium, presupuesto web. No photoreal AAA. Ficha Vibo + ADR-011; T-A41/T-A42; T-A14 solo ritmo/estructura. |
 | 2026-10-21 | T-A08 | **ADR-006 lista para decidir:** A (filamento) y C (enjambre) están en `/lab/thread` del preview, con transición Vibo→Pirp y mobile. Las dos cumplen presupuesto en mobile emulado (CPU ×4); falta probar en iPhone y Android reales y elegir. El color de Pirp es provisional (`#ff5b4f`) hasta I-03. | **Cerrado 2026-10-22:** C en desktop, A en mobile (ADR-006). Acento Pirp `#7A1F2B` (fila siguiente). |
 | 2026-10-22 | T-H03 / I-03 | **Acento Pirp:** ¿usar el bordó del cliente (`#7A1F2B`, sin nombrarlo) o definir un acento propio para portafolio/hilo? Hoy el hilo usa `#ff5b4f`. | **Bordó del cliente** (`#7A1F2B` / escala en `assets-src/pirp/brand/palette.json`); no nombrar al cliente. Aplicar en T-A13 (reemplazar `#ff5b4f`). |

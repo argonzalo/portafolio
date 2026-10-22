@@ -110,6 +110,15 @@ Para agregar una decisión: copiar la plantilla del final, siguiente número lib
 - **Alternativas descartadas:** jugador solo con keypoints instanciados + trayectoria de pelota reconstruida desde el pipeline (barato y “auténtico”, pero los datos no soportan una 3D fiel y diluyen el golpe como héroe visual); personaje low-poly de silueta (rechazado en T-H06 por percepción infantil).
 - **Consecuencias:** T-H07 / I-02 pasan a exportar y curar overlays + métricas (no trayectorias 3D); T-A20 prioriza rig/animación de golpe creíble, lighting broadcast y HUD de detecciones; ficha `03` §3.1 actualizada; el greybox T-A14 no cuenta como look aprobado.
 
+## ADR-012 — T-A16 (nivel `static`) diferido y opcional
+
+- **Estado:** aceptada
+- **Fecha:** 2026-10-22
+- **Contexto:** el nivel `static` (recorrido sin WebGL, pósters, `prefers-reduced-motion` / `Save-Data`) estaba previsto en F1 (G1). La prioridad actual es la calidad visual *cinematic stylized*, las transiciones y las capturas en escena; el fallback integral no aporta a esa ruta crítica.
+- **Decisión:** **T-A16 se mueve a F5 como tarea opcional.** No bloquea G1–G4 ni se toma mientras haya trabajo de primera línea / kits / guía. Si se hace, preferible después de pósters definitivos (T-A35). El runtime puede seguir clasificando `static` y no montar canvas; el recorrido “completo” en static no es requisito de las compuertas intermedias.
+- **Alternativas descartadas:** mantener T-A16 en F1 como requisito de G1 (retrasa arte y escenas); cancelar el nivel `static` por completo (se conserva la opción al final).
+- **Consecuencias:** tablero F1/F5 y criterios de G1 actualizados; checklist G5 marca static como opcional; agentes no toman T-A16 en estado `listo`.
+
 ---
 
 ## Plantilla
