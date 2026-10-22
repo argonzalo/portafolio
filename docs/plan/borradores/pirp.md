@@ -1,39 +1,36 @@
-# Borrador — Pirp
+# Borrador — PIRP
 
-> T-A10 · id previsto: `pirp` (hoy en repo: `analisis-rep-politica`; redirección prevista en ADR / T-A03–T-A04) · tier 1 · Fuentes: descripción V2 del análisis de reputación política, ficha `03` §3.2. **Proyecto activo: la mayoría de los hechos concretos dependen de I-08 / T-H10.**
+> T-H04 · id: `pirp` · tier 1 · Cerrado en grilling 2026-10-21. Escena del portafolio: dataset **100 % ficticio** (I-08).
 
 ## Metadatos (para el frontmatter)
 
-| Campo | Borrador |
+| Campo | Valor |
 | --- | --- |
-| title | Pirp |
-| client | `TODO(humano):` nombre comercial / cómo quiere figurar |
+| title | PIRP |
+| client | PIRP |
 | period | 2026 |
-| location | `TODO(humano)` |
+| location | Córdoba, Argentina |
 | status | activo |
-| url | `TODO(humano):` ¿pirp.com.ar u otra URL pública del producto? |
+| url | https://www.pirp.com.ar/inicio |
 | oneLiner | Convierte el ruido de noticias y redes en una lectura clara de reputación y en estrategias concretas. |
 | stack | NestJS, Next.js, Supabase |
-
-`TODO(humano):` confirmar title (“Pirp” vs. nombre largo) y oneLiner sin sobreprometer capacidades aún no públicas.
+| scene | pirp (datos de demo ficticios) |
 
 ---
 
 ## 1. Problema (`problem`)
 
-Un político (o su equipo) no puede leer a mano todo lo que sale en noticias y redes. La conversación es demasiado rápida: entre el torrente de titulares y posts se pierde la tendencia, el pico de crisis y la oportunidad de responder con una estrategia a tiempo.
-
-`TODO(humano):` ¿el usuario primario es el candidato, el jefe de campaña, la consultora? ¿El dolor era “llegamos tarde a la crisis”, “no sabemos qué temas nos definen”, u otro?
+Un candidato o su jefe de campaña no puede seguir a mano todo lo que sale en noticias y redes. Sin una lectura unificada, el equipo no sabe qué temas lo están definiendo, llega tarde a las crisis y acumula datos sin una estrategia clara.
 
 ---
 
 ## 2. Enfoque (`approach`)
 
-1. Monitorear de forma continua la presencia del titular en noticias y redes (no un informe semanal estático).
-2. Clasificar y agrupar el flujo por sentimiento y por tema para pasar del torrente a un mapa legible.
-3. Exponer reputación y tendencias (termómetro / curvas) de modo que un pico dispare atención.
-4. Cerrar con propuestas de estrategia accionables a partir del diagnóstico — no solo dashboards.
-5. `TODO(humano):` paso clave del producto que no está en la descripción corta (alertas, comparables, equipos, etc.).
+1. Monitorear de forma continua (casi en vivo) la presencia del titular en noticias, X, Instagram y YouTube.
+2. Unificar esas fuentes en una sola lectura de reputación y temas — no un feed por red.
+3. Combinar un algoritmo de reputación (varios factores) con análisis de IA: resúmenes, tendencias e impacto de las temáticas actuales.
+4. Cerrar con propuestas de estrategia accionables; el flujo natural es que el equipo de campaña decide.
+5. Alertas cuando un tema pega en la reputación (mencionar de pasada en el copy; no es el claim central).
 
 ---
 
@@ -41,12 +38,11 @@ Un político (o su equipo) no puede leer a mano todo lo que sale en noticias y r
 
 | decision | why |
 | --- | --- |
-| Enfocarse en reputación + estrategia, no solo en “escucha social” genérica | El valor para el usuario político es decidir qué hacer, no acumular menciones. |
-| Stack app web (NestJS / Next.js / Supabase) para iterar producto activo | `TODO(humano):` confirmar por qué esta base y no otra. |
-| `TODO(humano):` decisión de fuentes de datos / APIs / frecuencia de ingesta | Define frescura, costo y riesgos legales. |
-| `TODO(humano):` qué se automatiza vs. qué queda en manos del analista humano | Evita sobrevender “la IA decide la campaña”. |
+| Una sola lectura a partir de varias fuentes, no un feed por red | El valor es entender la reputación, no acumular menciones sueltas. |
+| Primero mapa de temas y reputación; la estrategia después | Evita vender “la IA decide la campaña”; el producto diagnostica y propone. |
+| Casi en vivo | En política, llegar tarde a un pico no sirve. |
 
-En el portafolio, los datos de escena serán **ficticios** (ficha `03` §3.2) para no exponer casos reales.
+Stack (NestJS / Next.js / Supabase) queda en metadatos, no en la narrativa.
 
 ---
 
@@ -54,34 +50,39 @@ En el portafolio, los datos de escena serán **ficticios** (ficha `03` §3.2) pa
 
 | challenge | solution |
 | --- | --- |
-| Volumen y velocidad del flujo mediático | `TODO(humano):` cómo se prioriza, deduplica o resume en el producto. |
-| Ruido, sarcasmo y contexto político en sentimiento | `TODO(humano):` enfoque real (modelos, reglas, revisión humana). |
-| Confidencialidad: proyecto activo con clientes/políticos reales | Dataset ficticio en la escena; alcance narrativo acotado por I-08. |
-| Separar señal de tendencia de un pico aislado | `TODO(humano):` criterio de alertas / umbrales si existe. |
+| Separar qué temas te definen (y los picos) del ruido mediático diario | Algoritmo de reputación con múltiples factores + análisis de IA sobre tendencias e impacto. |
+| Ruido, sarcasmo y contexto político | Mix: reglas/factores del algoritmo + pensamiento de la IA; el equipo interpreta y actúa. |
+| Proyecto activo con usuarios de prueba | En el portafolio: capturas de UI sí; clientes reales no; escena con datos ficticios. |
 
 ---
 
 ## 5. Impacto (`impact`)
 
+Solo cualitativo (sin números inventados):
+
 | value | label |
 | --- | --- |
-| `TODO(humano)` | titulares o medios monitoreados / latencia típica |
-| `TODO(humano)` | resultado de negocio publicable (si lo hay) |
+| Temas + reputación | lectura clara del ruido mediático |
+| Estrategias concretas | del diagnóstico a la acción |
 
-No hay stats en el portafolio vigente.
-
----
-
-## 6. Confidencialidad / qué no se puede mostrar
-
-- **Crítico (I-08):** qué se puede contar del producto en vivo, nombres de clientes, capturas reales, métricas internas.
-- Escena y demos del portafolio: políticos, medios y titulares **inventados**; textos de estrategia validados por el humano (T-H10).
-- `TODO(humano):` lista explícita de “sí se puede / no se puede” para copy, capturas y guía IA.
+La app expone alcance, menciones y puntaje de reputación, entre otros; no se publican cifras en el caso hasta tener métricas aprobadas.
 
 ---
 
-## Notas para T-H04
+## 6. Confidencialidad / qué no se puede mostrar (I-08)
 
-- Tono de escena: vértigo controlado → claridad (no cinismo político).
-- Priorizar corrección humana de este borrador antes que los otros tres: es el de menor evidencia en el repo.
-- Al migrar contenido (T-A04 / T-H04), renombrar id a `pirp` y mantener redirección desde `analisis-rep-politica`.
+| Ítem | ¿Se puede? |
+| --- | --- |
+| Nombrar el producto como PIRP | Sí |
+| URL pública | Sí — https://www.pirp.com.ar/inicio |
+| Capturas reales de la UI | Sí |
+| Nombrar clientes o políticos como clientes | No (usuarios de prueba; producto en desarrollo) |
+| Escena / demos del recorrido | **100 % ficticia** (políticos, medios y titulares inventados) |
+| Guía IA | Foco en la solución (valor de negocio), no en detalle técnico |
+
+---
+
+## Notas de escena
+
+- Tono: vértigo controlado → claridad (no cinismo político).
+- El caso muestra: torrente → mapa de temas/reputación → estrategia; no un dashboard genérico.

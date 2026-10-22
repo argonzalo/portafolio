@@ -1,32 +1,66 @@
 ---
 # Modelo de contenido: docs/plan/05-contenido.md §1.
+# Narrativa cerrada en T-H04 (grilling 2026-10-21).
 id: banner-2
 title: Banner 2.0
 tier: 1
-order: 3
+order: 4
 client: Banner Director
 organization: banner-director
 period: 2023 — 2026
 location: Córdoba, Argentina
-status: finalizado
+status: activo
 url: https://v2.bannerdirector.com
-oneLiner: Software de gestión y distribución de contenido digital para
-  cartelería de forma centralizada.
-# TODO(humano): `problem` conserva por ahora la descripción heredada de src/lib/projects.ts.
-# TODO(humano): reemplazar los `approach` por el enfoque real del proyecto.
-problem: "Nueva generación de la plataforma, pensada para grandes franquicias:
-  permite decidir con precisión qué contenido se ve en cada pantalla según
-  región, fecha, entidad y más, y publicarlo en toda la red desde un potente
-  editor visual. Cada equipo recibe su configuración y la reproduce de forma
-  autónoma, con la robustez necesaria para operar a escala. Construida sobre
-  servicios en Go, un panel en Vue y una app Android nativa en Kotlin."
+oneLiner: >-
+  Una decisión de contenido llega con precisión a miles de pantallas en
+  múltiples locales.
+problem: >-
+  Las cadenas necesitan gobernar qué se ve en miles de pantallas: precios y
+  promos al día, segmentación por región o local, y equipos que sigan operando
+  offline. La generación anterior se quedaba corta: interfaz poco intuitiva y
+  poco moderna, funcionalidades básicas frente a lo que el negocio pedía, y una
+  sincronización que no estaba a la altura. Intervenir equipo por equipo no
+  escala.
 approach:
-  - "TODO(humano): cómo se pensó el proyecto (2–5 pasos o ideas clave)."
-  - "TODO(humano): completar este borrador con la plantilla de `05-contenido.md`
-    §3."
+  - >-
+    Rediseño completo: interfaz, arquitectura backend y app Android — todo de
+    nuevo, con tecnologías modernas.
+  - >-
+    Separar “decidir el contenido” (panel + editor visual) de “ejecutarlo”
+    (player Android autónomo).
+  - >-
+    Publicar con reglas de segmentación (región, fecha, entidad, criterios,
+    etiquetas).
+  - >-
+    Llevar la configuración hasta cada equipo con robustez de red y
+    sincronización más inmediata donde aplica.
+decisions:
+  - decision: Interfaz y editor rediseñados para operadores de negocio
+    why: >-
+      La versión previa era poco intuitiva; el valor se juega en decidir
+      contenido con claridad. (Frontend a cargo del autor de punta a punta.)
+  - decision: Editor visual de plantillas + reglas de segmentación en el panel
+    why: El operador piensa en quién ve qué y cuándo, no en archivos por equipo.
+  - decision: Contar el 2.0 como reconstrucción completa de producto
+    why: >-
+      El salto es UI + backend + Android; el caso no atribuye al autor las
+      decisiones de arquitectura fuera del frontend.
+challenges:
+  - challenge: UX de un panel potente sin volverlo inusable
+    solution: Rediseño de interfaz y flujos del editor y la segmentación.
+  - challenge: Escala y redes poco confiables
+    solution: >-
+      Players autónomos y distribución asíncrona en la plataforma (descrito a
+      nivel de producto).
+  - challenge: Migración gradual desde la plataforma histórica
+    solution: >-
+      Flota 2.0 en crecimiento (+800) mientras siguen migrando equipos desde la
+      generación anterior.
 impact:
-  - value: "+600"
-    label: equipos funcionando
+  - value: "+800"
+    label: equipos en Banner 2.0
+  - value: "≈10.000"
+    label: equipos activos en Banner Director
 stack:
   - Go
   - Vue
@@ -35,6 +69,17 @@ stack:
   - Kotlin
   - Docker
   - Kubernetes
+notes:
+  - >-
+    Rol en el caso: encargado del frontend de forma completa; participación en
+    el resto del sistema sin toma de decisión.
+  - >-
+    Clientes nombrables: Grido, Açaí, Marea, Diarco, Leroma. Capturas del editor
+    actuales autorizadas.
+  - Aún se migran equipos a la versión 2.0.
+scene: banner
+guide:
+  faq: []
 media:
   - src: /images/proyects/banner-director/banner-2/1.webp
     alt: Banner 2.0 1
@@ -66,31 +111,36 @@ media:
     alt: Banner 2.0 14
 ---
 
-{/* Caso completo de Banner 2.0 para `/projects/banner-2`. */}
-
 ## Resumen
 
-Nueva generación de la plataforma, pensada para grandes franquicias: permite decidir con precisión qué contenido se ve en cada pantalla según región, fecha, entidad y más, y publicarlo en toda la red desde un potente editor visual. Cada equipo recibe su configuración y la reproduce de forma autónoma, con la robustez necesaria para operar a escala. Construida sobre servicios en Go, un panel en Vue y una app Android nativa en Kotlin.
+Banner 2.0 es la nueva generación de la plataforma de Digital Signage: una decisión de contenido llega con precisión a miles de pantallas. Rediseño completo de interfaz, backend y Android.
 
 ## Problema
 
-TODO(humano): qué le dolía al cliente o al usuario antes de la solución.
+Las cadenas necesitan precios y promos al día, segmentación por local y equipos que operen offline. La generación anterior tenía interfaz poco moderna, funciones básicas y una sincronización insuficiente. Intervenir equipo por equipo no escala.
 
 ## Enfoque
 
-TODO(humano): qué viste que otros no vieron (2–5 ideas clave).
+1. Reconstruir producto e interfaz con tecnologías modernas.
+2. Separar decidir contenido (panel + editor) de ejecutarlo (player Android).
+3. Publicar con reglas de segmentación.
+4. Distribuir configuración con robustez de red y sync más inmediata.
 
 ## Decisiones
 
-TODO(humano): 2–3 decisiones importantes y por qué.
+- **Interfaz y editor para operadores** — frontend rediseñado de punta a punta.
+- **Plantillas + segmentación en el panel** — quién ve qué y cuándo.
+- **Contar el 2.0 como reconstrucción completa** — sin sobre-atribuir arquitectura fuera del frontend.
 
 ## Desafíos
 
-TODO(humano): lo más difícil y cómo se destrabó.
+- UX potente sin volverse inusable.
+- Escala y redes inestables (lado plataforma).
+- Migración gradual: +800 en 2.0 mientras siguen pasando equipos.
 
 ## Resultado
 
-TODO(humano): qué cambió después (números si hay).
+Más de 800 equipos en Banner 2.0; la flota de Banner Director ronda los 10.000. Clientes como Grido, Açaí, Marea, Diarco y Leroma.
 
 ## Stack
 

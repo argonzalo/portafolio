@@ -1,5 +1,6 @@
 ---
 # Modelo de contenido: docs/plan/05-contenido.md §1.
+# Narrativa cerrada en T-H04 (grilling 2026-10-21).
 id: vibo
 title: VIBO — Pádel Análisis
 tier: 1
@@ -9,22 +10,44 @@ period: 2025 — 2026
 location: Londres, Inglaterra
 status: activo
 url: https://vibopadel.com/
-oneLiner: Análisis por video de partidos de pádel.
-# TODO(humano): `problem` conserva por ahora la descripción heredada de src/lib/projects.ts.
-# TODO(humano): reemplazar los `approach` por el enfoque real del proyecto.
-problem: Análisis inteligente de partidos de pádel que revela cómo juega
-  realmente cada jugador. VIBO identifica su estilo de juego y si es más
-  ofensivo o defensivo, compara cómo se reparte el juego con su compañero y
-  cuánta cancha cubre en relación con él y con los rivales. Mide su dinámica de
-  movimiento —qué tan rápido y ágil se desplaza y si se cansa a medida que
-  avanza el partido—, muestra qué tipos de golpe ejecuta con más frecuencia y en
-  qué zonas de la cancha se mueve más, y permite compartir los resultados con
-  otros jugadores. Todo se apoya en inteligencia artificial y visión por
-  computadora para convertir cada partido en información concreta para mejorar.
+oneLiner: Convierte el video de un partido de pádel en datos claros sobre cómo jugás.
+problem: >-
+  Un partido grabado con el celular no explica cómo jugaste. El jugador ve el
+  video, pero no ve estilo, cobertura de cancha, reparto con el compañero,
+  desgaste ni qué golpes dominan. Sin ese recorte, mejorar queda en intuición.
 approach:
-  - "TODO(humano): cómo se pensó el proyecto (2–5 pasos o ideas clave)."
-  - "TODO(humano): completar este borrador con la plantilla de `05-contenido.md`
-    §3."
+  - >-
+    Partir del video del partido y convertirlo en una lectura del juego (estilo,
+    cobertura, golpes, desgaste), no en un highlight reel.
+  - >-
+    Hablar en metros y zonas reales de cancha, para que cobertura e intensidad
+    tengan sentido.
+  - >-
+    Entender golpes y tramos de juego con visión e IA entrenada para pádel.
+  - >-
+    Mostrar métricas que el jugador entiende —ofensivo/defensivo, reparto con el
+    compañero, zonas, agilidad— en una experiencia web.
+decisions:
+  - decision: Priorizar estilo, cobertura y golpes sobre un marcador genérico
+    why: El jugador ya sabe el resultado; le falta entender cómo jugó.
+  - decision: Demo web temprana antes de cerrar la plataforma
+    why: Validar qué datos importaban al jugador.
+  - decision: En el portafolio, overlays y métricas sin trayectoria 3D fiel
+    why: >-
+      La escena muestra el razonamiento del golpe, no una reconstrucción física
+      completa.
+challenges:
+  - challenge: Pasar de un video ruidoso a una lectura confiable del juego
+    solution: >-
+      Motor de visión y reglas de pádel; recorte de tramos sin juego; asignación
+      de golpes al jugador correcto.
+  - challenge: Que el resultado se entienda sin ser entrenador
+    solution: Métricas en lenguaje de jugador y demo web para validar la lectura.
+impact:
+  - value: Estilo + cobertura + golpes
+    label: lectura del juego que el video solo no da
+  - value: Del partido al dato
+    label: el jugador sabe qué mirar para mejorar
 parts:
   - title: Pádel Video Análisis
     period: 2025 — 2026
@@ -32,27 +55,36 @@ parts:
       - Python
       - GCP
       - Docker
-    description: "El motor que entiende el juego de cada jugador: detecta su estilo
-      y su perfil ofensivo o defensivo, el reparto de juego con su compañero, la
-      cancha que cubre frente a compañero y rivales, su velocidad, agilidad y
-      desgaste a lo largo del partido, sus golpes más frecuentes y sus zonas
-      dominantes. Funciona con modelos de inteligencia artificial y visión por
-      computadora entrenados para el pádel y desplegados en la nube."
+    description: >-
+      El motor que entiende el juego de cada jugador: estilo, perfil
+      ofensivo/defensivo, reparto con el compañero, cobertura, velocidad,
+      agilidad, desgaste, golpes y zonas. Visión por computadora e IA para pádel,
+      en la nube.
     url: https://vibopadel.com/
   - title: Web Demo
     period: "2026"
     stack:
       - Next.js
-    description: "Demo navegable con la que se presentó VIBO por primera vez: llevó
-      a una experiencia visual la propuesta del producto —entender el juego de
-      cada jugador a partir de sus datos— para validar la idea interna e
-      inicialmente antes de construir la plataforma definitiva."
+    description: >-
+      Demo con la que se presentó VIBO por primera vez: llevó a una experiencia
+      visual la propuesta de entender el juego a partir de los datos, antes de la
+      plataforma definitiva.
 stack:
   - Python
   - GCP
   - Docker
   - Next.js
   - Firebase
+notes:
+  - >-
+    Material de ejemplo para escena/overlays: referencia MVP (`ui-mvp-public`,
+    curado en `assets-src/vibo/`). Sin partners ni precisión de modelos en el
+    copy.
+  - >-
+    La escena del portafolio no reconstruye trayectoria 3D fiel (ADR-011).
+scene: vibo
+guide:
+  faq: []
 media:
   - src: /images/proyects/vibo/padel-video-analisis/1.webp
     alt: Pádel Video Análisis 1
@@ -78,31 +110,35 @@ media:
     alt: Web Demo de VIBO 3
 ---
 
-{/* Caso completo de VIBO — Pádel Análisis para `/projects/vibo`. */}
-
 ## Resumen
 
-Análisis inteligente de partidos de pádel que revela cómo juega realmente cada jugador. VIBO identifica su estilo de juego y si es más ofensivo o defensivo, compara cómo se reparte el juego con su compañero y cuánta cancha cubre en relación con él y con los rivales. Mide su dinámica de movimiento —qué tan rápido y ágil se desplaza y si se cansa a medida que avanza el partido—, muestra qué tipos de golpe ejecuta con más frecuencia y en qué zonas de la cancha se mueve más, y permite compartir los resultados con otros jugadores. Todo se apoya en inteligencia artificial y visión por computadora para convertir cada partido en información concreta para mejorar.
+VIBO convierte el video de un partido de pádel en datos claros sobre cómo jugás: estilo, cobertura, reparto con el compañero, golpes y desgaste.
 
 ## Problema
 
-TODO(humano): qué le dolía al cliente o al usuario antes de la solución.
+Un partido grabado con el celular no explica cómo jugaste. El jugador ve el video, pero no ve estilo, cobertura de cancha, reparto con el compañero, desgaste ni qué golpes dominan. Sin ese recorte, mejorar queda en intuición.
 
 ## Enfoque
 
-TODO(humano): qué viste que otros no vieron (2–5 ideas clave).
+1. Partir del video y convertirlo en una lectura del juego, no en un highlight reel.
+2. Hablar en metros y zonas reales de cancha.
+3. Entender golpes y tramos con visión e IA para pádel.
+4. Mostrar métricas en lenguaje de jugador en una experiencia web.
 
 ## Decisiones
 
-TODO(humano): 2–3 decisiones importantes y por qué.
+- **Estilo, cobertura y golpes antes que un marcador genérico** — el jugador ya sabe el resultado.
+- **Demo web temprana** — validar qué datos importaban.
+- **En el portafolio, sin trayectoria 3D fiel** — overlays y métricas que muestran el razonamiento del golpe.
 
 ## Desafíos
 
-TODO(humano): lo más difícil y cómo se destrabó.
+- **Video ruidoso → lectura confiable** — motor de visión, reglas de pádel, tramos válidos y golpes bien asignados.
+- **Que se entienda sin ser entrenador** — métricas claras y demo web.
 
 ## Resultado
 
-TODO(humano): qué cambió después (números si hay).
+Una lectura del juego que el video solo no da: el jugador sabe qué mirar para mejorar. Sin cifras públicas en este caso.
 
 ## Stack
 

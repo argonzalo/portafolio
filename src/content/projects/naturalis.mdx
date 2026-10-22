@@ -1,63 +1,87 @@
 ---
 # Modelo de contenido: docs/plan/05-contenido.md §1.
+# Narrativa cerrada en T-H04 (grilling 2026-10-21).
 id: naturalis
 title: Naturalis — Centro de estética
 tier: 1
-order: 2
+order: 3
 client: Naturalis
-period: 2024 — 2025
+period: 2024 — 2026
 location: Buenos Aires, Argentina
-status: finalizado
+status: activo
 url: https://naturalis.vercel.app/
-oneLiner: Sistema de gestión de turnos, tratamientos, empleados, blog y mailing
-  de un centro de estética.
-# TODO(humano): `problem` conserva por ahora la descripción heredada de src/lib/projects.ts.
-# TODO(humano): reemplazar los `approach` por el enfoque real del proyecto.
-problem: "Plataforma que digitaliza la gestión completa de un centro de
-  estética, formada por dos piezas conectadas: Natuadmin, el panel desde el que
-  el equipo administra turnos, tratamientos, horarios y comunicación, y una web
-  app donde los clientes reservan y siguen su agenda online. Automatiza el
-  trabajo repetitivo —turnos fijos, confirmaciones y cancelaciones por mail,
-  estadísticas de cada cliente— para que el equipo se enfoque en atender y no en
-  administrar."
+oneLiner: >-
+  Turnos y operación de un centro de estética: el cliente reserva, el equipo
+  atiende sin Excel ni WhatsApp.
+problem: >-
+  Antes, la operación vivía en Excel y WhatsApp: sin catálogo claro de
+  tratamientos, sin sincronización ni registro organizado, precios difíciles de
+  mantener al día y comunicación repartida en hilos. Lo típico de un sistema de
+  turnos improvisado —carga para el equipo y fricción para quien quiere
+  reservar.
 approach:
-  - "TODO(humano): cómo se pensó el proyecto (2–5 pasos o ideas clave)."
-  - "TODO(humano): completar este borrador con la plantilla de `05-contenido.md`
-    §3."
+  - >-
+    Una sola fuente de verdad del turno en dos piezas: web para clientes y
+    Natuadmin para el equipo.
+  - >-
+    Reserva autónoma (tratamiento → turno → confirmación) que impacta la agenda
+    real.
+  - >-
+    Automatizar lo repetitivo —turnos fijos, mails, estadísticas— para que el
+    equipo atienda.
+  - >-
+    Historial, notas y rankings por cliente; blog y mailing en el mismo panel.
+decisions:
+  - decision: Dos apps (cliente + admin) sobre la misma base
+    why: Roles distintos; una sola agenda.
+  - decision: Automatizar confirmaciones, turnos fijos y estadísticas
+    why: El dolor era administración repetitiva, no solo tener una web.
+  - decision: Catálogo, precios y comunicación centralizados
+    why: Sacó del Excel y WhatsApp lo que cliente y equipo necesitan ver al día.
+challenges:
+  - challenge: Turnos recurrentes y cancelaciones sin romper la agenda
+    solution: Modelo de turnos fijos y jobs; mails y recálculo al cambiar.
+  - challenge: Estadísticas y estados inconsistentes
+    solution: Recálculo idempotente ante alta, cambio o baja.
+  - challenge: Salir de Excel y WhatsApp sin perder al equipo ni al cliente
+    solution: Misma fuente de verdad en panel y web app.
 impact:
-  - value: "+650"
+  - value: "+900"
     label: clientes registrados
-  - value: "+60"
+  - value: "+70"
     label: turnos por mes
 parts:
   - title: Natuadmin
-    period: 2024 — 2025
+    period: 2024 — 2026
     stack:
       - Node
       - Firebase
       - Next.js
-    description: "El centro de operaciones del equipo: turnos (incluidos recurrentes
-      y cancelaciones), tratamientos, horarios, personal, blog y mailing en un
-      solo panel. Permite conocer a cada cliente por su historial, sus notas y
-      sus estadísticas de asistencia y cancelación, que se actualizan solas y
-      alimentan rankings estadísticamente confiables. Incluye un editor de texto
-      enriquecido para el blog y el envío de novedades."
+    description: >-
+      El centro de operaciones del equipo: turnos (incluidos recurrentes y
+      cancelaciones), tratamientos, horarios, personal, blog y mailing en un solo
+      panel. Historial, notas y estadísticas de asistencia por cliente.
     stats:
-      - +650 clientes registrados
-      - +60 turnos por mes
+      - +900 clientes registrados
+      - +70 turnos por mes
   - title: Web App
-    period: 2024 — 2025
+    period: 2024 — 2026
     stack:
       - Next.js
-    description: "Reserva de turnos online, simple y autónoma: los clientes eligen
-      tratamiento, reservan, reciben la confirmación por mail y siguen el estado
-      de su agenda desde su perfil. Cada reserva impacta directamente en la
-      agenda del equipo."
+    description: >-
+      Reserva online: el cliente elige tratamiento, reserva, recibe confirmación
+      por mail y sigue su agenda. Cada reserva impacta la agenda del equipo.
     url: https://naturalis.vercel.app/
 stack:
   - Next.js
   - Firebase
   - Node
+notes:
+  - Nombre del centro y capturas actuales autorizados para el portafolio.
+  - No mostrar datos personales de clientes reales.
+scene: naturalis
+guide:
+  faq: []
 media:
   - src: /images/proyects/naturalis/natuadmin/1.webp
     alt: Natuadmin 1
@@ -93,31 +117,36 @@ media:
     alt: Web App de Naturalis 8
 ---
 
-{/* Caso completo de Naturalis — Centro de estética para `/projects/naturalis`. */}
-
 ## Resumen
 
-Plataforma que digitaliza la gestión completa de un centro de estética, formada por dos piezas conectadas: Natuadmin, el panel desde el que el equipo administra turnos, tratamientos, horarios y comunicación, y una web app donde los clientes reservan y siguen su agenda online. Automatiza el trabajo repetitivo —turnos fijos, confirmaciones y cancelaciones por mail, estadísticas de cada cliente— para que el equipo se enfoque en atender y no en administrar.
+Turnos y operación de un centro de estética: el cliente reserva, el equipo atiende sin Excel ni WhatsApp. Dos piezas —Natuadmin y la web app— sobre la misma agenda.
 
 ## Problema
 
-TODO(humano): qué le dolía al cliente o al usuario antes de la solución.
+Antes, la operación vivía en Excel y WhatsApp: sin catálogo claro de tratamientos, sin sincronización ni registro organizado, precios difíciles de mantener al día y comunicación repartida en hilos.
 
 ## Enfoque
 
-TODO(humano): qué viste que otros no vieron (2–5 ideas clave).
+1. Una sola fuente de verdad del turno (web + Natuadmin).
+2. Reserva autónoma que impacta la agenda real.
+3. Automatizar turnos fijos, mails y estadísticas.
+4. Historial, blog y mailing en el mismo panel.
 
 ## Decisiones
 
-TODO(humano): 2–3 decisiones importantes y por qué.
+- **Dos apps, una agenda** — roles distintos, mismos datos.
+- **Automatizar lo repetitivo** — el equipo atiende, no administra.
+- **Catálogo, precios y comunicación centralizados** — fuera de Excel y WhatsApp.
 
 ## Desafíos
 
-TODO(humano): lo más difícil y cómo se destrabó.
+- Turnos recurrentes y cancelaciones sin romper la agenda.
+- Stats consistentes ante cada cambio.
+- Migrar la operación sin perder al equipo ni al cliente.
 
 ## Resultado
 
-TODO(humano): qué cambió después (números si hay).
+Más de 900 clientes registrados y más de 70 turnos por mes. En uso; URL definitiva.
 
 ## Stack
 

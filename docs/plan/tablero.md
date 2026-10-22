@@ -36,7 +36,7 @@
 
 | ID | Tarea y criterio de terminado | Depende de | Zona | Estado |
 | --- | --- | --- | --- | --- |
-| T-H04 | Corregir y completar las narrativas de primera línea (I-01) sobre los borradores de T-A10 | T-A10 | `docs/plan/borradores/`, `src/content/projects/` | listo |
+| T-H04 | Corregir y completar las narrativas de primera línea (I-01) sobre los borradores de T-A10 | T-A10 | `docs/plan/borradores/`, `src/content/projects/` | hecho (2026-10-22; grilling Vibo/Pirp/Naturalis/Banner) |
 | T-H06 | Revisión del esqueleto en dispositivos reales (matriz de `02` §5); lista de ajustes | T-A11 a T-A16 | `docs/plan/tablero.md` | pendiente |
 | T-A11 | Estructura del recorrido en DOM: capítulos con `data-chapter`, índice overlay, vista lista `/projects`, contacto siempre visible, eliminar `/skills` y decidir el destino de `/about`, `/experience`, `/contact` | T-A04, T-A06, ADR-007 | `src/pages/`, `src/components/journey/`, `src/components/layout/` | hecho (2026-10-21; PR #11) |
 
@@ -135,14 +135,14 @@
 
 | Insumo | Estado | Nota |
 | --- | --- | --- |
-| I-01 Narrativas primera línea | pendiente | Borradores en `docs/plan/borradores/` (T-A10); falta corrección humana T-H04 |
+| I-01 Narrativas primera línea | listo | T-H04 cerrado; MDX en `src/content/projects/` (vibo, pirp, naturalis, banner-2) |
 | I-02 Datos reales de Vibo | listo para T-A20 | Overlays curados con bbox/pose reales (MVP `analyze-video-1`) + stats Firebase. Videos/frames en `assets-src/vibo/mvp-ref/`. `ui-mvp-public/` ignorado |
 | I-03 Marcas y paletas | pendiente | |
 | I-04 Capturas en alta | pendiente | |
 | I-05 Assets Naturalis | pendiente | |
 | I-06 Audio | pendiente | |
-| I-07 Logos de clientes de Banner | pendiente | |
-| I-08 Alcance de Pirp + dataset | pendiente | |
+| I-07 Logos de clientes de Banner | nombres OK | Grido, Açaí, Marea, Diarco, Leroma autorizados en copy; faltan archivos de logo si se muestran en escena |
+| I-08 Alcance de Pirp + dataset | parcial | Escena 100 % ficticia; capturas UI sí; no nombrar clientes; dataset demo pendiente T-H10 |
 | I-09 Persona y FAQs del guía | pendiente | |
 | I-10 Narrativas segunda y tercera línea | pendiente | |
 | I-11 Fotos personales | pendiente | Opcional |

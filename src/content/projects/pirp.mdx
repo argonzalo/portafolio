@@ -1,55 +1,109 @@
 ---
 # Modelo de contenido: docs/plan/05-contenido.md §1.
+# Narrativa cerrada en T-H04 (grilling 2026-10-21).
 id: pirp
-title: Pirp — Análisis de reputación política
-tier: 2
-order: 9
+title: PIRP
+tier: 1
+order: 2
+client: PIRP
 period: "2026"
+location: Córdoba, Argentina
 status: activo
-url: https://pirp.com.ar
-oneLiner: Monitoreo de imagen pública y estrategia para políticos.
-# TODO(humano): `problem` conserva por ahora la descripción heredada de src/lib/projects.ts.
-# TODO(humano): reemplazar los `approach` por el enfoque real del proyecto.
-# TODO(humano): confirmar nombre público, URL y qué se puede contar de Pirp (I-08).
-problem: "Inteligencia de reputación para políticos: monitorea su presencia en
-  noticias y redes, detecta tendencias en su imagen pública y propone
-  estrategias concretas a seguir."
+url: https://www.pirp.com.ar/inicio
+oneLiner: >-
+  Convierte el ruido de noticias y redes en una lectura clara de reputación y en
+  estrategias concretas.
+problem: >-
+  Un candidato o su jefe de campaña no puede seguir a mano todo lo que sale en
+  noticias y redes. Sin una lectura unificada, el equipo no sabe qué temas lo
+  están definiendo, llega tarde a las crisis y acumula datos sin una estrategia
+  clara.
 approach:
-  - "TODO(humano): cómo se pensó el proyecto (2–5 pasos o ideas clave)."
-  - "TODO(humano): completar este borrador con la plantilla de `05-contenido.md`
-    §3."
+  - >-
+    Monitorear de forma continua (casi en vivo) la presencia del titular en
+    noticias, X, Instagram y YouTube.
+  - >-
+    Unificar esas fuentes en una sola lectura de reputación y temas — no un feed
+    por red.
+  - >-
+    Combinar un algoritmo de reputación (varios factores) con análisis de IA:
+    resúmenes, tendencias e impacto de las temáticas actuales.
+  - >-
+    Cerrar con propuestas de estrategia accionables; el equipo de campaña decide.
+decisions:
+  - decision: Una sola lectura a partir de varias fuentes, no un feed por red
+    why: El valor es entender la reputación, no acumular menciones sueltas.
+  - decision: Primero mapa de temas y reputación; la estrategia después
+    why: >-
+      El producto diagnostica y propone; evita vender que la IA decide la
+      campaña.
+  - decision: Monitoreo casi en vivo
+    why: En política, llegar tarde a un pico no sirve.
+challenges:
+  - challenge: Separar qué temas te definen (y los picos) del ruido mediático diario
+    solution: >-
+      Algoritmo de reputación con múltiples factores más análisis de IA sobre
+      tendencias e impacto.
+  - challenge: Ruido, sarcasmo y contexto político en el flujo mediático
+    solution: >-
+      Mix de factores del algoritmo y pensamiento de la IA; el equipo interpreta
+      y actúa.
+  - challenge: Proyecto activo con usuarios de prueba
+    solution: >-
+      En el portafolio se muestran capturas de UI; no se nombran clientes; la
+      escena usa datos ficticios.
+impact:
+  - value: Temas + reputación
+    label: lectura clara del ruido mediático
+  - value: Estrategias concretas
+    label: del diagnóstico a la acción
 stack:
   - NestJS
   - Next.js
   - Supabase
+notes:
+  - >-
+    La escena y demos del recorrido usan datos ficticios. No se nombran clientes
+    reales (producto en desarrollo con usuarios de prueba).
+  - >-
+    Alertas cuando un tema impacta la reputación existen en el producto; en el
+    copy del caso se mencionan de pasada, no como claim central.
+scene: pirp
+guide:
+  faq: []
 media: []
 ---
 
-{/* Caso completo de Pirp — Análisis de reputación política para `/projects/pirp`. */}
-
 ## Resumen
 
-Inteligencia de reputación para políticos: monitorea su presencia en noticias y redes, detecta tendencias en su imagen pública y propone estrategias concretas a seguir.
+PIRP convierte el ruido de noticias y redes en una lectura clara de reputación y en estrategias concretas para candidatos y equipos de campaña.
 
 ## Problema
 
-TODO(humano): qué le dolía al cliente o al usuario antes de la solución.
+Un candidato o su jefe de campaña no puede seguir a mano todo lo que sale en noticias y redes. Sin una lectura unificada, el equipo no sabe qué temas lo están definiendo, llega tarde a las crisis y acumula datos sin una estrategia clara.
 
 ## Enfoque
 
-TODO(humano): qué viste que otros no vieron (2–5 ideas clave).
+1. Monitorear de forma continua (casi en vivo) la presencia del titular en noticias, X, Instagram y YouTube.
+2. Unificar esas fuentes en una sola lectura de reputación y temas — no un feed por red.
+3. Combinar un algoritmo de reputación (varios factores) con análisis de IA: resúmenes, tendencias e impacto de las temáticas actuales.
+4. Cerrar con propuestas de estrategia accionables; el equipo de campaña decide.
 
 ## Decisiones
 
-TODO(humano): 2–3 decisiones importantes y por qué.
+- **Una sola lectura a partir de varias fuentes** — el valor es entender la reputación, no acumular menciones sueltas.
+- **Primero temas y reputación; después estrategia** — el producto diagnostica y propone.
+- **Casi en vivo** — en política, llegar tarde a un pico no sirve.
 
 ## Desafíos
 
-TODO(humano): lo más difícil y cómo se destrabó.
+- **Señal vs. ruido** — algoritmo de reputación con múltiples factores más análisis de IA.
+- **Contexto político** — mix de factores del algoritmo y pensamiento de la IA; el equipo actúa.
+- **Confidencialidad en el portafolio** — capturas de UI sí; clientes no; escena con datos ficticios.
 
 ## Resultado
 
-TODO(humano): qué cambió después (números si hay).
+Lectura clara de temas y reputación a partir del ruido mediático, y un puente del diagnóstico a estrategias concretas. La app expone alcance, menciones y puntaje de reputación, entre otros; en este caso no se publican cifras hasta tener métricas aprobadas.
 
 ## Stack
 

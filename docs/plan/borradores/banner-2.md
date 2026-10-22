@@ -1,14 +1,14 @@
 # Borrador — Banner 2.0
 
-> T-A10 · id previsto: `banner-2` · tier 1 · Fuentes: Banner 2.0 V2 + contexto organización Banner Director, ficha `03` §3.4. App Etiquetas y Web Landing son satélites (proyectos aparte); aquí solo se menciona el vínculo operativo.
+> T-H04 · id: `banner-2` · tier 1 · Cerrado en grilling 2026-10-21. Rol del autor: frontend completo; resto del sistema: participación sin toma de decisión.
 
 ## Metadatos (para el frontmatter)
 
-| Campo | Borrador |
+| Campo | Valor |
 | --- | --- |
 | title | Banner 2.0 |
 | client | Banner Director |
-| organization | Banner Director (plataforma de Digital Signage; ver texto de organización en descripciones) |
+| organization | banner-director |
 | period | 2023 — 2026 |
 | location | Córdoba, Argentina |
 | status | activo |
@@ -20,35 +20,29 @@
 
 ## 1. Problema (`problem`)
 
-Las grandes cadenas y franquicias necesitan gobernar lo que muestran miles de pantallas en muchos locales: qué se ve, dónde y cuándo. Sin un sistema central con reglas finas y reproductores autónomos, la operación se vuelve intervenir equipo por equipo, con contenido desfasado, errores locales y nula escala.
-
-`TODO(humano):` ¿el dolor más concreto era desactualización de precios/promos, falta de segmentación por región, o caídas/offline de equipos?
+Las cadenas necesitan gobernar qué se ve en miles de pantallas: precios y promos al día, segmentación por región/local, y equipos que sigan operando offline. La generación anterior se quedaba corta: interfaz poco intuitiva y poco moderna, funcionalidades básicas frente a lo que el negocio pedía, y una sincronización que no estaba a la altura (hoy, actualización más inmediata vía sockets). Intervenir equipo por equipo no escala.
 
 ---
 
 ## 2. Enfoque (`approach`)
 
-1. Separar “decidir el contenido” (panel + editor visual) de “ejecutarlo” (app Android en kiosco que descarga e interpreta plantillas sola).
-2. Expresar la publicación como reglas de segmentación (región, fecha, entidad, criterios, etiquetas), no como una playlist única para todos.
-3. Llevar cada nueva configuración por un broker de colas con workers y prioridades hasta el equipo correcto.
-4. Normalizar medios (video, imagen, audio, videowall) en el servidor antes de distribuir, para que el dispositivo reproduzca con menos sorpresas.
-5. Permitir convivencia con ajustes locales (p. ej. App Etiquetas vía Wi‑Fi) sin pisar la estrategia global.
-
-`TODO(humano):` ¿la idea clave del 2.0 vs. la plataforma histórica fue el editor de plantillas, el modelo de servicios, o la escala del player?
+1. Rediseño completo: interfaz, arquitectura backend y app Android — todo de nuevo, con tecnologías modernas.
+2. Separar “decidir el contenido” (panel + editor visual) de “ejecutarlo” (player Android autónomo).
+3. Publicar con reglas de segmentación (región, fecha, entidad, criterios, etiquetas).
+4. Llevar la configuración hasta cada equipo con robustez de red; sincronización más inmediata donde aplica.
+5. Convivencia con ajustes locales (App Etiquetas) sin pisar la estrategia global.
 
 ---
 
 ## 3. Decisiones (`decisions`)
 
+Narrativa alineada al rol (encargado del frontend de punta a punta; participación en el resto sin decisión final):
+
 | decision | why |
 | --- | --- |
-| Tres pilares: panel Vue, backend Go/PostgreSQL, player Android/Kotlin | Cada capa tiene un trabajo distinto (diseño de contenido, orquestación, reproducción robusta en local). |
-| Distribución asíncrona por colas en lugar de “empujar” en vivo a cada pantalla | Escala y tolerancia a redes inestables: el equipo se alinea cuando puede, sin bloquear el centro. |
-| Editor visual de plantillas + reglas de segmentación | El operador piensa en negocio (quién ve qué y cuándo), no en archivos sueltos por equipo. |
-| Procesador de medios dedicado (incl. videowall) | Homogeneiza formatos y sincronización antes de llegar al dispositivo. |
-| Publicación de versiones de servicios y APKs desde el propio panel | Operar la flota sin un canal paralelo opaco. |
-
-`TODO(humano):` priorizar 2–3 decisiones que fueron realmente tuyas / del equipo en el que estuviste; recortar el resto si no querés atribuirte toda la arquitectura.
+| Interfaz y editor rediseñados para operadores de negocio | La versión previa era poco intuitiva; el valor se juega en decidir contenido con claridad. |
+| Editor visual de plantillas + reglas de segmentación en el panel | El operador piensa en quién ve qué y cuándo, no en archivos sueltos por equipo. |
+| Contar el 2.0 como reconstrucción completa (UI + backend + Android) | El mensaje del caso es el salto de producto, sin atribuir al autor las decisiones de arquitectura ajenas al frontend. |
 
 ---
 
@@ -56,12 +50,9 @@ Las grandes cadenas y franquicias necesitan gobernar lo que muestran miles de pa
 
 | challenge | solution |
 | --- | --- |
-| Escala: miles de equipos con configuraciones distintas | Mensajes de configuración por cola, workers con prioridad, reproductores autónomos. |
-| Redes locales poco confiables / equipos offline | Descarga e interpretación local; el equipo sigue mostrando lo último válido hasta re-sincronizar. |
-| Segmentación compleja (región, fecha, entidad, etiquetas) sin volver el panel inusable | Modelo de reglas en el editor + traducción a configuración por equipo. |
-| Sincronización de videowall y medios heterogéneos | Normalización en servidor + sincronización opcional entre pantallas en el player. |
-
-`TODO(humano):` ¿cuál fue el incidente o limitación real más dura (cola saturada, APK, editor, cliente grande)?
+| UX de un panel potente sin volverlo inusable | Rediseño de interfaz y flujos del editor/segmentación a cargo del frontend. |
+| Escala y redes poco confiables (lado plataforma) | Players autónomos + distribución asíncrona; el caso lo describe sin detallar infra. |
+| Migración gradual desde la plataforma histórica | Aún se migran equipos a 2.0; el copy distingue flota histórica vs. 2.0. |
 
 ---
 
@@ -69,30 +60,33 @@ Las grandes cadenas y franquicias necesitan gobernar lo que muestran miles de pa
 
 | value | label |
 | --- | --- |
-| +600 | equipos funcionando *(dato del subproyecto Banner 2.0 en el portafolio vigente)* |
-| ≈10.000 | equipos activos *(dato del texto de organización Banner Director)* |
+| +800 | equipos en Banner 2.0 (migración en curso) |
+| ≈10.000 | equipos activos en Banner Director (plataforma histórica / flota total) |
 
-`TODO(humano):` **contradicción a resolver.** El copy de organización habla de “casi 10.000 equipos activos”; el stat de Banner 2.0 dice “+600 equipos funcionando”. ¿Cuál aplica a 2.0, cuál a la plataforma histórica, y qué números son publicables? Clientes nombrables (Grido, Açaí, Marea, Diarco, Leroma) dependen de permiso I-07.
-
----
-
-## 6. Confidencialidad / qué no se puede mostrar
-
-- Logos de clientes: solo con permiso (I-07 / T-H11).
-- Detalles internos de infraestructura, credenciales, métricas no públicas de un cliente.
-- `TODO(humano):` qué capturas del editor son actuales y autorizadas.
+Clientes nombrables (permiso humano): Grido, Açaí, Marea, Diarco, Leroma.
 
 ---
 
-## Vínculo con satélites (no son este caso)
+## 6. Confidencialidad
 
-- **App Etiquetas** — ajuste local por Wi‑Fi (p. ej. disponibilidad de productos) sin alterar la configuración global.
-- **Web Landing** — puerta de entrada comercial de Banner Director.
+| Ítem | ¿Se puede? |
+| --- | --- |
+| Nombrar clientes (Grido, Açaí, Marea, Diarco, Leroma) | Sí |
+| Capturas actuales del editor | Sí |
+| Detalles internos de infra / credenciales | No |
 
-En el recorrido inmersivo viven como beats extra del mundo Banner; en la vista lista son proyectos propios.
+---
 
-## Notas para T-H04
+## Rol (para no sobre-atribuir)
 
-- Tono de escena: potencia y escala (“una decisión, diez mil pantallas”).
-- El caso debe mostrar el camino decisión → reglas → colas → mapa de pantallas, no solo el editor.
-- Conviene una frase corta “Sobre Banner Director” en `organization` para no perder el contexto de la plataforma histórica.
+- **Frontend:** encargado de forma completa e íntegra.
+- **Resto del sistema:** participación en el armado, sin toma de decisión.
+
+## Vínculo con satélites
+
+- **App Etiquetas** / **Web Landing** — proyectos aparte; en el recorrido, beats del mundo Banner.
+
+## Notas de escena
+
+- Tono: potencia y escala (“una decisión, miles de pantallas”).
+- Camino: decisión → reglas → distribución → mapa de pantallas; no solo el editor.
