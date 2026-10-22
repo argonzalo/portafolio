@@ -196,15 +196,32 @@ Toda transición tiene tres capas sincronizadas por el mismo progreso de scroll:
 
 Las transiciones se diseñan en pares (Vibo→Pirp, Pirp→Naturalis, Naturalis→Banner, etc.) y cada par tiene un dueño en el tablero, para que no queden "huérfanas" entre dos agentes.
 
-## 7. Proceso de producción de cada escena
+## 8. Rúbrica y Guía de Arte Vinculante (T-H12)
 
-```text
-Ficha validada por el humano (moodboard + análisis previo)
-  → Greybox en /lab/<escena>: cámara, beats, ritmo, mobile, presupuesto (sin assets finales)
-  → Revisión del humano (ritmo y encuadre)  ── iterar si hace falta
-  → Assets finales por el pipeline + materiales + interacción
-  → Integración en el recorrido + transiciones de su par
-  → PR con métricas y capturas → aprobación del humano
-```
+> Aprobada en el grilling de T-H12 (2026-10-22). Aplica de manera obligatoria a todas las escenas de primera y segunda línea para evitar el look amateur / low-poly genérico y garantizar el estándar *cinematic stylized*.
 
-**Exploración creativa en paralelo:** para el greybox de las escenas de primera línea conviene lanzar 2–3 variantes en worktrees separados (modo best-of-N) con la misma ficha, y que el humano elija. Cuesta poco y evita quedarse con la primera idea.
+### 8.1 Reglas técnicas obligatorias para agentes ejecutores
+
+1. **Prohibición de primitivas desnudas:** Quedan terminantemente prohibidos cubos, cilindros o esferas lisas sin biselar (*bevel*), sin mapas de normales/rugosidad o con colores planos plásticos por defecto.
+2. **Esquema de iluminación de 3 puntos mínimo:** Cada escena debe contar con una clave de luz calculada:
+   - **Key light:** Luz principal direccional o foco que modela la forma.
+   - **Fill light:** Relleno ambiental suave o luz secundaria que preserva detalle en sombras.
+   - **Rim light:** Luz de contorno intensa (típicamente azul/dorada en escenas oscuras) que separa los modelos del fondo y genera el recorte broadcast.
+3. **Calibración PBR rigurosa:** Todos los materiales deben declarar valores explícitos y creíbles de `roughness` (aspereza), `metalness` (metalicidad) y mapas ambientales (PMREM de estudio compartido proveniente del kit).
+4. **Tipografía y gráficos vectoriales nítidos:** Textos y etiquetas en 3D deben usar SDF (Signed Distance Fields) o capas DOM ancladas en alta resolución con Poppins y `tabular-nums`.
+
+### 8.2 Directivas específicas por escena
+
+- **Vibo (T-A20):**
+  - **Jugador:** Atleta humanoide con proporciones reales, rig atlético (15–25k triángulos), vestimenta deportiva con materiales PBR semi-mate y fuerte iluminación de reflectores estilo repetición televisiva nocturna.
+  - **Cancha:** Cancha de pádel completa estilizada (suelo oscuro con textura sutil, paredes de cristal templado PBR con reflejos y red/postes estilizados bajo reflectores).
+  - **Overlays:** HUD de visión artificial con glow y datos curados de Firebase (T-H07), sin reconstrucción geométrica forzada.
+- **Pirp (T-A23):**
+  - **Torrente de noticias:** Tarjetas con diseño editorial en Poppins montadas en un atlas de texturas eficiente, badges de sentimiento sobrios (verde esmeralda / rojo quemado) y acento de alerta en bordó corporativo (`#7A1F2B`).
+- **Naturalis (T-A24):**
+  - **Ambiente:** Sala de estética y bienestar arquitectónica y cálida. Paleta salvia (`#56857D`) sobre crema suave (`#FAFDFC`), lino y vegetación con sombras horneadas (lightmap) y transición suave a luz nocturna azulada. Único capítulo en tema claro.
+- **Banner 2.0 (T-A25):**
+  - **Sala de control:** Pantallas físicas con marcos de aluminio oscuros usando el kit de dispositivos (T-A19), paneles con emisiones calibradas y acento naranja (`#DA3E00`). El videowall de 10.000 pantallas actúa como una matriz LED de alta precisión.
+- **Capturas de producto (T-A42):**
+  - Dispositivos 3D del kit integrados en el espacio con capas de UI flotantes + gatillador accesible para abrir carousel/lightbox en DOM de alta resolución.
+
