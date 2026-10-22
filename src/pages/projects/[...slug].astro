@@ -1,67 +1,73 @@
 ---
-import { ProjectGallery } from "@/components/projects/ProjectGallery"
-import ProjectMeta from "@/components/projects/ProjectMeta.astro"
-import ProjectParts from "@/components/projects/ProjectParts.astro"
-import ProjectToolbar from "@/components/projects/ProjectToolbar.astro"
+import CaseBody from "@/components/project/CaseBody.astro"
+import CaseHero from "@/components/project/CaseHero.astro"
+import CaseMedia from "@/components/project/CaseMedia.astro"
+import CaseNarrative from "@/components/project/CaseNarrative.astro"
+import CaseNotes from "@/components/project/CaseNotes.astro"
+import CaseOrganization from "@/components/project/CaseOrganization.astro"
+import CaseParts from "@/components/project/CaseParts.astro"
+import CaseStack from "@/components/project/CaseStack.astro"
+import CaseToolbar from "@/components/project/CaseToolbar.astro"
 import ProjectLayout from "@/layouts/ProjectLayout.astro"
-import { getProjectRoutes } from "@/lib/projects"
-import type { Project } from "@/lib/projects"
+import type { CollectionEntry } from "astro:content"
+import { getCollection, getEntry, render } from "astro:content"
 
-export function getStaticPaths() {
-  return getProjectRoutes()
+/**
+ * Página de caso (T-A17).
+ * Estructura: problema → enfoque → decisiones → desafíos → resultado → piezas → stack.
+ * Cabecera visual: escena (`data-chapter`) o póster (media / letterform).
+ * Fuente: Content Collections (`getCollection` / `render`), no la fachada síncrona.
+ */
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects")
+
+  return projects.map((project) => ({
+    params: { slug: project.data.id },
+    props: { project },
+  }))
 }
 
 type Props = {
-  project: Project
+  project: CollectionEntry<"projects">
 }
 
 const { project } = Astro.props
+const data = project.data
+const { Content } = await render(project)
+
+const organization = data.organization
+  ? await getEntry("organizations", data.organization)
+  : undefined
+
+if (data.organization && !organization) {
+  throw new Error(
+    `[projects] El proyecto "${data.id}" referencia la organización ` +
+      `"${data.organization}", que no existe en src/content/organizations/.`
+  )
+}
 ---
 
-<ProjectLayout title={project.title} description={project.cardDescription}>
-  <ProjectToolbar slot="toolbar" project={project} />
+<ProjectLayout title={data.title} description={data.oneLiner}>
+  <CaseToolbar slot="toolbar" project={data} />
 
-  <div class="mx-auto flex w-full max-w-[100rem] flex-col gap-10 px-5 py-8 sm:px-8 lg:px-12">
-    <p class="text-muted-foreground max-w-4xl text-base leading-relaxed text-pretty sm:text-lg">
-      {project.description}
-    </p>
+  <CaseHero project={data} />
 
-    <div class="flex min-w-0 flex-col gap-8">
-      <ProjectMeta project={project} />
+  <div class="mx-auto flex w-full max-w-[100rem] flex-col gap-12 px-5 py-10 sm:gap-14 sm:px-8 sm:py-14 lg:px-12">
+    <CaseNotes notes={data.notes} />
 
-      {project.parts && project.parts.length > 0 && <ProjectParts parts={project.parts} />}
+    <CaseNarrative project={data} />
 
-      {
-        project.organization && (
-          <section class="border-border bg-muted/30 flex max-w-4xl flex-col gap-2 rounded-2xl border p-5">
-            <h3 class="text-muted-foreground text-sm font-medium tracking-wide uppercase">
-              Sobre {project.organization.name}
-            </h3>
-            <p class="text-muted-foreground text-sm leading-relaxed text-pretty">
-              {project.organization.description}
-            </p>
-            <p class="text-muted-foreground flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
-              <span class="inline-flex items-center gap-1.5">
-                <span class="icon-[tabler--calendar] size-3.5 bg-current" aria-hidden="true" />
-                {project.organization.period}
-              </span>
-              {project.organization.location && (
-                <span class="inline-flex items-center gap-1.5">
-                  <span class="icon-[tabler--map-pin] size-3.5 bg-current" aria-hidden="true" />
-                  {project.organization.location}
-                </span>
-              )}
-            </p>
-          </section>
-        )
-      }
+    <CaseParts parts={data.parts} />
 
-      <section class="flex flex-col gap-3">
-        <h3 class="text-muted-foreground text-sm font-medium tracking-wide uppercase">
-          Galería
-        </h3>
-        <ProjectGallery client:load images={project.images} title={project.title} />
-      </section>
-    </div>
+    <CaseStack stack={data.stack} />
+
+    <CaseMedia media={data.media} title={data.title} />
+
+    {organization && <CaseOrganization organization={organization.data} />}
+
+    <CaseBody body={project.body}>
+      <Content />
+    </CaseBody>
   </div>
 </ProjectLayout>

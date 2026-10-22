@@ -1,0 +1,26 @@
+---
+/**
+ * Cuerpo MDX libre del caso. Se muestra solo cuando el cuerpo ya no es el
+ * placeholder migrado (TODO + resumen duplicado del frontmatter).
+ */
+type Props = {
+  body?: string
+}
+
+const { body } = Astro.props
+
+const todoCount = (body?.match(/TODO\(humano\)/g) ?? []).length
+const shouldRender = Boolean(body && todoCount < 3)
+---
+
+{
+  shouldRender && (
+    <section class="case-body border-border max-w-3xl border-t pt-10" aria-label="Narrativa extendida">
+      <div
+        class="text-muted-foreground [&_a]:text-foreground [&_h2]:text-foreground [&_h3]:text-foreground space-y-4 text-base leading-relaxed text-pretty [&_a]:underline [&_a]:decoration-primary/50 [&_a]:underline-offset-4 [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h3]:mt-6 [&_h3]:text-lg [&_h3]:font-semibold [&_li]:ms-5 [&_li]:list-disc [&_ol]:space-y-2 [&_p]:max-w-prose [&_ul]:space-y-2"
+      >
+        <slot />
+      </div>
+    </section>
+  )
+}

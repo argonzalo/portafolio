@@ -1,0 +1,23 @@
+---
+import { StackBadge } from "@/components/portfolio/StackBadge"
+
+import CaseSection from "./CaseSection.astro"
+
+type Props = {
+  stack: string[]
+}
+
+const { stack } = Astro.props
+---
+
+<CaseSection title="Stack" id="stack">
+  <ul class="flex flex-wrap gap-1.5">
+    {
+      stack.map((tech) => (
+        <li>
+          <StackBadge name={tech} />
+        </li>
+      ))
+    }
+  </ul>
+</CaseSection>

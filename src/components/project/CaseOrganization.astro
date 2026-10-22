@@ -1,0 +1,31 @@
+---
+import type { OrganizationData } from "@/content/schema"
+
+import CaseSection from "./CaseSection.astro"
+
+type Props = {
+  organization: OrganizationData
+}
+
+const { organization } = Astro.props
+---
+
+<CaseSection title={`Sobre ${organization.name}`} id="organizacion">
+  <p class="text-muted-foreground max-w-3xl text-sm leading-relaxed text-pretty sm:text-base">
+    {organization.description}
+  </p>
+  <p class="text-muted-foreground flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
+    <span class="inline-flex items-center gap-1.5">
+      <span class="icon-[tabler--calendar] size-3.5 bg-current" aria-hidden="true"></span>
+      {organization.period}
+    </span>
+    {
+      organization.location && (
+        <span class="inline-flex items-center gap-1.5">
+          <span class="icon-[tabler--map-pin] size-3.5 bg-current" aria-hidden="true"></span>
+          {organization.location}
+        </span>
+      )
+    }
+  </p>
+</CaseSection>
