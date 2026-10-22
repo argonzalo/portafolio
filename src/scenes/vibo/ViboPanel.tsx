@@ -1,10 +1,10 @@
 import { useEffect, useRef, type ReactNode } from "react"
 import { createRoot, type Root } from "react-dom/client"
-import { KIT_THEMES } from "@/scenes/kit"
 import { COCO_BONES, SHOT } from "./data"
 import { setNode, setNodeAt, type PanelNodes } from "./panel"
+import { VIBO_COLORS, VIBO_THEME } from "./theme"
 
-const theme = KIT_THEMES.vibo
+const theme = VIBO_THEME
 
 /**
  * Monta DOM interactivo sobre el contenido del capítulo. La capa del canvas
@@ -156,7 +156,7 @@ export function ViboPanel({
             aria-pressed={paused}
             onClick={onTogglePause}
             style={{
-              background: paused ? theme.accent : "rgba(61, 139, 255, 0.16)",
+              background: paused ? theme.accent : VIBO_COLORS.blueSoft,
               color: paused ? "#071426" : theme.text,
               border: `1px solid ${paused ? theme.accent : theme.border}`,
               outlineColor: theme.accent,
@@ -170,7 +170,7 @@ export function ViboPanel({
             aria-pressed={highlight}
             onClick={onToggleHighlight}
             style={{
-              background: highlight ? "rgba(245, 196, 81, 0.16)" : "transparent",
+              background: highlight ? "rgba(207, 210, 214, 0.14)" : "transparent",
               color: highlight ? theme.accent : theme.textMuted,
               border: `1px solid ${highlight ? theme.borderStrong : theme.border}`,
               outlineColor: theme.accent,

@@ -48,13 +48,13 @@ export const vibo: SceneDefinition = {
   palette: {
     background: "#071426",
     foreground: "#edf5ff",
-    accent: "#408dff",
-    accentAlt: "#f5c451",
+    accent: "#1f7aff",
+    accentAlt: "#cfd2d6",
     scheme: "dark",
   },
   thread: {
     shape: "trajectory",
-    color: "#f5c451",
+    color: "#cfd2d6",
     anchors: (p) => {
       // Mundo: el hilo recorre las líneas de la cancha. Razonamiento: se cierra
       // en el área de detección del jugador. Solución: el recorrido real del

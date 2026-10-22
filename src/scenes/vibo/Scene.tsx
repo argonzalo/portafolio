@@ -38,7 +38,6 @@ import { emitInteract } from "@/guide/signals"
 import {
   AgentGraph,
   HudOverlay,
-  KIT_THEMES,
   TelemetryDeck,
   ThreadLine,
   beatEnvelope,
@@ -49,10 +48,10 @@ import {
   type HudBoundingBox3D,
   type HudMarkerItem,
   type HudPoseSkeleton3D,
-  type KitTheme,
   type Vec3Tuple,
 } from "@/scenes/kit"
 import { Court } from "./Court"
+import { PLATINUM_THEME, VIBO_COLORS, VIBO_THEME } from "./theme"
 import { COVERAGE, HEAT, HEAT_GRID, INTENSITY, INTENSITY_PEAK, PLAYER, SHOT } from "./data"
 import { createPanelNodes, paintInset } from "./panel"
 import { ViboPlayer } from "./Player"
@@ -73,15 +72,7 @@ import {
   samplePath,
 } from "./world"
 
-const THEME = KIT_THEMES.vibo
-const GOLD_THEME: KitTheme = {
-  ...THEME,
-  border: "rgba(245, 196, 81, 0.34)",
-  borderStrong: "rgba(245, 196, 81, 0.8)",
-  primary: "#F5C451",
-  accent: "#FFE2A1",
-  glowColor: "rgba(245, 196, 81, 0.22)",
-}
+const THEME = VIBO_THEME
 
 const CONTACT_P = TIMELINE.swing[0] + SWING.contact * (TIMELINE.swing[1] - TIMELINE.swing[0])
 
@@ -206,13 +197,13 @@ export default function ViboScene(props: SceneProps) {
   const mats = useMemo(
     () => ({
       ball: new MeshPhysicalMaterial({
-        color: "#d7ee45",
+        color: "#dfe2e6",
         roughness: 0.78,
         metalness: 0,
         sheen: 1,
-        sheenColor: new Color("#f4ffb0"),
+        sheenColor: new Color("#f4f6f8"),
         sheenRoughness: 0.6,
-        emissive: new Color("#556b0c"),
+        emissive: new Color("#3a3f45"),
         emissiveIntensity: 0.5,
       }),
       ring: new ShaderMaterial({
@@ -221,7 +212,7 @@ export default function ViboScene(props: SceneProps) {
           uniform float uOpacity;
           varying vec2 vUv;
           void main() {
-            gl_FragColor = vec4(vec3(0.96, 0.77, 0.32) * 1.6 * uOpacity, 1.0);
+            gl_FragColor = vec4(vec3(0.82, 0.84, 0.86) * 1.4 * uOpacity, 1.0);
           }
         `,
         uniforms: { uOpacity: { value: 1 } },
@@ -506,8 +497,8 @@ export default function ViboScene(props: SceneProps) {
 
   return (
     <group>
-      {/* Tres puntos: reflector clave, relleno nocturno y contraluces azul/dorado. */}
-      <hemisphereLight args={["#3a5680", "#0a0f18", 0.45]} />
+      {/* Tres puntos: reflector clave, relleno nocturno y contraluces azul/neutro. */}
+      <hemisphereLight args={["#34507f", "#0a0f18", 0.45]} />
       <primitive object={keyTarget} position={[HERO_POSITION[0], 1.25, HERO_POSITION[2]]} />
       <spotLight
         ref={keyRef}
@@ -520,8 +511,8 @@ export default function ViboScene(props: SceneProps) {
         decay={0}
         distance={30}
       />
-      <directionalLight position={[-6, 4.5, 12]} intensity={1.8} color="#3d8bff" />
-      <directionalLight position={[3.5, 3.8, 11]} intensity={1.2} color="#f5c451" />
+      <directionalLight position={[-6, 4.5, 12]} intensity={1.8} color={VIBO_COLORS.blue} />
+      <directionalLight position={[3.5, 3.8, 11]} intensity={1.0} color="#d8dbe0" />
 
       <Court quality={quality} envMap={envMap} state={runtime.court} />
 
@@ -553,8 +544,8 @@ export default function ViboScene(props: SceneProps) {
         getPoints={outgoingTrail}
         progress={progress}
         quality={quality}
-        color="#f5c451"
-        headColor="#fff1c4"
+        color={VIBO_COLORS.platinum}
+        headColor={VIBO_COLORS.platinumLight}
         width={isMobile ? 0.03 : 0.024}
         draw={trailDraw}
         opacity={trailOpacity}
@@ -598,7 +589,7 @@ export default function ViboScene(props: SceneProps) {
         progress={progress}
         isMobile={isMobile}
         active={active}
-        theme={GOLD_THEME}
+        theme={PLATINUM_THEME}
         eyebrow={`VIBO · ${PLAYER.name.toUpperCase()}`}
         heading="Tu lectura de partido"
         summary={`${PLAYER.hand} · ${PLAYER.tags.join(" · ")}. Estilo, repertorio y desgaste leídos de un punto real.`}
