@@ -37,7 +37,7 @@
 | ID | Tarea y criterio de terminado | Depende de | Zona | Estado |
 | --- | --- | --- | --- | --- |
 | T-H04 | Corregir y completar las narrativas de primera línea (I-01) sobre los borradores de T-A10 | T-A10 | `docs/plan/borradores/`, `src/content/projects/` | hecho (2026-10-22; grilling Vibo/Pirp/Naturalis/Banner) |
-| T-H06 | Revisión del esqueleto en dispositivos reales (matriz de `02` §5); lista de ajustes | T-A11 a T-A15, T-A17 | `docs/plan/tablero.md` | en curso (humano; feedback 2026-10-22 abajo; #2 cerrado con T-A41; quedan #1/#4/#5 + T-A42 / barra de arte; T-A16 fuera de alcance) |
+| T-H06 | Revisión del esqueleto en dispositivos reales (matriz de `02` §5); lista de ajustes | T-A11 a T-A15, T-A17 | `docs/plan/tablero.md` | hecho (2026-10-22; re-check post T-A41 OK — scroll ida/vuelta, sin saltos/bandas, FPS OK; #1/#4/#5 quedan como seguimiento en T-A20/T-A42 + T-H12; T-A16 fuera de alcance) |
 | T-A11 | Estructura del recorrido en DOM: capítulos con `data-chapter`, índice overlay, vista lista `/projects`, contacto siempre visible, eliminar `/skills` y decidir el destino de `/about`, `/experience`, `/contact` | T-A04, T-A06, ADR-007 | `src/pages/`, `src/components/journey/`, `src/components/layout/` | hecho (2026-10-21; PR #11) |
 | T-A12 | Hero y manifiesto: copy de `05` §2, tags, frases, animación con SplitText, hero 100 % HTML (LCP), punto de entrada del hilo | T-A11 | `src/components/journey/Hero*`, `src/components/journey/Manifesto*`, `src/lib/site.ts` | hecho (2026-10-22; merge local #16) |
 | T-A13 | Hilo conductor v1 (ADR-006: C desktop / A mobile), integrado en `Stage`, con API para que cada escena defina su `ThreadForm` | ADR-006, T-A06 | `src/experience/thread/`, `src/experience/Stage.tsx` (montaje) | hecho (2026-10-22; PR #14) |
@@ -55,9 +55,9 @@
 | ID | Tarea y criterio de terminado | Depende de | Zona | Estado |
 | --- | --- | --- | --- | --- |
 | T-H08 | Persona del guía, FAQs y aprobación de las ofertas proactivas (I-09); el agente propone borradores | ADR-008 | `src/content/guide/` | pendiente |
-| T-H12 | Revisión de arte de cada escena al cerrar su greybox y antes del merge final (recurrente) | — | Comentarios en PR | en curso (2026-10-22: greyboxes rechazados por calidad visual; ver lista T-H06) |
+| T-H12 | Revisión de arte de cada escena al cerrar su greybox y antes del merge final (recurrente) | — | Comentarios en PR | en curso (barra *cinematic stylized*; greybox no aprueba look final — #1/#5; capturas en escena → T-A42; continuidad ya OK) |
 | T-A18 | Kit de escena: HUD anclado a 3D, grafo de nodos/agentes, líneas con el shader del hilo, contadores, rig de cámara por beats; ejemplos en `/lab/kit`. **Vara:** piezas con look de producto, no placeholders grises. | T-A07, T-A13 | `src/scenes/kit/` (salvo dispositivos) | hecho (2026-10-22: rig de cámara por beats, `ThreadLine` con shader del hilo, `HudOverlay` 3D con bbox/pose/ángulo/callouts 44×44, `AgentGraph` con tira vertical mobile, `TelemetryDeck` con contadores `tabular-nums` y curva SVG progresiva, `ParticleField` GPU, 4 paletas de marca y `/lab/kit`; evidencia en `docs/plan/evidencias/T-A18/`) |
-| T-A19 | Kit de dispositivos: `Phone`, `Laptop`, `Display` con proporción realista, materiales creíbles, pantalla texturizable y capas de UI flotantes (no look “juguete”) | T-A07, T-A09 | `src/scenes/kit/devices/`, `assets-src/kit/`, `public/models/kit/` | pendiente |
+| T-A19 | Kit de dispositivos: `Phone`, `Laptop`, `Display` con proporción realista, materiales creíbles, pantalla texturizable y capas de UI flotantes (no look “juguete”) | T-A07, T-A09 | `src/scenes/kit/devices/`, `assets-src/kit/`, `public/models/kit/` (+ integración mínima lab: `KitShowcaseScene`/`KitLab`/`index`/`theme`) | hecho (2026-10-22: `Phone` 6,1", `Laptop` 14" con teclado fusionado en 1 malla y tapa articulada, `Display` 27" monitor/signage, 5 acabados PBR con PMREM de estudio compartido, `DeviceScreen` `.webp`/`.mp4` y capas de UI flotantes 3D; integrado en `/lab/kit`; evidencia en `docs/plan/evidencias/T-A19/`) |
 | T-A20 | **Escena Vibo completa** (`03` §3.1, ADR-011 + enmienda estética): personaje **estilizado-realista** (proporciones humanas, materiales/luz de replay TV), overlays de detección, interacción, transición Vibo→Pirp; fuera de alcance: low-poly infantil / silueta de bloques | T-A14 (ritmo), T-A18, T-H07, ficha actualizada | `src/scenes/vibo/`, `public/models/vibo/`, `public/textures/vibo/` | pendiente (bloqueada por barra de arte T-H12) |
 | T-A21 | Backend del guía: `/api/guide` con AI SDK, tools de la lista cerrada, contexto generado en build, límites (sesión, IP, global), kill switch, fallback de modelo, tests | T-A03, T-A04, ADR-005, ADR-008 | `src/pages/api/guide.ts`, `src/server/guide/`, `scripts/guide-context.*` | pendiente |
 | T-A22 | Observador y motor de reglas del guía (`04` §3) con panel de debug que muestra el estado detectado | T-A05, T-A11 | `src/guide/` | pendiente |
@@ -86,9 +86,9 @@
 | --- | --- | --- | --- | --- |
 | T-H14 | Narrativas cortas de segunda y tercera línea (I-10) sobre borradores del agente | T-A04 | `src/content/projects/` | pendiente |
 | T-A29 | Satélites de Banner: App Etiquetas y Web Landing dentro del mundo Banner | T-A25 | `src/scenes/banner/satellites/` | pendiente |
-| T-A30 | Viñeta Starbene | T-A18, T-A19 | `src/scenes/starbene/` | pendiente |
-| T-A31 | Viñeta AGNT | T-A18, T-A19 | `src/scenes/agnt/` | pendiente |
-| T-A32 | Viñeta Cielo y Mar | T-A18, T-A19 | `src/scenes/cielo-y-mar/` | pendiente |
+| T-A30 | Viñeta Starbene | T-A18, T-A19 | `src/scenes/starbene/` | listo |
+| T-A31 | Viñeta AGNT | T-A18, T-A19 | `src/scenes/agnt/` | listo |
+| T-A32 | Viñeta Cielo y Mar | T-A18, T-A19 | `src/scenes/cielo-y-mar/` | listo |
 | T-A33 | Archivo de tercera línea (2D interactivo) + páginas de caso breves | T-A11, T-A17 | `src/components/journey/Archive*` | pendiente |
 | T-A34 | Quién soy + Hablemos + cierre cíclico hacia el hero | T-A13, T-A11 | `src/components/journey/About*`, `src/components/journey/Contact*` | pendiente |
 | T-A35 | Imágenes de proyectos a `astro:assets` (AVIF/WebP responsive) + pósters definitivos generados con Playwright desde cada escena | T-A20 a T-A25 | `src/assets/projects/`, `public/posters/`, `scripts/posters.*` | pendiente |
@@ -117,7 +117,7 @@
 | Fecha | Tarea | Pregunta o bloqueo | Respuesta |
 | --- | --- | --- | --- |
 | 2026-10-22 | T-A16 | ¿Mantener el nivel `static` como requisito de G1 o diferirlo? | **ADR-012 (2026-10-22):** diferido a F5 como **opcional**; no bloquea G1–G4. Agentes: no tomar. |
-| 2026-10-22 | T-H06 / T-H12 | **Feedback de sensaciones (parcial):** (1) Vibo too low-poly / look infantil → subir a realismo estilizado broadcast; (2) transiciones entre escenas principales bruscas; (3) rendimiento OK; (4) capturas/galería deben estar integradas en el mundo 3D o en superficie flotante con carousel; (5) las 4 escenas 3D lucen poco profesionales / de principiante. Rendimiento no es el problema; la vara de arte sí. | **Techo cerrado 2026-10-22:** *cinematic stylized* — humano creíble + luz/materiales premium, presupuesto web. No photoreal AAA. Ficha Vibo + ADR-011; T-A14 solo ritmo/estructura. **(2) cerrado 2026-10-22 con T-A41.** Quedan (1)/(4)/(5) → T-A20/T-A42 + barra de arte. |
+| 2026-10-22 | T-H06 / T-H12 | **Feedback de sensaciones (parcial):** (1) Vibo too low-poly / look infantil → subir a realismo estilizado broadcast; (2) transiciones entre escenas principales bruscas; (3) rendimiento OK; (4) capturas/galería deben estar integradas en el mundo 3D o en superficie flotante con carousel; (5) las 4 escenas 3D lucen poco profesionales / de principiante. Rendimiento no es el problema; la vara de arte sí. | **Techo cerrado 2026-10-22:** *cinematic stylized* — humano creíble + luz/materiales premium, presupuesto web. No photoreal AAA. Ficha Vibo + ADR-011; T-A14 solo ritmo/estructura. **(2) cerrado con T-A41.** **Re-check dispositivos 2026-10-22:** continuidad + FPS OK (humano). Quedan (1)/(4)/(5) → T-A20/T-A42 + T-H12. T-H06 → hecho. |
 | 2026-10-21 | T-A08 | **ADR-006 lista para decidir:** A (filamento) y C (enjambre) están en `/lab/thread` del preview, con transición Vibo→Pirp y mobile. Las dos cumplen presupuesto en mobile emulado (CPU ×4); falta probar en iPhone y Android reales y elegir. El color de Pirp es provisional (`#ff5b4f`) hasta I-03. | **Cerrado 2026-10-22:** C en desktop, A en mobile (ADR-006). Acento Pirp `#7A1F2B` (fila siguiente). |
 | 2026-10-22 | T-H03 / I-03 | **Acento Pirp:** ¿usar el bordó del cliente (`#7A1F2B`, sin nombrarlo) o definir un acento propio para portafolio/hilo? Hoy el hilo usa `#ff5b4f`. | **Bordó del cliente** (`#7A1F2B` / escala en `assets-src/pirp/brand/palette.json`); no nombrar al cliente. Aplicar en T-A13 (reemplazar `#ff5b4f`). |
 | 2026-10-21 | T-A08 | Varios agentes locales comparten la carpeta principal del repo y cambian de rama en ella: el trabajo sin commitear de T-A08 terminó en un `git stash` ajeno (recuperado). Pedido: que cada agente local use su propio worktree (`06` §3, paso 2). | |
@@ -163,14 +163,14 @@ Integración mínima en `Stage.tsx` incluida para cumplir el criterio explícito
 
 Greyboxes de las cuatro escenas integrados en el recorrido y en lab. La conexión mínima incluye `SceneDirector`, `deepLink`, rutas lab, contenedor DOM de escenas, registro, rig interno compartido, pósters y scripts/evidencia de QA. `ui-mvp-public/` se excluye de lint/typecheck como fuente local de referencia. Sin cambios de contratos ni dependencias.
 
-**Cierre 2026-10-22 (humano):** ritmo/estructura/presupuestos aceptables; **arte no aprueba G1**. Transiciones (T-H06 #2) **resueltas en T-A41** (aprobado 2026-10-22). G1 sigue condicionado a T-A42 y a la barra estética en T-A18→T-A20/23/24/25.
+**Cierre 2026-10-22 (humano):** ritmo/estructura/presupuestos aceptables; **arte no aprueba G1**. Transiciones (T-H06 #2) **resueltas en T-A41** y **re-verificadas en dispositivos** el mismo día (scroll ida/vuelta sin saltos ni bandas; FPS OK). G1 sigue condicionado a T-A42 y a la barra estética en T-A18→T-A20/23/24/25.
 
 ### Lista de ajustes T-H06 (2026-10-22)
 
 | # | Hallazgo | Severidad | Tarea |
 | --- | --- | --- | --- |
-| 1 | Vibo luce low-poly / infantil; hace falta mayor realismo | alta | Ficha + ADR-011 enmendados → T-A20 |
-| 2 | Transiciones entre escenas principales bruscas | alta | **hecho** — T-A41 (2026-10-22; aprobado por humano) |
-| 3 | Rendimiento general OK | ok | — |
-| 4 | Capturas poco accesibles; integrar en modelo/superficie + carousel | alta | T-A42 |
-| 5 | Las 4 escenas 3D poco impactantes / look principiante | alta | Vara de arte en T-A18/19 y escenas finales; greybox no cuenta como look final |
+| 1 | Vibo luce low-poly / infantil; hace falta mayor realismo | alta | Ficha + ADR-011 enmendados → T-A20 (seguimiento; no bloquea cierre T-H06) |
+| 2 | Transiciones entre escenas principales bruscas | alta | **hecho** — T-A41 + re-check dispositivos 2026-10-22 |
+| 3 | Rendimiento general OK | ok | Confirmado de nuevo en re-check post T-A41 |
+| 4 | Capturas poco accesibles; integrar en modelo/superficie + carousel | alta | T-A42 (seguimiento) |
+| 5 | Las 4 escenas 3D poco impactantes / look principiante | alta | Vara de arte en T-A18/19 y escenas finales; greybox no cuenta como look final (T-H12) |

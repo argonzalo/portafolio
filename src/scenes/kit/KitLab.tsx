@@ -85,6 +85,7 @@ function writeLabParams(next: Partial<KitLabParams>): void {
  * - Grafo de nodos / agentes con pulsos y decisiones (`AgentGraph`)
  * - Contadores numéricos, barras y curva de tendencia (`TelemetryDeck`)
  * - Campo de partículas GPU por nivel (`ParticleField`)
+ * - Kit de dispositivos 3D (`Phone`, `Laptop`, `Display`) con pantallas y capas flotantes (T-A19)
  */
 export function KitLab() {
   const { quality, isMobile: viewportMobile } = useExperienceStore()
@@ -247,7 +248,7 @@ export function KitLab() {
           <div className="flex items-center justify-between gap-2">
             <div>
               <p className="text-xs font-semibold tracking-wide uppercase">
-                Lab · Kit de escena (T-A18)
+                Lab · Kit de escena + dispositivos (T-A18 / T-A19)
               </p>
               <p
                 className="text-[10px]"
