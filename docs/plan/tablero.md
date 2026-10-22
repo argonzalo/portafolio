@@ -17,7 +17,7 @@
 | T-H02 | Cuentas y secretos: vincular repo a Vercel, instalar Upstash Redis desde el Marketplace, configurar tope de gasto mensual en OpenAI, confirmar `OPEN_AI_MODEL` y elegir `OPEN_AI_MODEL_FALLBACK` | — | Paneles externos, `.env` local | hecho (2026-10-21; modelo `gpt-6-luna`, fallback `gpt-5.4-mini`; Upstash `upstash-kv-lime-lantern`; preview https://portafolio-coral-zeta-55.vercel.app) |
 | T-H03 | Arrancar la recolección de insumos de primera línea: I-03 (marcas), I-08 (qué se puede contar de Pirp), I-04 (capturas) | — | `assets-src/`, `docs/plan/licencias.md` | listo |
 | T-H05 | Moodboard y validación de la ficha de Vibo (`03` §3.1 + ADR-011: golpe en slow-mo + overlays); después Pirp, Naturalis y Banner | — | `docs/plan/03-escenas.md` | listo |
-| T-H07 | I-02 / ADR-011: exportar de Firebase (`vibo-beta-2e60f` → `videos.analysisResults`) 1–2 clips anonimizados; curar JSON de overlays (bboxes + keypoints en la ventana del golpe) + métricas de jugador; sin trayectoria 3D fiel | — | `assets-src/vibo/` | listo |
+| T-H07 | I-02 / ADR-011: exportar de Firebase (`vibo-beta-2e60f` → `videos.analysisResults`) 1–2 clips anonimizados; curar JSON de overlays (bboxes + keypoints en la ventana del golpe) + métricas de jugador; sin trayectoria 3D fiel | — | `assets-src/vibo/` | hecho (2026-10-21; overlays con bbox/pose reales del MVP + stats Firebase; `ui-mvp-public/` gitignored) |
 | T-A01 | Higiene del repo: README actualizado, scripts de `package.json` documentados, quitar `proyectos-facu/` y `.zip`, `.gitignore` (incl. `assets-src/` salvo README) | ADR-009, ADR-010 | Raíz (`README.md`, `.gitignore`), `proyectos-facu/` | hecho (2026-10-21; PR #3) |
 | T-A02 | Tooling de calidad: script `npm run check`, GitHub Actions (lint, typecheck, build), Lighthouse CI con presupuestos de `02` §1 sobre el preview, `rollup-plugin-visualizer`, Playwright con un smoke test | — | `package.json` (scripts, devDeps), `.github/`, `lighthouserc.*`, `playwright.config.*`, `tests/`, `README.md`, `src/components/projects/LightboxStage.tsx`, `src/components/interactive/ExperienceTimeline.tsx`, `src/experience/SceneDirector.tsx` (tipos), `astro.config.ts` (visualizer), `scripts/analyze.mjs`, `scripts/serve-preview.mjs` | hecho (2026-10-21; PR #9) |
 | T-A03 | Adaptador Vercel + `astro:env` (esquema server/secret para las variables de `04` §2) + `/api/health` + redirección `analisis-rep-politica → pirp` + `.env.example` actualizado; preview funcionando | ADR-004, T-H02 | `astro.config.ts`, `package.json`, `src/pages/api/`, `.env.example` | hecho (2026-10-21; preview https://portafolio-git-t-a03-vercel-argonzalos-projects.vercel.app) |
@@ -132,7 +132,7 @@
 | Insumo | Estado | Nota |
 | --- | --- | --- |
 | I-01 Narrativas primera línea | pendiente | Borradores en `docs/plan/borradores/` (T-A10); falta corrección humana T-H04 |
-| I-02 Datos reales de Vibo | pendiente | **Crítico** para T-A20. Fuente: Firebase `vibo-beta-2e60f` / `videos.analysisResults`. Uso: overlays + métricas (ADR-011), no reconstrucción 3D |
+| I-02 Datos reales de Vibo | listo para T-A20 | Overlays curados con bbox/pose reales (MVP `analyze-video-1`) + stats Firebase. Videos/frames en `assets-src/vibo/mvp-ref/`. `ui-mvp-public/` ignorado |
 | I-03 Marcas y paletas | pendiente | |
 | I-04 Capturas en alta | pendiente | |
 | I-05 Assets Naturalis | pendiente | |
