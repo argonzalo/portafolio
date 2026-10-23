@@ -1,0 +1,34 @@
+[
+  {
+    "name": "desktop",
+    "frameTiming": {
+      "cpuRate": 1,
+      "medianMs": 16.7,
+      "p95Ms": 16.8
+    },
+    "noOverflow": true,
+    "magnetism": true,
+    "scrollChangesPortrait": true,
+    "reduced": true,
+    "unsplit": true,
+    "navigationRemount": true,
+    "removedViboLink": true,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "frameTiming": {
+      "cpuRate": 4,
+      "medianMs": 16.7,
+      "p95Ms": 16.8
+    },
+    "noOverflow": true,
+    "magnetism": "touch uses scroll",
+    "scrollChangesPortrait": true,
+    "reduced": true,
+    "unsplit": true,
+    "navigationRemount": true,
+    "removedViboLink": true,
+    "errors": []
+  }
+]

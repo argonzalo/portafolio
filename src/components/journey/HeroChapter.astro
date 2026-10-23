@@ -4,61 +4,111 @@ import { hero, site } from "@/lib/site"
 ---
 
 <ChapterSection id="hero" label="Apertura" class="hero-chapter">
-  <p class="mb-7 text-sm text-muted-foreground">{site.name}</p>
-  <h1 class="hero-title">{hero.title}</h1>
-  <p
-    class="mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
-  >
-    {hero.description}
-  </p>
-  <ul class="hero-tags" aria-label="Qué construyo">
-    {hero.tags.map((tag) => <li>{tag}</li>)}
-  </ul>
-  <div class="mt-9 flex flex-wrap items-center gap-6">
-    <a class="hero-start" href="#manifesto">
-      <span class="hero-thread" aria-hidden="true"></span>
-      Explorar cómo trabajo
-    </a>
-    <a class="hero-list" href="/projects">Ver todos los proyectos</a>
+  <div class="hero-layout">
+    <div class="hero-copy">
+      <p class="hero-name">{site.name}</p>
+      <h1 class="hero-title">{hero.title}</h1>
+      <p class="hero-description">{hero.description}</p>
+      <ul class="hero-tags" aria-label="Qué construyo">
+        {hero.tags.map((tag) => <li>{tag}</li>)}
+      </ul>
+      <div class="hero-actions">
+        <a class="hero-start" href="#manifesto">
+          <span class="hero-thread" aria-hidden="true"></span>
+          Explorar cómo trabajo
+        </a>
+        <a class="hero-list" href="/projects">Ver todos los proyectos</a>
+      </div>
+    </div>
+    <figure class="hero-portrait" data-hero-portrait>
+      <img
+        src={site.avatar}
+        alt="Gonzalo Aravena"
+        width="974"
+        height="974"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <canvas aria-hidden="true"></canvas>
+    </figure>
   </div>
 </ChapterSection>
 
 <style>
   :global(#hero.hero-chapter) {
-    background: color-mix(in oklch, var(--background) 88%, transparent);
+    min-height: 100svh;
+    overflow: clip;
+    /* Una capa opaca protege la lectura frente al enjambre aditivo. */
+    background: linear-gradient(
+      90deg,
+      var(--background) 0% 53%,
+      color-mix(in oklch, var(--background) 94%, transparent) 100%
+    );
+  }
+  .hero-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 2rem;
+  }
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+    background: var(--background);
+    box-shadow: 0 0 45px 25px var(--background);
+  }
+  .hero-name {
+    margin-bottom: 1.8rem;
+    font-size: 0.9rem;
+    color: var(--muted-foreground);
   }
   .hero-title {
-    max-width: 15ch;
-    font-size: clamp(2.65rem, 6vw, 5.5rem);
+    max-width: 13ch;
+    font-size: clamp(2.9rem, 5.6vw, 5rem);
     font-weight: 600;
-    letter-spacing: -0.055em;
-    line-height: 1.08;
+    letter-spacing: -0.06em;
+    line-height: 1.06;
     text-wrap: balance;
+  }
+  .hero-description {
+    max-width: 51ch;
+    margin-top: 1.8rem;
+    font-size: clamp(0.95rem, 1.25vw, 1.08rem);
+    line-height: 1.75;
+    color: var(--muted-foreground);
   }
   .hero-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem 1.3rem;
-    max-width: 48rem;
-    margin-top: 2rem;
+    gap: 0.55rem;
+    margin-top: 1.8rem;
     color: var(--muted-foreground);
-    font-size: 0.8rem;
+    font-size: 0.74rem;
   }
   .hero-tags li {
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.4rem;
+    border: 1px solid color-mix(in oklch, #91baff 20%, var(--border));
+    border-radius: 999px;
+    background: color-mix(in oklch, #91baff 5%, var(--background));
+    padding: 0.45rem 0.8rem;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.7rem 1.5rem;
+    margin-top: 2rem;
   }
   .hero-start {
     display: inline-flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.7rem;
     min-height: 44px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
   }
   .hero-thread {
     display: block;
-    width: 3rem;
+    width: 2rem;
     height: 2px;
     background: #91baff;
     position: relative;
@@ -78,7 +128,7 @@ import { hero, site } from "@/lib/site"
     align-items: center;
     min-height: 44px;
     color: var(--muted-foreground);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     text-decoration: underline;
     text-underline-offset: 0.3em;
   }
@@ -86,9 +136,63 @@ import { hero, site } from "@/lib/site"
     outline: 2px solid #91baff;
     outline-offset: 6px;
   }
-  @media (max-width: 639px) {
+  .hero-portrait {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    isolation: isolate;
+  }
+  .hero-portrait img,
+  .hero-portrait canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .hero-portrait canvas {
+    opacity: 0;
+  }
+  .hero-portrait[data-portrait-ready] canvas {
+    opacity: 1;
+  }
+  .hero-portrait[data-portrait-ready] img {
+    opacity: 0;
+  }
+  @media (max-width: 767px) {
     :global(#hero.hero-chapter) {
-      min-height: 100svh;
+      background: var(--background);
+    }
+    .hero-layout {
+      grid-template-columns: 1fr;
+      gap: 1.7rem;
+    }
+    .hero-portrait {
+      grid-row: 1;
+      width: min(55vw, 240px);
+      justify-self: end;
+      margin-bottom: -3rem;
+    }
+    .hero-copy {
+      box-shadow: 0 0 24px 12px var(--background);
+      background: var(--background);
+    }
+    .hero-name {
+      margin-bottom: 1.2rem;
+    }
+    .hero-title {
+      font-size: clamp(2.65rem, 9.8vw, 4.4rem);
+      max-width: 14ch;
+    }
+    .hero-description {
+      margin-top: 1.4rem;
+    }
+    .hero-tags {
+      font-size: 0.7rem;
     }
   }
 </style>
+
+<script>
+  import "./heroPortrait"
+</script>

@@ -1,47 +1,75 @@
 import gsap from "gsap"
 import { SplitText } from "gsap/SplitText"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-gsap.registerPlugin(SplitText)
+gsap.registerPlugin(SplitText, ScrollTrigger)
 let cleanup: (() => void) | undefined
 
 function mountManifesto() {
   cleanup?.()
   const root = document.querySelector("#manifesto")
   if (!root) return
-
   const media = gsap.matchMedia()
   media.add("(prefers-reduced-motion: no-preference)", () => {
     const splits: SplitText[] = []
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue
-          observer.unobserve(entry.target)
-          const split = SplitText.create(entry.target, {
-            type: "words",
-            aria: "auto",
+    const timelines: gsap.core.Timeline[] = []
+    root
+      .querySelectorAll<HTMLElement>("[data-manifesto-phrase]")
+      .forEach((phrase, index) => {
+        const split = SplitText.create(phrase, {
+          type: "words,chars",
+          aria: "auto",
+        })
+        splits.push(split)
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: phrase,
+            start: "top 92%",
+            end: "top 54%",
+            scrub: 0.45,
+            invalidateOnRefresh: true,
+          },
+        })
+        // Tres gestos vinculados al significado. El scroll permite deshacerlos.
+        if (index === 0) {
+          timeline.from(split.chars, {
+            x: (i) => Math.sin(i * 2.399) * 36,
+            y: (i) => Math.cos(i * 2.399) * 26,
+            rotation: (i) => Math.sin(i * 2.399) * 18,
+            opacity: 0.12,
+            stagger: { amount: 0.3, from: "center" },
+            duration: 1,
+            ease: "power3.out",
           })
-          splits.push(split)
-          // El texto siempre está visible en HTML; solo se anima al entrar.
-          gsap.from(split.words, {
-            yPercent: 35,
-            duration: 0.65,
-            stagger: 0.09,
-            ease: "power2.out",
+        } else if (index === 1) {
+          timeline.from(split.words, {
+            rotationX: -75,
+            yPercent: 65,
+            opacity: 0.12,
+            transformOrigin: "50% 100%",
+            stagger: 0.15,
+            duration: 1,
+            ease: "power3.out",
+          })
+        } else {
+          timeline.from(split.chars, {
+            yPercent: 105,
+            scaleY: 0.6,
+            opacity: 0.12,
+            transformOrigin: "50% 100%",
+            stagger: 0.025,
+            duration: 0.7,
+            ease: "power4.out",
           })
         }
-      },
-      { threshold: 0.7 }
-    )
-    root
-      .querySelectorAll("[data-manifesto-phrase]")
-      .forEach((phrase) => observer.observe(phrase))
-    return () => {
-      observer.disconnect()
-      splits.forEach((split) => {
-        gsap.killTweensOf(split.words)
-        split.revert()
+        timelines.push(timeline)
       })
+    return () => {
+      timelines.forEach((timeline) => {
+        timeline.scrollTrigger?.kill()
+        timeline.kill()
+      })
+      splits.forEach((split) => split.revert())
     }
   })
   cleanup = () => media.revert()
