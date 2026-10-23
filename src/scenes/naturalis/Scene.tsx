@@ -6,7 +6,9 @@ import {
   Group,
   InstancedMesh,
   Object3D,
+  Mesh,
   DoubleSide,
+  type Material,
 } from "three"
 import type { SceneProps } from "@/experience/types"
 import { PresentationContext, reveal } from "@/experience/presentation"
@@ -25,6 +27,24 @@ import { Room } from "./Room"
 import { KitHtml } from "../kit/KitHtml"
 import { NaturalisOverlay } from "./Overlay"
 import { version } from "./assets.json"
+import { ArrivalGlow } from "./ArrivalGlow"
+import { arrivalPulse } from "./timing"
+
+// Leave real glass/halos translucent; solid shells keep depth during dissolves.
+function prepareDissolve(root: Group | null, prepared: WeakSet<Material>) {
+  root?.traverse((object) => {
+    if (!(object instanceof Mesh)) return
+    for (const material of Array.isArray(object.material)
+      ? object.material
+      : [object.material]) {
+      if (prepared.has(material)) continue
+      prepared.add(material)
+      if (!material.transparent && material.depthWrite) {
+        material.userData.solidDissolve = true
+      }
+    }
+  })
+}
 
 // Absolute camera poses compose with T-A41's single camera director.
 const cameras = [
@@ -36,25 +56,25 @@ const cameras = [
     mobileTarget: [0.15, 1, 0],
   },
   {
-    at: 0.3,
+    at: 0.28,
     desktop: [5, 3.5, 9],
     mobile: [2.5, 3.6, 11],
     target: [0.4, 0.35, 0],
     mobileTarget: [0.65, 1, 0],
   },
   {
-    at: 0.5,
-    desktop: [3.2, 2.2, 8.4],
-    mobile: [2, 2.4, 10],
-    target: [0.3, 0.3, 0.5],
-    mobileTarget: [0.8, 0.8, 0.6],
+    at: 0.43,
+    desktop: [3.9, 0.85, 3.25],
+    mobile: [3.8, 1.4, 4.1],
+    target: [2.35, -0.12, -0.7],
+    mobileTarget: [3.5, 0.6, -0.7],
   },
   {
     at: 0.7,
-    desktop: [5, 3.1, 9.6],
-    mobile: [2.6, 3.3, 11.5],
-    target: [0.2, 0.4, 0],
-    mobileTarget: [0.2, 1, 0],
+    desktop: [4.1, 1, 3.5],
+    mobile: [3.8, 1.4, 4.3],
+    target: [2.35, -0.12, -0.7],
+    mobileTarget: [3.5, 0.6, -0.7],
   },
   {
     at: 0.86,
@@ -98,7 +118,7 @@ function leafGeometry() {
 }
 
 export default function NaturalisScene(props: SceneProps) {
-  const { progress, quality, isMobile } = props
+  const { progress, quality } = props
   const presentation = useContext(PresentationContext)
   useGreyboxRig(props, "#FAFDFC", cameras)
   const world = useRef<Group>(null),
@@ -116,6 +136,7 @@ export default function NaturalisScene(props: SceneProps) {
     )
   )
   const dummy = useMemo(() => new Object3D(), [])
+  const prepared = useMemo(() => new WeakSet<Material>(), [])
   const pagePrint = useDisposable(
     useMemo(() => createRoundedPlaneGeometry(0.554, 0.694, 0.02, "low"), [])
   )
@@ -124,36 +145,29 @@ export default function NaturalisScene(props: SceneProps) {
   const separation = () => envelope(progress.current, 0.43, 0.61, 0.045) * 0.65
   const deviceTier = quality === "high" ? "medium" : "low"
   useFrame(() => {
+    prepareDissolve(devices.current, prepared)
+    prepareDissolve(paper.current, prepared)
     const p = progress.current
     reveal(world.current, ramp(p, 0.015, 0.14))
-    reveal(paper.current, envelope(p, 0.18, 0.405, 0.045))
-    reveal(devices.current, ramp(p, 0.38, 0.455))
+    reveal(paper.current, envelope(p, 0.18, 0.455, 0.035))
+    reveal(devices.current, ramp(p, 0.4, 0.47))
     if (phone.current) {
-      const enter = ramp(p, 0.38, 0.46)
-      phone.current.position.set(
-        isMobile ? 0.55 : 0.9,
-        -0.14 + (isMobile ? 0.3 : 0) - 0.22 * (1 - enter),
-        isMobile ? 2.6 : 2.1
-      )
-      phone.current.rotation.set(-0.05, isMobile ? 0.12 : 0.32, -0.08)
+      phone.current.position.set(2.88, -0.17, -1.04)
+      phone.current.rotation.set(-0.06, 0, 0)
     }
     if (laptop.current) {
-      laptop.current.position.set(
-        isMobile ? 1.65 : 2.7,
-        -0.56,
-        isMobile ? 0.9 : 0.65
-      )
-      laptop.current.rotation.y = isMobile ? 0.08 : 0.1
+      laptop.current.position.set(3.74, -0.594, -0.756)
+      laptop.current.rotation.y = 0
     }
     if (leaves.current) {
       reveal(leaves.current, envelope(p, 0.43, 0.6, 0.03))
       for (let i = 0; i < 6; i++) {
         const t = ramp(p, 0.43 + i * 0.012, 0.54 + i * 0.012),
-          size = Math.sin(t * Math.PI) * 0.22
+          size = Math.sin(t * Math.PI) * 0.1
         dummy.position.set(
-          (isMobile ? 0.6 : 0.95) + t * (isMobile ? 1.05 : 1.65),
-          0.25 + Math.sin(t * Math.PI) * 0.7,
-          2.05 - t * 1.25
+          2.9 + t * 0.84,
+          -0.04 + Math.sin(t * Math.PI) * 0.4,
+          -1.04 - t * 0.22
         )
         dummy.rotation.set(0.4, t * 2, -0.6)
         dummy.scale.setScalar(size)
@@ -167,9 +181,9 @@ export default function NaturalisScene(props: SceneProps) {
       for (let i = 0; i < 6; i++) {
         const t = ramp(p, 0.605 + i * 0.016, 0.69 + i * 0.016)
         dummy.position.set(
-          2.7 + Math.cos(i * 2.4) * 0.45,
+          3.5 + Math.cos(i * 2.4) * 0.45,
           0.3 + i * 0.09 + Math.sin(t * Math.PI) * 0.25,
-          0.6 + Math.sin(i * 2.4) * 0.35
+          -0.6 + Math.sin(i * 2.4) * 0.15
         )
         dummy.rotation.set(0, t * 3, i)
         dummy.scale.setScalar(0.035 + Math.sin(t * Math.PI) * 0.025)
@@ -215,7 +229,7 @@ export default function NaturalisScene(props: SceneProps) {
             quality={deviceTier}
             back={false}
             finish="silver"
-            scale={isMobile ? 1.15 : 0.95}
+            scale={0.58}
             screenAspect={470 / 1013}
             island={false}
             screen={{
@@ -238,13 +252,14 @@ export default function NaturalisScene(props: SceneProps) {
           <Laptop
             quality={deviceTier}
             finish="silver"
-            scale={isMobile ? 0.49 : 0.66}
+            scale={0.38}
             notch={false}
-            open={() => ramp(progress.current, 0.38, 0.47)}
+            open={() => ramp(progress.current, 0.405, 0.49)}
             screen={{
               src: `/textures/naturalis/admin.webp?v=${version}`,
               fit: "cover",
               brightness: 0.94,
+              power: () => 0.94 + arrivalPulse(progress.current) * 0.06,
               separation,
               layers: [
                 {
@@ -255,7 +270,9 @@ export default function NaturalisScene(props: SceneProps) {
                 },
               ],
             }}
-          />
+          >
+            <ArrivalGlow progress={progress} />
+          </Laptop>
         </group>
       </group>
       <instancedMesh

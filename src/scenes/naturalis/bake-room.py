@@ -34,7 +34,7 @@ def mat(name, color, rough=.7, grain=0):
         m.node_tree.links.new(n.outputs['Fac'],b.inputs['Height']);m.node_tree.links.new(b.outputs['Normal'],p.inputs['Normal'])
     return m
 
-plaster=mat('Cal mineral',(.82,.80,.74),.92,90)
+plaster=mat('Cal mineral',(.95,.935,.89),.92,90)
 floor=mat('Piedra caliza',(.65,.63,.57),.88,65)
 wood=mat('Roble claro',(.48,.32,.17),.65,125)
 linen=mat('Lino crudo',(.82,.79,.66),.94,180)

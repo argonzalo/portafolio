@@ -13,17 +13,17 @@
         "calls": 3,
         "triangles": 9796,
         "mountedScenes": 2,
-        "jsHeapMB": 101.2,
-        "at": 8519.200000047684
+        "jsHeapMB": 102.9,
+        "at": 8606.899999976158
       },
       "quality": {
         "tier": "high",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 58.1,
+        "fps": 58,
         "frameMs": 17.1,
-        "p95FrameMs": 17.1,
+        "p95FrameMs": 16.9,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -53,17 +53,17 @@
         "calls": 9,
         "triangles": 10750,
         "mountedScenes": 2,
-        "jsHeapMB": 108.9,
-        "at": 10518.799999952316
+        "jsHeapMB": 110.7,
+        "at": 10622.899999976158
       },
       "quality": {
         "tier": "high",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 60,
-        "frameMs": 16.7,
-        "p95FrameMs": 17.3,
+        "fps": 59.4,
+        "frameMs": 16.8,
+        "p95FrameMs": 16.8,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -93,17 +93,17 @@
         "calls": 24,
         "triangles": 26223,
         "mountedScenes": 2,
-        "jsHeapMB": 109.6,
-        "at": 12570.799999952316
+        "jsHeapMB": 111.4,
+        "at": 12655.700000047684
       },
       "quality": {
         "tier": "high",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 60,
-        "frameMs": 17.1,
-        "p95FrameMs": 18.1,
+        "fps": 58.7,
+        "frameMs": 16.9,
+        "p95FrameMs": 16.8,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -133,8 +133,8 @@
         "calls": 20,
         "triangles": 26103,
         "mountedScenes": 2,
-        "jsHeapMB": 116.1,
-        "at": 14567.200000047684
+        "jsHeapMB": 118.7,
+        "at": 15155
       },
       "quality": {
         "tier": "high",
@@ -143,7 +143,7 @@
         "adaptive": false,
         "fps": 60,
         "frameMs": 16.7,
-        "p95FrameMs": 17.4,
+        "p95FrameMs": 16.8,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -173,8 +173,8 @@
         "calls": 19,
         "triangles": 25815,
         "mountedScenes": 2,
-        "jsHeapMB": 120.6,
-        "at": 17066.700000047684
+        "jsHeapMB": 123.2,
+        "at": 17654.200000047684
       },
       "quality": {
         "tier": "high",
@@ -183,7 +183,7 @@
         "adaptive": false,
         "fps": 60,
         "frameMs": 16.7,
-        "p95FrameMs": 17,
+        "p95FrameMs": 16.8,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -213,17 +213,17 @@
         "calls": 3,
         "triangles": 6855,
         "mountedScenes": 2,
-        "jsHeapMB": 88.8,
-        "at": 19083.200000047684
+        "jsHeapMB": 81.8,
+        "at": 19670.299999952316
       },
       "quality": {
         "tier": "medium",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 60,
+        "fps": 59.4,
         "frameMs": 16.8,
-        "p95FrameMs": 17.1,
+        "p95FrameMs": 16.9,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -253,8 +253,8 @@
         "calls": 9,
         "triangles": 7809,
         "mountedScenes": 2,
-        "jsHeapMB": 91.8,
-        "at": 20582.200000047684
+        "jsHeapMB": 85.5,
+        "at": 21669.600000023842
       },
       "quality": {
         "tier": "medium",
@@ -263,7 +263,7 @@
         "adaptive": false,
         "fps": 60,
         "frameMs": 16.7,
-        "p95FrameMs": 17,
+        "p95FrameMs": 16.8,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -293,17 +293,17 @@
         "calls": 18,
         "triangles": 14709,
         "mountedScenes": 2,
-        "jsHeapMB": 95.6,
-        "at": 22599.600000023842
+        "jsHeapMB": 89.1,
+        "at": 23169.299999952316
       },
       "quality": {
         "tier": "medium",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 59.4,
-        "frameMs": 16.8,
-        "p95FrameMs": 17.2,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 17.3,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -333,8 +333,8 @@
         "calls": 16,
         "triangles": 14641,
         "mountedScenes": 2,
-        "jsHeapMB": 99.2,
-        "at": 24597.899999976158
+        "jsHeapMB": 92.8,
+        "at": 25168.600000023842
       },
       "quality": {
         "tier": "medium",
@@ -343,7 +343,7 @@
         "adaptive": false,
         "fps": 60,
         "frameMs": 16.7,
-        "p95FrameMs": 17.1,
+        "p95FrameMs": 17.2,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -373,8 +373,8 @@
         "calls": 15,
         "triangles": 14353,
         "mountedScenes": 2,
-        "jsHeapMB": 79.2,
-        "at": 26098.299999952316
+        "jsHeapMB": 79.5,
+        "at": 26668.5
       },
       "quality": {
         "tier": "medium",
@@ -383,7 +383,7 @@
         "adaptive": false,
         "fps": 60,
         "frameMs": 16.7,
-        "p95FrameMs": 17.2,
+        "p95FrameMs": 17,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -413,17 +413,17 @@
         "calls": 4,
         "triangles": 4687,
         "mountedScenes": 2,
-        "jsHeapMB": 80.8,
-        "at": 28197.200000047684
+        "jsHeapMB": 81.2,
+        "at": 28784.100000023842
       },
       "quality": {
         "tier": "low",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 60,
-        "frameMs": 17.5,
-        "p95FrameMs": 17.1,
+        "fps": 55.4,
+        "frameMs": 17.6,
+        "p95FrameMs": 16.9,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -453,8 +453,8 @@
         "calls": 10,
         "triangles": 5641,
         "mountedScenes": 2,
-        "jsHeapMB": 81.1,
-        "at": 29697.200000047684
+        "jsHeapMB": 82.3,
+        "at": 30783.5
       },
       "quality": {
         "tier": "low",
@@ -463,7 +463,7 @@
         "adaptive": false,
         "fps": 60,
         "frameMs": 16.7,
-        "p95FrameMs": 17.4,
+        "p95FrameMs": 16.8,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -493,17 +493,17 @@
         "calls": 19,
         "triangles": 12541,
         "mountedScenes": 2,
-        "jsHeapMB": 82.4,
-        "at": 31695.700000047684
+        "jsHeapMB": 83.1,
+        "at": 32283.200000047684
       },
       "quality": {
         "tier": "low",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 60.1,
+        "fps": 60,
         "frameMs": 16.7,
-        "p95FrameMs": 17.6,
+        "p95FrameMs": 16.9,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -533,8 +533,8 @@
         "calls": 17,
         "triangles": 12473,
         "mountedScenes": 2,
-        "jsHeapMB": 83.4,
-        "at": 33695.39999997616
+        "jsHeapMB": 83.9,
+        "at": 34282.700000047684
       },
       "quality": {
         "tier": "low",
@@ -543,7 +543,7 @@
         "adaptive": false,
         "fps": 60,
         "frameMs": 16.7,
-        "p95FrameMs": 17.1,
+        "p95FrameMs": 16.8,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -573,8 +573,8 @@
         "calls": 16,
         "triangles": 12185,
         "mountedScenes": 2,
-        "jsHeapMB": 79.5,
-        "at": 35194.5
+        "jsHeapMB": 79.8,
+        "at": 35782.200000047684
       },
       "quality": {
         "tier": "low",
@@ -583,7 +583,7 @@
         "adaptive": false,
         "fps": 60,
         "frameMs": 16.7,
-        "p95FrameMs": 17.3,
+        "p95FrameMs": 16.9,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -613,8 +613,8 @@
         "calls": 3,
         "triangles": 9076,
         "mountedScenes": 2,
-        "jsHeapMB": 103.2,
-        "at": 8677.800000071526
+        "jsHeapMB": 96.6,
+        "at": 8741.200000047684
       },
       "quality": {
         "tier": "high",
@@ -623,7 +623,7 @@
         "adaptive": false,
         "fps": 52,
         "frameMs": 18.3,
-        "p95FrameMs": 19,
+        "p95FrameMs": 18.6,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -653,8 +653,8 @@
         "calls": 3,
         "triangles": 9076,
         "mountedScenes": 2,
-        "jsHeapMB": 97.1,
-        "at": 10696.400000095367
+        "jsHeapMB": 102.4,
+        "at": 10756.5
       },
       "quality": {
         "tier": "high",
@@ -663,7 +663,7 @@
         "adaptive": false,
         "fps": 59.4,
         "frameMs": 16.8,
-        "p95FrameMs": 18.3,
+        "p95FrameMs": 18.5,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -693,17 +693,17 @@
         "calls": 24,
         "triangles": 25503,
         "mountedScenes": 2,
-        "jsHeapMB": 96.9,
-        "at": 12345.600000023842
+        "jsHeapMB": 100.9,
+        "at": 12905.600000023842
       },
       "quality": {
         "tier": "high",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 54.1,
+        "fps": 54,
         "frameMs": 17.9,
-        "p95FrameMs": 18.6,
+        "p95FrameMs": 18.4,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -733,17 +733,17 @@
         "calls": 20,
         "triangles": 25383,
         "mountedScenes": 2,
-        "jsHeapMB": 87.5,
-        "at": 14362.200000047684
+        "jsHeapMB": 83.1,
+        "at": 14422.100000023842
       },
       "quality": {
         "tier": "high",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 59.3,
+        "fps": 59.4,
         "frameMs": 16.8,
-        "p95FrameMs": 18.8,
+        "p95FrameMs": 18.3,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -770,20 +770,20 @@
         "geometries": 21,
         "textures": 8,
         "programs": 12,
-        "calls": 19,
-        "triangles": 25095,
+        "calls": 7,
+        "triangles": 10209,
         "mountedScenes": 2,
-        "jsHeapMB": 91.4,
-        "at": 16375
+        "jsHeapMB": 87.4,
+        "at": 16423.399999976158
       },
       "quality": {
         "tier": "high",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 59.5,
-        "frameMs": 16.8,
-        "p95FrameMs": 18.6,
+        "fps": 60.1,
+        "frameMs": 16.7,
+        "p95FrameMs": 17.9,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -813,8 +813,8 @@
         "calls": 3,
         "triangles": 6328,
         "mountedScenes": 2,
-        "jsHeapMB": 85.6,
-        "at": 18457.900000095367
+        "jsHeapMB": 83.4,
+        "at": 18503.800000071526
       },
       "quality": {
         "tier": "medium",
@@ -822,8 +822,8 @@
         "lock": "forced",
         "adaptive": false,
         "fps": 56.7,
-        "frameMs": 17.4,
-        "p95FrameMs": 18.8,
+        "frameMs": 17.3,
+        "p95FrameMs": 18.5,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -853,17 +853,17 @@
         "calls": 3,
         "triangles": 6328,
         "mountedScenes": 2,
-        "jsHeapMB": 88.1,
-        "at": 19975.200000047684
+        "jsHeapMB": 86.6,
+        "at": 20520.300000071526
       },
       "quality": {
         "tier": "medium",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 59.3,
+        "fps": 59.4,
         "frameMs": 16.8,
-        "p95FrameMs": 18.4,
+        "p95FrameMs": 18,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -893,17 +893,17 @@
         "calls": 18,
         "triangles": 14182,
         "mountedScenes": 2,
-        "jsHeapMB": 81.2,
-        "at": 22091.900000095367
+        "jsHeapMB": 91.4,
+        "at": 22119.100000023842
       },
       "quality": {
         "tier": "medium",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 55.4,
-        "frameMs": 17.6,
-        "p95FrameMs": 18.6,
+        "fps": 59,
+        "frameMs": 17.5,
+        "p95FrameMs": 18.1,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -933,16 +933,16 @@
         "calls": 16,
         "triangles": 14114,
         "mountedScenes": 2,
-        "jsHeapMB": 84.7,
-        "at": 24106.600000023842
+        "jsHeapMB": 81.5,
+        "at": 24119.300000071526
       },
       "quality": {
         "tier": "medium",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 59.4,
-        "frameMs": 16.8,
+        "fps": 60,
+        "frameMs": 16.7,
         "p95FrameMs": 18.1,
         "downgrades": 0,
         "upgrades": 0,
@@ -970,20 +970,20 @@
         "geometries": 21,
         "textures": 8,
         "programs": 12,
-        "calls": 15,
-        "triangles": 13826,
+        "calls": 6,
+        "triangles": 6682,
         "mountedScenes": 2,
-        "jsHeapMB": 87.5,
-        "at": 25622.200000047684
+        "jsHeapMB": 84.3,
+        "at": 25620.200000047684
       },
       "quality": {
         "tier": "medium",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 59.3,
-        "frameMs": 16.8,
-        "p95FrameMs": 18.2,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 17.8,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -1013,17 +1013,17 @@
         "calls": 3,
         "triangles": 4039,
         "mountedScenes": 2,
-        "jsHeapMB": 89.3,
-        "at": 27705.800000071526
+        "jsHeapMB": 86.7,
+        "at": 27667.600000023842
       },
       "quality": {
         "tier": "low",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 56.8,
-        "frameMs": 17.4,
-        "p95FrameMs": 18.4,
+        "fps": 58.1,
+        "frameMs": 17.1,
+        "p95FrameMs": 18.2,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -1053,16 +1053,16 @@
         "calls": 3,
         "triangles": 4039,
         "mountedScenes": 2,
-        "jsHeapMB": 78.7,
-        "at": 29222.400000095367
+        "jsHeapMB": 89.9,
+        "at": 29667.200000047684
       },
       "quality": {
         "tier": "low",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 60.1,
-        "frameMs": 16.8,
+        "fps": 60,
+        "frameMs": 16.7,
         "p95FrameMs": 17.9,
         "downgrades": 0,
         "upgrades": 0,
@@ -1093,17 +1093,17 @@
         "calls": 18,
         "triangles": 11893,
         "mountedScenes": 2,
-        "jsHeapMB": 82.5,
-        "at": 31320.400000095367
+        "jsHeapMB": 81.1,
+        "at": 31250.399999976158
       },
       "quality": {
         "tier": "low",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 56.1,
-        "frameMs": 17.5,
-        "p95FrameMs": 18.3,
+        "fps": 58.2,
+        "frameMs": 17.3,
+        "p95FrameMs": 17.7,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -1133,17 +1133,17 @@
         "calls": 16,
         "triangles": 11825,
         "mountedScenes": 2,
-        "jsHeapMB": 85.3,
-        "at": 32838.700000047684
+        "jsHeapMB": 77.6,
+        "at": 33266.700000047684
       },
       "quality": {
         "tier": "low",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 59.3,
-        "frameMs": 16.8,
-        "p95FrameMs": 17.9,
+        "fps": 60.5,
+        "frameMs": 16.6,
+        "p95FrameMs": 18.2,
         "downgrades": 0,
         "upgrades": 0,
         "signals": {
@@ -1170,19 +1170,19 @@
         "geometries": 21,
         "textures": 8,
         "programs": 12,
-        "calls": 15,
-        "triangles": 11537,
+        "calls": 6,
+        "triangles": 4393,
         "mountedScenes": 2,
-        "jsHeapMB": 88.7,
-        "at": 34853.5
+        "jsHeapMB": 78.7,
+        "at": 34766.200000047684
       },
       "quality": {
         "tier": "low",
         "reason": "forced",
         "lock": "forced",
         "adaptive": false,
-        "fps": 59.4,
-        "frameMs": 16.8,
+        "fps": 60,
+        "frameMs": 16.7,
         "p95FrameMs": 18,
         "downgrades": 0,
         "upgrades": 0,
@@ -1215,29 +1215,45 @@
   "checks": [
     "desktop: no product buttons; reverse scroll passed",
     {
+      "view": "desktop",
+      "arrivalPulse": {
+        "before": 0,
+        "arrivals": [
+          0.65,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "after": 0
+      },
+      "entryAndExitMaterials": "screenshots for visual review"
+    },
+    {
       "daylightAcrossLODs": [
         {
           "tier": "medium",
           "rgb": [
-            231.49744212962963,
-            233.7521774691358,
-            228.78228780864197
+            232.93522067901233,
+            235.29958564814814,
+            230.8968287037037
           ]
         },
         {
           "tier": "low",
           "rgb": [
-            231.54409182098766,
-            233.77918827160494,
-            228.80229475308641
+            232.9910524691358,
+            235.33581790123458,
+            230.92693287037036
           ]
         },
         {
           "tier": "high",
           "rgb": [
-            231.46601697530863,
-            233.73044058641975,
-            228.7615447530864
+            232.91318827160495,
+            235.28799228395062,
+            230.88894058641975
           ]
         }
       ],
@@ -1245,253 +1261,253 @@
         {
           "p": 0.55,
           "rgb": [
-            224.41542052469137,
-            226.99745987654322,
-            222.38661805555554
+            224.37326543209878,
+            224.85490432098766,
+            218.33188966049383
           ]
         },
         {
           "p": 0.56,
           "rgb": [
-            224.89173225308642,
-            227.4763811728395,
-            222.9316612654321
+            224.4323086419753,
+            224.92358719135802,
+            218.42126543209878
           ]
         },
         {
           "p": 0.57,
           "rgb": [
-            225.44551157407406,
-            228.0365887345679,
-            223.57109799382715
+            224.39220061728395,
+            224.88840663580248,
+            218.41288271604938
           ]
         },
         {
           "p": 0.58,
           "rgb": [
-            226.0595925925926,
-            228.66088194444444,
-            224.28287654320988
+            224.42160416666667,
+            224.92687422839506,
+            218.47422530864196
           ]
         },
         {
           "p": 0.59,
           "rgb": [
-            226.7095100308642,
-            229.3219513888889,
-            225.0382438271605
+            224.5644799382716,
+            225.11510570987653,
+            218.67794290123456
           ]
         },
         {
           "p": 0.6,
           "rgb": [
-            227.05794984567902,
-            229.66066203703704,
-            225.46548302469137
+            224.21560648148147,
+            224.72426543209878,
+            218.25359104938272
           ]
         },
         {
           "p": 0.61,
           "rgb": [
-            226.53093055555556,
-            228.93514429012345,
-            224.80485185185185
+            221.94926851851852,
+            221.8252222222222,
+            215.10631790123458
           ]
         },
         {
           "p": 0.62,
           "rgb": [
-            224.71250308641976,
-            226.7758834876543,
-            222.7008101851852
+            217.49135185185185,
+            216.2071612654321,
+            208.92015200617283
           ]
         },
         {
           "p": 0.63,
           "rgb": [
-            221.8435285493827,
-            223.42993209876542,
-            219.36315663580248
+            211.41777700617283,
+            208.57336728395063,
+            200.4111875
           ]
         },
         {
           "p": 0.64,
           "rgb": [
-            218.43039197530865,
-            219.45860648148147,
-            215.45155092592591
+            204.36433179012346,
+            199.76718595679012,
+            190.5893773148148
           ]
         },
         {
           "p": 0.65,
           "rgb": [
-            215.09339583333335,
-            215.68425308641974,
-            211.82870601851852
+            197.7256936728395,
+            191.54221759259258,
+            181.46525077160493
           ]
         },
         {
           "p": 0.66,
           "rgb": [
-            213.0002021604938,
-            213.39808950617285,
-            209.75624074074074
+            193.57589429012344,
+            186.419899691358,
+            175.87339274691357
           ]
         },
         {
           "p": 0.67,
           "rgb": [
-            212.80069907407406,
-            213.20027546296296,
-            209.6376211419753
+            192.74378395061728,
+            185.4109012345679,
+            174.78116049382717
           ]
         },
         {
           "p": 0.68,
           "rgb": [
-            213.01245447530863,
-            213.4281774691358,
-            209.8776311728395
+            192.77466898148148,
+            185.44903626543208,
+            174.8217137345679
           ]
         },
         {
           "p": 0.69,
           "rgb": [
-            213.0984861111111,
-            213.52127160493828,
-            209.97540509259258
+            192.7747337962963,
+            185.45115432098765,
+            174.82451311728394
           ]
         },
         {
           "p": 0.7,
           "rgb": [
-            213.11469521604937,
-            213.53819830246914,
-            209.99353009259258
+            192.77523070987655,
+            185.4531813271605,
+            174.8264452160494
           ]
         },
         {
           "p": 0.71,
           "rgb": [
-            213.12516975308642,
-            213.5498063271605,
-            210.00593209876544
+            192.8633811728395,
+            185.57185725308642,
+            174.9670524691358
           ]
         },
         {
           "p": 0.72,
           "rgb": [
-            213.16042206790124,
-            213.59031944444445,
-            210.04988117283952
+            193.36513734567902,
+            186.243149691358,
+            175.7820038580247
           ]
         },
         {
           "p": 0.73,
           "rgb": [
-            213.25973302469137,
-            213.69850925925925,
-            210.16628395061727
+            194.4953464506173,
+            187.75946759259259,
+            177.6169436728395
           ]
         },
         {
           "p": 0.74,
           "rgb": [
-            213.42837577160495,
-            213.88134567901236,
-            210.36043055555555
+            196.69355787037037,
+            190.5183086419753,
+            180.78647222222222
           ]
         },
         {
           "p": 0.75,
           "rgb": [
-            213.6471412037037,
-            214.11921296296296,
-            210.6147839506173
+            199.7560362654321,
+            194.2316064814815,
+            184.9850640432099
           ]
         },
         {
           "p": 0.76,
           "rgb": [
-            213.93022685185184,
-            214.42636574074075,
-            210.94175154320988
+            202.85276697530864,
+            198.06429398148148,
+            189.43868055555555
           ]
         },
         {
           "p": 0.77,
           "rgb": [
-            214.23376234567903,
-            214.77398919753085,
-            211.311675154321
+            205.50778317901234,
+            201.51822685185186,
+            193.63609953703704
           ]
         },
         {
           "p": 0.78,
           "rgb": [
-            214.64818827160494,
-            215.18928935185184,
-            211.77106095679014
+            207.37617283950618,
+            204.23722608024693,
+            197.22918441358024
           ]
         },
         {
           "p": 0.79,
           "rgb": [
-            215.6929297839506,
-            216.26277932098765,
-            212.78444444444443
+            209.88970910493828,
+            207.69311188271604,
+            201.57465817901235
           ]
         },
         {
           "p": 0.8,
           "rgb": [
-            219.27053549382717,
-            220.059425154321,
-            216.44188194444445
+            215.20058487654322,
+            214.37142669753086,
+            209.0808773148148
           ]
         },
         {
           "p": 0.81,
           "rgb": [
-            223.29425308641976,
-            224.59156558641976,
-            220.91385030864197
+            221.54812268518518,
+            221.89119212962962,
+            217.41873070987654
           ]
         },
         {
           "p": 0.82,
           "rgb": [
-            226.94536805555555,
-            228.82325540123458,
-            225.17551157407408
+            227.33553317901234,
+            228.8468225308642,
+            224.66477546296295
           ]
         },
         {
           "p": 0.83,
           "rgb": [
-            229.7550740740741,
-            232.10620679012345,
-            228.51906172839506
+            231.56996064814814,
+            233.59500385802468,
+            230.05336188271605
           ]
         },
         {
           "p": 0.84,
           "rgb": [
-            231.45560648148148,
-            234.09089429012346,
-            230.55339969135804
+            233.88829706790125,
+            236.48338348765432,
+            232.9017322530864
           ]
         },
         {
           "p": 0.85,
           "rgb": [
-            232.0450848765432,
-            234.7803811728395,
-            231.2616651234568
+            234.82675231481483,
+            237.52244598765432,
+            234.0127523148148
           ]
         }
       ],
-      "maxAdjacentColorDelta": 4.532140432098771
+      "maxAdjacentColorDelta": 9.8218101851852
     },
     "desktop: audio opt-in passed",
     {
@@ -1504,8 +1520,8 @@
           "calls": 1,
           "triangles": 0,
           "mountedScenes": 0,
-          "jsHeapMB": 108.4,
-          "at": 6969.899999976158
+          "jsHeapMB": 104.2,
+          "at": 7057.299999952316
         },
         "quality": {
           "tier": "high",
@@ -1514,7 +1530,7 @@
           "adaptive": false,
           "fps": 60,
           "frameMs": 16.7,
-          "p95FrameMs": 17.5,
+          "p95FrameMs": 16.8,
           "downgrades": 0,
           "upgrades": 0,
           "signals": {
@@ -1539,8 +1555,8 @@
           "calls": 1,
           "triangles": 0,
           "mountedScenes": 0,
-          "jsHeapMB": 78.7,
-          "at": 92860.89999997616
+          "jsHeapMB": 94.1,
+          "at": 116358.10000002384
         },
         "quality": {
           "tier": "high",
@@ -1569,6 +1585,22 @@
     },
     "desktop: reduced motion uses the generated poster",
     "mobile: no product buttons; reverse scroll passed",
+    {
+      "view": "mobile",
+      "arrivalPulse": {
+        "before": 0,
+        "arrivals": [
+          0.65,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "after": 0
+      },
+      "entryAndExitMaterials": "screenshots for visual review"
+    },
     "mobile: audio opt-in passed",
     {
       "view": "mobile",
@@ -1580,8 +1612,8 @@
           "calls": 2,
           "triangles": 720,
           "mountedScenes": 0,
-          "jsHeapMB": 100.2,
-          "at": 6980
+          "jsHeapMB": 99.1,
+          "at": 7041
         },
         "quality": {
           "tier": "high",
@@ -1589,8 +1621,8 @@
           "lock": "forced",
           "adaptive": false,
           "fps": 60,
-          "frameMs": 16.6,
-          "p95FrameMs": 18.2,
+          "frameMs": 16.7,
+          "p95FrameMs": 17.7,
           "downgrades": 0,
           "upgrades": 0,
           "signals": {
@@ -1615,8 +1647,8 @@
           "calls": 2,
           "triangles": 720,
           "mountedScenes": 0,
-          "jsHeapMB": 93.1,
-          "at": 74959.20000004768
+          "jsHeapMB": 95.4,
+          "at": 91632.39999997616
         },
         "quality": {
           "tier": "high",
@@ -1625,7 +1657,7 @@
           "adaptive": false,
           "fps": 60,
           "frameMs": 16.7,
-          "p95FrameMs": 19.4,
+          "p95FrameMs": 18.1,
           "downgrades": 0,
           "upgrades": 0,
           "signals": {
@@ -1647,13 +1679,13 @@
   ],
   "assets": {
     "high": {
-      "bytes": 294454
+      "bytes": 296318
     },
     "medium": {
-      "bytes": 276722
+      "bytes": 278586
     },
     "low": {
-      "bytes": 259754
+      "bytes": 261618
     },
     "audioOptInBytes": 1737440
   }

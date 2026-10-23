@@ -2,7 +2,7 @@
 
 Fecha: 2026-10-22. Rama `t/A24-naturalis`.
 
-Escena final con camilla propia, sala horneada en Blender y ciclo día/noche. Se incorporan las correcciones humanas: capturas `app-web/2.webp` y `natuadmin/2.webp`, libreta plana sobre la mesa, predominio crema/pastel, cortina oculta en mobile, follaje permanente y ausencia de botonera.
+Escena final con camilla propia, sala horneada en Blender y ciclo día/noche. Correcciones humanas: capturas `app-web/2.webp` y `natuadmin/2.webp`, agenda apoyada y con mayor permanencia, acercamiento a la mesa y dispositivos alineados sobre ella, paredes crema casi blancas, degradado desde el razonamiento, cortina oculta mobile, follaje permanente y sin botonera.
 
 ## Verificación
 
@@ -24,22 +24,38 @@ Escena final con camilla propia, sala horneada en Blender y ciclo día/noche. Se
 
 Handoff: muestras 0.87, 0.92, 0.97 y 0.999 en ambas vistas. Follaje: capturas 0.18 y 0.24 en ambas vistas. Pósters generados desde el canvas en `public/posters/naturalis/`.
 
+## Ajustes de continuidad y recepción
+
+El fundido conserva profundidad en los sólidos de Naturalis (opción local de `presentation.ts`); el vidrio y los halos siguen siendo transparentes. Revisión visual adicional de entrada 0.04 / 0.08 / 0.12 y salida 0.87 / 0.92 / 0.97 / 0.999, en ambas vistas. No aparecen la pared gris ni las franjas negras de la captura reportada.
+
+La agenda permanece completa hasta 0.42 y desaparece en 0.455. La cámara se acerca después de verla y el sistema ocupa la misma mesa. El degradado ya está completo al llegar al beat «Dos apps. Una sola agenda».
+
+Cada llegada activa un halo salvia en el borde de la notebook y un leve aumento de brillo. Se comprueban las seis llegadas y ausencia de pulso antes/después; el pulso depende del progreso y funciona al retroceder.
+
+| Detalle | Desktop | Mobile |
+| --- | --- | --- |
+| Agenda durante el acercamiento | [Captura](./desktop-table-agenda-held.webp) | [Captura](./mobile-table-agenda-held.webp) |
+| Entrada durante fundido | [Captura](./desktop-entry-0.08.webp) | [Captura](./mobile-entry-0.08.webp) |
+| Brillo al recibir | [Captura](./desktop-arrival-0.565.webp) | [Captura](./mobile-arrival-0.565.webp) |
+| Mismo momento al retroceder | [Captura](./desktop-arrival-reverse.webp) | [Captura](./mobile-arrival-reverse.webp) |
+| Salida durante fundido | [Captura](./desktop-handoff-0.92.webp) | [Captura](./mobile-handoff-0.92.webp) |
+
 ## Métricas
 
 Chrome headless, Intel Arc 140V, DPR 1; mobile con CPU ×4. FPS y p95 son las ventanas del monitor del runtime en cada muestra; no equivalen a un teléfono físico.
 
 | Vista / nivel | FPS mín.–máx. | p95 máx. (ms) | Draw calls máx. | Triángulos máx. | Gráficos (KiB) |
 | --- | --- | --- | --- | --- | --- |
-| desktop / high | 58.1–60 | 18.1 | 24 | 26223 | 287.6 |
-| desktop / medium | 59.4–60 | 17.2 | 18 | 14709 | 270.2 |
-| desktop / low | 60–60.1 | 17.6 | 19 | 12541 | 253.7 |
-| mobile / high | 52–59.5 | 19 | 24 | 25503 | 287.6 |
-| mobile / medium | 55.4–59.4 | 18.8 | 18 | 14182 | 270.2 |
-| mobile / low | 56.1–60.1 | 18.4 | 18 | 11893 | 253.7 |
+| desktop / high | 58–60 | 16.9 | 24 | 26223 | 289.4 |
+| desktop / medium | 59.4–60 | 17.3 | 18 | 14709 | 272.1 |
+| desktop / low | 55.4–60 | 16.9 | 19 | 12541 | 255.5 |
+| mobile / high | 52–60.1 | 18.6 | 24 | 25503 | 289.4 |
+| mobile / medium | 56.7–60 | 18.5 | 18 | 14182 | 272.1 |
+| mobile / low | 58.1–60.5 | 18.2 | 18 | 11893 | 255.5 |
 
 Los gráficos incluyen GLB, atlas nocturno y las tres texturas comunes en cada nivel. Audio existente: 1696.7 KiB adicionales solo tras un gesto; no se descarga al entrar. Meshopt + WebP, atlas de 1024 px en todos los niveles para mantener la iluminación estable.
 
-Continuidad: 31 muestras entre 0.55 y 0.85. Mayor variación media de canal entre muestras consecutivas de la región de control: 4.53/255. Los tres niveles mantienen el mismo color diurno en la región de pared comprobada.
+Continuidad: 31 muestras entre 0.55 y 0.85. Mayor variación media de canal entre muestras consecutivas de la región de control: 9.82/255. Los tres niveles mantienen el mismo color diurno en la región de pared comprobada.
 
 Recursos al salir (tres recorridos ida/vuelta):
 - desktop: geometrías 1 → 1; texturas 2 → 2.

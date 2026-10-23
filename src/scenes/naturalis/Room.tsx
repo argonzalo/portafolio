@@ -13,13 +13,9 @@ import {
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js"
 import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js"
 import type { SceneProps } from "@/experience/types"
-import { ramp } from "@/experience/choreography"
 import { experienceStore } from "@/experience/store"
 import { version } from "./assets.json"
-
-function nightMix(p: number) {
-  return ramp(p, 0.59, 0.67) * (1 - ramp(p, 0.78, 0.855))
-}
+import { nightMix } from "./timing"
 
 type RoomAsset = {
   group: Group
@@ -77,6 +73,7 @@ async function loadRoom(tier: string, isMobile: boolean): Promise<RoomAsset> {
     o.visible = !curtain || !isMobile
     const material = new ShaderMaterial({
       side: DoubleSide,
+      forceSinglePass: true,
       toneMapped: false,
       uniforms: {
         uDay: { value: day },
@@ -95,6 +92,7 @@ async function loadRoom(tier: string, isMobile: boolean): Promise<RoomAsset> {
         #include <colorspace_fragment>
         }`,
     })
+    material.userData.solidDissolve = true
     o.material = material
     materials.push(material)
   })

@@ -43,7 +43,9 @@ export function composeOpacity(object: Object3D, parentOpacity: number) {
         mat.needsUpdate = true
       }
       mat.opacity = base.opacity * alpha
-      mat.depthWrite = base.depthWrite && alpha > 0.999
+      // Solid scene models can retain occlusion throughout the chapter dissolve.
+      mat.depthWrite =
+        base.depthWrite && (mat.userData.solidDissolve === true || alpha > 0.999)
       // Custom shaders opt into the same dissolve as MeshBasicMaterial/Line2.
       const uniforms = (
         mat as Material & { uniforms?: Record<string, { value: number }> }

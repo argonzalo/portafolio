@@ -1,6 +1,6 @@
 // Run with the isolated preview server (serve-preview.mjs) on port 3012.
 import { chromium } from '@playwright/test'
-import { mkdir, writeFile, stat } from 'node:fs/promises'
+import { mkdir, writeFile, stat, copyFile } from 'node:fs/promises'
 import assert from 'node:assert/strict'
 import sharp from 'sharp'
 const output='docs/plan/evidencias/T-A24'
@@ -49,11 +49,27 @@ try {
     }
     await seek('naturalis',.5)
     const firstHeading=await page.locator('.naturalis-copy h2').innerText()
+    assert.equal(await page.locator('.naturalis-overlay').evaluate(el=>Number(el.style.getPropertyValue('--nat-reading'))),1,'reading gradient must already cover the two-app beat')
     assert.equal(await page.locator('.naturalis-overlay button,.naturalis-overlay dialog').count(),0)
     await seek('naturalis',.7);await seek('naturalis',.5)
     assert.equal(await page.locator('.naturalis-copy h2').innerText(),firstHeading)
     report.checks.push(`${view}: no product buttons; reverse scroll passed`)
+    await seek('naturalis',.35)
+    await page.screenshot({path:`${output}/${view}-table-agenda.webp`})
+    await seek('naturalis',.405)
+    await page.screenshot({path:`${output}/${view}-table-agenda-held.webp`})
     for (const p of [.18,.24]) { await seek('naturalis',p); await page.screenshot({path:`${output}/${view}-foliage-${p}.webp`}) }
+    for (const p of [.04,.08,.12]) { await seek('naturalis',p); await page.screenshot({path:`${output}/${view}-entry-${p}.webp`}) }
+    for (const p of [.526,.565,.64]) { await seek('naturalis',p); await page.screenshot({path:`${output}/${view}-arrival-${p}.webp`}) }
+    const pulse=await page.evaluate(async()=>{
+      const {arrivalPulse}=await import('/src/scenes/naturalis/timing.ts')
+      return {before:arrivalPulse(.526),arrivals:Array.from({length:6},(_,i)=>arrivalPulse(.54+i*.012)),after:arrivalPulse(.64)}
+    })
+    assert.equal(pulse.before,0);assert.equal(pulse.after,0)
+    assert.ok(pulse.arrivals.every(v=>v>0))
+    await seek('naturalis',.565)
+    await page.screenshot({path:`${output}/${view}-arrival-reverse.webp`})
+    report.checks.push({view,arrivalPulse:pulse,entryAndExitMaterials:'screenshots for visual review'})
     if(!mobile) {
       const color=async()=>{
         const s=await sharp(await page.locator('[data-experience-stage] canvas').screenshot()).extract({left:1190,top:360,width:24,height:24}).stats()
@@ -74,7 +90,13 @@ try {
     await page.locator('[data-audio-control]').click()
     report.checks.push(`${view}: audio opt-in passed`)
     await seek('naturalis',.835)
-    await page.locator('[data-experience-stage] canvas').screenshot({path:`public/posters/naturalis/${view}.webp`})
+    const posterMask=await page.addStyleTag({content:'body *{visibility:hidden!important}[data-experience-stage],[data-experience-stage] *{visibility:visible!important}'})
+    // Windows can reject truncation/rename of a served image; copyFile works.
+    const poster=`public/posters/naturalis/${view}.webp`
+    const capturedPoster=`${output}/${view}-poster.webp`
+    await page.screenshot({path:capturedPoster})
+    await copyFile(capturedPoster,poster)
+    await posterMask.evaluate(el=>el.remove())
     for(const p of [.87,.92,.97,.999]) {
       await seek('naturalis',p)
       await page.screenshot({path:`${output}/${view}-handoff-${p}.webp`})

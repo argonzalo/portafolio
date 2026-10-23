@@ -14,6 +14,22 @@ Se conserva la cámara y el fundido del director de T-A41. El follaje del ficus
 permanece completo durante todo el recorrido; solo las hojas que conectan los
 dispositivos son elementos narrativos separados de la planta.
 
+Después de aparecer la agenda, la cámara se acerca a la mesa. El papel se
+desvanece y es reemplazado en el mismo lugar por teléfono y notebook alineados,
+apoyados sobre el tablero, también en mobile. El encuadre vuelve a abrirse para
+el amanecer y el resultado. La agenda se mantiene completa hasta 0.42 y termina
+de desaparecer en 0.455, para poder leer el paso del papel al sistema. Un
+degradado crema integra el fondo con la sala desde el acercamiento a la mesa,
+ya completo en «Dos apps. Una sola agenda», y preserva el contraste al anochecer.
+Las paredes usan cal mineral casi blanca, sin lavar el verde ni el roble.
+
+Los sólidos conservan la escritura de profundidad durante el fundido:
+las caras ocultas no atraviesan paredes, camilla ni carcasas durante la entrada/salida.
+`presentation.ts` respeta esta opción solo en materiales que la activan; el vidrio
+y los halos mantienen su transparencia. Cada hoja que llega desde el teléfono
+activa un halo salvia en el borde de la pantalla de la notebook y un leve aumento
+de brillo. El pulso depende del mismo progreso absoluto, también en scroll inverso.
+
 ## Insumos y decisiones humanas
 
 - Camilla propia: `assets-src/naturalis/camilla.blend`, sin alterar la fuente.

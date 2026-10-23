@@ -10,6 +10,14 @@ body:has([data-experience-stage]) [data-scene-caption="naturalis"] {
   font-family: Poppins, sans-serif;
   font-variant-numeric: tabular-nums;
 }
+.naturalis-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: var(--nat-reading, 0);
+  background: linear-gradient(90deg, #fafdfc 0%, #fafdfcee 25%, #fafdfc00 48%);
+}
 .naturalis-overlay * {
   box-sizing: border-box;
 }
@@ -94,6 +102,9 @@ body:has([data-experience-stage]) [data-scene-caption="naturalis"] {
   outline-offset: 4px;
 }
 @media (max-width: 768px) {
+  .naturalis-overlay::before {
+    background: linear-gradient(180deg, #fafdfc 0%, #fafdfc 35%, #fafdfce8 41%, #fafdfc00 54%);
+  }
   .naturalis-copy {
     top: 22%;
     left: 24px;
