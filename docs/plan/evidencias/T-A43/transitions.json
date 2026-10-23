@@ -1,0 +1,90 @@
+[
+  {
+    "name": "desktop",
+    "spacing": {
+      "beforeTitleY": 1166.25,
+      "afterTitleY": 1009,
+      "earlierPx": 157.25
+    },
+    "timing": {
+      "start": 0.7,
+      "previousStart": 0.86,
+      "scrollRatio": 2.142857142857143,
+      "startValue": 0,
+      "endValue": 1
+    },
+    "samples": [
+      {
+        "progress": 0.7,
+        "textOpacity": 0,
+        "background": "#0a0a0b"
+      },
+      {
+        "progress": 0.775,
+        "textOpacity": 0,
+        "background": "#0a0b10"
+      },
+      {
+        "progress": 0.85,
+        "textOpacity": 0,
+        "background": "#08101c"
+      },
+      {
+        "progress": 0.925,
+        "textOpacity": 0,
+        "background": "#071324"
+      },
+      {
+        "progress": 1,
+        "textOpacity": 0,
+        "background": "#071426"
+      }
+    ],
+    "reverseMatchesMiddle": true,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "spacing": {
+      "beforeTitleY": 1151.265625,
+      "afterTitleY": 951.640625,
+      "earlierPx": 199.625
+    },
+    "timing": {
+      "start": 0.7,
+      "previousStart": 0.86,
+      "scrollRatio": 2.142857142857143,
+      "startValue": 0,
+      "endValue": 1
+    },
+    "samples": [
+      {
+        "progress": 0.7,
+        "textOpacity": 0,
+        "background": "#0a0a0b"
+      },
+      {
+        "progress": 0.775,
+        "textOpacity": 0,
+        "background": "#0a0b10"
+      },
+      {
+        "progress": 0.85,
+        "textOpacity": 0,
+        "background": "#08101c"
+      },
+      {
+        "progress": 0.925,
+        "textOpacity": 0,
+        "background": "#071324"
+      },
+      {
+        "progress": 1,
+        "textOpacity": 0,
+        "background": "#071426"
+      }
+    ],
+    "reverseMatchesMiddle": true,
+    "errors": []
+  }
+]

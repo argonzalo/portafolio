@@ -1,47 +1,70 @@
 import gsap from "gsap"
 import { SplitText } from "gsap/SplitText"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-gsap.registerPlugin(SplitText)
+gsap.registerPlugin(SplitText, ScrollTrigger)
 let cleanup: (() => void) | undefined
 
 function mountManifesto() {
   cleanup?.()
   const root = document.querySelector("#manifesto")
   if (!root) return
-
   const media = gsap.matchMedia()
   media.add("(prefers-reduced-motion: no-preference)", () => {
     const splits: SplitText[] = []
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue
-          observer.unobserve(entry.target)
-          const split = SplitText.create(entry.target, {
-            type: "words",
-            aria: "auto",
-          })
-          splits.push(split)
-          // El texto siempre está visible en HTML; solo se anima al entrar.
-          gsap.from(split.words, {
-            yPercent: 35,
-            duration: 0.65,
-            stagger: 0.09,
-            ease: "power2.out",
-          })
-        }
-      },
-      { threshold: 0.7 }
+    const phrases = root.querySelectorAll<HTMLElement>(
+      "[data-manifesto-phrase]"
     )
-    root
-      .querySelectorAll("[data-manifesto-phrase]")
-      .forEach((phrase) => observer.observe(phrase))
+    const heading = root.querySelector("h2")
+    // Oculta la fila completa: incluye tanto palabras como sus bordes.
+    gsap.set(phrases, { opacity: 0 })
+    gsap.set(heading, { opacity: 0 })
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: root,
+        start: "top 65%",
+        end: "top 0%",
+        scrub: 0.45,
+        invalidateOnRefresh: true,
+      },
+    })
+    timeline.to(heading, { opacity: 1, duration: 0.3 }, 0)
+    phrases.forEach((phrase, index) => {
+      const split = SplitText.create(phrase, { type: "words", aria: "auto" })
+      splits.push(split)
+      timeline.to(phrase, { opacity: 1, duration: 0.25 }, index * 0.7)
+      timeline.from(
+        split.words,
+        {
+          rotationX: -75,
+          yPercent: 65,
+          opacity: 0,
+          transformOrigin: "50% 100%",
+          stagger: 0.15,
+          duration: 1,
+          ease: "power2.inOut",
+        },
+        index * 0.7
+      )
+    })
+    // Salida sincronizada sin retardo: el DOM deja el escenario antes de que
+    // el handoff global empiece a mostrar Vibo, incluso en un scroll rápido.
+    const exit = gsap.to(root.querySelector(".manifesto-copy"), {
+      opacity: 0,
+      ease: "none",
+      scrollTrigger: {
+        trigger: root,
+        start: "bottom 95%",
+        end: "bottom 85%",
+        scrub: true,
+      },
+    })
     return () => {
-      observer.disconnect()
-      splits.forEach((split) => {
-        gsap.killTweensOf(split.words)
-        split.revert()
-      })
+      timeline.scrollTrigger?.kill()
+      timeline.kill()
+      exit.scrollTrigger?.kill()
+      exit.revert()
+      splits.forEach((split) => split.revert())
     }
   })
   cleanup = () => media.revert()

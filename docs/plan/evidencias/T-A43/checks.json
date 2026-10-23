@@ -1,0 +1,42 @@
+[
+  {
+    "name": "desktop",
+    "centeredPortrait": true,
+    "frameTiming": {
+      "cpuRate": 1,
+      "medianMs": 16.7,
+      "p95Ms": 16.8
+    },
+    "canvasSpansViewport": true,
+    "manifestoClearedBeforeVibo": true,
+    "transparentReading": true,
+    "noOverflow": true,
+    "magnetism": true,
+    "scrollChangesPortrait": true,
+    "reduced": true,
+    "unsplit": true,
+    "navigationRemount": true,
+    "removedViboLink": true,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "centeredPortrait": true,
+    "frameTiming": {
+      "cpuRate": 4,
+      "medianMs": 16.7,
+      "p95Ms": 16.7
+    },
+    "canvasSpansViewport": true,
+    "manifestoClearedBeforeVibo": true,
+    "transparentReading": true,
+    "noOverflow": true,
+    "magnetism": "touch uses scroll",
+    "scrollChangesPortrait": true,
+    "reduced": true,
+    "unsplit": true,
+    "navigationRemount": true,
+    "removedViboLink": true,
+    "errors": []
+  }
+]

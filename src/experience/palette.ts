@@ -1,5 +1,5 @@
 import { Color, MathUtils } from "three"
-import { HANDOFF_START, ease } from "@/experience/choreography"
+import { handoffStart, ease } from "@/experience/choreography"
 
 import { journeyChapters } from "@/components/journey/chapters"
 import type { ExperienceStore } from "@/experience/store"
@@ -16,9 +16,6 @@ import { getSceneByChapter } from "@/scenes/registry"
  *
  * Sin `setState` por frame: un rAF escribe las variables CSS.
  */
-
-/** Empieza a mezclar con el capítulo siguiente en el tramo final del scroll. */
-const BLEND_START = HANDOFF_START
 
 /** Paleta del sitio fuera de escenas 3D (hero, manifiesto, archivo, cierre). */
 export const SITE_PALETTE: ScenePalette = {
@@ -112,12 +109,13 @@ function mixPalettes(
   }
 }
 
-function blendAmount(progress: number): number {
-  if (progress <= BLEND_START) {
+function blendAmount(progress: number, chapterId: string): number {
+  const start = handoffStart(chapterId)
+  if (progress <= start) {
     return 0
   }
 
-  return MathUtils.clamp((progress - BLEND_START) / (1 - BLEND_START), 0, 1)
+  return MathUtils.clamp((progress - start) / (1 - start), 0, 1)
 }
 
 function nextChapterId(chapterId: string): string | null {
@@ -145,7 +143,7 @@ function resolveLive(store: ExperienceStore): LivePalette {
 
   const progress = store.progress(chapterId).current
   const nextId = nextChapterId(chapterId)
-  const amount = blendAmount(progress)
+  const amount = blendAmount(progress, chapterId)
 
   if (!nextId || amount <= 0) {
     return {

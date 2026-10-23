@@ -115,6 +115,12 @@
 
 ---
 
+## Ajustes por pedido directo
+
+| ID | Tarea y criterio de terminado | Depende de | Zona | Estado |
+| --- | --- | --- | --- | --- |
+| T-A43 | Retrato triangular con scroll y magnetismo, pulido de cabecera/chips, protección del texto frente al hilo y tres animaciones GSAP del manifiesto; quitar enlace a Vibo. Pedido humano 2026-10-23, registrado listo y tomado en esta sesión. | T-A12, T-A13 | `src/components/journey/{Hero*,heroPortrait.ts,Manifesto*,manifesto.ts}`, `src/experience/{thread/{runtime.ts,README.md},choreography.ts,palette.ts,SceneDirector.tsx}`, `src/scenes/greybox/Caption.tsx` (continuidad y ritmo hacia Vibo, ampliado por feedback humano), evidencia y tablero | en revisión (rama `t/A43-hero-retrato-manifiesto`; filas y bordes transparentes antes de entrar, despliegue +18 % sin cambiar altura ni handoff; evidencia `evidencias/T-A43/`) |
+
 ## Bloqueos y preguntas
 
 > Los agentes anotan acá lo que no pueden resolver solos. El humano responde a diario.

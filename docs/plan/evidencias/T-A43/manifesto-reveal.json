@@ -1,0 +1,74 @@
+[
+  {
+    "name": "desktop",
+    "sceneHeight": 900,
+    "heightUnchanged": true,
+    "samples": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ]
+    ],
+    "correctStaging": true,
+    "reverseHidden": true,
+    "reducedVisible": true,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "sceneHeight": 844,
+    "heightUnchanged": true,
+    "samples": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ]
+    ],
+    "correctStaging": true,
+    "reverseHidden": true,
+    "reducedVisible": true,
+    "errors": []
+  }
+]
