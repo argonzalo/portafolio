@@ -38,12 +38,6 @@ import { hero, site } from "@/lib/site"
   :global(#hero.hero-chapter) {
     min-height: 100svh;
     overflow: clip;
-    /* Una capa opaca protege la lectura frente al enjambre aditivo. */
-    background: linear-gradient(
-      90deg,
-      var(--background) 0% 53%,
-      color-mix(in oklch, var(--background) 94%, transparent) 100%
-    );
   }
   .hero-layout {
     display: grid;
@@ -54,8 +48,6 @@ import { hero, site } from "@/lib/site"
   .hero-copy {
     position: relative;
     z-index: 1;
-    background: var(--background);
-    box-shadow: 0 0 45px 25px var(--background);
   }
   .hero-name {
     margin-bottom: 1.8rem;
@@ -152,6 +144,9 @@ import { hero, site } from "@/lib/site"
   }
   .hero-portrait canvas {
     opacity: 0;
+    width: 150%;
+    height: 150%;
+    inset: -25%;
   }
   .hero-portrait[data-portrait-ready] canvas {
     opacity: 1;
@@ -160,9 +155,6 @@ import { hero, site } from "@/lib/site"
     opacity: 0;
   }
   @media (max-width: 767px) {
-    :global(#hero.hero-chapter) {
-      background: var(--background);
-    }
     .hero-layout {
       grid-template-columns: 1fr;
       gap: 1.7rem;
@@ -174,8 +166,6 @@ import { hero, site } from "@/lib/site"
       margin-bottom: -3rem;
     }
     .hero-copy {
-      box-shadow: 0 0 24px 12px var(--background);
-      background: var(--background);
     }
     .hero-name {
       margin-bottom: 1.2rem;

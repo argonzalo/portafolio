@@ -23,11 +23,17 @@ import { manifesto } from "@/lib/site"
 <style>
   .manifesto-copy {
     position: relative;
-    background: var(--background);
-    box-shadow: 0 0 48px 28px var(--background);
+    max-width: 51rem;
   }
   :global(#manifesto.manifesto-chapter) {
-    background: var(--background);
+    display: block;
+    min-height: 190svh;
+  }
+  :global(#manifesto.manifesto-chapter > div) {
+    position: sticky;
+    top: 12svh;
+    padding-top: 5svh;
+    padding-bottom: 8svh;
   }
   .manifesto-phrases {
     display: flex;
@@ -46,6 +52,16 @@ import { manifesto } from "@/lib/site"
   }
   .manifesto-phrases li:last-child {
     border-bottom: 1px solid var(--border);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :global(#manifesto.manifesto-chapter) {
+      min-height: auto;
+    }
+    :global(#manifesto.manifesto-chapter > div) {
+      position: relative;
+      top: auto;
+      padding-block: 5rem;
+    }
   }
 </style>
 

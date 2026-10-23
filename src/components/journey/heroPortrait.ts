@@ -156,8 +156,8 @@ function mountPortrait(figure: HTMLElement): () => void {
     const rect = figure.getBoundingClientRect()
     size = Math.max(1, Math.round(rect.width))
     dpr = Math.min(window.devicePixelRatio || 1, 2)
-    canvas.width = Math.round(size * dpr)
-    canvas.height = Math.round(size * dpr)
+    canvas.width = Math.round(size * 1.5 * dpr)
+    canvas.height = Math.round(size * 1.5 * dpr)
     const coarse = window.matchMedia("(pointer: coarse)").matches
     shards = buildShards(image, coarse || size < 320 ? 5 : 7)
     dirty = true
@@ -170,7 +170,7 @@ function mountPortrait(figure: HTMLElement): () => void {
   }
 
   const onPointer = (event: PointerEvent) => {
-    const rect = canvas.getBoundingClientRect()
+    const rect = figure.getBoundingClientRect()
     const x = (event.clientX - rect.left) / rect.width
     const y = (event.clientY - rect.top) / rect.height
     target.pointerX = x
@@ -187,20 +187,30 @@ function mountPortrait(figure: HTMLElement): () => void {
     const s = size
     const t = gsap.ticker.time - timeOrigin
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-    ctx.clearRect(0, 0, s, s)
+    ctx.clearRect(0, 0, s * 1.5, s * 1.5)
+    ctx.translate(s * 0.25, s * 0.25)
 
     // Las juntas siguen visibles en reposo: el retrato conserva su identidad
     // fragmentada antes de que el scroll o el cursor separen más las piezas.
-    const scatter = Math.max(0.016, state.intro, state.scroll * state.scroll)
+    const scatter = Math.max(state.intro, state.scroll * state.scroll)
 
     const radius = 0.24
     for (const shard of shards) {
       // Dispersión radial (intro + scroll) con giro propio.
-      const reach = scatter * (0.18 + shard.seed * 0.5)
-      let ox = shard.dx * reach + (shard.seed - 0.5) * scatter * 0.12
-      let oy = shard.dy * reach - scatter * shard.seed * 0.1
-      let rot = scatter * (shard.seed - 0.5) * 1.4
-      let scale = 1 - scatter * 0.25 * shard.seed
+      // Un núcleo estable mantiene ojos/nariz/boca ensamblados. El corte se
+      // abre progresivamente hacia el contorno, con más vuelo en los laterales.
+      const distance = Math.hypot((shard.cx - 0.5) * 1.2, shard.cy - 0.47)
+      const edge = gsap.utils.clamp(0, 1, (distance - 0.23) / 0.25)
+      const touchesFace = [shard.a, shard.b, shard.c].some(
+        ([x, y]) => x > 0.35 && x < 0.65 && y > 0.2 && y < 0.78
+      )
+      const fringe = edge * edge * (touchesFace ? 0.02 : 1)
+      const energy = 0.16 * fringe + scatter * (0.035 + fringe * 0.48)
+      const reach = energy * (0.6 + shard.seed * 0.7)
+      let ox = shard.dx * reach * (1 + fringe * 0.9)
+      let oy = shard.dy * reach * 0.65
+      let rot = energy * (shard.seed - 0.5) * 1.8
+      let scale = 1 - energy * 0.3 * shard.seed
 
       // Magnetismo: el fragmento se acerca al cursor y se eleva.
       let lift = 0
@@ -208,7 +218,10 @@ function mountPortrait(figure: HTMLElement): () => void {
         const vx = state.pointerX - shard.cx
         const vy = state.pointerY - shard.cy
         const dist = Math.hypot(vx, vy)
-        const falloff = Math.exp(-((dist / radius) ** 2)) * state.magnet
+        const falloff =
+          Math.exp(-((dist / radius) ** 2)) *
+          state.magnet *
+          (0.06 + fringe * 0.94)
         const pull = Math.min(dist, 0.07) * falloff
         if (dist > 0.0001) {
           ox += (vx / dist) * pull
@@ -224,7 +237,7 @@ function mountPortrait(figure: HTMLElement): () => void {
       ox += Math.sin(t * 1.3 + shard.seed * 12) * breathe
       oy += Math.cos(t * 1.1 + shard.seed * 9) * breathe
 
-      const alpha = 1 - Math.min(1, scatter * (0.35 + shard.seed * 0.75))
+      const alpha = 1 - Math.min(1, energy * (0.35 + shard.seed * 0.75))
       if (alpha <= 0.01) continue
 
       const cx = shard.cx * s
@@ -256,7 +269,7 @@ function mountPortrait(figure: HTMLElement): () => void {
       ctx.drawImage(image, 0, 0, s, s)
       ctx.restore()
 
-      const seam = Math.min(1, lift * 0.9 + scatter * 1.6)
+      const seam = Math.min(1, lift * 0.9 + energy * 1.6)
       if (seam > 0.02) {
         ctx.lineWidth = 0.75
         ctx.strokeStyle = `rgba(${THREAD_RGB}, ${0.55 * seam})`

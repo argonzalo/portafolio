@@ -6,6 +6,7 @@
       "medianMs": 16.7,
       "p95Ms": 16.8
     },
+    "transparentReading": true,
     "noOverflow": true,
     "magnetism": true,
     "scrollChangesPortrait": true,
@@ -22,6 +23,7 @@
       "medianMs": 16.7,
       "p95Ms": 16.8
     },
+    "transparentReading": true,
     "noOverflow": true,
     "magnetism": "touch uses scroll",
     "scrollChangesPortrait": true,

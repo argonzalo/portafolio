@@ -45,6 +45,28 @@ export function createRuntime() {
   }
 }
 
+/** El hilo ocupa el espacio editorial libre: nunca se tapa con paneles DOM.
+ * La misma curva se usa al entrar y durante el handoff del capítulo anterior. */
+function editorialPath(
+  chapter: string,
+  extent: ThreadExtent,
+  points: Vector3[]
+) {
+  if (chapter !== "hero" && chapter !== "manifesto") return
+  const halfWidth = extent.x / (extent.portrait ? 0.41 : 0.4) / 2
+  const halfHeight = extent.portrait ? extent.offsetY * 5 : extent.y / 0.52
+  points.forEach((point, i) => {
+    const u = i / (points.length - 1)
+    const arc = Math.sin(u * Math.PI)
+    const x = extent.portrait
+      ? 0.965 - arc * 0.025
+      : chapter === "hero"
+        ? 0.4 + arc * 0.48
+        : 0.53 + arc * 0.4
+    point.set(x * halfWidth, (0.8 - u * 1.6) * halfHeight - extent.offsetY, 0)
+  })
+}
+
 export function updateThread(
   runtime: ReturnType<typeof createRuntime>,
   chapterId: string | null,
@@ -62,6 +84,7 @@ export function updateThread(
   const profile = chapterThreadProfile(chapter)
 
   sampleForm(form, progress, extent.x, extent.y, target.points)
+  editorialPath(chapter, extent, target.points)
   target.color.set(profile.lineColor ?? form.color)
   target.head.set(profile.head)
   target.lightMix = profile.scheme === "light" ? 1 : 0
@@ -84,6 +107,7 @@ export function updateThread(
 
     // En p=1 el hilo ya converge a la curva, color y energía de entrada (p=0) del capítulo siguiente.
     sampleForm(nextForm, 0, extent.x, extent.y, nextTarget.points)
+    editorialPath(nextChapter, extent, nextTarget.points)
     for (let i = 0; i < target.points.length; i++) {
       target.points[i].lerp(nextTarget.points[i], handoff)
     }
