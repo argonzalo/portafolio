@@ -147,10 +147,15 @@ float threadEnergy(float u, float m) {
   float tail = mix(0.22, 0.05, m);
 
   for (int i = 0; i < PULSES; i++) {
-    float behind = pulseCenter(i) - u;
+    float c = pulseCenter(i);
+    float behind = c - u;
     float front = behind / 0.012;
     float shape = behind >= 0.0 ? exp(-behind / tail) : exp(-front * front);
-    energy += pulseWeight(i, m) * shape;
+    float wrappedBehind = behind + 1.0;
+    float wrappedShape =
+      exp(-wrappedBehind / tail) * (1.0 - smoothstep(0.0, 0.35, c));
+    float modeWeight = i == 0 ? 1.0 : smoothstep(0.35, 0.9, m);
+    energy += modeWeight * max(shape, wrappedShape);
   }
 
   return energy;

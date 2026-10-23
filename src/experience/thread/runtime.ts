@@ -3,7 +3,10 @@ import { experienceStore } from "../store"
 import type { QualityTier } from "../types"
 import { getSceneByChapter } from "@/scenes/registry"
 import { createThreadClock } from "./clock"
-import { ease, handoffStart } from "@/experience/choreography"
+import {
+  handoff as computeHandoff,
+  handoffStart,
+} from "@/experience/choreography"
 import {
   CHAPTER_SEQUENCE,
   chapterIndexOf,
@@ -91,6 +94,7 @@ export function updateThread(
   const nextChapter = nextJourneyChapter(chapter)
   const transitionStart = handoffStart(chapter)
   let handoff = 0
+  let pointHandoff = 0
   let targetMix = profile.mix
 
   if (nextChapter && progress > transitionStart) {
@@ -99,7 +103,18 @@ export function updateThread(
       0,
       1
     )
-    handoff = reducedMotion ? (raw < 0.5 ? 0 : 1) : ease(raw)
+    handoff = reducedMotion
+      ? raw < 0.5
+        ? 0
+        : 1
+      : computeHandoff(progress, chapter)
+    // En el paso del manifiesto a Vibo la cancha es ~10x mayor en mundo que el
+    // arco editorial (cámara z=5 → z=23); compensar la escala evita que la
+    // forma de la cancha domine en el primer tramo del handoff.
+    pointHandoff =
+      chapter === "manifesto" && !reducedMotion
+        ? handoff / (handoff + 4.5 * (1 - handoff))
+        : handoff
 
     const nextForm =
       getSceneByChapter(nextChapter)?.thread ?? fallbackForm(nextChapter)
@@ -109,7 +124,7 @@ export function updateThread(
     sampleForm(nextForm, 0, extent.x, extent.y, nextTarget.points)
     editorialPath(nextChapter, extent, nextTarget.points)
     for (let i = 0; i < target.points.length; i++) {
-      target.points[i].lerp(nextTarget.points[i], handoff)
+      target.points[i].lerp(nextTarget.points[i], pointHandoff)
     }
 
     scratchLineNext.set(nextProfile.lineColor ?? nextForm.color)
@@ -135,13 +150,20 @@ export function updateThread(
   frame.head.lerp(target.head, blend)
   frame.lightMix = MathUtils.lerp(frame.lightMix, target.lightMix, blend)
 
-  // Fase continua en el círculo [0..1): durante el handoff cruza hacia 1.08 (= 0.08 mod 1),
-  // coincidiendo sin salto con el inicio (0.08) del capítulo entrante.
-  const localPhase = nextChapter
-    ? progress <= transitionStart
-      ? 0.08 + (progress / transitionStart) * 0.78
-      : 0.86 + handoff * 0.22
-    : 0.08 + progress * 0.84
+  // Hero y manifiesto comparten un único recorrido continuo sobre el arco
+  // editorial (0.18 → 0.54 → 0.86) sin reiniciarse entre ambos capítulos.
+  const localPhase =
+    chapter === "hero"
+      ? 0.18 + progress * 0.36
+      : chapter === "manifesto"
+        ? progress <= transitionStart
+          ? 0.54 + (progress / transitionStart) * 0.32
+          : 0.86 + pointHandoff * 0.22
+        : nextChapter
+          ? progress <= transitionStart
+            ? 0.08 + (progress / transitionStart) * 0.78
+            : 0.86 + handoff * 0.22
+          : 0.08 + progress * 0.84
   const targetPhase = ((localPhase % 1) + 1) % 1
 
   const idx = chapterIndexOf(chapter)

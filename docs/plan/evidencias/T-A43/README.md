@@ -31,4 +31,9 @@ Pendiente: sensaciones en teléfono físico y aprobación estética humana. No s
 
 Cada fila comienza en opacidad cero, incluyendo sus bordes. El encabezado y las filas se revelan dentro de la misma timeline; las palabras parten de opacidad cero. El despliegue usa 65svh de scroll frente a los 55svh anteriores (+18 %), sin cambiar los 100svh del capítulo, su salida ni el handoff 0,70–1. Movimiento reducido conserva todo visible.
 
-`node docs/plan/evidencias/T-A43/manifesto-reveal.mjs`: cinco muestras desktop/mobile comprueban filas ocultas antes de su turno, reocultación al retroceder, visibilidad estática y altura sin cambios (900px / 844px). Cero errores JavaScript. Capturas `*-manifesto-reveal-{0,1,2,3,4}.png` y resultados `manifesto-reveal.json`.
+## Cierre tras revisión manual (2026-10-23)
+
+- **Retrato (`heroPortrait.ts`):** dispersión radial suave (`fringe = edge³`) sin cortes rectangulares alrededor del rostro; fragmentación muy sutil en reposo antes de scrollear y magnetismo activo de forma continua en todo el viewport (campo amplio + foco local), no solo al hacer hover sobre la figura.
+- **Continuidad de la estela (`runtime.ts`, `path.ts`, `forms.ts`):** `hero` y `manifesto` comparten un único barrido continuo de fase sobre el arco editorial (`0.18 → 0.54 → 0.86`) sin cruzar `1.0 → 0.0` a mitad de cabecera, y `threadEnergy` conserva la cola al envolver el ciclo de fase.
+- **Transición Manifiesto → Vibo (`ManifestoChapter.astro`, `manifesto.ts`, `choreography.ts`, `runtime.ts`):** capítulo de `210svh` con bloque `sticky` para que las tres frases se desplieguen con más recorrido (`scrub: 0.75`), sostengan una pausa de lectura y se desvanezcan gradualmente antes de un handoff más largo (`0.58 → 1.0`, smoothstep cúbico y compensación de escala proyectiva hacia la cancha 3D de Vibo).
+- Estado en `docs/plan/tablero.md`: **hecho** (aprobado manualmente por el humano).

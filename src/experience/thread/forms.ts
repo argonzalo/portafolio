@@ -101,8 +101,8 @@ export const CHAPTER_THREAD_PROFILES: Readonly<
     scheme: "dark",
   },
   manifesto: {
-    mix: 0.32,
-    speed: 0.88,
+    mix: 0.08,
+    speed: 0.76,
     head: "#f5d78e",
     lineColor: "#6d9eff",
     scheme: "dark",

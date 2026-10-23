@@ -22,17 +22,17 @@ function mountManifesto() {
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: root,
-        start: "top 65%",
-        end: "top 0%",
-        scrub: 0.45,
+        start: "top 68%",
+        end: "top -38%",
+        scrub: 0.75,
         invalidateOnRefresh: true,
       },
     })
-    timeline.to(heading, { opacity: 1, duration: 0.3 }, 0)
+    timeline.to(heading, { opacity: 1, duration: 0.35 }, 0)
     phrases.forEach((phrase, index) => {
       const split = SplitText.create(phrase, { type: "words", aria: "auto" })
       splits.push(split)
-      timeline.to(phrase, { opacity: 1, duration: 0.25 }, index * 0.7)
+      timeline.to(phrase, { opacity: 1, duration: 0.3 }, index * 0.85)
       timeline.from(
         split.words,
         {
@@ -40,23 +40,24 @@ function mountManifesto() {
           yPercent: 65,
           opacity: 0,
           transformOrigin: "50% 100%",
-          stagger: 0.15,
-          duration: 1,
-          ease: "power2.inOut",
+          stagger: 0.18,
+          duration: 1.15,
+          ease: "power2.out",
         },
-        index * 0.7
+        index * 0.85
       )
     })
-    // Salida sincronizada sin retardo: el DOM deja el escenario antes de que
-    // el handoff global empiece a mostrar Vibo, incluso en un scroll rápido.
+    // Pausa de lectura con el bloque fijado y salida gradual antes de que el
+    // hilo termine de desplegarse en la cancha de Vibo.
     const exit = gsap.to(root.querySelector(".manifesto-copy"), {
       opacity: 0,
-      ease: "none",
+      y: -18,
+      ease: "power1.inOut",
       scrollTrigger: {
         trigger: root,
-        start: "bottom 95%",
-        end: "bottom 85%",
-        scrub: true,
+        start: "top -56%",
+        end: "top -92%",
+        scrub: 0.45,
       },
     })
     return () => {

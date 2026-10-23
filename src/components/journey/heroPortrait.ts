@@ -139,9 +139,9 @@ function mountPortrait(figure: HTMLElement): () => void {
     scroll: 0,
     pointerX: 0.5,
     pointerY: 0.5,
-    magnet: 0,
+    magnet: 1,
   }
-  const target = { scroll: 0, pointerX: 0.5, pointerY: 0.5, magnet: 0 }
+  const target = { scroll: 0, pointerX: 0.5, pointerY: 0.5, magnet: 1 }
 
   let shards: Shard[] = []
   let size = 0
@@ -182,17 +182,13 @@ function mountPortrait(figure: HTMLElement): () => void {
   }
 
   const onPointer = (event: PointerEvent) => {
+    if (event.pointerType === "touch") return
     const rect = figure.getBoundingClientRect()
     const x = (event.clientX - rect.left) / rect.width
     const y = (event.clientY - rect.top) / rect.height
     target.pointerX = x
     target.pointerY = y
-    // Zona de influencia: el retrato más un margen generoso.
-    const inside = x > -0.25 && x < 1.25 && y > -0.25 && y < 1.25
-    target.magnet = inside && event.pointerType !== "touch" ? 1 : 0
-  }
-  const onLeave = () => {
-    target.magnet = 0
+    target.magnet = 1
   }
 
   const draw = () => {
@@ -202,54 +198,48 @@ function mountPortrait(figure: HTMLElement): () => void {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight)
     ctx.translate(originX, s)
 
-    // Las juntas siguen visibles en reposo: el retrato conserva su identidad
-    // fragmentada antes de que el scroll o el cursor separen más las piezas.
-    const scatter = Math.max(state.intro, state.scroll * state.scroll)
+    // En reposo la fragmentación es sutil y se abre progresivamente al scrollear.
+    const scatter = Math.max(state.intro * 0.45, state.scroll * state.scroll)
 
-    const radius = 0.24
     for (const shard of shards) {
-      // Dispersión radial (intro + scroll) con giro propio.
-      // Un núcleo estable mantiene ojos/nariz/boca ensamblados. El corte se
-      // abre progresivamente hacia el contorno, con más vuelo en los laterales.
-      const distance = Math.hypot((shard.cx - 0.5) * 1.2, shard.cy - 0.47)
-      const edge = gsap.utils.clamp(0, 1, (distance - 0.23) / 0.25)
-      const touchesFace = [shard.a, shard.b, shard.c].some(
-        ([x, y]) => x > 0.35 && x < 0.65 && y > 0.2 && y < 0.78
-      )
-      const fringe = edge * edge * (touchesFace ? 0.02 : 1)
-      const energy = 0.16 * fringe + scatter * (0.035 + fringe * 0.48)
-      const reach = energy * (0.6 + shard.seed * 0.7)
-      let ox = shard.dx * reach * (1 + fringe * 0.9)
-      let oy = shard.dy * reach * 0.65
-      let rot = energy * (shard.seed - 0.5) * 1.8
-      let scale = 1 - energy * 0.3 * shard.seed
+      // Dispersión radial suave: el rostro central permanece unido y las piezas
+      // del contorno se separan de forma gradual sin cortes rectangulares.
+      const distance = Math.hypot((shard.cx - 0.5) * 1.15, shard.cy - 0.47)
+      const edge = gsap.utils.clamp(0, 1, (distance - 0.25) / 0.26)
+      const fringe = edge * edge * edge
+      const energy =
+        0.024 * fringe + scatter * (0.006 * edge + fringe * 0.25)
+      const reach = energy * (0.55 + shard.seed * 0.65)
+      let ox = shard.dx * reach * (1 + fringe * 0.6)
+      let oy = shard.dy * reach * 0.55
+      let rot = energy * (shard.seed - 0.5) * 0.95
+      let scale = 1 - energy * 0.18 * shard.seed
 
-      // Magnetismo: el fragmento se acerca al cursor y se eleva.
-      let lift = 0
-      if (state.magnet > 0.001) {
-        const vx = state.pointerX - shard.cx
-        const vy = state.pointerY - shard.cy
-        const dist = Math.hypot(vx, vy)
-        const falloff =
-          Math.exp(-((dist / radius) ** 2)) *
-          state.magnet *
-          (0.06 + fringe * 0.94)
-        const pull = Math.min(dist, 0.07) * falloff
-        if (dist > 0.0001) {
-          ox += (vx / dist) * pull
-          oy += (vy / dist) * pull
-        }
-        rot += falloff * (shard.seed - 0.5) * 0.35
-        scale += falloff * 0.06
-        lift = falloff
+      // Magnetismo continuo en todo el viewport, más intenso cerca del retrato.
+      const vx = state.pointerX - shard.cx
+      const vy = state.pointerY - shard.cy
+      const dist = Math.hypot(vx, vy)
+      const local = Math.exp(-((dist / 0.38) ** 2))
+      const field = 1 / (1 + (dist / 1.35) ** 2)
+      const falloff =
+        (0.38 * field + 0.62 * local) *
+        state.magnet *
+        (0.08 * edge + fringe * 0.82)
+      const pull = Math.min(dist, 0.055) * falloff
+      if (dist > 0.0001) {
+        ox += (vx / dist) * pull
+        oy += (vy / dist) * pull
       }
+      rot += falloff * (shard.seed - 0.5) * 0.22
+      scale += falloff * 0.035
+      const lift = falloff
 
-      // Respiración mínima solo mientras el retrato está activo.
-      const breathe = (lift + state.intro) * 0.004
+      // Respiración continua y sutil de los fragmentos periféricos.
+      const breathe = (0.35 + lift + state.intro * 0.65) * 0.0022 * (0.2 + fringe * 0.8)
       ox += Math.sin(t * 1.3 + shard.seed * 12) * breathe
       oy += Math.cos(t * 1.1 + shard.seed * 9) * breathe
 
-      const alpha = 1 - Math.min(1, energy * (0.35 + shard.seed * 0.75))
+      const alpha = 1 - Math.min(1, energy * (0.3 + shard.seed * 0.65))
       if (alpha <= 0.01) continue
 
       const cx = shard.cx * s
@@ -261,8 +251,8 @@ function mountPortrait(figure: HTMLElement): () => void {
       ctx.scale(scale, scale)
       ctx.translate(-cx, -cy)
 
-      // Clip apenas expandido para que no aparezcan juntas en reposo.
-      const grow = 0.6
+      // Clip apenas expandido para que no aparezcan juntas en el rostro central.
+      const grow = 0.75
       ctx.beginPath()
       for (const [i, [px, py]] of [shard.a, shard.b, shard.c].entries()) {
         const x = px * s
@@ -281,10 +271,10 @@ function mountPortrait(figure: HTMLElement): () => void {
       ctx.drawImage(image, 0, 0, s, s)
       ctx.restore()
 
-      const seam = Math.min(1, lift * 0.9 + energy * 1.6)
+      const seam = Math.min(1, (lift * 0.55 + energy * 1.35) * edge)
       if (seam > 0.02) {
-        ctx.lineWidth = 0.75
-        ctx.strokeStyle = `rgba(${THREAD_RGB}, ${0.55 * seam})`
+        ctx.lineWidth = 0.7
+        ctx.strokeStyle = `rgba(${THREAD_RGB}, ${0.42 * seam})`
         ctx.stroke()
       }
       ctx.restore()
@@ -344,7 +334,6 @@ function mountPortrait(figure: HTMLElement): () => void {
   visibility.observe(figure)
   window.addEventListener("pointermove", onPointer, { passive: true })
   window.addEventListener("resize", resize, { passive: true })
-  document.documentElement.addEventListener("pointerleave", onLeave)
 
   if (image.complete && image.naturalWidth > 0) ready()
   else image.addEventListener("load", ready, { once: true })
@@ -357,7 +346,6 @@ function mountPortrait(figure: HTMLElement): () => void {
     visibility.disconnect()
     window.removeEventListener("pointermove", onPointer)
     window.removeEventListener("resize", resize)
-    document.documentElement.removeEventListener("pointerleave", onLeave)
     image.removeEventListener("load", ready)
     delete figure.dataset.portraitReady
   }

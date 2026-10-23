@@ -4,7 +4,7 @@ export const HANDOFF_START = 0.86
 /** La entrada de la cancha tiene más recorrido; las demás escenas conservan
  * su ritmo. Hilo, cámara, paleta y captions comparten el mismo intervalo. */
 export function handoffStart(chapterId?: string | null): number {
-  return chapterId === "manifesto" ? 0.7 : HANDOFF_START
+  return chapterId === "manifesto" ? 0.58 : HANDOFF_START
 }
 
 export function ease(value: number): number {
@@ -17,7 +17,12 @@ export function ramp(p: number, start: number, end: number): number {
 }
 
 export function handoff(progress: number, chapterId?: string | null): number {
-  return ramp(progress, handoffStart(chapterId), 1)
+  const start = handoffStart(chapterId)
+  if (chapterId === "manifesto") {
+    const t = Math.max(0, Math.min(1, (progress - start) / (1 - start)))
+    return t * t * (3 - 2 * t)
+  }
+  return ramp(progress, start, 1)
 }
 
 /** Hold a readable beat, with a soft, reversible entrance and exit. */

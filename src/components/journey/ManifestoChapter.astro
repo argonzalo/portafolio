@@ -26,10 +26,12 @@ import { manifesto } from "@/lib/site"
     max-width: 51rem;
   }
   :global(#manifesto.manifesto-chapter) {
-    min-height: 100svh;
+    min-height: 210svh;
     justify-content: flex-start;
   }
   :global(#manifesto.manifesto-chapter > div) {
+    position: sticky;
+    top: clamp(2.5rem, 5.5svh, 3.75rem);
     padding-top: clamp(2rem, 5svh, 3rem);
   }
   .manifesto-phrases {
@@ -53,6 +55,9 @@ import { manifesto } from "@/lib/site"
   @media (prefers-reduced-motion: reduce) {
     :global(#manifesto.manifesto-chapter) {
       min-height: auto;
+    }
+    :global(#manifesto.manifesto-chapter > div) {
+      position: static;
     }
   }
 </style>
