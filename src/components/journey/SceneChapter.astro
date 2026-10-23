@@ -36,7 +36,7 @@ const scene = getSceneByChapter(id)
       style={{ height: `${scene.beats.length * 100}svh` }}
       class="relative"
     >
-      <div class="pointer-events-none sticky top-0 h-svh overflow-hidden">
+      <div class="pointer-events-none sticky top-0 h-svh overflow-hidden z-30 relative">
         <GreyboxCaption client:load chapterId={id} label={label} />
       </div>
     </section>

@@ -33,8 +33,6 @@ export const SCENE_TIERS = {
   "venta-duplex": 2,
   "arcor-demo": 3,
   forme: 3,
-  "agro-ia-tesis": 3,
-  teams: 3,
 }
 
 /**

@@ -26,7 +26,6 @@ import {
   Display,
   HudOverlay,
   Laptop,
-  TelemetryDeck,
   ThreadLine,
   beatEnvelope,
   interpolateCameraState,
@@ -37,8 +36,6 @@ import {
   type BeatCameraFrame,
   type DeviceLayer,
   type HudMarkerItem,
-  type KitBarDef,
-  type KitCounterDef,
   type KitTheme,
   type Vec3Tuple,
 } from "@/scenes/kit"
@@ -294,47 +291,6 @@ const HUD_MARKERS: readonly HudMarkerItem[] = [
     unit: "PRO LIVE",
     tone: "accent",
     range: [0.34, 0.4, 0.66, 0.72],
-  },
-]
-
-const TELEMETRY_COUNTERS: readonly KitCounterDef[] = [
-  {
-    id: "goals",
-    label: "Goles / Temporada",
-    from: 0,
-    to: 18,
-    decimals: 0,
-    suffix: " goles",
-    detail: "M. Rivas · 31 PJ",
-    tone: "primary",
-    range: [0.7, 0.86],
-  },
-  {
-    id: "teams",
-    label: "Clubes conectados",
-    from: 4,
-    to: 30,
-    decimals: 0,
-    detail: "Liga Profesional · API Pro",
-    tone: "accent",
-    range: [0.72, 0.88],
-  },
-]
-
-const TELEMETRY_BARS: readonly KitBarDef[] = [
-  {
-    id: "deal-progress",
-    label: "Trazabilidad de operación (Jugador → Orden → Cierre)",
-    value: 96,
-    displayValue: "Punta a punta",
-    tone: "primary",
-  },
-  {
-    id: "api-freshness",
-    label: "Datos vigentes vía API-Football",
-    value: 100,
-    displayValue: "Sync automático",
-    tone: "accent",
   },
 ]
 
@@ -665,21 +621,6 @@ export default function AgntScene(props: SceneProps) {
         theme={AGNT_THEME}
         markers={HUD_MARKERS}
         defaultSelectedId="market-value"
-      />
-
-      {/* Panel de métricas del mercado en Beat 3 */}
-      <TelemetryDeck
-        progress={progress}
-        isMobile={isMobile}
-        active={active}
-        theme={AGNT_THEME}
-        eyebrow="AGNT · MERCADO Y REPRESENTACIÓN"
-        heading="Cartera, órdenes y traspasos sobre datos vigentes"
-        summary="Representantes, jugadores y clubes en un mismo sistema sincronizado automáticamente con API-Football."
-        counters={TELEMETRY_COUNTERS}
-        bars={TELEMETRY_BARS}
-        range={[0.68, 0.74, 0.96, 1.0]}
-        placement="bottom-right"
       />
     </group>
   )

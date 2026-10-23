@@ -1,23 +1,5 @@
 ---
-import CaseBody from "@/components/project/CaseBody.astro"
-import CaseHero from "@/components/project/CaseHero.astro"
-import CaseMedia from "@/components/project/CaseMedia.astro"
-import CaseNarrative from "@/components/project/CaseNarrative.astro"
-import CaseNotes from "@/components/project/CaseNotes.astro"
-import CaseOrganization from "@/components/project/CaseOrganization.astro"
-import CaseParts from "@/components/project/CaseParts.astro"
-import CaseStack from "@/components/project/CaseStack.astro"
-import CaseToolbar from "@/components/project/CaseToolbar.astro"
-import ProjectLayout from "@/layouts/ProjectLayout.astro"
-import type { CollectionEntry } from "astro:content"
-import { getCollection, getEntry, render } from "astro:content"
-
-/**
- * Página de caso (T-A17).
- * Estructura: problema → enfoque → decisiones → desafíos → resultado → piezas → stack.
- * Cabecera visual: escena (`data-chapter`) o póster (media / letterform).
- * Fuente: Content Collections (`getCollection` / `render`), no la fachada síncrona.
- */
+import { getCollection } from "astro:content"
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects")
@@ -28,46 +10,7 @@ export async function getStaticPaths() {
   }))
 }
 
-type Props = {
-  project: CollectionEntry<"projects">
-}
-
 const { project } = Astro.props
-const data = project.data
-const { Content } = await render(project)
 
-const organization = data.organization
-  ? await getEntry("organizations", data.organization)
-  : undefined
-
-if (data.organization && !organization) {
-  throw new Error(
-    `[projects] El proyecto "${data.id}" referencia la organización ` +
-      `"${data.organization}", que no existe en src/content/organizations/.`
-  )
-}
+return Astro.redirect(`/?project=${project.data.id}`)
 ---
-
-<ProjectLayout title={data.title} description={data.oneLiner}>
-  <CaseToolbar slot="toolbar" project={data} />
-
-  <CaseHero project={data} />
-
-  <div class="mx-auto flex w-full max-w-[100rem] flex-col gap-12 px-5 py-10 sm:gap-14 sm:px-8 sm:py-14 lg:px-12">
-    <CaseNotes notes={data.notes} />
-
-    <CaseNarrative project={data} />
-
-    <CaseParts parts={data.parts} />
-
-    <CaseStack stack={data.stack} />
-
-    <CaseMedia media={data.media} title={data.title} />
-
-    {organization && <CaseOrganization organization={organization.data} />}
-
-    <CaseBody body={project.body}>
-      <Content />
-    </CaseBody>
-  </div>
-</ProjectLayout>

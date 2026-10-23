@@ -35,7 +35,7 @@
 .pirp-strategy{top:46%;left:70px;right:24px;width:auto;padding:18px}.pirp-strategy h3{font-size:20px;margin-bottom:12px}.pirp-strategy li{font-size:11px;line-height:1.6;min-height:54px;margin-bottom:8px}
 }
 @media(prefers-reduced-motion:reduce){.pirp-overlay *{scroll-behavior:auto!important}}
-.pirp-overlay{background:linear-gradient(180deg,#17181a00 7%,#17181ad9 20%,#17181a00 42%,#17181a00 85%,#17181ab0)}
+.pirp-overlay{background:linear-gradient(180deg,#17181a00 0%,#17181a00 80%,#17181ab0 100%)}
 .pirp-news-buttons button{background:#242425}.pirp-heading{text-shadow:0 2px 18px #17181a}
 @media(max-width:768px){.pirp-strategy{left:82px}}
 /* Revisión de arte: la estrategia se lee como una secuencia de decisiones. */

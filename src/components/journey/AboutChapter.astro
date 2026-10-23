@@ -1,7 +1,7 @@
 ---
 /**
- * Quién soy — contenido base; pulido narrativo en T-A34.
- * La experiencia laboral deja de ser sección propia (05 §2) y se resume aquí.
+ * Quién soy — Presentación personal definitiva.
+ * Enfoque en la resolución de problemas, curiosidad interdisciplinaria y facetas humanas.
  */
 import ChapterSection from "@/components/journey/ChapterSection.astro"
 import { buttonVariants } from "@/components/ui/button"
@@ -9,51 +9,63 @@ import { site } from "@/lib/site"
 ---
 
 <ChapterSection id="about" label="Quién soy" tall={false} class="bg-background/60">
-  <p
-    class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
-  >
-    Quién soy
-  </p>
-  <h2
-    class="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-balance sm:text-4xl"
-  >
-    Curiosidad aplicada a productos.
-  </h2>
-  <div
-    class="text-muted-foreground mt-8 flex max-w-3xl flex-col gap-4 text-base leading-relaxed"
-  >
-    <p>
-      Soy desarrollador, pero me cuesta definirme por una tecnología o un
-      lenguaje en particular. Me interesa más entender un problema, explorar
-      posibilidades y encontrar la mejor manera de resolverlo, incluso cuando
-      eso implica aprender algo completamente nuevo.
+  <div class="max-w-4xl">
+    <p
+      class="text-muted-foreground text-xs font-semibold tracking-wider uppercase"
+    >
+      Quién soy
     </p>
-    <p>
-      Disfruto especialmente de los proyectos que me permiten crear,
-      experimentar y cruzar distintas disciplinas. La misma curiosidad que
-      encuentro en la tecnología también está presente en otras partes de mi
-      vida: la música, donde participé en bandas y proyectos de producción
-      musical, y el deporte, especialmente el fútbol, el tenis y el pádel.
-    </p>
-    <p class="text-sm">
-      El recorrido laboral detallado deja de ser una sección protagonista: vive
-      en los casos y se ampliará aquí en T-A34.
-    </p>
+    <h2
+      class="mt-2 max-w-2xl text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl"
+    >
+      Curiosidad, criterio y foco en el problema real.
+    </h2>
+
+    <div
+      class="text-muted-foreground mt-8 flex flex-col gap-5 text-base leading-relaxed text-pretty sm:text-lg"
+    >
+      <p>
+        Diseño y construyo productos digitales donde la ingeniería, la inteligencia artificial
+        y la experiencia de usuario se encuentran. Más que definirme por una tecnología o un framework
+        en particular, me interesa entender la raíz de cada desafío: qué necesita el negocio, qué le duele al
+        usuario y cuál es la forma más clara y elegante de resolverlo.
+      </p>
+    </div>
+
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <a
+        href={site.instagram}
+        class={buttonVariants({
+          variant: "secondary",
+          size: "default",
+          className: "rounded-full border border-white/10 bg-white/5 hover:bg-white/15",
+        })}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span
+          class="icon-[tabler--brand-instagram] size-4 shrink-0 text-pink-400"
+          aria-hidden="true"
+        ></span>
+        Instagram
+      </a>
+
+      <a
+        href={site.linkedin}
+        class={buttonVariants({
+          variant: "secondary",
+          size: "default",
+          className: "rounded-full border border-white/10 bg-white/5 hover:bg-white/15",
+        })}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span
+          class="icon-[logos--linkedin-icon] size-4 shrink-0"
+          aria-hidden="true"
+        ></span>
+        LinkedIn
+      </a>
+    </div>
   </div>
-  <a
-    href={site.instagram}
-    class={buttonVariants({
-      variant: "secondary",
-      size: "lg",
-      className: "mt-8 w-fit",
-    })}
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <span
-      class="icon-[tabler--brand-instagram] size-5 shrink-0 bg-current"
-      aria-hidden="true"
-    ></span>
-    Instagram
-  </a>
 </ChapterSection>

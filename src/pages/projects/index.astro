@@ -1,11 +1,6 @@
 ---
-import ProjectsList from "@/components/journey/ProjectsList.astro"
-import BaseLayout from "@/layouts/BaseLayout.astro"
+/**
+ * Redirige al archivo / tercera línea en el recorrido de una sola página.
+ */
+return Astro.redirect("/#archive")
 ---
-
-<BaseLayout
-  title="Proyectos"
-  description="Todos los proyectos en formato lista: liviano, accesible y sin WebGL."
->
-  <ProjectsList />
-</BaseLayout>

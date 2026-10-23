@@ -24,8 +24,6 @@ export type ProjectId =
   | "venta-duplex"
   | "arcor-demo"
   | "forme"
-  | "agro-ia-tesis"
-  | "teams"
 
 /** Momento narrativo de una escena, en coordenadas de progreso del capítulo (0..1). */
 export type SceneBeat = {

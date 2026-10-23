@@ -59,13 +59,6 @@ export const journeyChapters: JourneyChapter[] = [
     kind: "scene",
   },
   {
-    id: "starbene",
-    label: "Starbene",
-    indexLabel: "Starbene",
-    group: "segunda",
-    kind: "vignette",
-  },
-  {
     id: "agnt",
     label: "AGNT",
     indexLabel: "AGNT",
@@ -73,16 +66,9 @@ export const journeyChapters: JourneyChapter[] = [
     kind: "vignette",
   },
   {
-    id: "cielo-y-mar",
-    label: "Cielo y Mar",
-    indexLabel: "Cielo y Mar",
-    group: "segunda",
-    kind: "vignette",
-  },
-  {
     id: "archive",
-    label: "Archivo",
-    indexLabel: "Archivo",
+    label: "Tercera línea",
+    indexLabel: "Tercera línea",
     group: "cierre",
     kind: "archive",
   },
@@ -95,8 +81,8 @@ export const journeyChapters: JourneyChapter[] = [
   },
   {
     id: "contact",
-    label: "Hablemos",
-    indexLabel: "Hablemos",
+    label: "Conversemos",
+    indexLabel: "Conversemos",
     group: "cierre",
     kind: "dom",
   },
@@ -109,7 +95,7 @@ export const journeyChapterGroups: {
   { id: "apertura", label: "Apertura" },
   { id: "primera", label: "Primera línea" },
   { id: "segunda", label: "Segunda línea" },
-  { id: "cierre", label: "Cierre" },
+  { id: "cierre", label: "Cierre y archivo" },
 ]
 
 export function chapterHref(id: string): string {

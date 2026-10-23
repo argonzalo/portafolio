@@ -1,8 +1,7 @@
 ---
 /**
  * Recorrido de la home (ADR-007 / T-A11).
- * Capítulos DOM con `data-chapter` para ScrollTrigger → store.
- * Copy del hero/manifiesto se pule en T-A12; escenas greybox en T-A14.
+ * Sitio de una sola página: las fichas de proyectos abren en dialog modal.
  */
 import AboutChapter from "@/components/journey/AboutChapter.astro"
 import ArchiveChapter from "@/components/journey/ArchiveChapter.astro"
@@ -10,7 +9,11 @@ import ContactChapter from "@/components/journey/ContactChapter.astro"
 import HeroChapter from "@/components/journey/HeroChapter.astro"
 import ManifestoChapter from "@/components/journey/ManifestoChapter.astro"
 import SceneChapter from "@/components/journey/SceneChapter.astro"
+import { ProjectDialog } from "@/components/dialogs/ProjectDialog"
 import BaseLayout from "@/layouts/BaseLayout.astro"
+import { getProjects } from "@/lib/projects"
+
+const allProjects = getProjects()
 ---
 
 <BaseLayout>
@@ -21,55 +24,39 @@ import BaseLayout from "@/layouts/BaseLayout.astro"
     id="vibo"
     label="Vibo"
     eyebrow="Primera línea · escena"
-    summary="Análisis de pádel con visión por computadora. Greybox e interacción en T-A14 / T-A20."
-    caseHref="/projects/vibo"
+    summary="Análisis de pádel con visión por computadora."
   />
   <SceneChapter
     id="pirp"
     label="Pirp"
     eyebrow="Primera línea · escena"
-    summary="Señal editorial en tiempo real. Greybox en T-A14; escena completa en T-A23."
-    caseHref="/projects/pirp"
+    summary="Señal editorial y lectura de reputación en tiempo real."
   />
   <SceneChapter
     id="naturalis"
     label="Naturalis"
     eyebrow="Primera línea · escena"
-    summary="Contraste deliberado: calma y tema claro. Greybox en T-A14; escena en T-A24."
-    caseHref="/projects/naturalis"
+    summary="Contraste deliberado: calma y diseño sereno."
   />
   <SceneChapter
     id="banner-2"
     label="Banner 2.0"
     eyebrow="Primera línea · escena"
-    summary="Escala en pantallas. App Etiquetas y Web Landing viven como satélites del mismo mundo (ADR-007) y como proyectos propios en la vista lista."
-    caseHref="/projects/banner-2"
-    note="Satélites: App Etiquetas · Web Landing — páginas de caso independientes."
+    summary="Escala en pantallas y comunicación comercial."
   />
 
-  <SceneChapter
-    id="starbene"
-    label="Starbene"
-    eyebrow="Segunda línea · viñeta"
-    summary="Viñeta con el kit de escena (T-A30)."
-    caseHref="/projects/starbene"
-  />
+  {/* Segunda línea: viñeta AGNT (Starbene y Cielo y Mar pasan a tercera línea) */}
   <SceneChapter
     id="agnt"
     label="AGNT"
     eyebrow="Segunda línea · viñeta"
-    summary="Viñeta con el kit de escena (T-A31)."
-    caseHref="/projects/agnt"
-  />
-  <SceneChapter
-    id="cielo-y-mar"
-    label="Cielo y Mar"
-    eyebrow="Segunda línea · viñeta"
-    summary="Viñeta con el kit de escena (T-A32)."
-    caseHref="/projects/cielo-y-mar"
+    summary="Pizarra táctica y gestión deportiva con inteligencia aplicada."
   />
 
   <ArchiveChapter />
   <AboutChapter />
   <ContactChapter />
+
+  {/* Modal de detalle de proyecto para el sitio de una sola página */}
+  <ProjectDialog client:load projects={allProjects} />
 </BaseLayout>

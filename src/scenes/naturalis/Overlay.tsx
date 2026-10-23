@@ -76,10 +76,8 @@ export function NaturalisOverlay({
       style={{ visibility: "hidden" }}
     >
       <div className="naturalis-copy">
-        <span className="naturalis-brand">naturalis</span>
         <h2 ref={title}>{copy[0][0]}</h2>
         <p ref={subtitle}>{copy[0][1]}</p>
-        <a href="/projects/naturalis">Ver caso completo</a>
       </div>
       <ol
         className="naturalis-tasks"
