@@ -11,6 +11,7 @@ for (const [name,width,height] of [['desktop',1440,900],['mobile',390,844]]) {
  await page.locator('[data-portrait-ready]').waitFor()
  await page.waitForTimeout(2200)
  await page.screenshot({path:`docs/plan/evidencias/T-A43/${name}-hero.png`})
+ const centeredPortrait=name!=='mobile'||await page.locator('[data-hero-portrait]').evaluate(el=>Math.abs(el.getBoundingClientRect().left+el.getBoundingClientRect().width/2-window.innerWidth/2)<2)
  const initial=await page.locator('[data-hero-portrait] canvas').evaluate(c=>c.toDataURL())
  const box=await page.locator('[data-hero-portrait]').boundingBox()
  if(name==='desktop') {await page.mouse.move(box.x+box.width*.62,box.y+box.height*.4);await page.waitForTimeout(600)}
@@ -20,10 +21,15 @@ for (const [name,width,height] of [['desktop',1440,900],['mobile',390,844]]) {
  const scrolled=await page.locator('[data-hero-portrait] canvas').evaluate(c=>c.toDataURL())
  await page.screenshot({path:`docs/plan/evidencias/T-A43/${name}-fragments.png`})
  for(let i=0;i<3;i++) {
-  await page.locator('#manifesto').evaluate((el,i)=>window.scrollTo(0,el.offsetTop-window.innerHeight*.65+(el.offsetHeight-window.innerHeight*.25)*((i+1)/3)),i)
+  await page.locator('#manifesto').evaluate((el,i)=>window.scrollTo(0,(el.getBoundingClientRect().top+window.scrollY)-window.innerHeight*.65+window.innerHeight*.55*((i+1)/3)),i)
   await page.waitForTimeout(700)
   await page.screenshot({path:`docs/plan/evidencias/T-A43/${name}-phrase-${i+1}.png`})
  }
+ await page.locator('#vibo').evaluate(el=>window.scrollTo(0,el.getBoundingClientRect().top+window.scrollY-window.innerHeight*.4))
+ await page.waitForTimeout(600)
+ const manifestoClearedBeforeVibo=await page.locator('.manifesto-copy').evaluate(el=>Number(getComputedStyle(el).opacity)<.01)
+ await page.screenshot({path:`docs/plan/evidencias/T-A43/${name}-handoff.png`})
+ const canvasSpansViewport=await page.locator('[data-hero-portrait] canvas').evaluate(el=>Math.abs(el.getBoundingClientRect().left)<2&&Math.abs(el.getBoundingClientRect().width-document.documentElement.clientWidth)<2)
  const session=await context.newCDPSession(page)
  if(name==='mobile') await session.send('Emulation.setCPUThrottlingRate',{rate:4})
  const frameTimes=await page.evaluate(async()=>{
@@ -51,7 +57,7 @@ for (const [name,width,height] of [['desktop',1440,900],['mobile',390,844]]) {
  await page.waitForURL('**/projects')
  await page.goBack()
  await page.locator('[data-portrait-ready]').waitFor()
- results.push({name,frameTiming,transparentReading,noOverflow,magnetism:name==='desktop'?initial!==magnetic:'touch uses scroll',scrollChangesPortrait:scrolled!==initial,reduced,unsplit,navigationRemount:true,removedViboLink:await page.getByText('Así toma forma en Vibo').count()===0,errors})
+ results.push({name,centeredPortrait,frameTiming,canvasSpansViewport,manifestoClearedBeforeVibo,transparentReading,noOverflow,magnetism:name==='desktop'?initial!==magnetic:'touch uses scroll',scrollChangesPortrait:scrolled!==initial,reduced,unsplit,navigationRemount:true,removedViboLink:await page.getByText('Así toma forma en Vibo').count()===0,errors})
  await context.close()
 }
 await writeFile('docs/plan/evidencias/T-A43/checks.json',JSON.stringify(results,null,2))

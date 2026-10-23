@@ -1,11 +1,14 @@
 [
   {
     "name": "desktop",
+    "centeredPortrait": true,
     "frameTiming": {
       "cpuRate": 1,
       "medianMs": 16.7,
       "p95Ms": 16.8
     },
+    "canvasSpansViewport": true,
+    "manifestoClearedBeforeVibo": true,
     "transparentReading": true,
     "noOverflow": true,
     "magnetism": true,
@@ -18,11 +21,14 @@
   },
   {
     "name": "mobile",
+    "centeredPortrait": true,
     "frameTiming": {
       "cpuRate": 4,
       "medianMs": 16.7,
       "p95Ms": 16.8
     },
+    "canvasSpansViewport": true,
+    "manifestoClearedBeforeVibo": true,
     "transparentReading": true,
     "noOverflow": true,
     "magnetism": "touch uses scroll",

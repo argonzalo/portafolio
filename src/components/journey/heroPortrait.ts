@@ -146,6 +146,9 @@ function mountPortrait(figure: HTMLElement): () => void {
   let shards: Shard[] = []
   let size = 0
   let dpr = 1
+  let canvasWidth = 0
+  let canvasHeight = 0
+  let originX = 0
   let visible = true
   let dirty = true
   let disposed = false
@@ -156,8 +159,17 @@ function mountPortrait(figure: HTMLElement): () => void {
     const rect = figure.getBoundingClientRect()
     size = Math.max(1, Math.round(rect.width))
     dpr = Math.min(window.devicePixelRatio || 1, 2)
-    canvas.width = Math.round(size * 1.5 * dpr)
-    canvas.height = Math.round(size * 1.5 * dpr)
+    // La superficie cubre todo el ancho visible, no una caja alrededor de la
+    // foto. Así los fragmentos laterales solo encuentran el borde de pantalla.
+    canvasWidth = document.documentElement.clientWidth
+    canvasHeight = size * 3
+    originX = rect.left
+    canvas.width = Math.round(canvasWidth * dpr)
+    canvas.height = Math.round(canvasHeight * dpr)
+    canvas.style.width = `${canvasWidth}px`
+    canvas.style.height = `${canvasHeight}px`
+    canvas.style.left = `${-originX}px`
+    canvas.style.top = `${-size}px`
     const coarse = window.matchMedia("(pointer: coarse)").matches
     shards = buildShards(image, coarse || size < 320 ? 5 : 7)
     dirty = true
@@ -187,8 +199,8 @@ function mountPortrait(figure: HTMLElement): () => void {
     const s = size
     const t = gsap.ticker.time - timeOrigin
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-    ctx.clearRect(0, 0, s * 1.5, s * 1.5)
-    ctx.translate(s * 0.25, s * 0.25)
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight)
+    ctx.translate(originX, s)
 
     // Las juntas siguen visibles en reposo: el retrato conserva su identidad
     // fragmentada antes de que el scroll o el cursor separen más las piezas.
@@ -331,6 +343,7 @@ function mountPortrait(figure: HTMLElement): () => void {
   )
   visibility.observe(figure)
   window.addEventListener("pointermove", onPointer, { passive: true })
+  window.addEventListener("resize", resize, { passive: true })
   document.documentElement.addEventListener("pointerleave", onLeave)
 
   if (image.complete && image.naturalWidth > 0) ready()
@@ -343,6 +356,7 @@ function mountPortrait(figure: HTMLElement): () => void {
     resizeObserver.disconnect()
     visibility.disconnect()
     window.removeEventListener("pointermove", onPointer)
+    window.removeEventListener("resize", resize)
     document.documentElement.removeEventListener("pointerleave", onLeave)
     image.removeEventListener("load", ready)
     delete figure.dataset.portraitReady

@@ -119,7 +119,7 @@
 
 | ID | Tarea y criterio de terminado | Depende de | Zona | Estado |
 | --- | --- | --- | --- | --- |
-| T-A43 | Retrato triangular con scroll y magnetismo, pulido de cabecera/chips, protección del texto frente al hilo y tres animaciones GSAP del manifiesto; quitar enlace a Vibo. Pedido humano 2026-10-23, registrado listo y tomado en esta sesión. | T-A12, T-A13 | `src/components/journey/{Hero*,heroPortrait.ts,Manifesto*,manifesto.ts}`, `src/experience/thread/runtime.ts` (recorrido espacial del hilo, ampliado por feedback humano), evidencia y tablero | en revisión (rama `t/A43-hero-retrato-manifiesto`; feedback aplicado: núcleo compacto, laterales dispersos, hilo visible sin fondos y timeline prolongada; evidencia `evidencias/T-A43/`) |
+| T-A43 | Retrato triangular con scroll y magnetismo, pulido de cabecera/chips, protección del texto frente al hilo y tres animaciones GSAP del manifiesto; quitar enlace a Vibo. Pedido humano 2026-10-23, registrado listo y tomado en esta sesión. | T-A12, T-A13 | `src/components/journey/{Hero*,heroPortrait.ts,Manifesto*,manifesto.ts}`, `src/experience/thread/runtime.ts` (recorrido espacial del hilo, ampliado por feedback humano), evidencia y tablero | en revisión (rama `t/A43-hero-retrato-manifiesto`; feedback aplicado: retrato móvil centrado, fragmentos sin recorte lateral, hilo visible sin fondos, frases unificadas y salida antes de Vibo; evidencia `evidencias/T-A43/`) |
 
 ## Bloqueos y preguntas
 
