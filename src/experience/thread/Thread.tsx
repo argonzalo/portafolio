@@ -35,7 +35,9 @@ export function Thread() {
     updateThread(runtime, chapterId, quality, reducedMotion, extent, delta)
     // Pirp cede el foco a las noticias agrupadas; el reloj sigue siendo continuo.
     const p = chapterId ? experienceStore.progress(chapterId).current : 0
-    const visible = chapterId !== "pirp" || p < 0.38 || p > 0.62
+    const grouping = p >= 0.38 && p <= 0.62
+    const mobilePhone = size.width <= 768 && p >= 0.58 && p < 0.96
+    const visible = chapterId !== "pirp" || !(grouping || mobilePhone)
     if (root.current) root.current.visible = visible
     threadTip.visible = threadTip.visible && visible
   }, -1)

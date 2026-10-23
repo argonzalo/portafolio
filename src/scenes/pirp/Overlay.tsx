@@ -30,16 +30,9 @@ const sentiment: Record<string, string> = {
 export function PirpOverlay({
   progress,
   active,
+  isMobile,
   presentation,
-  screenIndex,
-  onScreenChange,
-  controlsAnchor,
-}: SceneProps & {
-  presentation: RefObject<Presentation> | null
-  screenIndex: number
-  onScreenChange: (index: number) => void
-  controlsAnchor: RefObject<{ x: number; y: number }>
-}) {
+}: SceneProps & { presentation: RefObject<Presentation> | null }) {
   const root = useRef<HTMLDivElement>(null)
   const title = useRef<HTMLHeadingElement>(null)
   const subtitle = useRef<HTMLParagraphElement>(null)
@@ -51,12 +44,7 @@ export function PirpOverlay({
   const score = useRef<HTMLElement>(null)
   const alert = useRef<HTMLDivElement>(null)
   const actions = useRef<(HTMLParagraphElement | null)[]>([])
-  const phoneControls = useRef<HTMLElement>(null)
   const [selected, setSelected] = useState<number | null>(null)
-  const [capture, setCapture] = useState<number | null>(null)
-  const opener = useRef<HTMLButtonElement>(null)
-  const close = useRef<HTMLButtonElement>(null)
-
   useEffect(() => {
     let frame = 0
     let previousBeat = -1
@@ -78,19 +66,22 @@ export function PirpOverlay({
       }
       visibility(feed.current, envelope(p, 0.2, 0.4, 0.025))
       visibility(graph.current, envelope(p, 0.4, 0.6, 0.025))
-      visibility(dashboard.current, envelope(p, 0.6, 0.8, 0.025))
+      visibility(
+        dashboard.current,
+        isMobile
+          ? ramp(p, 0.695, 0.735) * (1 - ramp(p, 0.76, 0.795))
+          : envelope(p, 0.6, 0.8, 0.025)
+      )
       visibility(result.current, envelope(p, 0.8, 1.1, 0.025))
-      visibility(phoneControls.current, envelope(p, 0.6, 1.02, 0.035))
-      if (phoneControls.current) {
-        const { x, y } = controlsAnchor.current
-        phoneControls.current.style.transform = `translate3d(${x}px,${y}px,0) translateX(-50%)`
-      }
-      const change = ramp(p, 0.61, 0.72)
+      const change = isMobile ? ramp(p, 0.695, 0.75) : ramp(p, 0.61, 0.72)
       if (trace.current)
         trace.current.style.strokeDashoffset = String(1 - change)
       if (score.current)
         score.current.textContent = `−${Math.round(change * 42)}%`
-      visibility(alert.current, ramp(p, 0.66, 0.7))
+      visibility(
+        alert.current,
+        isMobile ? ramp(p, 0.73, 0.755) : ramp(p, 0.66, 0.7)
+      )
       data.sceneBeats.beat5_strategy.actions.forEach((text, i) => {
         const node = actions.current[i]
         if (!node) return
@@ -103,40 +94,7 @@ export function PirpOverlay({
     }
     frame = requestAnimationFrame(update)
     return () => cancelAnimationFrame(frame)
-  }, [progress, active, presentation, controlsAnchor])
-
-  useEffect(() => {
-    if (capture === null) return
-    const overflow = document.body.style.overflow
-    document.body.style.overflow = "hidden"
-    close.current?.focus()
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setCapture(null)
-        opener.current?.focus()
-      }
-      if (event.key === "Tab") {
-        const buttons = root.current?.querySelectorAll<HTMLButtonElement>(
-          "[data-pirp-dialog] button"
-        )
-        if (!buttons?.length) return
-        const first = buttons[0],
-          last = buttons[buttons.length - 1]
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault()
-          last.focus()
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault()
-          first.focus()
-        }
-      }
-    }
-    document.addEventListener("keydown", onKey)
-    return () => {
-      document.removeEventListener("keydown", onKey)
-      document.body.style.overflow = overflow
-    }
-  }, [capture])
+  }, [progress, active, isMobile, presentation])
 
   const item = selected === null ? null : data.headlines[selected]
   return createPortal(
@@ -268,85 +226,6 @@ export function PirpOverlay({
           ))}
         </ol>
       </section>
-      <nav
-        className="pirp-phone-controls"
-        ref={phoneControls}
-        aria-label="Capturas del teléfono"
-      >
-        {[0, 1].map((index) => (
-          <button
-            key={index}
-            type="button"
-            aria-label={`Mostrar captura ${index + 1}`}
-            aria-pressed={screenIndex === index}
-            onClick={() => {
-              onScreenChange(index)
-              emitInteract(`pirp:screen:${index}`)
-            }}
-          >
-            {index + 1}
-          </button>
-        ))}
-        <button
-          ref={opener}
-          type="button"
-          aria-label="Ampliar captura actual"
-          onClick={() => {
-            setCapture(screenIndex)
-            emitInteract("pirp:capture:open")
-          }}
-        >
-          <span aria-hidden="true">↗</span>
-        </button>
-      </nav>
-      {capture !== null && active && (
-        <div
-          className="pirp-lightbox"
-          data-pirp-dialog
-          role="dialog"
-          aria-modal="true"
-          aria-label="Capturas reales de Pirp"
-          onClick={(event) => {
-            if (event.target === event.currentTarget) {
-              setCapture(null)
-              opener.current?.focus()
-            }
-          }}
-        >
-          <div>
-            <button
-              ref={close}
-              type="button"
-              onClick={() => {
-                setCapture(null)
-                opener.current?.focus()
-              }}
-            >
-              Cerrar capturas
-            </button>
-            <img
-              src={`/images/proyects/varios/pirp/${capture + 1}.webp`}
-              alt={`Interfaz real de Pirp, captura ${capture + 1} de 2`}
-            />
-            <nav aria-label="Galería de capturas">
-              <button
-                type="button"
-                onClick={() => setCapture((capture + 1) % 2)}
-              >
-                Anterior
-              </button>
-              <span>{capture + 1} / 2</span>
-              <button
-                type="button"
-                onClick={() => setCapture((capture + 1) % 2)}
-              >
-                Siguiente
-              </button>
-            </nav>
-            <p>Interfaz real. La escena usa datos ficticios.</p>
-          </div>
-        </div>
-      )}
     </div>,
     document.body
   )

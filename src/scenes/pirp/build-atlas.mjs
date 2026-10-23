@@ -48,9 +48,8 @@ try {
   }, { data, font: font.toString('base64') })
   await writeFile('public/textures/pirp/headlines.webp', await sharp(Buffer.from(png, 'base64')).webp({ quality: 88 }).toBuffer())
   await sharp('public/images/proyects/varios/pirp/1.webp').resize({ height: 1024 }).webp({ quality: 82 }).toFile('public/textures/pirp/screen.webp')
-  await sharp('public/images/proyects/varios/pirp/2.webp').resize({ height: 1024 }).webp({ quality: 82 }).toFile('public/textures/pirp/screen-2.webp')
   const dimensions = []
-  for (const file of ['screen.webp', 'screen-2.webp']) {
+  for (const file of ['screen.webp']) {
     const { width, height } = await sharp(`public/textures/pirp/${file}`).metadata()
     dimensions.push({ width, height })
   }

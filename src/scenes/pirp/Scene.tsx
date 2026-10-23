@@ -1,4 +1,4 @@
-import { useContext, useMemo, useRef, useState } from "react"
+import { useContext, useMemo, useRef } from "react"
 import { useFrame } from "@react-three/fiber"
 import {
   Group,
@@ -6,7 +6,6 @@ import {
   InstancedMesh,
   Object3D,
   ShaderMaterial,
-  Vector3,
   DoubleSide,
 } from "three"
 import type { SceneProps } from "@/experience/types"
@@ -17,7 +16,6 @@ import { KitHtml } from "../kit/KitHtml"
 import { useScreenTexture } from "../kit/devices/screenTexture"
 
 import { Phone } from "../kit/devices/Phone"
-import { PHONE_SCREEN, PHONE_SPEC } from "../kit/devices/specs"
 import { useDisposable } from "../kit/devices/hooks"
 import { createRoundedPlaneGeometry } from "../kit/devices/geometry"
 import { ThreadLine } from "../kit/ThreadLine"
@@ -52,13 +50,8 @@ export default function PirpScene(props: SceneProps) {
   const presentation = useContext(PresentationContext)
   useGreyboxRig(props, pirp.palette.background, cameras)
   const stream = useRef<InstancedMesh>(null)
-  const [screenIndex, setScreenIndex] = useState(0)
-  const captureSize = captureDimensions[screenIndex]
+  const captureSize = captureDimensions[0]
   const screenAspect = captureSize.width / captureSize.height
-  const phoneHeight =
-    PHONE_SCREEN.width / screenAspect + PHONE_SPEC.height - PHONE_SCREEN.height
-  const controlsAnchor = useRef({ x: 0, y: 0 })
-  const projected = useRef(new Vector3())
   const phone = useRef<Group>(null)
   const signal = useRef<Group>(null)
   const count =
@@ -104,27 +97,24 @@ export default function PirpScene(props: SceneProps) {
     )
   )
 
-  useFrame(({ camera, size }) => {
+  useFrame(() => {
     const p = props.progress.current
     reveal(signal.current, 1 - ramp(p, 0.15, 0.26))
 
     reveal(phone.current, envelope(p, 0.59, 1.02, 0.07))
     if (phone.current) {
+      const turn = ramp(p, 0.59, 0.9)
       phone.current.position.set(
-        props.isMobile ? -1.55 : -2.55,
-        props.isMobile ? -0.55 : -0.2,
+        props.isMobile ? -0.12 + turn * 0.22 : -2.55,
+        props.isMobile ? -0.28 - turn * 0.1 : -0.2,
         0
       )
-      phone.current.rotation.y = -0.22 + ramp(p, 0.6, 0.85) * 0.16
-      phone.current.scale.setScalar(props.isMobile ? 0.85 : 2.15)
-    }
-    if (phone.current) {
-      projected.current.set(0, -phoneHeight / 2 - 0.18, 0)
-      phone.current.localToWorld(projected.current)
-      projected.current.project(camera)
-      controlsAnchor.current.x = (projected.current.x * 0.5 + 0.5) * size.width
-      controlsAnchor.current.y =
-        (-projected.current.y * 0.5 + 0.5) * size.height
+      phone.current.rotation.y = props.isMobile
+        ? -0.3 + turn * 0.47
+        : -0.22 + ramp(p, 0.6, 0.85) * 0.16
+      phone.current.rotation.x = props.isMobile ? 0.09 - turn * 0.15 : 0
+      phone.current.rotation.z = props.isMobile ? 0.025 - turn * 0.045 : 0
+      phone.current.scale.setScalar(props.isMobile ? 3.7 + turn * 0.15 : 2.15)
     }
     if (!stream.current) return
     reveal(stream.current, envelope(p, 0.12, 0.63, 0.05))
@@ -143,7 +133,7 @@ export default function PirpScene(props: SceneProps) {
         x * (1 - organize) + (target[0] + Math.cos(ring) * radius) * organize,
         y * (1 - organize) +
           (target[1] + Math.sin(ring) * radius * 0.6) * organize,
-        -1.5 - (i % 5) * 0.22 + organize * 0.6
+        -1.1 - i * 0.018
       )
       dummy.rotation.set(
         0,
@@ -188,23 +178,14 @@ export default function PirpScene(props: SceneProps) {
           quality={props.quality}
           back={false}
           screen={{
-            src:
-              screenIndex === 0
-                ? "/textures/pirp/screen.webp"
-                : "/textures/pirp/screen-2.webp",
+            src: "/textures/pirp/screen.webp",
             glare: false,
             fit: "cover",
           }}
         />
       </group>
       <KitHtml>
-        <PirpOverlay
-          {...props}
-          presentation={presentation}
-          screenIndex={screenIndex}
-          onScreenChange={setScreenIndex}
-          controlsAnchor={controlsAnchor}
-        />
+        <PirpOverlay {...props} presentation={presentation} />
       </KitHtml>
     </group>
   )

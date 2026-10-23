@@ -1,38 +1,31 @@
 # T-A23 — Pirp
 
-Dirección: sala editorial oscura, Poppins, papel crema y bordó de marca. El gesto principal es el torrente que converge en cuatro grupos; el resto acompaña esa lectura. Cámaras propias desktop/vertical y coreografía determinada por progreso absoluto, reversible. No hay simulación física ni distribución de grafos en tiempo de ejecución.
+Escena editorial oscura, Poppins, crema y bordó. El scroll convierte noticias ficticias en cuatro temas, una alerta y una estrategia. Todo el movimiento depende del progreso absoluto y es reversible.
 
-## Implementación
-
-- `dataset.json`: copia publicable del insumo aprobado en T-H10. Titulares, medios, cifras y estrategia son ficticios; se indica en pantalla durante los cinco beats.
-- `Scene.tsx`: atlas editorial en un único `InstancedMesh` (96/60/36 tarjetas high/medium/low, 36 en mobile), grupos de temas con layout curado, iluminación key/fill/rim, teléfono del kit con captura propia optimizada.
-- `Overlay.tsx`: DOM accesible, seis noticias seleccionables, detalle de tema/sentimiento, termómetro con tendencia y alerta, estrategia escrita por scroll. La capa vive en `document.body` mediante el puente del kit para mantener controles accesibles fuera del canvas `aria-hidden` y del contenedor con z-index negativo. No modifica el contrato ni Stage.
-- Galería de las dos capturas existentes con anterior/siguiente, Escape, contención y devolución de foco. Este acceso es local a Pirp; T-A42 conserva la pieza compartida para el recorrido completo.
-- La curva saliente ya convergía al tallo inicial de Naturalis. Se conserva ese extremo exacto y el handoff central a partir de 0.86.
-- Las texturas se cargan con la caché por referencias del kit y se liberan a los dos segundos del desmontaje. Geometría y material propios usan `useDisposable`.
+- Atlas Poppins 1024×1024 en un `InstancedMesh`: 96/60/36 tarjetas high/medium/low; 36 en mobile. Cada instancia tiene una profundidad única para evitar z-fighting al agruparse.
+- Dataset aprobado en T-H10, marcado como demo ficticia. Seis noticias se pueden clasificar en DOM por tap o teclado.
+- Teléfono del kit con captura propia optimizada. `screenAspect` ajusta la geometría a la imagen, sin estirar marcos ni recortar UI. Sin paginación ni galería en la escena por decisión humana; las capturas completas están en el detalle del proyecto.
+- Mobile: teléfono de fondo con escala moderada (3.7–3.85), inclinación en tres ejes y pequeño desplazamiento por scroll. Tarjetas anchas superpuestas: termómetro oscuro con transparencia y blur; estrategia en vidrio claro.
+- La tarjeta del termómetro mobile permanece oculta hasta 0.695; aparece entre 0.695–0.735 y desaparece entre 0.76–0.795. El teléfono queda despejado antes de la tarjeta. Tendencia y alerta acompañan esa ventana.
+- El hilo cede el foco al agrupamiento (0.38–0.62); en mobile también se oculta con el teléfono (0.58–0.96). El reloj continúa y se conserva el extremo que enlaza con Naturalis.
+- DOM fuera del canvas `aria-hidden` mediante `KitHtml` + portal. Sin cambios a contratos ni dependencias nuevas.
+- Texturas por caché de referencias del kit y recursos propios con `useDisposable`. Se corrigió la liberación PMREM compartida: se destruye el render target completo.
 
 ## Reproducir
 
-Desde la raíz, con dependencias instaladas y Chrome disponible:
+Con dependencias instaladas y Chrome disponible, desde la raíz:
 
 ```sh
 node src/scenes/pirp/build-atlas.mjs
 npm run dev
 node src/scenes/pirp/verify.mjs
+node src/scenes/pirp/verify-revision.mjs
+node src/scenes/pirp/verify-resources.mjs
 npm run check
 ```
 
-El generador usa Poppins local de `@fontsource/poppins`, crea el atlas de 1024×1024 y reduce la captura a 1024 px de alto. Salidas: `public/textures/pirp/`. No descarga fuentes ni invoca servicios externos. La verificación automatiza cinco beats, tres niveles, dos viewports (mobile CPU ×4), clasificación, galería, salida/entrada y movimiento reducido; escribe evidencia en `docs/plan/evidencias/T-A23/`.
+Contra el build servido con `node scripts/serve-preview.mjs --port 4173`: `node src/scenes/pirp/verify-production.mjs` y `node src/scenes/pirp/capture-posters.mjs`.
 
-Recursos: atlas 65.012 bytes + captura 38.782 bytes = **101,36 KiB** por nivel. Las capturas completas de la galería se cargan solo al abrirla. Son derivados de material ya registrado en `docs/plan/licencias.md`; no se incorporan assets de terceros nuevos.
+Descargas de escena: atlas 65.012 bytes + captura 38.782 bytes = **101,36 KiB** en todos los niveles. Resolución máxima 1024. Fuentes propias ya registradas en `docs/plan/licencias.md`; sin assets de terceros nuevos. Desvío explícito para revisión: WebP en lugar de KTX2.
 
-Desvío para revisión: atlas y captura son WebP, no KTX2. Total de texturas de escena: ~5,8 MiB en GPU con mipmaps; resolución máxima 1024. La aprobación de arte y la prueba en dispositivos reales siguen a cargo del humano.
-
-Corrección compartida autorizada por el humano: liberar el render target completo del entorno PMREM del kit. Tres ciclos vuelven a 2 geometrías y 1 textura (hilo persistente). Ver docs/plan/evidencias/T-A23/resources.json.
-
-Smoke del build: iniciar 
-ode scripts/serve-preview.mjs --port 4173 y ejecutar 
-ode src/scenes/pirp/verify-production.mjs. Pósters sin navegación global: 
-ode src/scenes/pirp/capture-posters.mjs.
-
-Revisión humana: grupos sin anillos ni aristas y el hilo oculto durante su lectura; teléfono desktop +13 %, paginación de capturas y ampliación bajo el modelo; estrategia como lista numerada con títulos y separadores. El kit `Phone` acepta `screenAspect`: se ajustan la altura física y los anclajes sin estirar esquinas ni recortar la captura. Los tamaños de imagen se generan en `capture-dimensions.json`. La segunda captura agrega 28,48 KiB bajo demanda (129,85 KiB incluyendo atlas + ambas capturas).
+Evidencia y límites de emulación: `docs/plan/evidencias/T-A23/README.md`. La aprobación de arte final y el dispositivo real siguen a cargo del humano.

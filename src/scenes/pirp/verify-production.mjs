@@ -14,9 +14,8 @@ await page.waitForTimeout(1300)
 await page.locator('[data-debug-overlay]').evaluate(el=>el.style.display='none')
 await page.screenshot({path:`docs/plan/evidencias/T-A23/${mobile?'mobile':'desktop'}-${p}.webp`})
 if(p===.32){for(let i=0;i<6;i++){await page.locator('.pirp-news-buttons button').nth(i).click();await page.locator('.pirp-classified').waitFor()}}
-if(p===.85){await page.getByRole('button',{name:'Mostrar captura 2',exact:true}).click();await page.getByRole('button',{name:'Ampliar captura actual'}).click();await page.getByRole('dialog').waitFor();await page.getByRole('button',{name:'Siguiente',exact:true}).click();await page.screenshot({path:`docs/plan/evidencias/T-A23/${mobile?'mobile':'desktop'}-gallery.webp`});await page.keyboard.press('Escape')}
 }
-report.checks.push(`${mobile?'mobile':'desktop'}: build, cinco beats, seis tarjetas, galería y Escape`)
+report.checks.push(`${mobile?'mobile':'desktop'}: build, cinco beats, seis tarjetas y sin controles del teléfono`)
 await page.close()
 }
 }finally{await writeFile('docs/plan/evidencias/T-A23/production.json',JSON.stringify(report,null,2));await browser.close()}
