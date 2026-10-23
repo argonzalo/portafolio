@@ -1,0 +1,218 @@
+[
+  {
+    "clip": "bebidas-cafe-sirviendo-taza",
+    "width": 480,
+    "height": 252,
+    "rows": [
+      {
+        "time": 0.3,
+        "top": 0,
+        "bottom": 252
+      },
+      {
+        "time": 1.5,
+        "top": 0,
+        "bottom": 252
+      },
+      {
+        "time": 3,
+        "top": 0,
+        "bottom": 252
+      },
+      {
+        "time": 4.5,
+        "top": 0,
+        "bottom": 252
+      }
+    ]
+  },
+  {
+    "clip": "comida-hamburguesa-cebolla",
+    "width": 480,
+    "height": 252,
+    "rows": [
+      {
+        "time": 0.3,
+        "top": 27,
+        "bottom": 226
+      },
+      {
+        "time": 1.5,
+        "top": 27,
+        "bottom": 226
+      },
+      {
+        "time": 3,
+        "top": 27,
+        "bottom": 226
+      },
+      {
+        "time": 4.5,
+        "top": 26,
+        "bottom": 226
+      }
+    ]
+  },
+  {
+    "clip": "comida-pizza-caja",
+    "width": 480,
+    "height": 270,
+    "rows": [
+      {
+        "time": 0.3,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 1.5,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 3,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 4.5,
+        "top": 0,
+        "bottom": 270
+      }
+    ]
+  },
+  {
+    "clip": "cosmetica-crema-skincare",
+    "width": 480,
+    "height": 270,
+    "rows": [
+      {
+        "time": 0.3,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 1.5,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 3,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 4.5,
+        "top": 0,
+        "bottom": 270
+      }
+    ]
+  },
+  {
+    "clip": "deportes-futbol-playa",
+    "width": 480,
+    "height": 270,
+    "rows": [
+      {
+        "time": 0.3,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 1.5,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 3,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 4.5,
+        "top": 0,
+        "bottom": 270
+      }
+    ]
+  },
+  {
+    "clip": "deportes-surfistas-playa",
+    "width": 480,
+    "height": 270,
+    "rows": [
+      {
+        "time": 0.3,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 1.5,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 3,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 4.5,
+        "top": 0,
+        "bottom": 270
+      }
+    ]
+  },
+  {
+    "clip": "promo-black-friday-grafica",
+    "width": 480,
+    "height": 270,
+    "rows": [
+      {
+        "time": 0.3,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 1.5,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 3,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 4.5,
+        "top": 0,
+        "bottom": 270
+      }
+    ]
+  },
+  {
+    "clip": "perfumeria-perfume-spray",
+    "width": 480,
+    "height": 270,
+    "rows": [
+      {
+        "time": 0.3,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 1.5,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 3,
+        "top": 0,
+        "bottom": 270
+      },
+      {
+        "time": 4.5,
+        "top": 0,
+        "bottom": 270
+      }
+    ]
+  }
+]

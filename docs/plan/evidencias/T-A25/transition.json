@@ -1,0 +1,322 @@
+[
+  {
+    "view": "desktop",
+    "p": 0.86,
+    "layers": [
+      {
+        "alpha": 1,
+        "visible": true
+      },
+      {
+        "alpha": 0,
+        "visible": false
+      }
+    ],
+    "background": "fafdfc",
+    "camera": [
+      5.3,
+      3,
+      10
+    ]
+  },
+  {
+    "view": "desktop",
+    "p": 0.9,
+    "layers": [
+      {
+        "alpha": 0.8349808048114232,
+        "visible": true
+      },
+      {
+        "alpha": 0,
+        "visible": false
+      }
+    ],
+    "background": "cacccb",
+    "camera": [
+      4.619902421610042,
+      2.667186291426191,
+      10.434104837270185
+    ]
+  },
+  {
+    "view": "desktop",
+    "p": 0.92,
+    "layers": [
+      {
+        "alpha": 0.08695927151584959,
+        "visible": true
+      },
+      {
+        "alpha": 0,
+        "visible": false
+      }
+    ],
+    "background": "808281",
+    "camera": [
+      3.570952579282439,
+      2.153870411138215,
+      11.103647289819719
+    ]
+  },
+  {
+    "view": "desktop",
+    "p": 0.93,
+    "layers": [
+      {
+        "alpha": 0,
+        "visible": false
+      },
+      {
+        "alpha": 0,
+        "visible": false
+      }
+    ],
+    "background": "535453",
+    "camera": [
+      2.9499999999999957,
+      1.849999999999998,
+      11.500000000000004
+    ]
+  },
+  {
+    "view": "desktop",
+    "p": 0.94,
+    "layers": [
+      {
+        "alpha": 0,
+        "visible": false
+      },
+      {
+        "alpha": 0.044708230318090625,
+        "visible": true
+      }
+    ],
+    "background": "282727",
+    "camera": [
+      2.331082301831802,
+      1.547125381747478,
+      11.895053849894595
+    ]
+  },
+  {
+    "view": "desktop",
+    "p": 0.95,
+    "layers": [
+      {
+        "alpha": 0,
+        "visible": false
+      },
+      {
+        "alpha": 0.41152050932016476,
+        "visible": true
+      }
+    ],
+    "background": "151211",
+    "camera": [
+      1.7579066757898505,
+      1.2666351817695016,
+      12.260910632474562
+    ]
+  },
+  {
+    "view": "desktop",
+    "p": 0.97,
+    "layers": [
+      {
+        "alpha": 0,
+        "visible": false
+      },
+      {
+        "alpha": 0.9711902916846017,
+        "visible": true
+      }
+    ],
+    "background": "151211",
+    "camera": [
+      0.9265558993276608,
+      0.859803950734813,
+      12.79156006425894
+    ]
+  },
+  {
+    "view": "desktop",
+    "p": 0.999,
+    "layers": [
+      {
+        "alpha": 0,
+        "visible": false
+      },
+      {
+        "alpha": 0.9999999999999968,
+        "visible": true
+      }
+    ],
+    "background": "151211",
+    "camera": [
+      0.6000134656009806,
+      0.7000065895494165,
+      12.999991404935544
+    ]
+  },
+  {
+    "view": "mobile",
+    "p": 0.86,
+    "layers": [
+      {
+        "alpha": 1,
+        "visible": true
+      },
+      {
+        "alpha": 0,
+        "visible": false
+      }
+    ],
+    "background": "fafdfc",
+    "camera": [
+      2.800000000259777,
+      3.4999999994544684,
+      11.99999999799972
+    ]
+  },
+  {
+    "view": "mobile",
+    "p": 0.9,
+    "layers": [
+      {
+        "alpha": 0.8349808048114232,
+        "visible": true
+      },
+      {
+        "alpha": 0,
+        "visible": false
+      }
+    ],
+    "background": "cacccb",
+    "camera": [
+      2.394835485214493,
+      3.0876004045933234,
+      11.891473790682454
+    ]
+  },
+  {
+    "view": "mobile",
+    "p": 0.92,
+    "layers": [
+      {
+        "alpha": 0.0894167194015969,
+        "visible": true
+      },
+      {
+        "alpha": 0,
+        "visible": false
+      }
+    ],
+    "background": "818281",
+    "camera": [
+      1.7733387460393557,
+      2.455005509361487,
+      11.72500144983197
+    ]
+  },
+  {
+    "view": "mobile",
+    "p": 0.93,
+    "layers": [
+      {
+        "alpha": 0,
+        "visible": false
+      },
+      {
+        "alpha": 0,
+        "visible": false
+      }
+    ],
+    "background": "545554",
+    "camera": [
+      1.4053317388902526,
+      2.080426948513293,
+      11.626428144345603
+    ]
+  },
+  {
+    "view": "mobile",
+    "p": 0.94,
+    "layers": [
+      {
+        "alpha": 0,
+        "visible": false
+      },
+      {
+        "alpha": 0.046256718288593617,
+        "visible": true
+      }
+    ],
+    "background": "282726",
+    "camera": [
+      1.028365690587805,
+      1.6967293636340157,
+      11.525455095693163
+    ]
+  },
+  {
+    "view": "mobile",
+    "p": 0.95,
+    "layers": [
+      {
+        "alpha": 0,
+        "visible": false
+      },
+      {
+        "alpha": 0.41152050932016476,
+        "visible": true
+      }
+    ],
+    "background": "151211",
+    "camera": [
+      0.6898167430237407,
+      1.3521348991491648,
+      11.43477234188136
+    ]
+  },
+  {
+    "view": "mobile",
+    "p": 0.97,
+    "layers": [
+      {
+        "alpha": 0,
+        "visible": false
+      },
+      {
+        "alpha": 0.9705300119542918,
+        "visible": true
+      }
+    ],
+    "background": "151211",
+    "camera": [
+      0.19615982821094313,
+      0.8496626822861386,
+      11.302542811127932
+    ]
+  },
+  {
+    "view": "mobile",
+    "p": 0.999,
+    "layers": [
+      {
+        "alpha": 0,
+        "visible": false
+      },
+      {
+        "alpha": 0.9999999999999954,
+        "visible": true
+      }
+    ],
+    "background": "151211",
+    "camera": [
+      0.000008601921794859635,
+      0.6500087555275411,
+      11.250002304086195
+    ]
+  }
+]

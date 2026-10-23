@@ -1,0 +1,582 @@
+{
+  "samples": [
+    {
+      "view": "desktop",
+      "p": 0.12,
+      "sectionVh": 100,
+      "frames": {
+        "fps": 60.22886970487857,
+        "p95": 16.799999999999272
+      },
+      "videos": [
+        {
+          "src": "bebidas-cafe-sirviendo-taza.mp4",
+          "paused": false,
+          "time": 3.23426
+        },
+        {
+          "src": "comida-hamburguesa-cebolla.mp4",
+          "paused": false,
+          "time": 0.848165
+        },
+        {
+          "src": "comida-pizza-caja.mp4",
+          "paused": false,
+          "time": 0.847928
+        },
+        {
+          "src": "cosmetica-crema-skincare.mp4",
+          "paused": false,
+          "time": 0.848092
+        },
+        {
+          "src": "deportes-futbol-playa.mp4",
+          "paused": true,
+          "time": 3.705064
+        },
+        {
+          "src": "deportes-surfistas-playa.mp4",
+          "paused": true,
+          "time": 3.622569
+        },
+        {
+          "src": "promo-black-friday-grafica.mp4",
+          "paused": true,
+          "time": 0
+        },
+        {
+          "src": "perfumeria-perfume-spray.mp4",
+          "paused": true,
+          "time": 0
+        }
+      ],
+      "caption": "Controlá lo que se ve. En todas partes.Un solo lugar para coordinar todas tus pantallas."
+    },
+    {
+      "view": "desktop",
+      "p": 0.3,
+      "sectionVh": 100,
+      "frames": {
+        "fps": 60.10418057967144,
+        "p95": 16.700000000000728
+      },
+      "videos": [
+        {
+          "src": "bebidas-cafe-sirviendo-taza.mp4",
+          "paused": false,
+          "time": 1.033403
+        },
+        {
+          "src": "comida-hamburguesa-cebolla.mp4",
+          "paused": false,
+          "time": 4.663214
+        },
+        {
+          "src": "comida-pizza-caja.mp4",
+          "paused": false,
+          "time": 4.662976
+        },
+        {
+          "src": "cosmetica-crema-skincare.mp4",
+          "paused": false,
+          "time": 4.663139
+        },
+        {
+          "src": "deportes-futbol-playa.mp4",
+          "paused": false,
+          "time": 3.131368
+        },
+        {
+          "src": "deportes-surfistas-playa.mp4",
+          "paused": true,
+          "time": 3.622569
+        },
+        {
+          "src": "promo-black-friday-grafica.mp4",
+          "paused": true,
+          "time": 0
+        },
+        {
+          "src": "perfumeria-perfume-spray.mp4",
+          "paused": true,
+          "time": 0
+        }
+      ],
+      "caption": "Controlá lo que se ve. En todas partes.Un solo lugar para coordinar todas tus pantallas."
+    },
+    {
+      "view": "desktop",
+      "p": 0.43,
+      "sectionVh": 100,
+      "frames": {
+        "fps": 60.70416834996502,
+        "p95": 16.700000000000728
+      },
+      "videos": [
+        {
+          "src": "bebidas-cafe-sirviendo-taza.mp4",
+          "paused": true,
+          "time": 1.41433
+        },
+        {
+          "src": "comida-hamburguesa-cebolla.mp4",
+          "paused": false,
+          "time": 2.134313
+        },
+        {
+          "src": "comida-pizza-caja.mp4",
+          "paused": false,
+          "time": 2.134001
+        },
+        {
+          "src": "cosmetica-crema-skincare.mp4",
+          "paused": false,
+          "time": 2.134186
+        },
+        {
+          "src": "deportes-futbol-playa.mp4",
+          "paused": false,
+          "time": 0.604554
+        },
+        {
+          "src": "deportes-surfistas-playa.mp4",
+          "paused": false,
+          "time": 3.134407
+        },
+        {
+          "src": "promo-black-friday-grafica.mp4",
+          "paused": true,
+          "time": 0
+        },
+        {
+          "src": "perfumeria-perfume-spray.mp4",
+          "paused": true,
+          "time": 0
+        }
+      ],
+      "caption": "Controlá lo que se ve. En todas partes.Un solo lugar para coordinar todas tus pantallas."
+    },
+    {
+      "view": "desktop",
+      "p": 0.56,
+      "sectionVh": 100,
+      "frames": {
+        "fps": 60.61422413793106,
+        "p95": 16.700000000000728
+      },
+      "videos": [
+        {
+          "src": "bebidas-cafe-sirviendo-taza.mp4",
+          "paused": true,
+          "time": 1.41433
+        },
+        {
+          "src": "comida-hamburguesa-cebolla.mp4",
+          "paused": true,
+          "time": 2.528391
+        },
+        {
+          "src": "comida-pizza-caja.mp4",
+          "paused": false,
+          "time": 5.646016
+        },
+        {
+          "src": "cosmetica-crema-skincare.mp4",
+          "paused": false,
+          "time": 5.646201
+        },
+        {
+          "src": "deportes-futbol-playa.mp4",
+          "paused": false,
+          "time": 4.11657
+        },
+        {
+          "src": "deportes-surfistas-playa.mp4",
+          "paused": false,
+          "time": 0.638852
+        },
+        {
+          "src": "promo-black-friday-grafica.mp4",
+          "paused": false,
+          "time": 3.151275
+        },
+        {
+          "src": "perfumeria-perfume-spray.mp4",
+          "paused": true,
+          "time": 0
+        }
+      ],
+      "caption": "Controlá lo que se ve. En todas partes.Un solo lugar para coordinar todas tus pantallas."
+    },
+    {
+      "view": "desktop",
+      "p": 0.69,
+      "sectionVh": 100,
+      "frames": {
+        "fps": 60.374320788891104,
+        "p95": 16.799999999999272
+      },
+      "videos": [
+        {
+          "src": "bebidas-cafe-sirviendo-taza.mp4",
+          "paused": true,
+          "time": 1.41433
+        },
+        {
+          "src": "comida-hamburguesa-cebolla.mp4",
+          "paused": true,
+          "time": 2.528391
+        },
+        {
+          "src": "comida-pizza-caja.mp4",
+          "paused": true,
+          "time": 0.003007
+        },
+        {
+          "src": "cosmetica-crema-skincare.mp4",
+          "paused": false,
+          "time": 3.124271
+        },
+        {
+          "src": "deportes-futbol-playa.mp4",
+          "paused": false,
+          "time": 1.597705
+        },
+        {
+          "src": "deportes-surfistas-playa.mp4",
+          "paused": false,
+          "time": 4.124258
+        },
+        {
+          "src": "promo-black-friday-grafica.mp4",
+          "paused": false,
+          "time": 0.628843
+        },
+        {
+          "src": "perfumeria-perfume-spray.mp4",
+          "paused": false,
+          "time": 3.154158
+        }
+      ],
+      "caption": "Controlá lo que se ve. En todas partes.Un solo lugar para coordinar todas tus pantallas."
+    },
+    {
+      "view": "desktop",
+      "p": 0.85,
+      "sectionVh": 100,
+      "frames": {
+        "fps": 60.14032742875531,
+        "p95": 16.799999999999272
+      },
+      "videos": [
+        {
+          "src": "bebidas-cafe-sirviendo-taza.mp4",
+          "paused": true,
+          "time": 1.41433
+        },
+        {
+          "src": "comida-hamburguesa-cebolla.mp4",
+          "paused": true,
+          "time": 2.528391
+        },
+        {
+          "src": "comida-pizza-caja.mp4",
+          "paused": true,
+          "time": 0.003007
+        },
+        {
+          "src": "cosmetica-crema-skincare.mp4",
+          "paused": true,
+          "time": 3.486528
+        },
+        {
+          "src": "deportes-futbol-playa.mp4",
+          "paused": false,
+          "time": 5.122118
+        },
+        {
+          "src": "deportes-surfistas-playa.mp4",
+          "paused": false,
+          "time": 1.643312
+        },
+        {
+          "src": "promo-black-friday-grafica.mp4",
+          "paused": false,
+          "time": 4.153256
+        },
+        {
+          "src": "perfumeria-perfume-spray.mp4",
+          "paused": false,
+          "time": 0.627428
+        }
+      ],
+      "caption": "Controlá lo que se ve. En todas partes.Un solo lugar para coordinar todas tus pantallas."
+    },
+    {
+      "view": "desktop",
+      "gpuText": "Debug · runtime×nivelhigh (forced)modoforzadofps60.0 · 16.7 ms · p95 17.4 mscapítulobanner-2beatbanner-2/mundoprogreso0.85escenas2draw calls28triangles4.706textures22geometries27programs8js heap22.1 MBdpr1.00 · render 1.00 · 1440pxhighmediumlowstaticauto/?chapter=banner-2&progress=0.85&quality=high&debugDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "view": "mobile",
+      "p": 0.12,
+      "sectionVh": 100,
+      "frames": {
+        "fps": 60.23693193322814,
+        "p95": 16.800000000000182
+      },
+      "videos": [
+        {
+          "src": "bebidas-cafe-sirviendo-taza.mp4",
+          "paused": false,
+          "time": 3.268623
+        },
+        {
+          "src": "comida-hamburguesa-cebolla.mp4",
+          "paused": false,
+          "time": 0.972805
+        },
+        {
+          "src": "deportes-futbol-playa.mp4",
+          "paused": true,
+          "time": 3.795849
+        },
+        {
+          "src": "deportes-surfistas-playa.mp4",
+          "paused": true,
+          "time": 0
+        }
+      ],
+      "caption": "Controlá lo que se ve. En todas partes.Un solo lugar para coordinar todas tus pantallas."
+    },
+    {
+      "view": "mobile",
+      "p": 0.3,
+      "sectionVh": 100,
+      "frames": {
+        "fps": 60.156406658267635,
+        "p95": 16.799999999999272
+      },
+      "videos": [
+        {
+          "src": "bebidas-cafe-sirviendo-taza.mp4",
+          "paused": false,
+          "time": 0.851922
+        },
+        {
+          "src": "comida-hamburguesa-cebolla.mp4",
+          "paused": false,
+          "time": 4.57195
+        },
+        {
+          "src": "deportes-futbol-playa.mp4",
+          "paused": true,
+          "time": 3.795849
+        },
+        {
+          "src": "deportes-surfistas-playa.mp4",
+          "paused": true,
+          "time": 0
+        }
+      ],
+      "caption": "Controlá lo que se ve. En todas partes.Un solo lugar para coordinar todas tus pantallas."
+    },
+    {
+      "view": "mobile",
+      "p": 0.43,
+      "sectionVh": 100,
+      "frames": {
+        "fps": 60.23290054878862,
+        "p95": 16.799999999999272
+      },
+      "videos": [
+        {
+          "src": "bebidas-cafe-sirviendo-taza.mp4",
+          "paused": false,
+          "time": 4.2808
+        },
+        {
+          "src": "comida-hamburguesa-cebolla.mp4",
+          "paused": false,
+          "time": 1.981884
+        },
+        {
+          "src": "deportes-futbol-playa.mp4",
+          "paused": false,
+          "time": 3.280816
+        },
+        {
+          "src": "deportes-surfistas-playa.mp4",
+          "paused": true,
+          "time": 0
+        }
+      ],
+      "caption": "Controlá lo que se ve. En todas partes.Un solo lugar para coordinar todas tus pantallas."
+    },
+    {
+      "view": "mobile",
+      "p": 0.56,
+      "sectionVh": 100,
+      "frames": {
+        "fps": 60.708263071092574,
+        "p95": 16.799999999999272
+      },
+      "videos": [
+        {
+          "src": "bebidas-cafe-sirviendo-taza.mp4",
+          "paused": true,
+          "time": 4.414962
+        },
+        {
+          "src": "comida-hamburguesa-cebolla.mp4",
+          "paused": false,
+          "time": 5.371048
+        },
+        {
+          "src": "deportes-futbol-playa.mp4",
+          "paused": false,
+          "time": 0.664296
+        },
+        {
+          "src": "deportes-surfistas-playa.mp4",
+          "paused": true,
+          "time": 0
+        }
+      ],
+      "caption": "Controlá lo que se ve. En todas partes.Un solo lugar para coordinar todas tus pantallas."
+    },
+    {
+      "view": "mobile",
+      "p": 0.69,
+      "sectionVh": 100,
+      "frames": {
+        "fps": 60.3257590981713,
+        "p95": 16.799999999999272
+      },
+      "videos": [
+        {
+          "src": "bebidas-cafe-sirviendo-taza.mp4",
+          "paused": true,
+          "time": 4.414962
+        },
+        {
+          "src": "comida-hamburguesa-cebolla.mp4",
+          "paused": false,
+          "time": 2.828439
+        },
+        {
+          "src": "deportes-futbol-playa.mp4",
+          "paused": false,
+          "time": 4.129689
+        },
+        {
+          "src": "deportes-surfistas-playa.mp4",
+          "paused": false,
+          "time": 3.27209
+        }
+      ],
+      "caption": "Controlá lo que se ve. En todas partes.Un solo lugar para coordinar todas tus pantallas."
+    },
+    {
+      "view": "mobile",
+      "p": 0.85,
+      "sectionVh": 100,
+      "frames": {
+        "fps": 59.56714540908059,
+        "p95": 16.799999999999272
+      },
+      "videos": [
+        {
+          "src": "bebidas-cafe-sirviendo-taza.mp4",
+          "paused": true,
+          "time": 4.414962
+        },
+        {
+          "src": "comida-hamburguesa-cebolla.mp4",
+          "paused": true,
+          "time": 2.987572
+        },
+        {
+          "src": "deportes-futbol-playa.mp4",
+          "paused": false,
+          "time": 1.568932
+        },
+        {
+          "src": "deportes-surfistas-playa.mp4",
+          "paused": false,
+          "time": 0.695902
+        }
+      ],
+      "caption": "Controlá lo que se ve. En todas partes.Un solo lugar para coordinar todas tus pantallas."
+    },
+    {
+      "view": "mobile",
+      "gpuText": "Debug · runtime×nivellow (forced)modoforzadofps59.2 · 16.8 ms · p95 24.7 mscapítulobanner-2beatbanner-2/mundoprogreso0.85escenas2draw calls18triangles2.164textures14geometries18programs9js heap16.4 MBdpr1.00 · render 1.00 · 390pxhighmediumlowstaticauto/?chapter=banner-2&progress=0.85&quality=low&debugDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "view": "desktop",
+      "assetBytes": 777942,
+      "kib": 760
+    },
+    {
+      "view": "mobile",
+      "assetBytes": 358177,
+      "kib": 350
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.",
+    "THREE.WebGLProgram: Program Info Log: (77,1): warning X4000: use of potentially uninitialized variable (f_photo)",
+    "THREE.WebGLProgram: Program Info Log: (210,81-129): warning X4122: sum of 0.996094 and -2.98545e-017 cannot be represented accurately in double precision\n(209,37-61): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(210,82-106): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(209,37-61): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision\n(210,82-106): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision",
+    "THREE.WebGLProgram: Program Info Log: (77,1): warning X4000: use of potentially uninitialized variable (f_photo)",
+    "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+  ],
+  "lifecycle": [
+    {
+      "view": "desktop",
+      "cycle": 0,
+      "videos": [],
+      "gpuText": "Debug · runtime×nivelhigh (forced)modoforzadofps60.1 · 16.7 ms · p95 17.4 mscapítulostarbenebeatstarbene/appprogreso0.50escenas2draw calls29triangles14.865textures4geometries25programs15js heap20.9 MBdpr1.00 · render 1.00 · 1440pxhighmediumlowstaticauto/?chapter=starbene&progress=0.50&quality=high&debugDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "view": "desktop",
+      "cycle": 1,
+      "videos": [],
+      "gpuText": "Debug · runtime×nivelhigh (forced)modoforzadofps60.0 · 16.7 ms · p95 17.4 mscapítulostarbenebeatstarbene/appprogreso0.50escenas2draw calls29triangles14.865textures4geometries25programs15js heap27.4 MBdpr1.00 · render 1.00 · 1440pxhighmediumlowstaticauto/?chapter=starbene&progress=0.50&quality=high&debugDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "view": "mobile",
+      "cycle": 0,
+      "videos": [],
+      "gpuText": "Debug · runtime×nivellow (forced)modoforzadofps60.0 · 16.7 ms · p95 20.7 mscapítulostarbenebeatstarbene/appprogreso0.50escenas2draw calls24triangles3.688textures3geometries21programs14js heap18.4 MBdpr1.00 · render 1.00 · 390pxhighmediumlowstaticauto/?chapter=starbene&progress=0.50&quality=low&debugDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    },
+    {
+      "view": "mobile",
+      "cycle": 1,
+      "videos": [],
+      "gpuText": "Debug · runtime×nivellow (forced)modoforzadofps60.0 · 16.7 ms · p95 22.1 mscapítulostarbenebeatstarbene/appprogreso0.50escenas2draw calls24triangles3.688textures3geometries21programs14js heap23 MBdpr1.00 · render 1.00 · 390pxhighmediumlowstaticauto/?chapter=starbene&progress=0.50&quality=low&debugDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+    }
+  ],
+  "fallback": [
+    {
+      "view": "desktop",
+      "mode": "static",
+      "src": "http://127.0.0.1:4191/posters/banner-2.webp"
+    },
+    {
+      "view": "desktop",
+      "mode": "reduced-motion",
+      "canvas": 0
+    },
+    {
+      "view": "mobile",
+      "mode": "static",
+      "src": "http://127.0.0.1:4191/posters/banner-2-mobile.webp"
+    },
+    {
+      "view": "mobile",
+      "mode": "reduced-motion",
+      "canvas": 0
+    }
+  ]
+}
