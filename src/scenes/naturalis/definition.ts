@@ -28,15 +28,14 @@ export const naturalis: SceneDefinition = {
 
       return Array.from({ length: 18 }, (_, i): [number, number, number] => {
         const u = i / 17
-        const stemX = -2.8 + Math.sin(u * Math.PI) * 0.25
-        const stemY = -1.5 + u * (2.8 + p * 0.4)
+        const stemX = Math.sin(u * Math.PI) * 0.1
+        const stemY = -1.1 + u * (2.1 + p * 0.2)
 
         // Arco orgánico hacia el teléfono y el escritorio de Natuadmin.
-        const bridgeX = stemX + u * connect * 4.6
+        const bridgeX = stemX + u * connect * 2.8
         const bridgeY =
-          stemY * (1 - connect * 0.45) +
-          Math.sin(u * Math.PI) * connect * 0.65
-        const bridgeZ = Math.sin(u * Math.PI) * connect * 0.75
+          stemY * (1 - connect) + (-0.9 + Math.sin(u * Math.PI) * 0.3) * connect
+        const bridgeZ = 1.26 + Math.sin(u * Math.PI) * connect * 0.3
 
         // Entrada de Banner 2.0 (p=0 en banner-2/definition.ts).
         const bannerX = -4 + u * 8
@@ -63,11 +62,11 @@ export const naturalis: SceneDefinition = {
     { id: "resultado", range: [0.8, 1], label: "Orden sin esfuerzo" },
   ],
   fallback: {
-    poster: "/posters/greybox/naturalis.png",
-    posterMobile: "/posters/greybox/naturalis-mobile.png",
+    poster: "/posters/naturalis/desktop.webp",
+    posterMobile: "/posters/naturalis/mobile.webp",
   },
   budget: {
-    maxTriangles: 18000,
+    maxTriangles: 32000,
     maxDrawCalls: 100,
     maxAssetKB: { desktop: 1500, mobile: 600 },
   },

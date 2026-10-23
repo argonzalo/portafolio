@@ -1,0 +1,150 @@
+body:has([data-experience-stage]) [data-scene-caption="naturalis"] {
+  display: none;
+}
+.naturalis-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  pointer-events: none;
+  color: #26463f;
+  font-family: Poppins, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.naturalis-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: var(--nat-reading, 0);
+  background: linear-gradient(90deg, #fafdfc 0%, #fafdfcee 25%, #fafdfc00 48%);
+}
+.naturalis-overlay * {
+  box-sizing: border-box;
+}
+.naturalis-copy {
+  position: absolute;
+  left: 7%;
+  top: 28%;
+  width: min(340px, 29vw);
+}
+.naturalis-brand {
+  display: block;
+  font-size: 18px;
+  color: #56857d;
+  margin-bottom: 25px;
+  letter-spacing: -0.04em;
+}
+.naturalis-copy h2 {
+  font-size: clamp(30px, 3.2vw, 48px);
+  line-height: 1.16;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+  margin: 0;
+  text-wrap: balance;
+}
+.naturalis-copy p {
+  font-size: 14px;
+  line-height: 1.85;
+  margin: 22px 0;
+  max-width: 31ch;
+}
+.naturalis-copy a {
+  pointer-events: auto;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  text-underline-offset: 5px;
+  text-decoration: underline;
+  font-size: 12px;
+}
+.naturalis-tasks,
+.naturalis-results {
+  position: absolute;
+  left: 7%;
+  top: 65%;
+  visibility: hidden;
+  margin: 0;
+}
+.naturalis-tasks {
+  list-style: none;
+  font-size: 12px;
+  line-height: 2.4;
+  background: #fafdfce8;
+  padding: 12px 18px;
+  border-radius: 6px;
+}
+.naturalis-tasks li::before {
+  content: "✓";
+  margin-right: 12px;
+  color: #56857d;
+}
+.naturalis-results {
+  display: flex;
+  gap: 35px;
+}
+.naturalis-results > div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.naturalis-results dt {
+  font-size: 11px;
+  margin-top: 4px;
+}
+.naturalis-results dd {
+  font-size: 48px;
+  letter-spacing: -0.06em;
+  line-height: 1.1;
+  margin: 0;
+  color: #416b61;
+}
+.naturalis-overlay a:focus-visible {
+  outline: 3px solid #56857d;
+  outline-offset: 4px;
+}
+@media (max-width: 768px) {
+  .naturalis-overlay::before {
+    background: linear-gradient(180deg, #fafdfc 0%, #fafdfc 35%, #fafdfce8 41%, #fafdfc00 54%);
+  }
+  .naturalis-copy {
+    top: 22%;
+    left: 24px;
+    width: calc(100% - 48px);
+  }
+  .naturalis-brand {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+  .naturalis-copy h2 {
+    font-size: 30px;
+    max-width: 310px;
+  }
+  .naturalis-copy p {
+    font-size: 12px;
+    line-height: 1.7;
+    max-width: 33ch;
+    margin: 12px 0 0;
+  }
+  .naturalis-copy a {
+    font-size: 11px;
+  }
+  .naturalis-tasks {
+    left: 24px;
+    top: auto;
+    bottom: 14%;
+    font-size: 11px;
+    line-height: 2;
+    padding: 9px 14px;
+  }
+  .naturalis-results {
+    top: auto;
+    bottom: 15%;
+    left: 24px;
+    gap: 35px;
+  }
+  .naturalis-results dd {
+    font-size: 42px;
+  }
+  .naturalis-results dt {
+    font-size: 10px;
+  }
+}
