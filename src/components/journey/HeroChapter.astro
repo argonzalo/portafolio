@@ -74,14 +74,14 @@ import { hero, site } from "@/lib/site"
     flex-wrap: wrap;
     gap: 0.55rem;
     margin-top: 1.8rem;
-    color: var(--muted-foreground);
-    font-size: 0.74rem;
+    color: color-mix(in oklch, var(--muted-foreground) 85%, transparent);
+    font-size: 0.7rem;
   }
   .hero-tags li {
-    border: 1px solid color-mix(in oklch, #91baff 20%, var(--border));
+    border: 1px solid
+      color-mix(in oklch, var(--muted-foreground) 22%, transparent);
     border-radius: 999px;
-    background: color-mix(in oklch, #91baff 5%, var(--background));
-    padding: 0.45rem 0.8rem;
+    padding: 0.3rem 0.55rem;
   }
   .hero-actions {
     display: flex;
@@ -130,7 +130,9 @@ import { hero, site } from "@/lib/site"
   }
   .hero-portrait {
     position: relative;
-    width: 100%;
+    width: 76%;
+    max-width: 310px;
+    justify-self: center;
     aspect-ratio: 1;
     isolation: isolate;
   }
@@ -161,11 +163,9 @@ import { hero, site } from "@/lib/site"
     }
     .hero-portrait {
       grid-row: 1;
-      width: min(55vw, 240px);
+      width: min(44vw, 180px);
       justify-self: center;
       margin-bottom: -3rem;
-    }
-    .hero-copy {
     }
     .hero-name {
       margin-bottom: 1.2rem;
@@ -178,7 +178,7 @@ import { hero, site } from "@/lib/site"
       margin-top: 1.4rem;
     }
     .hero-tags {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
     }
   }
 </style>

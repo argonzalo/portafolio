@@ -25,7 +25,7 @@
     "frameTiming": {
       "cpuRate": 4,
       "medianMs": 16.7,
-      "p95Ms": 16.8
+      "p95Ms": 16.7
     },
     "canvasSpansViewport": true,
     "manifestoClearedBeforeVibo": true,

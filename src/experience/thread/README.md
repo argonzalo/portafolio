@@ -13,8 +13,8 @@ El scroll nativo sigue disponible. Los deep links posicionan el cursor mediante
 
 `choreography.ts` define `HANDOFF_START = 0.86` y una rampa quíntica con velocidad
 y aceleración nulas en los extremos. `handoffStart(chapterId)` adelanta solo la
-entrada manifiesto → Vibo a `0.78`: dispone del 22 % del capítulo en vez del
-14 %, un 57 % más de recorrido. Cámara, paleta, hilo, captions y fundidos usan
+entrada manifiesto → Vibo a `0.70`: dispone del 30 % del capítulo en vez del
+14 % original (un 36 % más que el ajuste anterior de 22 %). Cámara, paleta, hilo, captions y fundidos usan
 ese mismo intervalo por capítulo. No hay una transición autónoma de 550 ms ni un segundo filtro
 que retrase el hilo respecto de la cámara.
 

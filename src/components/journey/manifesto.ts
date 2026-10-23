@@ -48,7 +48,7 @@ function mountManifesto() {
       scrollTrigger: {
         trigger: root,
         start: "bottom 95%",
-        end: "bottom 78%",
+        end: "bottom 85%",
         scrub: true,
       },
     })

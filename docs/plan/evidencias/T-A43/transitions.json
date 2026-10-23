@@ -7,30 +7,30 @@
       "earlierPx": 157.25
     },
     "timing": {
-      "start": 0.78,
+      "start": 0.7,
       "previousStart": 0.86,
-      "scrollRatio": 1.5714285714285712,
+      "scrollRatio": 2.142857142857143,
       "startValue": 0,
       "endValue": 1
     },
     "samples": [
       {
-        "progress": 0.78,
+        "progress": 0.7,
         "textOpacity": 0,
         "background": "#0a0a0b"
       },
       {
-        "progress": 0.835,
+        "progress": 0.775,
         "textOpacity": 0,
         "background": "#0a0b10"
       },
       {
-        "progress": 0.89,
+        "progress": 0.85,
         "textOpacity": 0,
         "background": "#08101c"
       },
       {
-        "progress": 0.945,
+        "progress": 0.925,
         "textOpacity": 0,
         "background": "#071324"
       },
@@ -46,35 +46,35 @@
   {
     "name": "mobile",
     "spacing": {
-      "beforeTitleY": 1209.96875,
-      "afterTitleY": 1010.34375,
+      "beforeTitleY": 1151.265625,
+      "afterTitleY": 951.640625,
       "earlierPx": 199.625
     },
     "timing": {
-      "start": 0.78,
+      "start": 0.7,
       "previousStart": 0.86,
-      "scrollRatio": 1.5714285714285712,
+      "scrollRatio": 2.142857142857143,
       "startValue": 0,
       "endValue": 1
     },
     "samples": [
       {
-        "progress": 0.78,
+        "progress": 0.7,
         "textOpacity": 0,
         "background": "#0a0a0b"
       },
       {
-        "progress": 0.835,
+        "progress": 0.775,
         "textOpacity": 0,
         "background": "#0a0b10"
       },
       {
-        "progress": 0.89,
+        "progress": 0.85,
         "textOpacity": 0,
-        "background": "#09101c"
+        "background": "#08101c"
       },
       {
-        "progress": 0.945,
+        "progress": 0.925,
         "textOpacity": 0,
         "background": "#071324"
       },

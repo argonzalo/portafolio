@@ -4,7 +4,7 @@ export const HANDOFF_START = 0.86
 /** La entrada de la cancha tiene más recorrido; las demás escenas conservan
  * su ritmo. Hilo, cámara, paleta y captions comparten el mismo intervalo. */
 export function handoffStart(chapterId?: string | null): number {
-  return chapterId === "manifesto" ? 0.78 : HANDOFF_START
+  return chapterId === "manifesto" ? 0.7 : HANDOFF_START
 }
 
 export function ease(value: number): number {
