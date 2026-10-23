@@ -1,7 +1,12 @@
 ---
 import { ContactDialog } from "@/components/dialogs/ContactDialog"
+import { ProjectsDialog } from "@/components/dialogs/ProjectsDialog"
 import { Logo } from "@/components/portfolio/Logo"
+import { getProjects } from "@/lib/projects"
 import { site } from "@/lib/site"
+
+const projects = getProjects()
+const surname = site.name.slice(site.firstName.length).trim()
 ---
 
 <header
@@ -19,15 +24,21 @@ import { site } from "@/lib/site"
       <a
         href="/"
         class="flex shrink-0 items-center gap-2.5 text-sm font-semibold tracking-tight"
+        aria-label={site.name}
       >
         <Logo size={24} backgroundClassName="bg-primary" />
-        <span>{site.name}</span>
+        <span>
+          {site.firstName}{
+            surname && <span class="max-[399px]:hidden"> {surname}</span>
+          }
+        </span>
       </a>
 
       <nav
         aria-label="Principal"
         class="ml-auto flex min-w-0 items-center gap-1 sm:gap-2"
       >
+        <ProjectsDialog client:load projects={projects} />
         <ContactDialog client:load />
       </nav>
     </div>

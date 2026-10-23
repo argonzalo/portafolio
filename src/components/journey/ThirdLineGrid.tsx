@@ -62,11 +62,10 @@ export function ThirdLineGrid({ projects }: Props) {
 
               {/* Metadatos y título */}
               <div className="mt-4 flex flex-1 flex-col">
-                <div className="flex items-center justify-between gap-2 text-xs text-white/50">
+                <div className="text-xs text-white/50">
                   <span className="font-medium tracking-wide">
                     {project.client || "Desarrollo"}
                   </span>
-                  <span>{project.period}</span>
                 </div>
 
                 <h3 className="mt-1.5 text-base font-semibold text-white tracking-tight group-hover:text-primary transition-colors">

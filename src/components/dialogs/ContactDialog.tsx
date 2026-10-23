@@ -26,7 +26,7 @@ export function ContactDialog() {
 
       <DialogContent
         showCloseButton={false}
-        className="fixed inset-0 top-0 left-0 z-50 flex h-[100dvh] w-full max-w-none translate-x-0 translate-y-0 flex-col justify-center rounded-none border-0 bg-[#141416]/98 p-6 pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))] text-white backdrop-blur-3xl sm:inset-auto sm:top-1/2 sm:left-1/2 sm:h-auto sm:w-[94vw] sm:max-w-xl sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-3xl sm:border sm:border-white/10 sm:bg-[#161618]/95 sm:p-8 sm:shadow-[0_25px_70px_rgba(0,0,0,0.85)]"
+        className="fixed inset-0 top-0 left-0 z-50 flex h-[100dvh] w-full max-w-none translate-x-0 translate-y-0 flex-col justify-center overflow-hidden rounded-none border-0 bg-[#141416]/98 p-6 pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))] text-white backdrop-blur-3xl sm:inset-auto sm:top-1/2 sm:left-1/2 sm:h-auto sm:w-[94vw] sm:max-w-xl sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-3xl sm:border sm:border-white/10 sm:bg-[#161618]/95 sm:p-8 sm:shadow-[0_25px_70px_rgba(0,0,0,0.85)]"
       >
         <div className="flex justify-end pb-2">
           <button
