@@ -24,6 +24,8 @@ export type DeviceBaseProps = Omit<ThreeElements["group"], "children"> & {
 }
 
 export type PhoneProps = DeviceBaseProps & {
+  /** Relación ancho/alto de la captura. Ajusta la altura sin deformar marcos ni esquinas. */
+  screenAspect?: number
   /** Isla de cámara frontal. Por defecto `true`. */
   island?: boolean
   /** Detalle trasero (módulo de cámaras). Desactivar si nunca se ve el dorso. */
@@ -51,17 +53,22 @@ export function Phone({
   envIntensity = 1,
   island = true,
   back = true,
+  screenAspect,
   children,
   ...group
 }: PhoneProps) {
   const tier = useDeviceTier(quality)
   const envMap = useStudioEnvironment()
   const materials = useDeviceMaterials({ finish, tier, envMap, envIntensity })
+  const screenHeight = screenAspect && Number.isFinite(screenAspect) && screenAspect > 0
+    ? PHONE_SCREEN.width / screenAspect
+    : PHONE_SCREEN.height
+  const height = screenHeight + (S.height - PHONE_SCREEN.height)
 
   const bodyGeometry = useDisposable(
     useMemo(
-      () => createRoundedSlabGeometry(S.width, S.height, S.depth, S.radius, S.bevel, tier),
-      [tier]
+      () => createRoundedSlabGeometry(S.width, height, S.depth, S.radius, S.bevel, tier),
+      [tier, height]
     )
   )
   const faceGeometry = useDisposable(
@@ -69,11 +76,11 @@ export function Phone({
       () =>
         createRoundedPlaneGeometry(
           S.width - S.bevel * 2,
-          S.height - S.bevel * 2,
+          height - S.bevel * 2,
           S.radius - S.bevel,
           tier
         ),
-      [tier]
+      [tier, height]
     )
   )
   const islandGeometry = useDisposable(
@@ -91,16 +98,17 @@ export function Phone({
         return geometry
       }
       const edge = S.width / 2 + 0.001
+      const offset = (height - S.height) / 2
       const parts = [
-        button(-edge, 0.5, 0.05), // botón de acción
-        button(-edge, 0.35, 0.1), // volumen +
-        button(-edge, 0.21, 0.1), // volumen −
-        button(edge, 0.3, 0.16), // encendido
+        button(-edge, 0.5 + offset, 0.05), // botón de acción
+        button(-edge, 0.35 + offset, 0.1), // volumen +
+        button(-edge, 0.21 + offset, 0.1), // volumen −
+        button(edge, 0.3 + offset, 0.16), // encendido
       ]
       const merged = mergeGeometries(parts, false) as BufferGeometry
       for (const part of parts) part.dispose()
       return merged
-    }, [])
+    }, [height])
   )
 
   const cam = S.cameraModule
@@ -144,9 +152,9 @@ export function Phone({
   )
 
   const zFront = S.depth / 2
-  const screenTop = PHONE_SCREEN.height / 2
+  const screenTop = screenHeight / 2
   const moduleX = S.width / 2 - cam.inset - cam.size / 2
-  const moduleY = S.height / 2 - cam.inset - cam.size / 2
+  const moduleY = height / 2 - cam.inset - cam.size / 2
 
   return (
     <group {...group}>
@@ -157,7 +165,7 @@ export function Phone({
         <DeviceScreen
           {...screen}
           width={PHONE_SCREEN.width}
-          height={PHONE_SCREEN.height}
+          height={screenHeight}
           radius={S.screenRadius}
           tier={tier}
           envMap={envMap}

@@ -22,7 +22,7 @@ import { DEVICE_FINISHES, type DeviceFinish, type RenderTier } from "./specs"
 /*  Entorno de estudio procedural (reflejos de producto, sin descargas)        */
 /* -------------------------------------------------------------------------- */
 
-type EnvEntry = { texture: Texture; refs: number }
+type EnvEntry = { texture: Texture; dispose: () => void; refs: number }
 const envCache = new WeakMap<WebGLRenderer, EnvEntry>()
 
 /**
@@ -86,7 +86,7 @@ function acquireStudioEnv(gl: WebGLRenderer): Texture {
   const target = pmrem.fromScene(scene, 0.035)
   disposeScene(scene)
   pmrem.dispose()
-  envCache.set(gl, { texture: target.texture, refs: 1 })
+  envCache.set(gl, { texture: target.texture, dispose: () => target.dispose(), refs: 1 })
   return target.texture
 }
 
@@ -99,7 +99,7 @@ function releaseStudioEnv(gl: WebGLRenderer) {
   window.setTimeout(() => {
     const current = envCache.get(gl)
     if (current && current.refs <= 0) {
-      current.texture.dispose()
+      current.dispose()
       envCache.delete(gl)
     }
   }, 1500)

@@ -58,8 +58,8 @@ export const pirp: SceneDefinition = {
     { id: "resultado", range: [0.8, 1], label: "Del ruido a la estrategia" },
   ],
   fallback: {
-    poster: "/posters/greybox/pirp.png",
-    posterMobile: "/posters/greybox/pirp-mobile.png",
+    poster: "/posters/pirp/desktop.webp",
+    posterMobile: "/posters/pirp/mobile.webp",
   },
   budget: {
     maxTriangles: 20000,
