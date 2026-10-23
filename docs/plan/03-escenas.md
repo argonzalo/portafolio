@@ -126,7 +126,7 @@ Construir esto una vez es lo que hace viable el volumen de escenas. Vive en `src
 2. **Problema** — la sala aparece con una agenda de papel desordenada: turnos tachados, mensajes, cancelaciones.
 3. **Razonamiento** — dos piezas conectadas: un teléfono (web app de clientes) y una notebook (Natuadmin) del kit de dispositivos; los turnos viajan como hojas del teléfono a la agenda del panel.
 4. **Solución** — anochece en la sala: pequeñas luces hacen el trabajo repetitivo (turnos fijos generados, mails de confirmación, estadísticas) "mientras el equipo descansa".
-5. **Resultado** — amanece: +650 clientes registrados, +60 turnos por mes. Calma total.
+5. **Resultado** — amanece: +900 clientes registrados, +70 turnos por mes. Calma total. Cifras confirmadas por el humano en T-A24 (2026-10-22).
 
 **Interacción**
 

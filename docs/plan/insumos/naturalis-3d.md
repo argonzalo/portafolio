@@ -98,11 +98,11 @@ public/textures/naturalis/*.ktx2
 | Texturas | KTX2, máx. 2048 | KTX2, máx. 1024 |
 | FPS | 60 | ≥ 50 en Android medio (p95 ≤ 20 ms) |
 
-### 3.3 Decisión abierta: presupuesto de triángulos
+### 3.3 Presupuesto de triángulos — resuelto en T-A24
 
-`src/scenes/naturalis/definition.ts` declara `budget.maxTriangles: 18000` (con `maxAssetKB` 1500 / 600). Eso choca con los **300k desktop / 100k mobile** de `02` §2.
+El greybox declaraba `budget.maxTriangles: 18000`. La sala final, la camilla propia y los dos dispositivos suman aproximadamente 27k triángulos renderizados, dentro de los **300k desktop / 100k mobile** de `02` §2.
 
-**Pendiente de decisión del humano:** ¿18k es un tope del greybox que hay que subir, o es el objetivo real de la escena final? Esta investigación **no cambia código**. Hay que resolverlo antes de T-A24.
+**Confirmación humana en T-A24 (2026-10-22):** mantener el detalle actual y ocultar la cortina en mobile. `definition.ts` pasa a un techo de 32k; los límites de assets 1500 / 600 KB se conservan. Mediciones finales y límites de la prueba en `../evidencias/T-A24/`.
 
 ### 3.4 Estrategia para entrar en presupuesto
 

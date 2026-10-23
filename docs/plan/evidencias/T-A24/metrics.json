@@ -1,0 +1,1660 @@
+{
+  "samples": [
+    {
+      "view": "desktop",
+      "tier": "high",
+      "beat": "mundo",
+      "p": 0.12,
+      "url": "/?chapter=naturalis&progress=0.12&quality=high&debug",
+      "gpu": {
+        "geometries": 3,
+        "textures": 5,
+        "programs": 2,
+        "calls": 3,
+        "triangles": 9796,
+        "mountedScenes": 2,
+        "jsHeapMB": 101.2,
+        "at": 8519.200000047684
+      },
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 58.1,
+        "frameMs": 17.1,
+        "p95FrameMs": 17.1,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "desktop",
+      "tier": "high",
+      "beat": "problema",
+      "p": 0.3,
+      "url": "/?chapter=naturalis&progress=0.3&quality=high&debug",
+      "gpu": {
+        "geometries": 5,
+        "textures": 6,
+        "programs": 5,
+        "calls": 9,
+        "triangles": 10750,
+        "mountedScenes": 2,
+        "jsHeapMB": 108.9,
+        "at": 10518.799999952316
+      },
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 17.3,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "desktop",
+      "tier": "high",
+      "beat": "razonamiento",
+      "p": 0.5,
+      "url": "/?chapter=naturalis&progress=0.5&quality=high&debug",
+      "gpu": {
+        "geometries": 23,
+        "textures": 9,
+        "programs": 10,
+        "calls": 24,
+        "triangles": 26223,
+        "mountedScenes": 2,
+        "jsHeapMB": 109.6,
+        "at": 12570.799999952316
+      },
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 17.1,
+        "p95FrameMs": 18.1,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "desktop",
+      "tier": "high",
+      "beat": "solucion",
+      "p": 0.7,
+      "url": "/?chapter=naturalis&progress=0.7&quality=high&debug",
+      "gpu": {
+        "geometries": 23,
+        "textures": 9,
+        "programs": 11,
+        "calls": 20,
+        "triangles": 26103,
+        "mountedScenes": 2,
+        "jsHeapMB": 116.1,
+        "at": 14567.200000047684
+      },
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 17.4,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "desktop",
+      "tier": "high",
+      "beat": "resultado",
+      "p": 0.835,
+      "url": "/?chapter=naturalis&progress=0.835&quality=high&debug",
+      "gpu": {
+        "geometries": 23,
+        "textures": 9,
+        "programs": 11,
+        "calls": 19,
+        "triangles": 25815,
+        "mountedScenes": 2,
+        "jsHeapMB": 120.6,
+        "at": 17066.700000047684
+      },
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 17,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "desktop",
+      "tier": "medium",
+      "beat": "mundo",
+      "p": 0.12,
+      "url": "/?chapter=naturalis&progress=0.12&quality=medium&debug",
+      "gpu": {
+        "geometries": 10,
+        "textures": 9,
+        "programs": 9,
+        "calls": 3,
+        "triangles": 6855,
+        "mountedScenes": 2,
+        "jsHeapMB": 88.8,
+        "at": 19083.200000047684
+      },
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.8,
+        "p95FrameMs": 17.1,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "desktop",
+      "tier": "medium",
+      "beat": "problema",
+      "p": 0.3,
+      "url": "/?chapter=naturalis&progress=0.3&quality=medium&debug",
+      "gpu": {
+        "geometries": 10,
+        "textures": 9,
+        "programs": 10,
+        "calls": 9,
+        "triangles": 7809,
+        "mountedScenes": 2,
+        "jsHeapMB": 91.8,
+        "at": 20582.200000047684
+      },
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 17,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "desktop",
+      "tier": "medium",
+      "beat": "razonamiento",
+      "p": 0.5,
+      "url": "/?chapter=naturalis&progress=0.5&quality=medium&debug",
+      "gpu": {
+        "geometries": 23,
+        "textures": 9,
+        "programs": 11,
+        "calls": 18,
+        "triangles": 14709,
+        "mountedScenes": 2,
+        "jsHeapMB": 95.6,
+        "at": 22599.600000023842
+      },
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 59.4,
+        "frameMs": 16.8,
+        "p95FrameMs": 17.2,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "desktop",
+      "tier": "medium",
+      "beat": "solucion",
+      "p": 0.7,
+      "url": "/?chapter=naturalis&progress=0.7&quality=medium&debug",
+      "gpu": {
+        "geometries": 23,
+        "textures": 9,
+        "programs": 11,
+        "calls": 16,
+        "triangles": 14641,
+        "mountedScenes": 2,
+        "jsHeapMB": 99.2,
+        "at": 24597.899999976158
+      },
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 17.1,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "desktop",
+      "tier": "medium",
+      "beat": "resultado",
+      "p": 0.835,
+      "url": "/?chapter=naturalis&progress=0.835&quality=medium&debug",
+      "gpu": {
+        "geometries": 23,
+        "textures": 9,
+        "programs": 11,
+        "calls": 15,
+        "triangles": 14353,
+        "mountedScenes": 2,
+        "jsHeapMB": 79.2,
+        "at": 26098.299999952316
+      },
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 17.2,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "desktop",
+      "tier": "low",
+      "beat": "mundo",
+      "p": 0.12,
+      "url": "/?chapter=naturalis&progress=0.12&quality=low&debug",
+      "gpu": {
+        "geometries": 24,
+        "textures": 9,
+        "programs": 11,
+        "calls": 4,
+        "triangles": 4687,
+        "mountedScenes": 2,
+        "jsHeapMB": 80.8,
+        "at": 28197.200000047684
+      },
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 17.5,
+        "p95FrameMs": 17.1,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "desktop",
+      "tier": "low",
+      "beat": "problema",
+      "p": 0.3,
+      "url": "/?chapter=naturalis&progress=0.3&quality=low&debug",
+      "gpu": {
+        "geometries": 24,
+        "textures": 9,
+        "programs": 12,
+        "calls": 10,
+        "triangles": 5641,
+        "mountedScenes": 2,
+        "jsHeapMB": 81.1,
+        "at": 29697.200000047684
+      },
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 17.4,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "desktop",
+      "tier": "low",
+      "beat": "razonamiento",
+      "p": 0.5,
+      "url": "/?chapter=naturalis&progress=0.5&quality=low&debug",
+      "gpu": {
+        "geometries": 24,
+        "textures": 9,
+        "programs": 12,
+        "calls": 19,
+        "triangles": 12541,
+        "mountedScenes": 2,
+        "jsHeapMB": 82.4,
+        "at": 31695.700000047684
+      },
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60.1,
+        "frameMs": 16.7,
+        "p95FrameMs": 17.6,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "desktop",
+      "tier": "low",
+      "beat": "solucion",
+      "p": 0.7,
+      "url": "/?chapter=naturalis&progress=0.7&quality=low&debug",
+      "gpu": {
+        "geometries": 24,
+        "textures": 9,
+        "programs": 12,
+        "calls": 17,
+        "triangles": 12473,
+        "mountedScenes": 2,
+        "jsHeapMB": 83.4,
+        "at": 33695.39999997616
+      },
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 17.1,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "desktop",
+      "tier": "low",
+      "beat": "resultado",
+      "p": 0.835,
+      "url": "/?chapter=naturalis&progress=0.835&quality=low&debug",
+      "gpu": {
+        "geometries": 24,
+        "textures": 9,
+        "programs": 12,
+        "calls": 16,
+        "triangles": 12185,
+        "mountedScenes": 2,
+        "jsHeapMB": 79.5,
+        "at": 35194.5
+      },
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 17.3,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "mobile",
+      "tier": "high",
+      "beat": "mundo",
+      "p": 0.12,
+      "url": "/?chapter=naturalis&progress=0.12&quality=high&debug",
+      "gpu": {
+        "geometries": 3,
+        "textures": 5,
+        "programs": 3,
+        "calls": 3,
+        "triangles": 9076,
+        "mountedScenes": 2,
+        "jsHeapMB": 103.2,
+        "at": 8677.800000071526
+      },
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 52,
+        "frameMs": 18.3,
+        "p95FrameMs": 19,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "mobile",
+      "tier": "high",
+      "beat": "problema",
+      "p": 0.3,
+      "url": "/?chapter=naturalis&progress=0.3&quality=high&debug",
+      "gpu": {
+        "geometries": 3,
+        "textures": 5,
+        "programs": 4,
+        "calls": 3,
+        "triangles": 9076,
+        "mountedScenes": 2,
+        "jsHeapMB": 97.1,
+        "at": 10696.400000095367
+      },
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 59.4,
+        "frameMs": 16.8,
+        "p95FrameMs": 18.3,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "mobile",
+      "tier": "high",
+      "beat": "razonamiento",
+      "p": 0.5,
+      "url": "/?chapter=naturalis&progress=0.5&quality=high&debug",
+      "gpu": {
+        "geometries": 21,
+        "textures": 8,
+        "programs": 11,
+        "calls": 24,
+        "triangles": 25503,
+        "mountedScenes": 2,
+        "jsHeapMB": 96.9,
+        "at": 12345.600000023842
+      },
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 54.1,
+        "frameMs": 17.9,
+        "p95FrameMs": 18.6,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "mobile",
+      "tier": "high",
+      "beat": "solucion",
+      "p": 0.7,
+      "url": "/?chapter=naturalis&progress=0.7&quality=high&debug",
+      "gpu": {
+        "geometries": 21,
+        "textures": 8,
+        "programs": 12,
+        "calls": 20,
+        "triangles": 25383,
+        "mountedScenes": 2,
+        "jsHeapMB": 87.5,
+        "at": 14362.200000047684
+      },
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 59.3,
+        "frameMs": 16.8,
+        "p95FrameMs": 18.8,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "mobile",
+      "tier": "high",
+      "beat": "resultado",
+      "p": 0.835,
+      "url": "/?chapter=naturalis&progress=0.835&quality=high&debug",
+      "gpu": {
+        "geometries": 21,
+        "textures": 8,
+        "programs": 12,
+        "calls": 19,
+        "triangles": 25095,
+        "mountedScenes": 2,
+        "jsHeapMB": 91.4,
+        "at": 16375
+      },
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 59.5,
+        "frameMs": 16.8,
+        "p95FrameMs": 18.6,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "mobile",
+      "tier": "medium",
+      "beat": "mundo",
+      "p": 0.12,
+      "url": "/?chapter=naturalis&progress=0.12&quality=medium&debug",
+      "gpu": {
+        "geometries": 8,
+        "textures": 8,
+        "programs": 9,
+        "calls": 3,
+        "triangles": 6328,
+        "mountedScenes": 2,
+        "jsHeapMB": 85.6,
+        "at": 18457.900000095367
+      },
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 56.7,
+        "frameMs": 17.4,
+        "p95FrameMs": 18.8,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "mobile",
+      "tier": "medium",
+      "beat": "problema",
+      "p": 0.3,
+      "url": "/?chapter=naturalis&progress=0.3&quality=medium&debug",
+      "gpu": {
+        "geometries": 8,
+        "textures": 8,
+        "programs": 10,
+        "calls": 3,
+        "triangles": 6328,
+        "mountedScenes": 2,
+        "jsHeapMB": 88.1,
+        "at": 19975.200000047684
+      },
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 59.3,
+        "frameMs": 16.8,
+        "p95FrameMs": 18.4,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "mobile",
+      "tier": "medium",
+      "beat": "razonamiento",
+      "p": 0.5,
+      "url": "/?chapter=naturalis&progress=0.5&quality=medium&debug",
+      "gpu": {
+        "geometries": 21,
+        "textures": 8,
+        "programs": 12,
+        "calls": 18,
+        "triangles": 14182,
+        "mountedScenes": 2,
+        "jsHeapMB": 81.2,
+        "at": 22091.900000095367
+      },
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 55.4,
+        "frameMs": 17.6,
+        "p95FrameMs": 18.6,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "mobile",
+      "tier": "medium",
+      "beat": "solucion",
+      "p": 0.7,
+      "url": "/?chapter=naturalis&progress=0.7&quality=medium&debug",
+      "gpu": {
+        "geometries": 21,
+        "textures": 8,
+        "programs": 12,
+        "calls": 16,
+        "triangles": 14114,
+        "mountedScenes": 2,
+        "jsHeapMB": 84.7,
+        "at": 24106.600000023842
+      },
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 59.4,
+        "frameMs": 16.8,
+        "p95FrameMs": 18.1,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "mobile",
+      "tier": "medium",
+      "beat": "resultado",
+      "p": 0.835,
+      "url": "/?chapter=naturalis&progress=0.835&quality=medium&debug",
+      "gpu": {
+        "geometries": 21,
+        "textures": 8,
+        "programs": 12,
+        "calls": 15,
+        "triangles": 13826,
+        "mountedScenes": 2,
+        "jsHeapMB": 87.5,
+        "at": 25622.200000047684
+      },
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 59.3,
+        "frameMs": 16.8,
+        "p95FrameMs": 18.2,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "mobile",
+      "tier": "low",
+      "beat": "mundo",
+      "p": 0.12,
+      "url": "/?chapter=naturalis&progress=0.12&quality=low&debug",
+      "gpu": {
+        "geometries": 21,
+        "textures": 8,
+        "programs": 11,
+        "calls": 3,
+        "triangles": 4039,
+        "mountedScenes": 2,
+        "jsHeapMB": 89.3,
+        "at": 27705.800000071526
+      },
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 56.8,
+        "frameMs": 17.4,
+        "p95FrameMs": 18.4,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "mobile",
+      "tier": "low",
+      "beat": "problema",
+      "p": 0.3,
+      "url": "/?chapter=naturalis&progress=0.3&quality=low&debug",
+      "gpu": {
+        "geometries": 21,
+        "textures": 8,
+        "programs": 12,
+        "calls": 3,
+        "triangles": 4039,
+        "mountedScenes": 2,
+        "jsHeapMB": 78.7,
+        "at": 29222.400000095367
+      },
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60.1,
+        "frameMs": 16.8,
+        "p95FrameMs": 17.9,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "mobile",
+      "tier": "low",
+      "beat": "razonamiento",
+      "p": 0.5,
+      "url": "/?chapter=naturalis&progress=0.5&quality=low&debug",
+      "gpu": {
+        "geometries": 21,
+        "textures": 8,
+        "programs": 12,
+        "calls": 18,
+        "triangles": 11893,
+        "mountedScenes": 2,
+        "jsHeapMB": 82.5,
+        "at": 31320.400000095367
+      },
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 56.1,
+        "frameMs": 17.5,
+        "p95FrameMs": 18.3,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "mobile",
+      "tier": "low",
+      "beat": "solucion",
+      "p": 0.7,
+      "url": "/?chapter=naturalis&progress=0.7&quality=low&debug",
+      "gpu": {
+        "geometries": 21,
+        "textures": 8,
+        "programs": 12,
+        "calls": 16,
+        "triangles": 11825,
+        "mountedScenes": 2,
+        "jsHeapMB": 85.3,
+        "at": 32838.700000047684
+      },
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 59.3,
+        "frameMs": 16.8,
+        "p95FrameMs": 17.9,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    },
+    {
+      "view": "mobile",
+      "tier": "low",
+      "beat": "resultado",
+      "p": 0.835,
+      "url": "/?chapter=naturalis&progress=0.835&quality=low&debug",
+      "gpu": {
+        "geometries": 21,
+        "textures": 8,
+        "programs": 12,
+        "calls": 15,
+        "triangles": 11537,
+        "mountedScenes": 2,
+        "jsHeapMB": 88.7,
+        "at": 34853.5
+      },
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 59.4,
+        "frameMs": 16.8,
+        "p95FrameMs": 18,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    {
+      "view": "desktop",
+      "message": "[transitions]: all view transition animations, including fallback animation, are disabled as this device has the prefer-reduced-motion setting enabled."
+    },
+    {
+      "view": "mobile",
+      "message": "[transitions]: all view transition animations, including fallback animation, are disabled as this device has the prefer-reduced-motion setting enabled."
+    }
+  ],
+  "checks": [
+    "desktop: no product buttons; reverse scroll passed",
+    {
+      "daylightAcrossLODs": [
+        {
+          "tier": "medium",
+          "rgb": [
+            231.49744212962963,
+            233.7521774691358,
+            228.78228780864197
+          ]
+        },
+        {
+          "tier": "low",
+          "rgb": [
+            231.54409182098766,
+            233.77918827160494,
+            228.80229475308641
+          ]
+        },
+        {
+          "tier": "high",
+          "rgb": [
+            231.46601697530863,
+            233.73044058641975,
+            228.7615447530864
+          ]
+        }
+      ],
+      "dayNightFrames": [
+        {
+          "p": 0.55,
+          "rgb": [
+            224.41542052469137,
+            226.99745987654322,
+            222.38661805555554
+          ]
+        },
+        {
+          "p": 0.56,
+          "rgb": [
+            224.89173225308642,
+            227.4763811728395,
+            222.9316612654321
+          ]
+        },
+        {
+          "p": 0.57,
+          "rgb": [
+            225.44551157407406,
+            228.0365887345679,
+            223.57109799382715
+          ]
+        },
+        {
+          "p": 0.58,
+          "rgb": [
+            226.0595925925926,
+            228.66088194444444,
+            224.28287654320988
+          ]
+        },
+        {
+          "p": 0.59,
+          "rgb": [
+            226.7095100308642,
+            229.3219513888889,
+            225.0382438271605
+          ]
+        },
+        {
+          "p": 0.6,
+          "rgb": [
+            227.05794984567902,
+            229.66066203703704,
+            225.46548302469137
+          ]
+        },
+        {
+          "p": 0.61,
+          "rgb": [
+            226.53093055555556,
+            228.93514429012345,
+            224.80485185185185
+          ]
+        },
+        {
+          "p": 0.62,
+          "rgb": [
+            224.71250308641976,
+            226.7758834876543,
+            222.7008101851852
+          ]
+        },
+        {
+          "p": 0.63,
+          "rgb": [
+            221.8435285493827,
+            223.42993209876542,
+            219.36315663580248
+          ]
+        },
+        {
+          "p": 0.64,
+          "rgb": [
+            218.43039197530865,
+            219.45860648148147,
+            215.45155092592591
+          ]
+        },
+        {
+          "p": 0.65,
+          "rgb": [
+            215.09339583333335,
+            215.68425308641974,
+            211.82870601851852
+          ]
+        },
+        {
+          "p": 0.66,
+          "rgb": [
+            213.0002021604938,
+            213.39808950617285,
+            209.75624074074074
+          ]
+        },
+        {
+          "p": 0.67,
+          "rgb": [
+            212.80069907407406,
+            213.20027546296296,
+            209.6376211419753
+          ]
+        },
+        {
+          "p": 0.68,
+          "rgb": [
+            213.01245447530863,
+            213.4281774691358,
+            209.8776311728395
+          ]
+        },
+        {
+          "p": 0.69,
+          "rgb": [
+            213.0984861111111,
+            213.52127160493828,
+            209.97540509259258
+          ]
+        },
+        {
+          "p": 0.7,
+          "rgb": [
+            213.11469521604937,
+            213.53819830246914,
+            209.99353009259258
+          ]
+        },
+        {
+          "p": 0.71,
+          "rgb": [
+            213.12516975308642,
+            213.5498063271605,
+            210.00593209876544
+          ]
+        },
+        {
+          "p": 0.72,
+          "rgb": [
+            213.16042206790124,
+            213.59031944444445,
+            210.04988117283952
+          ]
+        },
+        {
+          "p": 0.73,
+          "rgb": [
+            213.25973302469137,
+            213.69850925925925,
+            210.16628395061727
+          ]
+        },
+        {
+          "p": 0.74,
+          "rgb": [
+            213.42837577160495,
+            213.88134567901236,
+            210.36043055555555
+          ]
+        },
+        {
+          "p": 0.75,
+          "rgb": [
+            213.6471412037037,
+            214.11921296296296,
+            210.6147839506173
+          ]
+        },
+        {
+          "p": 0.76,
+          "rgb": [
+            213.93022685185184,
+            214.42636574074075,
+            210.94175154320988
+          ]
+        },
+        {
+          "p": 0.77,
+          "rgb": [
+            214.23376234567903,
+            214.77398919753085,
+            211.311675154321
+          ]
+        },
+        {
+          "p": 0.78,
+          "rgb": [
+            214.64818827160494,
+            215.18928935185184,
+            211.77106095679014
+          ]
+        },
+        {
+          "p": 0.79,
+          "rgb": [
+            215.6929297839506,
+            216.26277932098765,
+            212.78444444444443
+          ]
+        },
+        {
+          "p": 0.8,
+          "rgb": [
+            219.27053549382717,
+            220.059425154321,
+            216.44188194444445
+          ]
+        },
+        {
+          "p": 0.81,
+          "rgb": [
+            223.29425308641976,
+            224.59156558641976,
+            220.91385030864197
+          ]
+        },
+        {
+          "p": 0.82,
+          "rgb": [
+            226.94536805555555,
+            228.82325540123458,
+            225.17551157407408
+          ]
+        },
+        {
+          "p": 0.83,
+          "rgb": [
+            229.7550740740741,
+            232.10620679012345,
+            228.51906172839506
+          ]
+        },
+        {
+          "p": 0.84,
+          "rgb": [
+            231.45560648148148,
+            234.09089429012346,
+            230.55339969135804
+          ]
+        },
+        {
+          "p": 0.85,
+          "rgb": [
+            232.0450848765432,
+            234.7803811728395,
+            231.2616651234568
+          ]
+        }
+      ],
+      "maxAdjacentColorDelta": 4.532140432098771
+    },
+    "desktop: audio opt-in passed",
+    {
+      "view": "desktop",
+      "baseline": {
+        "gpu": {
+          "geometries": 1,
+          "textures": 2,
+          "programs": 1,
+          "calls": 1,
+          "triangles": 0,
+          "mountedScenes": 0,
+          "jsHeapMB": 108.4,
+          "at": 6969.899999976158
+        },
+        "quality": {
+          "tier": "high",
+          "reason": "forced",
+          "lock": "forced",
+          "adaptive": false,
+          "fps": 60,
+          "frameMs": 16.7,
+          "p95FrameMs": 17.5,
+          "downgrades": 0,
+          "upgrades": 0,
+          "signals": {
+            "webgl2": true,
+            "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "cores": 8,
+            "memoryGB": 32,
+            "width": 1440,
+            "dpr": 1,
+            "coarsePointer": false,
+            "saveData": false,
+            "reducedMotion": false,
+            "effectiveType": "4g"
+          }
+        }
+      },
+      "afterExit": {
+        "gpu": {
+          "geometries": 1,
+          "textures": 2,
+          "programs": 1,
+          "calls": 1,
+          "triangles": 0,
+          "mountedScenes": 0,
+          "jsHeapMB": 78.7,
+          "at": 92860.89999997616
+        },
+        "quality": {
+          "tier": "high",
+          "reason": "forced",
+          "lock": "forced",
+          "adaptive": false,
+          "fps": 60,
+          "frameMs": 16.7,
+          "p95FrameMs": 16.9,
+          "downgrades": 0,
+          "upgrades": 0,
+          "signals": {
+            "webgl2": true,
+            "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "cores": 8,
+            "memoryGB": 32,
+            "width": 1440,
+            "dpr": 1,
+            "coarsePointer": false,
+            "saveData": false,
+            "reducedMotion": false,
+            "effectiveType": "4g"
+          }
+        }
+      }
+    },
+    "desktop: reduced motion uses the generated poster",
+    "mobile: no product buttons; reverse scroll passed",
+    "mobile: audio opt-in passed",
+    {
+      "view": "mobile",
+      "baseline": {
+        "gpu": {
+          "geometries": 2,
+          "textures": 2,
+          "programs": 2,
+          "calls": 2,
+          "triangles": 720,
+          "mountedScenes": 0,
+          "jsHeapMB": 100.2,
+          "at": 6980
+        },
+        "quality": {
+          "tier": "high",
+          "reason": "forced",
+          "lock": "forced",
+          "adaptive": false,
+          "fps": 60,
+          "frameMs": 16.6,
+          "p95FrameMs": 18.2,
+          "downgrades": 0,
+          "upgrades": 0,
+          "signals": {
+            "webgl2": true,
+            "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "cores": 8,
+            "memoryGB": 32,
+            "width": 390,
+            "dpr": 1,
+            "coarsePointer": true,
+            "saveData": false,
+            "reducedMotion": false,
+            "effectiveType": "4g"
+          }
+        }
+      },
+      "afterExit": {
+        "gpu": {
+          "geometries": 2,
+          "textures": 2,
+          "programs": 2,
+          "calls": 2,
+          "triangles": 720,
+          "mountedScenes": 0,
+          "jsHeapMB": 93.1,
+          "at": 74959.20000004768
+        },
+        "quality": {
+          "tier": "high",
+          "reason": "forced",
+          "lock": "forced",
+          "adaptive": false,
+          "fps": 60,
+          "frameMs": 16.7,
+          "p95FrameMs": 19.4,
+          "downgrades": 0,
+          "upgrades": 0,
+          "signals": {
+            "webgl2": true,
+            "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "cores": 8,
+            "memoryGB": 32,
+            "width": 390,
+            "dpr": 1,
+            "coarsePointer": true,
+            "saveData": false,
+            "reducedMotion": false,
+            "effectiveType": "4g"
+          }
+        }
+      }
+    },
+    "mobile: reduced motion uses the generated poster"
+  ],
+  "assets": {
+    "high": {
+      "bytes": 294454
+    },
+    "medium": {
+      "bytes": 276722
+    },
+    "low": {
+      "bytes": 259754
+    },
+    "audioOptInBytes": 1737440
+  }
+}

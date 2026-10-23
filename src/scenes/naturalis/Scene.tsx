@@ -1,383 +1,293 @@
-import { useRef } from "react"
-import { Html } from "@react-three/drei"
+import { useContext, useMemo, useRef } from "react"
 import { useFrame } from "@react-three/fiber"
-import { Color, Group, MeshBasicMaterial } from "three"
+import {
+  BufferGeometry,
+  Float32BufferAttribute,
+  Group,
+  InstancedMesh,
+  Object3D,
+  DoubleSide,
+} from "three"
 import type { SceneProps } from "@/experience/types"
-import { phase, useGreyboxRig } from "../greybox/runtime"
-
+import { PresentationContext, reveal } from "@/experience/presentation"
 import { envelope, ramp } from "@/experience/choreography"
-import { inheritedReveal, reveal, revealHtml } from "@/experience/presentation"
+import { useGreyboxRig } from "../greybox/runtime"
+import { Phone } from "../kit/devices/Phone"
+import { Laptop } from "../kit/devices/Laptop"
+import { useStudioEnvironment } from "../kit/devices/materials"
+import { useDisposable } from "../kit/devices/hooks"
+import { useScreenTexture } from "../kit/devices/screenTexture"
+import {
+  createRoundedSlabGeometry,
+  createRoundedPlaneGeometry,
+} from "../kit/devices/geometry"
+import { Room } from "./Room"
+import { KitHtml } from "../kit/KitHtml"
+import { NaturalisOverlay } from "./Overlay"
+import { version } from "./assets.json"
 
-const SAGE = "#56857D"
-const CREAM = "#FAFDFC"
-const NIGHT = new Color("#263E42")
-const DAY = new Color(CREAM)
-const DAWN = new Color("#F2EADD")
-const frames = [
+// Absolute camera poses compose with T-A41's single camera director.
+const cameras = [
   {
-    mobileTarget: [0, 0.2, 0] as [number, number, number],
     at: 0,
-    desktop: [6, 3.2, 8] as [number, number, number],
-    mobile: [5, 5, 23] as [number, number, number],
-    target: [-0.7, 0.2, 0] as [number, number, number],
+    desktop: [6, 3.3, 10],
+    mobile: [2.8, 3.5, 12],
+    target: [0.1, 0.45, 0],
+    mobileTarget: [0.15, 1, 0],
   },
   {
-    mobileTarget: [0, 0.2, 0] as [number, number, number],
-    at: 0.28,
-    desktop: [4.7, 3.7, 6.5] as [number, number, number],
-    mobile: [4, 4.5, 21] as [number, number, number],
-    target: [0.5, -0.1, 0.7] as [number, number, number],
+    at: 0.3,
+    desktop: [5, 3.5, 9],
+    mobile: [2.5, 3.6, 11],
+    target: [0.4, 0.35, 0],
+    mobileTarget: [0.65, 1, 0],
   },
   {
-    mobileTarget: [0, 0.2, 0] as [number, number, number],
     at: 0.5,
-    desktop: [4, 2.6, 6.5] as [number, number, number],
-    mobile: [3, 3.5, 19] as [number, number, number],
-    target: [1.1, 0.4, 0.8] as [number, number, number],
+    desktop: [3.2, 2.2, 8.4],
+    mobile: [2, 2.4, 10],
+    target: [0.3, 0.3, 0.5],
+    mobileTarget: [0.8, 0.8, 0.6],
   },
   {
-    mobileTarget: [0, 0.2, 0] as [number, number, number],
     at: 0.7,
-    desktop: [6, 3.8, 8.5] as [number, number, number],
-    mobile: [5, 5, 23] as [number, number, number],
-    target: [0, 0.2, 0] as [number, number, number],
+    desktop: [5, 3.1, 9.6],
+    mobile: [2.6, 3.3, 11.5],
+    target: [0.2, 0.4, 0],
+    mobileTarget: [0.2, 1, 0],
   },
   {
-    mobileTarget: [0, 0.2, 0] as [number, number, number],
-    at: 1,
-    desktop: [5.3, 2.6, 8.7] as [number, number, number],
-    mobile: [5, 5, 23] as [number, number, number],
-    target: [0, 0.5, 0] as [number, number, number],
+    at: 0.86,
+    desktop: [5.3, 3, 10],
+    mobile: [2.8, 3.5, 12],
+    target: [0.1, 0.5, 0],
+    mobileTarget: [0.15, 1, 0],
   },
-]
+  {
+    at: 1,
+    desktop: [5.3, 3, 10],
+    mobile: [2.8, 3.5, 12],
+    target: [0.1, 0.5, 0],
+    mobileTarget: [0.15, 1, 0],
+  },
+] satisfies Parameters<typeof useGreyboxRig>[2]
 
-function Block({
-  position,
-  size,
-  color,
-  rotation = [0, 0, 0],
-}: {
-  position: [number, number, number]
-  size: [number, number, number]
-  color: string
-  rotation?: [number, number, number]
-}) {
-  return (
-    <mesh position={position} rotation={rotation}>
-      <boxGeometry args={size} />
-      <meshBasicMaterial color={color} />
-    </mesh>
-  )
-}
-
-function Label({
-  children,
-  position,
-  small = false,
-}: {
-  children: React.ReactNode
-  position: [number, number, number]
-  small?: boolean
-}) {
-  const anchor = useRef<Group>(null)
-  const label = useRef<HTMLDivElement>(null)
-  useFrame(() => {
-    revealHtml(label.current, inheritedReveal(anchor.current))
-  })
-  return (
-    <group ref={anchor} position={position}>
-      <Html center style={{ pointerEvents: "none", whiteSpace: "nowrap" }}>
-        <div
-          ref={label}
-          style={{
-            fontFamily: "Poppins, sans-serif",
-            color: "#26463F",
-            background: "rgba(250,253,252,.94)",
-            border: "1px solid #D5E2DB",
-            borderRadius: 4,
-            padding: small ? "5px 9px" : "12px 18px",
-            fontSize: small ? 11 : 15,
-            lineHeight: 1.5,
-            textAlign: "center",
-          }}
-        >
-          {children}
-        </div>
-      </Html>
-    </group>
-  )
+function leafGeometry() {
+  const positions: number[] = [],
+    indices: number[] = []
+  for (let i = 0; i <= 12; i++) {
+    const t = i / 12,
+      width = Math.sin(t * Math.PI) * 0.29
+    for (const side of [-1, 0, 1])
+      positions.push(
+        width * side,
+        t - 0.5,
+        Math.sin(t * Math.PI) * (side === 0 ? 0.065 : 0)
+      )
+  }
+  for (let i = 0; i < 12; i++)
+    for (let j = 0; j < 2; j++) {
+      const a = i * 3 + j
+      indices.push(a, a + 1, a + 4, a, a + 4, a + 3)
+    }
+  const g = new BufferGeometry()
+  g.setAttribute("position", new Float32BufferAttribute(positions, 3))
+  g.setIndex(indices)
+  g.computeVertexNormals()
+  return g
 }
 
 export default function NaturalisScene(props: SceneProps) {
-  const room = useRef<Group>(null)
-  const plant = useRef<Group>(null)
-  const paper = useRef<Group>(null)
-  const devices = useRef<Group>(null)
-  const leaves = useRef<Group>(null)
-  const night = useRef<Group>(null)
-  const result = useRef<Group>(null)
-  const wall = useRef<MeshBasicMaterial>(null)
-  const window = useRef<MeshBasicMaterial>(null)
-  const low = props.quality === "low"
-  useGreyboxRig(props, CREAM, frames)
-
+  const { progress, quality, isMobile } = props
+  const presentation = useContext(PresentationContext)
+  useGreyboxRig(props, "#FAFDFC", cameras)
+  const world = useRef<Group>(null),
+    paper = useRef<Group>(null),
+    devices = useRef<Group>(null)
+  const phone = useRef<Group>(null),
+    laptop = useRef<Group>(null)
+  const leaves = useRef<InstancedMesh>(null),
+    lights = useRef<InstancedMesh>(null)
+  const leaf = useDisposable(useMemo(() => leafGeometry(), []))
+  const pageShape = useDisposable(
+    useMemo(
+      () => createRoundedSlabGeometry(0.56, 0.7, 0.018, 0.025, 0.006, "low"),
+      []
+    )
+  )
+  const dummy = useMemo(() => new Object3D(), [])
+  const pagePrint = useDisposable(
+    useMemo(() => createRoundedPlaneGeometry(0.554, 0.694, 0.02, "low"), [])
+  )
+  const env = useStudioEnvironment()
+  const agenda = useScreenTexture("/textures/naturalis/agenda.webp")
+  const separation = () => envelope(progress.current, 0.43, 0.61, 0.045) * 0.65
+  const deviceTier = quality === "high" ? "medium" : "low"
   useFrame(() => {
-    const p = props.progress.current
-    const roomReveal = ramp(p, 0.035, 0.18)
-    const darkness = phase(p, 0.59, 0.68) * (1 - phase(p, 0.78, 0.9))
-    if (room.current) {
-      reveal(room.current, roomReveal)
-      room.current.position.y = -0.12 * (1 - roomReveal)
+    const p = progress.current
+    reveal(world.current, ramp(p, 0.015, 0.14))
+    reveal(paper.current, envelope(p, 0.18, 0.405, 0.045))
+    reveal(devices.current, ramp(p, 0.38, 0.455))
+    if (phone.current) {
+      const enter = ramp(p, 0.38, 0.46)
+      phone.current.position.set(
+        isMobile ? 0.55 : 0.9,
+        -0.14 + (isMobile ? 0.3 : 0) - 0.22 * (1 - enter),
+        isMobile ? 2.6 : 2.1
+      )
+      phone.current.rotation.set(-0.05, isMobile ? 0.12 : 0.32, -0.08)
     }
-    if (plant.current) plant.current.scale.y = 0.05 + phase(p, 0, 0.15) * 0.95
-    reveal(paper.current, envelope(p, 0.17, 0.47, 0.07))
-    if (devices.current) {
-      reveal(devices.current, ramp(p, 0.36, 0.47))
-      devices.current.position.y = -0.3 * (1 - phase(p, 0.38, 0.47))
+    if (laptop.current) {
+      laptop.current.position.set(
+        isMobile ? 1.65 : 2.7,
+        -0.56,
+        isMobile ? 0.9 : 0.65
+      )
+      laptop.current.rotation.y = isMobile ? 0.08 : 0.1
     }
     if (leaves.current) {
-      reveal(leaves.current, envelope(p, 0.42, 0.65, 0.06))
-      leaves.current.children.forEach((leaf, i) => {
-        const travel = phase(p, 0.42 + i * 0.015, 0.59 + i * 0.015)
-        const size = Math.sin(travel * Math.PI)
-        leaf.scale.set(0.11 * size, 0.19 * size, 0.04 * size)
-        leaf.position.set(
-          -0.05 + travel * 2.1,
-          0.7 + Math.sin(travel * Math.PI) * 0.65,
-          1.5 - travel * 0.6
+      reveal(leaves.current, envelope(p, 0.43, 0.6, 0.03))
+      for (let i = 0; i < 6; i++) {
+        const t = ramp(p, 0.43 + i * 0.012, 0.54 + i * 0.012),
+          size = Math.sin(t * Math.PI) * 0.22
+        dummy.position.set(
+          (isMobile ? 0.6 : 0.95) + t * (isMobile ? 1.05 : 1.65),
+          0.25 + Math.sin(t * Math.PI) * 0.7,
+          2.05 - t * 1.25
         )
-      })
+        dummy.rotation.set(0.4, t * 2, -0.6)
+        dummy.scale.setScalar(size)
+        dummy.updateMatrix()
+        leaves.current.setMatrixAt(i, dummy.matrix)
+      }
+      leaves.current.instanceMatrix.needsUpdate = true
     }
-    reveal(night.current, envelope(p, 0.58, 0.85, 0.06))
-    reveal(result.current, ramp(p, 0.79, 0.85))
-    if (wall.current)
-      wall.current.color
-        .copy(DAY)
-        .lerp(NIGHT, darkness * 0.85)
-        .lerp(DAWN, phase(p, 0.8, 0.94) * 0.4)
-    if (window.current) window.current.color.copy(DAWN).lerp(NIGHT, darkness)
+    if (lights.current) {
+      reveal(lights.current, envelope(p, 0.6, 0.8, 0.05))
+      for (let i = 0; i < 6; i++) {
+        const t = ramp(p, 0.605 + i * 0.016, 0.69 + i * 0.016)
+        dummy.position.set(
+          2.7 + Math.cos(i * 2.4) * 0.45,
+          0.3 + i * 0.09 + Math.sin(t * Math.PI) * 0.25,
+          0.6 + Math.sin(i * 2.4) * 0.35
+        )
+        dummy.rotation.set(0, t * 3, i)
+        dummy.scale.setScalar(0.035 + Math.sin(t * Math.PI) * 0.025)
+        dummy.updateMatrix()
+        lights.current.setMatrixAt(i, dummy.matrix)
+      }
+      lights.current.instanceMatrix.needsUpdate = true
+    }
   }, -1)
-
   return (
-    <group>
-      {/* An open architectural corner, rendered with unlit materials: no live shadows. */}
-      <group ref={room}>
-        <Block position={[0, -1.65, 0]} size={[7, 0.16, 5.5]} color="#DDE7DF" />
-        <mesh position={[0, 0.3, -2.7]}>
-          <boxGeometry args={[7, 4, 0.12]} />
-          <meshBasicMaterial ref={wall} color={CREAM} />
-        </mesh>
-        <Block
-          position={[-3.5, 0.3, -0.1]}
-          size={[0.12, 4, 5.2]}
-          color="#ECF2EB"
-        />
-        <mesh position={[-1.4, 0.55, -2.61]}>
-          <planeGeometry args={[2.5, 2.8]} />
-          <meshBasicMaterial ref={window} color="#F2EADD" />
-        </mesh>
-        <Block
-          position={[-1.4, 2.02, -2.45]}
-          size={[3, 0.06, 0.06]}
-          color="#A5B9AC"
-        />
-        {Array.from({ length: low ? 6 : 12 }, (_, i) => (
-          <Block
-            key={i}
-            position={[-2.75 + i * (low ? 0.14 : 0.07), 0.5, -2.35]}
-            size={[low ? 0.14 : 0.08, 2.95, 0.08]}
-            color={i % 2 ? "#DCE5D9" : "#F1F1E7"}
-          />
-        ))}
-        {/* Camilla and an understated oval of baked-looking floor shade. */}
-        <mesh
-          position={[-0.9, -1.55, -0.2]}
-          rotation={[-Math.PI / 2, 0, 0]}
-          scale={[1.5, 0.9, 1]}
-        >
-          <circleGeometry args={[1, 24]} />
-          <meshBasicMaterial color="#C9D6C9" />
-        </mesh>
-        <Block
-          position={[-0.8, -0.45, -0.1]}
-          size={[2.6, 0.35, 1.2]}
-          color="#F5F3E9"
-        />
-        <Block
-          position={[-1.6, -0.18, -0.1]}
-          size={[0.65, 0.17, 1.05]}
-          color="#FFFFFF"
-        />
-        <Block
-          position={[-0.1, -0.25, -0.1]}
-          size={[0.7, 0.08, 1.24]}
-          color="#81AAA4"
-        />
-        {[-1.7, 0.1].map((x) => (
-          <Block
-            key={x}
-            position={[x, -1.1, -0.1]}
-            size={[0.12, 0.95, 0.8]}
-            color="#A6BAB0"
-          />
-        ))}
-        {/* Desk anchors the paper agenda, then the connected devices. */}
-        <Block
-          position={[1.8, -0.35, 0.9]}
-          size={[2.2, 0.13, 1.25]}
-          color="#C5B49A"
-        />
-        {[1, 2.6].map((x) => (
-          <Block
-            key={x}
-            position={[x, -1, 0.9]}
-            size={[0.12, 1.25, 0.9]}
-            color="#A2B0A1"
-          />
-        ))}
-        <Label position={[-0.8, 1.8, -2.4]} small>
-          naturalis · espacio para cuidar
-        </Label>
+    <>
+      <group ref={world} position={[2, -1.6, 0]} scale={1.2}>
+        <Room {...props} />
       </group>
-
-      <group position={[-2.75, -1.55, 0.9]}>
-        <mesh position={[0, 0.28, 0]}>
-          <cylinderGeometry args={[0.32, 0.23, 0.55, low ? 6 : 12]} />
-          <meshBasicMaterial color="#D6C3AA" />
-        </mesh>
-        <group ref={plant}>
-          <mesh position={[0, 1.2, 0]}>
-            <cylinderGeometry args={[0.025, 0.045, 1.8, 6]} />
-            <meshBasicMaterial color={SAGE} />
-          </mesh>
-          {Array.from({ length: low ? 4 : 7 }, (_, i) => (
-            <mesh
-              key={i}
-              position={[i % 2 ? -0.2 : 0.2, 0.8 + i * 0.19, 0]}
-              rotation={[0.2, i * 0.8, i % 2 ? 0.7 : -0.7]}
-              scale={[0.23, 0.47, 0.07]}
-            >
-              <sphereGeometry args={[1, 6, 4]} />
-              <meshBasicMaterial color={i % 2 ? SAGE : "#81AAA4"} />
-            </mesh>
-          ))}
-        </group>
-      </group>
-
-      <group ref={paper}>
+      <group
+        ref={paper}
+        position={[3.45, -0.574, -0.756]}
+        rotation={[-Math.PI / 2, 0, 0]}
+      >
         {[0, 1, 2].map((i) => (
-          <group
+          <mesh
             key={i}
-            position={[1.2 + i * 0.4, -0.25 + i * 0.03, 0.85]}
-            rotation={[0, i * 0.3 - 0.25, 0]}
+            position={[i * 0.045, i * 0.025, i * 0.012]}
+            rotation={[0, 0, (i - 1) * 0.08]}
+            geometry={pageShape}
           >
-            <Block
-              position={[0, 0, 0]}
-              size={[0.65, 0.025, 0.9]}
-              color="#FFFFFF"
+            <meshStandardMaterial
+              color="#fffdf4"
+              metalness={0}
+              roughness={0.94}
+              envMap={env}
+              envMapIntensity={0.65}
             />
-            {[0, 1, 2].map((row) => (
-              <Block
-                key={row}
-                position={[0, 0.02, -0.25 + row * 0.22]}
-                size={[0.45, 0.01, 0.025]}
-                color={row === i ? "#BA8979" : "#A2B4AA"}
-                rotation={[0, row === i ? 0.25 : 0, 0]}
-              />
-            ))}
-          </group>
+            <mesh geometry={pagePrint} position={[0, 0, 0.0095]}>
+              <meshBasicMaterial map={agenda} toneMapped={false} />
+            </mesh>
+          </mesh>
         ))}
-        <Label position={[1.8, 0.9, 0.9]} small>
-          Mensajes. Cambios. Cancelaciones.
-        </Label>
       </group>
-
       <group ref={devices}>
-        {/* Procedural kit stand-ins, awaiting T-A18. */}
-        <group position={[0.3, 0.2, 1.5]} rotation={[-0.12, -0.2, 0]}>
-          <Block
-            position={[0, 0, 0]}
-            size={[0.62, 1.16, 0.1]}
-            color="#35524B"
+        <group ref={phone}>
+          <Phone
+            quality={deviceTier}
+            back={false}
+            finish="silver"
+            scale={isMobile ? 1.15 : 0.95}
+            screenAspect={470 / 1013}
+            island={false}
+            screen={{
+              src: `/textures/naturalis/client.webp?v=${version}`,
+              fit: "cover",
+              brightness: 0.96,
+              separation,
+              layers: [
+                {
+                  id: "reservar",
+                  rect: [0.035, 0.14, 0.93, 0.24],
+                  depth: 0.15,
+                  scale: 1.035,
+                },
+              ],
+            }}
           />
-          <Block
-            position={[0, 0, 0.06]}
-            size={[0.53, 0.98, 0.012]}
-            color="#F8FCF9"
-          />
-          {[0, 1, 2].map((i) => (
-            <Block
-              key={i}
-              position={[0, 0.22 - i * 0.22, 0.075]}
-              size={[0.4, 0.13, 0.01]}
-              color={i === 1 ? "#81AAA4" : "#DDE8DF"}
-            />
-          ))}
-          <Label position={[0, -0.85, 0]} small>
-            Reservar un turno
-          </Label>
         </group>
-        <group position={[2, -0.2, 0.65]}>
-          <Block
-            position={[0, 0, 0.2]}
-            size={[1.5, 0.05, 0.9]}
-            color="#96AAA0"
+        <group ref={laptop}>
+          <Laptop
+            quality={deviceTier}
+            finish="silver"
+            scale={isMobile ? 0.49 : 0.66}
+            notch={false}
+            open={() => ramp(progress.current, 0.38, 0.47)}
+            screen={{
+              src: `/textures/naturalis/admin.webp?v=${version}`,
+              fit: "cover",
+              brightness: 0.94,
+              separation,
+              layers: [
+                {
+                  id: "agenda",
+                  rect: [0.18, 0.07, 0.64, 0.15],
+                  depth: 0.2,
+                  scale: 1.025,
+                },
+              ],
+            }}
           />
-          <Block
-            position={[0, 0.5, -0.2]}
-            size={[1.5, 0.95, 0.07]}
-            color="#35524B"
-          />
-          <Block
-            position={[0, 0.5, -0.15]}
-            size={[1.36, 0.81, 0.02]}
-            color="#F8FCF9"
-          />
-          {[0, 1, 2, 3].map((i) => (
-            <Block
-              key={i}
-              position={[-0.45 + i * 0.3, 0.5, -0.13]}
-              size={[0.24, 0.6, 0.01]}
-              color={i % 2 ? "#DDE8DF" : "#81AAA4"}
-            />
-          ))}
-          <Label position={[0, 1.25, 0]} small>
-            Natuadmin · agenda en orden
-          </Label>
         </group>
       </group>
-      <group ref={leaves}>
-        {Array.from({ length: low ? 2 : 4 }, (_, i) => (
-          <mesh key={i} rotation={[0, 0, -0.8]} scale={[0.11, 0.19, 0.04]}>
-            <sphereGeometry args={[1, 6, 4]} />
-            <meshBasicMaterial color={SAGE} />
-          </mesh>
-        ))}
-      </group>
-      <group ref={night}>
-        <Label position={[0.1, 1.45, 0.6]}>
-          <strong>Mientras el equipo descansa</strong>
-          <br />
-          <span style={{ fontSize: 11 }}>
-            Turnos fijos · confirmaciones · estadísticas
-          </span>
-        </Label>
-        {[0, 1, 2, 3, 4].slice(0, low ? 3 : 5).map((i) => (
-          <mesh key={i} position={[-1.5 + i * 0.7, 0.2 + (i % 2) * 0.4, 0.6]}>
-            <sphereGeometry args={[0.055, 6, 4]} />
-            <meshBasicMaterial color="#F6D59B" />
-          </mesh>
-        ))}
-      </group>
-      <group ref={result}>
-        <Label position={[0, 1.35, 0.7]}>
-          <strong style={{ fontSize: 21 }}>Orden sin esfuerzo.</strong>
-          <br />
-          <span style={{ fontSize: 12 }}>
-            +650 clientes · +60 turnos por mes
-          </span>
-        </Label>
-      </group>
-    </group>
+      <instancedMesh
+        ref={leaves}
+        args={[leaf, undefined, 6]}
+        frustumCulled={false}
+      >
+        <meshStandardMaterial
+          color="#56857D"
+          roughness={0.65}
+          metalness={0}
+          side={DoubleSide}
+          envMap={env}
+        />
+      </instancedMesh>
+      <instancedMesh
+        ref={lights}
+        args={[leaf, undefined, 6]}
+        frustumCulled={false}
+      >
+        <meshStandardMaterial
+          color="#ffe1a1"
+          roughness={0.5}
+          metalness={0}
+          emissive="#ffd586"
+          emissiveIntensity={1.8}
+          side={DoubleSide}
+        />
+      </instancedMesh>
+      <KitHtml>
+        <NaturalisOverlay {...props} presentation={presentation} />
+      </KitHtml>
+    </>
   )
 }

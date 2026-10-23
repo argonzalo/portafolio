@@ -1,5 +1,15 @@
 # Naturalis — insumos
 
+## Integración T-A24
+
+Sala original en `sala.blend` / `sala.glb`, con camilla propia, ficus, maceta,
+cortina, mesa y estante. Horneados `textures/room-day.png` y `room-night.png`.
+Receta: `src/scenes/naturalis/bake-room.py`; salidas optimizadas con
+`src/scenes/naturalis/build-assets.mjs`. Guardar estas fuentes con el backup
+habitual de ADR-010. Las pantallas finales usan `app-web/2.webp` y
+`natuadmin/2.webp` por corrección humana; la derivada pública del panel oculta
+datos personales. Cortina oculta en mobile. Ver `src/scenes/naturalis/README.md`.
+
 ## Marca (I-03)
 
 Ver [`brand/README.md`](./brand/README.md) y `brand/palette.json`.
