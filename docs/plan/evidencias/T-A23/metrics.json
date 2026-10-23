@@ -1,0 +1,1277 @@
+{
+  "samples": [
+    {
+      "mobile": false,
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 16.8,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.12,
+      "gpu": {
+        "geometries": 3,
+        "textures": 1,
+        "programs": 3,
+        "calls": 3,
+        "triangles": 288,
+        "mountedScenes": 2,
+        "jsHeapMB": 80.9,
+        "at": 11335.599999904633
+      }
+    },
+    {
+      "mobile": false,
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 59.4,
+        "frameMs": 16.7,
+        "p95FrameMs": 16.8,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.32,
+      "gpu": {
+        "geometries": 4,
+        "textures": 2,
+        "programs": 4,
+        "calls": 2,
+        "triangles": 3264,
+        "mountedScenes": 2,
+        "jsHeapMB": 81.2,
+        "at": 13351.299999952316
+      }
+    },
+    {
+      "mobile": false,
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 16.8,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.52,
+      "gpu": {
+        "geometries": 4,
+        "textures": 2,
+        "programs": 4,
+        "calls": 1,
+        "triangles": 3264,
+        "mountedScenes": 2,
+        "jsHeapMB": 86.9,
+        "at": 15850.5
+      }
+    },
+    {
+      "mobile": false,
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 55.4,
+        "frameMs": 17.6,
+        "p95FrameMs": 16.9,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.72,
+      "gpu": {
+        "geometries": 9,
+        "textures": 4,
+        "programs": 7,
+        "calls": 6,
+        "triangles": 2370,
+        "mountedScenes": 2,
+        "jsHeapMB": 81.1,
+        "at": 17966.699999928474
+      }
+    },
+    {
+      "mobile": false,
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 16.9,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.85,
+      "gpu": {
+        "geometries": 9,
+        "textures": 4,
+        "programs": 7,
+        "calls": 6,
+        "triangles": 2370,
+        "mountedScenes": 2,
+        "jsHeapMB": 77.1,
+        "at": 20466
+      }
+    },
+    {
+      "mobile": false,
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 17,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.12,
+      "gpu": {
+        "geometries": 4,
+        "textures": 4,
+        "programs": 5,
+        "calls": 3,
+        "triangles": 192,
+        "mountedScenes": 2,
+        "jsHeapMB": 80.7,
+        "at": 22465.299999952316
+      }
+    },
+    {
+      "mobile": false,
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 16.9,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.32,
+      "gpu": {
+        "geometries": 5,
+        "textures": 4,
+        "programs": 5,
+        "calls": 2,
+        "triangles": 2040,
+        "mountedScenes": 2,
+        "jsHeapMB": 85,
+        "at": 24464.599999904633
+      }
+    },
+    {
+      "mobile": false,
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 16.8,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.52,
+      "gpu": {
+        "geometries": 5,
+        "textures": 4,
+        "programs": 5,
+        "calls": 1,
+        "triangles": 2040,
+        "mountedScenes": 2,
+        "jsHeapMB": 89.5,
+        "at": 26963.899999976158
+      }
+    },
+    {
+      "mobile": false,
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 16.8,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.72,
+      "gpu": {
+        "geometries": 9,
+        "textures": 4,
+        "programs": 7,
+        "calls": 6,
+        "triangles": 1578,
+        "mountedScenes": 2,
+        "jsHeapMB": 81.7,
+        "at": 28963.299999952316
+      }
+    },
+    {
+      "mobile": false,
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 16.9,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.85,
+      "gpu": {
+        "geometries": 9,
+        "textures": 4,
+        "programs": 7,
+        "calls": 6,
+        "triangles": 1578,
+        "mountedScenes": 2,
+        "jsHeapMB": 79.1,
+        "at": 30962.899999976158
+      }
+    },
+    {
+      "mobile": false,
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 57.4,
+        "frameMs": 16.7,
+        "p95FrameMs": 16.9,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.12,
+      "gpu": {
+        "geometries": 5,
+        "textures": 4,
+        "programs": 6,
+        "calls": 4,
+        "triangles": 384,
+        "mountedScenes": 2,
+        "jsHeapMB": 85.5,
+        "at": 33028.59999990463
+      }
+    },
+    {
+      "mobile": false,
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 16.9,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.32,
+      "gpu": {
+        "geometries": 6,
+        "textures": 4,
+        "programs": 6,
+        "calls": 3,
+        "triangles": 1504,
+        "mountedScenes": 2,
+        "jsHeapMB": 89,
+        "at": 35028.09999990463
+      }
+    },
+    {
+      "mobile": false,
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 16.9,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.52,
+      "gpu": {
+        "geometries": 6,
+        "textures": 4,
+        "programs": 6,
+        "calls": 1,
+        "triangles": 1224,
+        "mountedScenes": 2,
+        "jsHeapMB": 80.9,
+        "at": 37527.199999928474
+      }
+    },
+    {
+      "mobile": false,
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 17,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.72,
+      "gpu": {
+        "geometries": 10,
+        "textures": 4,
+        "programs": 8,
+        "calls": 7,
+        "triangles": 1114,
+        "mountedScenes": 2,
+        "jsHeapMB": 77.1,
+        "at": 39526.59999990463
+      }
+    },
+    {
+      "mobile": false,
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 17.1,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 1440,
+          "dpr": 1,
+          "coarsePointer": false,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.85,
+      "gpu": {
+        "geometries": 10,
+        "textures": 4,
+        "programs": 8,
+        "calls": 7,
+        "triangles": 1114,
+        "mountedScenes": 2,
+        "jsHeapMB": 78,
+        "at": 41526.299999952316
+      }
+    },
+    {
+      "mobile": true,
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 59.2,
+        "frameMs": 19.3,
+        "p95FrameMs": 19.1,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.12,
+      "gpu": {
+        "geometries": 4,
+        "textures": 1,
+        "programs": 4,
+        "calls": 4,
+        "triangles": 1008,
+        "mountedScenes": 2,
+        "jsHeapMB": 78,
+        "at": 10718.599999904633
+      }
+    },
+    {
+      "mobile": true,
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 56.8,
+        "frameMs": 16.6,
+        "p95FrameMs": 19.3,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.32,
+      "gpu": {
+        "geometries": 5,
+        "textures": 2,
+        "programs": 5,
+        "calls": 3,
+        "triangles": 1944,
+        "mountedScenes": 2,
+        "jsHeapMB": 81,
+        "at": 13298.799999952316
+      }
+    },
+    {
+      "mobile": true,
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 18.7,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.52,
+      "gpu": {
+        "geometries": 5,
+        "textures": 2,
+        "programs": 5,
+        "calls": 1,
+        "triangles": 1224,
+        "mountedScenes": 2,
+        "jsHeapMB": 79.6,
+        "at": 15349.099999904633
+      }
+    },
+    {
+      "mobile": true,
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 53.5,
+        "frameMs": 18.1,
+        "p95FrameMs": 19.3,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.72,
+      "gpu": {
+        "geometries": 10,
+        "textures": 4,
+        "programs": 8,
+        "calls": 5,
+        "triangles": 2370,
+        "mountedScenes": 2,
+        "jsHeapMB": 87.6,
+        "at": 17514.199999928474
+      }
+    },
+    {
+      "mobile": true,
+      "quality": {
+        "tier": "high",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60.1,
+        "frameMs": 16.7,
+        "p95FrameMs": 19.1,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.85,
+      "gpu": {
+        "geometries": 10,
+        "textures": 4,
+        "programs": 8,
+        "calls": 5,
+        "triangles": 2370,
+        "mountedScenes": 2,
+        "jsHeapMB": 81.2,
+        "at": 19579.399999976158
+      }
+    },
+    {
+      "mobile": true,
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 55.5,
+        "frameMs": 16.8,
+        "p95FrameMs": 19.1,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.12,
+      "gpu": {
+        "geometries": 6,
+        "textures": 4,
+        "programs": 6,
+        "calls": 4,
+        "triangles": 672,
+        "mountedScenes": 2,
+        "jsHeapMB": 80.7,
+        "at": 22195.899999976158
+      }
+    },
+    {
+      "mobile": true,
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.7,
+        "p95FrameMs": 18.4,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.32,
+      "gpu": {
+        "geometries": 6,
+        "textures": 4,
+        "programs": 6,
+        "calls": 3,
+        "triangles": 1704,
+        "mountedScenes": 2,
+        "jsHeapMB": 78.7,
+        "at": 24278.799999952316
+      }
+    },
+    {
+      "mobile": true,
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 57.4,
+        "frameMs": 16.6,
+        "p95FrameMs": 18.1,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.52,
+      "gpu": {
+        "geometries": 6,
+        "textures": 4,
+        "programs": 6,
+        "calls": 1,
+        "triangles": 1224,
+        "mountedScenes": 2,
+        "jsHeapMB": 82.8,
+        "at": 26343.799999952316
+      }
+    },
+    {
+      "mobile": true,
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 56.7,
+        "frameMs": 16.6,
+        "p95FrameMs": 17.9,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.72,
+      "gpu": {
+        "geometries": 10,
+        "textures": 4,
+        "programs": 8,
+        "calls": 5,
+        "triangles": 1578,
+        "mountedScenes": 2,
+        "jsHeapMB": 88.5,
+        "at": 28426.799999952316
+      }
+    },
+    {
+      "mobile": true,
+      "quality": {
+        "tier": "medium",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60.1,
+        "frameMs": 16.7,
+        "p95FrameMs": 18.5,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.85,
+      "gpu": {
+        "geometries": 10,
+        "textures": 4,
+        "programs": 8,
+        "calls": 5,
+        "triangles": 1578,
+        "mountedScenes": 2,
+        "jsHeapMB": 77.3,
+        "at": 30493.399999976158
+      }
+    },
+    {
+      "mobile": true,
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 54.1,
+        "frameMs": 16.6,
+        "p95FrameMs": 18.5,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.12,
+      "gpu": {
+        "geometries": 6,
+        "textures": 4,
+        "programs": 6,
+        "calls": 4,
+        "triangles": 384,
+        "mountedScenes": 2,
+        "jsHeapMB": 83.7,
+        "at": 32642.799999952316
+      }
+    },
+    {
+      "mobile": true,
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.6,
+        "p95FrameMs": 18.1,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.32,
+      "gpu": {
+        "geometries": 6,
+        "textures": 4,
+        "programs": 6,
+        "calls": 3,
+        "triangles": 1504,
+        "mountedScenes": 2,
+        "jsHeapMB": 87.6,
+        "at": 35191.59999990463
+      }
+    },
+    {
+      "mobile": true,
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 57.8,
+        "frameMs": 16.6,
+        "p95FrameMs": 18,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.52,
+      "gpu": {
+        "geometries": 6,
+        "textures": 4,
+        "programs": 6,
+        "calls": 1,
+        "triangles": 1224,
+        "mountedScenes": 2,
+        "jsHeapMB": 77.2,
+        "at": 37241.699999928474
+      }
+    },
+    {
+      "mobile": true,
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 60,
+        "frameMs": 16.6,
+        "p95FrameMs": 18.2,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.72,
+      "gpu": {
+        "geometries": 10,
+        "textures": 4,
+        "programs": 8,
+        "calls": 5,
+        "triangles": 834,
+        "mountedScenes": 2,
+        "jsHeapMB": 82.1,
+        "at": 39324
+      }
+    },
+    {
+      "mobile": true,
+      "quality": {
+        "tier": "low",
+        "reason": "forced",
+        "lock": "forced",
+        "adaptive": false,
+        "fps": 56.7,
+        "frameMs": 16.7,
+        "p95FrameMs": 18.4,
+        "downgrades": 0,
+        "upgrades": 0,
+        "signals": {
+          "webgl2": true,
+          "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "cores": 8,
+          "memoryGB": 32,
+          "width": 390,
+          "dpr": 1,
+          "coarsePointer": true,
+          "saveData": false,
+          "reducedMotion": false,
+          "effectiveType": "4g"
+        }
+      },
+      "p": 0.85,
+      "gpu": {
+        "geometries": 10,
+        "textures": 4,
+        "programs": 8,
+        "calls": 5,
+        "triangles": 834,
+        "mountedScenes": 2,
+        "jsHeapMB": 85.5,
+        "at": 41406.5
+      }
+    }
+  ],
+  "errors": [
+    "Failed to load resource: the server responded with a status of 504 (Outdated Optimize Dep)",
+    "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.",
+    "THREE.WebGLProgram: Program Info Log: (210,81-129): warning X4122: sum of 0.996094 and -2.98545e-017 cannot be represented accurately in double precision\n(209,37-61): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(210,82-106): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(209,37-61): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision\n(210,82-106): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision",
+    "Failed to load resource: the server responded with a status of 504 (Outdated Optimize Dep)",
+    "[transitions]: all view transition animations, including fallback animation, are disabled as this device has the prefer-reduced-motion setting enabled.",
+    "Failed to load resource: the server responded with a status of 504 (Outdated Optimize Dep)",
+    "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.",
+    "Failed to load resource: the server responded with a status of 504 (Outdated Optimize Dep)",
+    "[transitions]: all view transition animations, including fallback animation, are disabled as this device has the prefer-reduced-motion setting enabled."
+  ],
+  "checks": [
+    "desktop: seis clasificaciones correctas",
+    {
+      "mobile": false,
+      "baseline": {
+        "gpu": {
+          "geometries": 1,
+          "textures": 0,
+          "programs": 1,
+          "calls": 1,
+          "triangles": 0,
+          "mountedScenes": 0,
+          "jsHeapMB": 80.6,
+          "at": 9319.099999904633
+        },
+        "quality": {
+          "tier": "high",
+          "reason": "forced",
+          "lock": "forced",
+          "adaptive": false,
+          "fps": 60,
+          "frameMs": 16.7,
+          "p95FrameMs": 16.9,
+          "downgrades": 0,
+          "upgrades": 0,
+          "signals": {
+            "webgl2": true,
+            "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "cores": 8,
+            "memoryGB": 32,
+            "width": 1440,
+            "dpr": 1,
+            "coarsePointer": false,
+            "saveData": false,
+            "reducedMotion": false,
+            "effectiveType": "4g"
+          }
+        }
+      },
+      "afterExit": {
+        "gpu": {
+          "geometries": 1,
+          "textures": 1,
+          "programs": 1,
+          "calls": 1,
+          "triangles": 0,
+          "mountedScenes": 0,
+          "jsHeapMB": 85.8,
+          "at": 53705.799999952316
+        },
+        "quality": {
+          "tier": "high",
+          "reason": "forced",
+          "lock": "forced",
+          "adaptive": false,
+          "fps": 60,
+          "frameMs": 16.7,
+          "p95FrameMs": 16.9,
+          "downgrades": 0,
+          "upgrades": 0,
+          "signals": {
+            "webgl2": true,
+            "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "cores": 8,
+            "memoryGB": 32,
+            "width": 1440,
+            "dpr": 1,
+            "coarsePointer": false,
+            "saveData": false,
+            "reducedMotion": false,
+            "effectiveType": "4g"
+          }
+        }
+      }
+    },
+    "desktop: reduced-motion sin canvas",
+    "mobile: seis clasificaciones correctas",
+    {
+      "mobile": true,
+      "baseline": {
+        "gpu": {
+          "geometries": 2,
+          "textures": 0,
+          "programs": 2,
+          "calls": 2,
+          "triangles": 720,
+          "mountedScenes": 0,
+          "jsHeapMB": 77.4,
+          "at": 8399.099999904633
+        },
+        "quality": {
+          "tier": "high",
+          "reason": "forced",
+          "lock": "forced",
+          "adaptive": false,
+          "fps": 60.1,
+          "frameMs": 16.7,
+          "p95FrameMs": 18.7,
+          "downgrades": 0,
+          "upgrades": 0,
+          "signals": {
+            "webgl2": true,
+            "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "cores": 8,
+            "memoryGB": 32,
+            "width": 390,
+            "dpr": 1,
+            "coarsePointer": true,
+            "saveData": false,
+            "reducedMotion": false,
+            "effectiveType": "4g"
+          }
+        }
+      },
+      "afterExit": {
+        "gpu": {
+          "geometries": 2,
+          "textures": 1,
+          "programs": 2,
+          "calls": 2,
+          "triangles": 720,
+          "mountedScenes": 0,
+          "jsHeapMB": 84.6,
+          "at": 53770.09999990463
+        },
+        "quality": {
+          "tier": "high",
+          "reason": "forced",
+          "lock": "forced",
+          "adaptive": false,
+          "fps": 60,
+          "frameMs": 16.7,
+          "p95FrameMs": 18.6,
+          "downgrades": 0,
+          "upgrades": 0,
+          "signals": {
+            "webgl2": true,
+            "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "cores": 8,
+            "memoryGB": 32,
+            "width": 390,
+            "dpr": 1,
+            "coarsePointer": true,
+            "saveData": false,
+            "reducedMotion": false,
+            "effectiveType": "4g"
+          }
+        }
+      }
+    },
+    "mobile: reduced-motion sin canvas"
+  ]
+}

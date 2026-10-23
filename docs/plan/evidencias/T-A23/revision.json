@@ -1,0 +1,128 @@
+{
+  "checks": [
+    "desktop: dos frames idénticos del agrupamiento",
+    "desktop: sin botonera ni galería; capturas en el detalle del proyecto",
+    "mobile: dos frames idénticos del agrupamiento",
+    "mobile: tarjeta amplia con backdrop-filter activo",
+    "mobile: sin botonera ni galería; capturas en el detalle del proyecto"
+  ],
+  "samples": [
+    {
+      "mobile": false,
+      "progress": 0.52,
+      "opacity": 0,
+      "geometries": 1,
+      "textures": 2,
+      "programs": 1,
+      "calls": 1,
+      "triangles": 3264,
+      "mountedScenes": 2,
+      "jsHeapMB": 78.8,
+      "at": 4446
+    },
+    {
+      "mobile": false,
+      "progress": 0.72,
+      "opacity": 1,
+      "geometries": 6,
+      "textures": 3,
+      "programs": 5,
+      "calls": 6,
+      "triangles": 2370,
+      "mountedScenes": 2,
+      "jsHeapMB": 89.3,
+      "at": 3100.5
+    },
+    {
+      "mobile": false,
+      "progress": 0.85,
+      "opacity": 0,
+      "geometries": 6,
+      "textures": 3,
+      "programs": 5,
+      "calls": 6,
+      "triangles": 2370,
+      "mountedScenes": 2,
+      "jsHeapMB": 92.4,
+      "at": 2782.100000023842
+    },
+    {
+      "mobile": true,
+      "progress": 0.52,
+      "opacity": 0,
+      "geometries": 1,
+      "textures": 2,
+      "programs": 1,
+      "calls": 1,
+      "triangles": 1224,
+      "mountedScenes": 2,
+      "jsHeapMB": 78.2,
+      "at": 3593.600000023842
+    },
+    {
+      "mobile": true,
+      "progress": 0.67,
+      "opacity": 0,
+      "geometries": 5,
+      "textures": 3,
+      "programs": 4,
+      "calls": 5,
+      "triangles": 2370,
+      "mountedScenes": 2,
+      "jsHeapMB": 86.3,
+      "at": 2870.7000000476837
+    },
+    {
+      "mobile": true,
+      "progress": 0.715,
+      "opacity": 0.496668,
+      "geometries": 5,
+      "textures": 3,
+      "programs": 4,
+      "calls": 5,
+      "triangles": 2370,
+      "mountedScenes": 2,
+      "jsHeapMB": 98.1,
+      "at": 2830.7000000476837
+    },
+    {
+      "mobile": true,
+      "progress": 0.75,
+      "opacity": 1,
+      "geometries": 5,
+      "textures": 3,
+      "programs": 4,
+      "calls": 5,
+      "triangles": 2370,
+      "mountedScenes": 2,
+      "jsHeapMB": 114.7,
+      "at": 2774.5999999046326
+    },
+    {
+      "mobile": true,
+      "progress": 0.78,
+      "opacity": 0.375209,
+      "geometries": 5,
+      "textures": 3,
+      "programs": 4,
+      "calls": 5,
+      "triangles": 2370,
+      "mountedScenes": 2,
+      "jsHeapMB": 107.8,
+      "at": 2819.5
+    },
+    {
+      "mobile": true,
+      "progress": 0.85,
+      "opacity": 0,
+      "geometries": 5,
+      "textures": 3,
+      "programs": 4,
+      "calls": 5,
+      "triangles": 2370,
+      "mountedScenes": 2,
+      "jsHeapMB": 124.2,
+      "at": 2801
+    }
+  ]
+}
