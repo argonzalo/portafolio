@@ -103,7 +103,6 @@ export function PirpOverlay({
         <h2 ref={title}>{headlines[0]}</h2>
         <p ref={subtitle}>{subtitles[0]}</p>
       </header>
-      <span className="pirp-demo">Demo ficticia · sin datos de clientes</span>
       <section
         className="pirp-feed"
         ref={feed}

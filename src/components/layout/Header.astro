@@ -1,6 +1,5 @@
 ---
 import { ContactDialog } from "@/components/dialogs/ContactDialog"
-import { JourneyIndex } from "@/components/journey/JourneyIndex"
 import { Logo } from "@/components/portfolio/Logo"
 import { site } from "@/lib/site"
 ---
@@ -22,14 +21,13 @@ import { site } from "@/lib/site"
         class="flex shrink-0 items-center gap-2.5 text-sm font-semibold tracking-tight"
       >
         <Logo size={24} backgroundClassName="bg-primary" />
-        <span class="hidden md:inline">{site.name}</span>
+        <span>{site.name}</span>
       </a>
 
       <nav
         aria-label="Principal"
         class="ml-auto flex min-w-0 items-center gap-1 sm:gap-2"
       >
-        <JourneyIndex client:load />
         <ContactDialog client:load />
       </nav>
     </div>

@@ -7,6 +7,7 @@ const DURATION = 0.65
 const EASE = "power3.inOut"
 const EDGE_INSET = 24
 const COMPACT_PADDING_X = 16
+const MIN_COMPACT_DESKTOP = 500
 
 let compact = false
 let tween: gsap.core.Tween | null = null
@@ -37,10 +38,11 @@ function measureHugWidth(bar: HTMLElement) {
     return total + child.getBoundingClientRect().width + (index > 0 ? gap : 0)
   }, 0)
 
-  return Math.min(
-    Math.ceil(contentWidth + compactPaddingX() * 2 + 2),
-    window.innerWidth - EDGE_INSET
-  )
+  const hugged = Math.ceil(contentWidth + compactPaddingX() * 2 + 2)
+  const isDesktop = window.matchMedia("(min-width: 768px)").matches
+  const withFloor = isDesktop ? Math.max(hugged, MIN_COMPACT_DESKTOP) : hugged
+
+  return Math.min(withFloor, window.innerWidth - EDGE_INSET)
 }
 
 function setCompactAttrs(next: boolean) {

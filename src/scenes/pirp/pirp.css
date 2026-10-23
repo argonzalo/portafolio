@@ -3,7 +3,6 @@
 .pirp-heading{position:absolute;top:23%;left:36%;right:7%;text-align:right}
 .pirp-heading h2{font-size:clamp(28px,3.4vw,52px);font-weight:600;line-height:1.12;letter-spacing:-.04em;margin:0}
 .pirp-heading p{font-size:14px;margin:16px 0;color:#C5BCBA}
-.pirp-demo{position:absolute;bottom:48px;right:7%;font-size:11px;color:#C5BCBA}
 .pirp-feed,.pirp-topics,.pirp-dashboard,.pirp-strategy{position:absolute;visibility:hidden;pointer-events:auto}
 .pirp-feed{top:42%;right:7%;width:min(780px,65vw)}
 .pirp-news-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -28,7 +27,6 @@
 
 @media(max-width:768px){
 .pirp-heading{top:29%;left:24px;right:24px;text-align:left}.pirp-heading h2{font-size:30px;max-width:320px}.pirp-heading p{font-size:12px;line-height:1.6;max-width:300px;margin-top:12px}
-.pirp-demo{bottom:53px;right:24px;font-size:9px}
 .pirp-feed{top:46%;left:24px;right:24px;width:auto}.pirp-news-buttons{display:flex;overflow-x:auto;gap:10px;scroll-snap-type:x mandatory;padding:3px 3px 10px}.pirp-news-buttons button{min-width:265px;scroll-snap-align:start;min-height:132px}.pirp-news-buttons strong{font-size:13px}.pirp-classified{font-size:11px;padding:13px}.pirp-classified>span{margin-left:9px}.pirp-classified p{font-size:11px;line-height:1.5}
 .pirp-topics{top:48%;left:24px;right:24px;gap:10px;grid-template-columns:1fr}.pirp-topics>div{padding:9px 12px;grid-template-columns:8px 1fr 48px;gap:8px}.pirp-topics>div>span{grid-row:auto;height:23px}.pirp-topics strong{font-size:11px}.pirp-topics small{font-size:9px}.pirp-topics p{font-size:10px;margin:0}
 .pirp-dashboard{top:47%;right:24px;width:218px;padding:16px}.pirp-score{font-size:45px}.pirp-dashboard>p{font-size:11px}.pirp-dashboard svg{margin:9px 0}.pirp-alert{font-size:11px;padding-left:10px}.pirp-alert p{font-size:10px;line-height:1.5}
@@ -45,7 +43,6 @@
 .pirp-strategy li strong{display:block;font-size:13px;font-weight:600;line-height:1.4;margin-bottom:6px}
 .pirp-strategy li p{font-size:12px;line-height:1.65;margin:0;color:#504747}
 @media(max-width:768px){.pirp-strategy li{grid-template-columns:22px 1fr;gap:6px;padding:12px 0}.pirp-action-number{font-size:14px}.pirp-strategy li strong{font-size:11px;margin-bottom:5px}.pirp-strategy li p{font-size:10.5px;line-height:1.55}.pirp-strategy h3{margin-bottom:14px}}
-@media(max-width:768px){.pirp-demo{bottom:22px}}
 /* Mobile: el producto ocupa el fondo y la lectura flota sobre su interfaz. */
 @media(max-width:768px){
   .pirp-dashboard,.pirp-strategy{top:46%;left:24px;right:24px;width:auto;padding:18px 20px;border-radius:20px}
