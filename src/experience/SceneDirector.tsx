@@ -156,7 +156,7 @@ function SceneLayer({
   // Before camera rigs (-3), scene animation (-1) and DOM projection (0).
   useFrame(() => {
     const p = chapterId ? experienceStore.progress(chapterId).current : 0
-    const t = handoff(p)
+    const t = handoff(p, chapterId)
     // The baked, depth-writing room must leave before Banner's surfaces arrive.
     const fromNaturalis = chapterId === "naturalis"
     presentation.current.opacity = current
@@ -205,7 +205,7 @@ function CameraDirector({
   const beatKey = useRef("")
   useFrame(({ camera, scene }) => {
     const p = chapterId ? experienceStore.progress(chapterId).current : 0
-    const t = handoff(p)
+    const t = handoff(p, chapterId)
     const from = chapterId ? poses.get(chapterId) : undefined
     const to = next ? poses.get(next) : undefined
     eye.set(0, 0, 5)

@@ -3,10 +3,9 @@ import { experienceStore } from "../store"
 import type { QualityTier } from "../types"
 import { getSceneByChapter } from "@/scenes/registry"
 import { createThreadClock } from "./clock"
-import { ease } from "@/experience/choreography"
+import { ease, handoffStart } from "@/experience/choreography"
 import {
   CHAPTER_SEQUENCE,
-  THREAD_HANDOFF_START,
   chapterIndexOf,
   chapterThreadProfile,
   createThreadFrame,
@@ -90,12 +89,13 @@ export function updateThread(
   target.lightMix = profile.scheme === "light" ? 1 : 0
 
   const nextChapter = nextJourneyChapter(chapter)
+  const transitionStart = handoffStart(chapter)
   let handoff = 0
   let targetMix = profile.mix
 
-  if (nextChapter && progress > THREAD_HANDOFF_START) {
+  if (nextChapter && progress > transitionStart) {
     const raw = MathUtils.clamp(
-      (progress - THREAD_HANDOFF_START) / (1 - THREAD_HANDOFF_START),
+      (progress - transitionStart) / (1 - transitionStart),
       0,
       1
     )
@@ -135,11 +135,11 @@ export function updateThread(
   frame.head.lerp(target.head, blend)
   frame.lightMix = MathUtils.lerp(frame.lightMix, target.lightMix, blend)
 
-  // Fase continua en el círculo [0..1): en el tramo 0.82..1 cruza hacia 1.08 (= 0.08 mod 1),
+  // Fase continua en el círculo [0..1): durante el handoff cruza hacia 1.08 (= 0.08 mod 1),
   // coincidiendo sin salto con el inicio (0.08) del capítulo entrante.
   const localPhase = nextChapter
-    ? progress <= THREAD_HANDOFF_START
-      ? 0.08 + (progress / THREAD_HANDOFF_START) * 0.78
+    ? progress <= transitionStart
+      ? 0.08 + (progress / transitionStart) * 0.78
       : 0.86 + handoff * 0.22
     : 0.08 + progress * 0.84
   const targetPhase = ((localPhase % 1) + 1) % 1

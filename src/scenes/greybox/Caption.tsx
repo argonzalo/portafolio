@@ -25,7 +25,7 @@ export function GreyboxCaption({
     const update = () => {
       const active = experienceStore.getSnapshot().chapterId
       const p = active ? experienceStore.progress(active).current : 0
-      const blend = handoff(p)
+      const blend = handoff(p, active)
       const alpha =
         active === chapterId
           ? 1 - ramp(blend, 0, 0.45)

@@ -27,6 +27,10 @@ import { manifesto } from "@/lib/site"
   }
   :global(#manifesto.manifesto-chapter) {
     min-height: 100svh;
+    justify-content: flex-start;
+  }
+  :global(#manifesto.manifesto-chapter > div) {
+    padding-top: clamp(2rem, 5svh, 3rem);
   }
   .manifesto-phrases {
     display: flex;
