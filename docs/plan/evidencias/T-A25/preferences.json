@@ -1,0 +1,33 @@
+[
+  {
+    "mode": "medium",
+    "debug": "Debug · runtime×nivelmedium (forced)modoforzadofpsmidiendo · 16.7 ms · p95 17.5 mscapítulobanner-2beatbanner-2/mundoprogreso0.50escenas2draw calls19triangles3.318textures14geometries18programs9js heap62.3 MBdpr1.00 · render 1.00 · 390pxhighmediumlowstaticauto/?chapter=banner-2&progress=0.50&quality=medium&debugDeep link: capítulo, progreso, nivel y debug. El laboratorio vive en /lab/<escena> (solo dev)."
+  },
+  {
+    "mode": "reduced-motion-forced-low",
+    "a": {
+      "camera": [
+        0,
+        0.65,
+        11.25
+      ],
+      "slide": 0,
+      "mixes": [
+        0,
+        0
+      ]
+    },
+    "b": {
+      "camera": [
+        0,
+        0.65,
+        11.25
+      ],
+      "slide": 0,
+      "mixes": [
+        0,
+        0
+      ]
+    }
+  }
+]

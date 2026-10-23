@@ -17,6 +17,7 @@ Registro obligatorio antes de mergear assets de terceros o de cliente a `public/
 | `public/images/proyects/**` | Capturas propias de producto | Uso en portafolio: **sí**; el humano puede reemplazarlas después | — | 2026-10-22 |
 | `public/audio/naturalis.mp3` | Pista local provista por Gonzalo (`C:\Users\arave\Music\naturalis-audio.mp3`) | Uso en portafolio: **sí** (Gonzalo) | — | 2026-10-22 |
 | `assets-src/banner/brand/clients/*` | Repo local `banner-director/web-landing-2/public/assets/clientes/` | Uso de logos en videowall/cartelería del portafolio: **sí** (Gonzalo) | — | 2026-10-22 |
+| `public/videos/banner/*.mp4`, `public/textures/banner/*` | Ocho clips provistos por Gonzalo de `C:\Users\arave\Videos\mini clips\seleccionados`; fotogramas derivados; capturas propias `banner-2/{1,3,5,6}.webp` indicadas expresamente por el humano | Uso de clips y capturas en esta escena indicado por el humano en T-A25; no se presume licencia externa ni autoría de los clips. Recorte UV/cover, sin modificar los originales | — | 2026-10-23 |
 | `assets-src/pirp/dataset-ficticio.json` | Dataset sintético de asuntos públicos/diplomacia sin nombres propios | Contenido ficticio original portafolio | — | 2026-10-22 |
 
 ## Notas

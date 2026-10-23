@@ -1,319 +1,214 @@
-import { useContext, useLayoutEffect, useMemo, useRef } from "react"
+import { useContext, useEffect, useMemo, useRef } from "react"
 import { useFrame } from "@react-three/fiber"
-import { Html } from "@react-three/drei"
-import {
-  Color,
-  Object3D,
-  type Group,
-  type InstancedMesh,
-  type Mesh,
-  type ShaderMaterial,
-} from "three"
+import { Group, Light, MeshStandardMaterial } from "three"
 import type { SceneProps } from "@/experience/types"
-import { phase, useGreyboxRig } from "@/scenes/greybox/runtime"
-
-import { envelope, ramp } from "@/experience/choreography"
+import { useExperienceStore } from "@/experience/hooks"
+import { ramp } from "@/experience/choreography"
+import { PresentationContext, revealHtml } from "@/experience/presentation"
+import { useGreyboxRig, type CameraFrame } from "@/scenes/greybox/runtime"
 import {
-  PresentationContext,
-  reveal,
-  revealHtml,
-} from "@/experience/presentation"
+  Display,
+  KitHtml,
+  ThreadLine,
+  useStudioEnvironment,
+} from "@/scenes/kit"
+import { createRoundedSlabGeometry } from "@/scenes/kit/devices/geometry"
+import { useBannerClips } from "./media"
+import { InterfaceSlides, VideoCrossfade } from "./Screens"
 
+const POSE = {
+  desktop: [0.6, 0.7, 13],
+  mobile: [0, 0.65, 11.25],
+  target: [0, 0, 0],
+  mobileTarget: [0, 0.4, 0],
+} satisfies Omit<CameraFrame, "at">
 const FRAMES = [
-  { at: 0, desktop: [0, 0.6, 10], mobile: [0, 0.5, 12], target: [0, 0, 0] },
-  { at: 0.3, desktop: [0.6, 0.8, 12], mobile: [0, 0.6, 15], target: [0, 0, 0] },
-  { at: 0.5, desktop: [0.6, 0.8, 11], mobile: [0, 0.5, 13], target: [0, 0, 0] },
-  { at: 0.7, desktop: [0, 0.5, 12], mobile: [0, 0.5, 18], target: [0, 0, 0] },
-  {
-    at: 0.95,
-    desktop: [0.4, 0.4, 10],
-    mobile: [0, 0.5, 12],
-    target: [0, 0, 0],
-  },
+  { at: 0, ...POSE },
+  { at: 0.82, ...POSE, desktop: [0.5, 0.65, 11.5], mobile: [0, 0.65, 10.45] },
+  { at: 1, ...POSE, desktop: [0.5, 0.65, 11.5], mobile: [0, 0.65, 10.45] },
 ] satisfies Parameters<typeof useGreyboxRig>[2]
-
-const COPY = [
-  "01 / UNA PANTALLA",
-  "02 / SIN COORDINACIÓN",
-  "03 / REGIÓN · FECHA · ENTIDAD",
-  "04 / PUBLICAR → BROKER → WORKERS",
-  "05 / ≈10.000 EQUIPOS ACTIVOS",
+const STILL_FRAMES = [
+  { at: 0, ...POSE },
+  { at: 1, ...POSE },
 ]
 
-function Panel({
-  position = [0, 0, 0],
-  scale = [1, 1, 1],
-  color = "#DA3E00",
-}: {
-  position?: [number, number, number]
-  scale?: [number, number, number]
-  color?: string
-}) {
-  return (
-    <group position={position} scale={scale}>
-      <mesh>
-        <boxGeometry args={[2.5, 1.5, 0.12]} />
-        <meshBasicMaterial color="#312724" />
-      </mesh>
-      <mesh position={[0, 0, 0.071]}>
-        <planeGeometry args={[2.35, 1.35]} />
-        <meshBasicMaterial color={color} />
-      </mesh>
-      <mesh position={[-0.38, 0.26, 0.08]}>
-        <planeGeometry args={[1.2, 0.08]} />
-        <meshBasicMaterial color="#FFE5DB" />
-      </mesh>
-      <mesh position={[-0.6, 0.05, 0.08]}>
-        <planeGeometry args={[0.75, 0.05]} />
-        <meshBasicMaterial color="#FFB5A0" />
-      </mesh>
-    </group>
-  )
-}
-
-/** Repeated screens share geometry/material; no text or DOM per instance. */
-function ScreenField({
-  progress,
-  isMobile,
-  quality,
-  mode,
-}: SceneProps & { mode: "chaos" | "map" }) {
-  const ref = useRef<InstancedMesh>(null)
-  const material = useRef<ShaderMaterial>(null)
-  const count =
-    mode === "chaos"
-      ? 180
-      : quality === "high"
-        ? 10000
-        : quality === "medium"
-          ? 2500
-          : 900
-  const side = Math.ceil(Math.sqrt(count))
-  const uniforms = useMemo(
-    () => ({ uProgress: { value: 0 }, uOpacity: { value: 1 } }),
+function MonitorBase() {
+  const envMap = useStudioEnvironment()
+  const geometry = useMemo(
+    () => createRoundedSlabGeometry(6.65, 1.65, 0.16, 0.22, 0.025, "medium"),
     []
   )
-  useLayoutEffect(() => {
-    const mesh = ref.current
-    if (!mesh) return
-    const object = new Object3D()
-    const color = new Color()
-    for (let i = 0; i < count; i++) {
-      const x = i % side
-      const y = Math.floor(i / side)
-      if (mode === "map") {
-        object.position.set(
-          (x / side - 0.5) * 11,
-          (y / side - 0.5) * 5.8 - 0.6,
-          -0.4
-        )
-        object.scale.set(7.5 / side, 4.6 / side, 1)
-      } else {
-        object.position.set(
-          Math.sin(i * 17.3) * 7,
-          Math.cos(i * 7.1) * 4,
-          -1 - (i % 8) * 0.35
-        )
-        object.rotation.set(0, Math.sin(i) * 0.3, Math.sin(i * 4) * 0.2)
-        object.scale.set(0.8, 0.45, 1)
-      }
-      object.updateMatrix()
-      mesh.setMatrixAt(i, object.matrix)
-      color.set(
-        mode === "map"
-          ? x < side / 3
-            ? "#DA3E00"
-            : x < (side * 2) / 3
-              ? "#FFB5A0"
-              : "#FFE5DB"
-          : ["#DA3E00", "#62504A", "#B4A499", "#8E3420"][i % 4]
-      )
-      mesh.setColorAt(i, color)
-    }
-    mesh.instanceMatrix.needsUpdate = true
-    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
-    mesh.computeBoundingSphere()
-  }, [count, side, mode])
-  useFrame(() => {
-    const mesh = ref.current
-    if (!mesh) return
-    const p = progress.current
-    reveal(
-      mesh,
-      mode === "chaos"
-        ? envelope(p, 0.16, 0.46, 0.08)
-        : envelope(p, 0.57, 0.86, 0.09)
-    )
-    if (material.current)
-      material.current.uniforms.uProgress.value = phase(p, 0.63, 0.78)
-    if (mode === "chaos") {
-      mesh.rotation.y = phase(p, 0.16, 0.46) * 0.12
-      const spread = 0.7 + 0.3 * ramp(p, 0.16, 0.3) - 0.4 * ramp(p, 0.32, 0.46)
-      mesh.scale.set(
-        spread * (isMobile ? 0.38 : 1),
-        spread * (isMobile ? 0.6 : 1),
-        spread
-      )
-    } else mesh.scale.setScalar(isMobile ? 0.77 : 1)
-  }, -1)
+  const material = useMemo(
+    () =>
+      new MeshStandardMaterial({
+        color: "#43362f",
+        metalness: 0.65,
+        roughness: 0.34,
+        envMap,
+        envMapIntensity: 0.8,
+      }),
+    [envMap]
+  )
+  useEffect(() => () => geometry.dispose(), [geometry])
+  useEffect(() => () => material.dispose(), [material])
   return (
-    <instancedMesh ref={ref} args={[undefined, undefined, count]}>
-      <planeGeometry args={[1, 1]} />
-      {mode === "chaos" ? (
-        <meshBasicMaterial />
-      ) : (
-        <shaderMaterial
-          ref={material}
-          uniforms={uniforms}
-          vertexShader={`varying vec3 vColor; varying float vRegion;
-        void main() { vColor = instanceColor; vRegion = (instanceMatrix[3].x + 5.5) / 11.0;
-          gl_Position = projectionMatrix * modelViewMatrix * instanceMatrix * vec4(position, 1.0); }`}
-          fragmentShader={`uniform float uProgress; uniform float uOpacity; varying vec3 vColor; varying float vRegion;
-        void main() { float on = smoothstep(vRegion - 0.06, vRegion + 0.06, uProgress);
-          gl_FragColor = vec4(mix(vec3(0.025,0.019,0.017), vColor, on), uOpacity);
-          #include <tonemapping_fragment>
-          #include <colorspace_fragment>
-        }`}
-          toneMapped={false}
-        />
-      )}
-    </instancedMesh>
+    <mesh
+      geometry={geometry}
+      material={material}
+      position={[0, -1.99, -0.18]}
+      rotation-x={-Math.PI / 2}
+    />
   )
 }
 
+/** One brief scene: product interface and connected screens, then Starbene. */
 export default function BannerScene(props: SceneProps) {
-  const { progress, isMobile } = props
+  const { isMobile, quality, progress } = props
+  const { reducedMotion } = useExperienceStore()
   const presentation = useContext(PresentationContext)
-  const hero = useRef<Group>(null)
-  const editor = useRef<Group>(null)
-  const graph = useRef<Group>(null)
-  const wall = useRef<Group>(null)
-  const layers = useRef<Group>(null)
-  const pulse = useRef<Mesh>(null)
-  const caption = useRef<HTMLDivElement>(null)
-  useGreyboxRig(props, "#151211", FRAMES)
+  const copy = useRef<HTMLDivElement>(null)
+  const lights = useRef<Group>(null)
+  const textures = useBannerClips(props)
+  const positions = useMemo<[number, number, number][]>(
+    () =>
+      isMobile
+        ? [
+            [-0.95, -1.9, 0],
+            [0.95, -1.9, 0],
+          ]
+        : [
+            [-4.65, 1.15, -0.7],
+            [4.65, 1.15, -0.7],
+            [-4.65, -1.05, -0.7],
+            [4.65, -1.05, -0.7],
+          ],
+    [isMobile]
+  )
+  useGreyboxRig(props, "#151211", reducedMotion ? STILL_FRAMES : FRAMES)
   useFrame(() => {
-    const p = progress.current
-    const beat = Math.min(4, Math.floor(p * 5))
-    const alpha = presentation?.current.opacity ?? 1
-    if (hero.current) {
-      // The SAME screen becomes the editor's preview, then the publisher node.
-      const edit = ramp(p, 0.32, 0.46)
-      const publish = ramp(p, 0.53, 0.66)
-      hero.current.position.set(
-        -0.8 * edit + (-3.5 + 0.8) * publish,
-        0.35 * edit + (2.3 - 0.35) * publish,
-        0.2 * edit * (1 - publish)
-      )
-      hero.current.scale.setScalar(
-        (1.4 - 0.45 * edit) * (1 - publish) + 0.32 * publish
-      )
-      reveal(hero.current, 1 - ramp(p, 0.75, 0.85))
+    const opacity = presentation?.current.opacity ?? 1
+    for (const light of lights.current?.children ?? []) {
+      if (!(light instanceof Light)) continue
+      light.userData.bannerIntensity ??= light.intensity
+      light.intensity = light.userData.bannerIntensity * opacity
     }
-    reveal(editor.current, envelope(p, 0.34, 0.64, 0.09))
-    reveal(graph.current, envelope(p, 0.56, 0.86, 0.09))
-    reveal(wall.current, ramp(p, 0.76, 0.86))
-    if (layers.current) {
-      layers.current.position.z = phase(p, 0.4, 0.59) * 1.2
-      layers.current.rotation.y = -phase(p, 0.4, 0.6) * 0.2
-    }
-    if (pulse.current) {
-      pulse.current.position.x = -4.4 + phase(p, 0.6, 0.73) * 8.8
-      pulse.current.scale.setScalar(envelope(p, 0.59, 0.78, 0.04))
-    }
-    if (caption.current) {
-      caption.current.textContent = COPY[beat]
-      revealHtml(caption.current, alpha)
-    }
+    revealHtml(copy.current, opacity * (1 - ramp(progress.current, 0.88, 1)))
   }, -1)
-  const columns = isMobile ? 2 : 4
   return (
     <group>
-      <group ref={hero}>
-        <Panel />
+      <group ref={lights}>
+        <ambientLight intensity={0.6} />
+        <directionalLight
+          position={[-4, 6, 8]}
+          color="#ffe3d3"
+          intensity={2.5}
+        />
+        <directionalLight position={[5, 3, -4]} color="#bdc2ff" intensity={3} />
+        <pointLight
+          position={[2, -2, 4]}
+          color="#ffb5a0"
+          intensity={18}
+          distance={15}
+        />
       </group>
-      <ScreenField {...props} mode="chaos" />
-      <ScreenField {...props} mode="map" />
-      <group ref={editor} scale={isMobile ? 0.8 : 1}>
-        <Panel position={[-0.3, 0, -0.4]} scale={[2, 2, 1]} color="#2D211D" />
-        <group ref={layers}>
-          <mesh position={[1.1, 0.3, 0.5]}>
-            <planeGeometry args={[0.9, 1.9]} />
-            <meshBasicMaterial color="#FFB5A0" transparent opacity={0.5} />
-          </mesh>
-          <mesh position={[1.5, 0.05, 0.8]}>
-            <planeGeometry args={[0.9, 1.9]} />
-            <meshBasicMaterial color="#DA3E00" transparent opacity={0.55} />
-          </mesh>
-          <mesh position={[1.9, -0.2, 1.1]}>
-            <planeGeometry args={[0.9, 1.9]} />
-            <meshBasicMaterial color="#FFE5DB" transparent opacity={0.45} />
-          </mesh>
-        </group>
-      </group>
-      <group ref={graph} position={[0, 2.3, 0]} scale={isMobile ? 0.8 : 1}>
-        <mesh position={[0, 0, 0]}>
-          <boxGeometry args={[1.2, 0.8, 0.3]} />
-          <meshBasicMaterial color="#FFB5A0" />
-        </mesh>
-        <mesh position={[-1.8, 0, 0]}>
-          <boxGeometry args={[2.6, 0.025, 0.025]} />
-          <meshBasicMaterial color="#DA3E00" />
-        </mesh>
-        {[0, 1, 2].map((i) => (
-          <group key={i}>
-            <mesh position={[3, (i - 1) * 0.65, 0]}>
-              <boxGeometry args={[0.5, 0.35, 0.2]} />
-              <meshBasicMaterial color="#FFB5A0" />
-            </mesh>
-            <mesh
-              position={[1.8, (i - 1) * 0.32, 0]}
-              rotation={[0, 0, (i - 1) * 0.26]}
-            >
-              <boxGeometry args={[2.4, 0.025, 0.025]} />
-              <meshBasicMaterial color="#DA3E00" />
-            </mesh>
-          </group>
-        ))}
-        <mesh ref={pulse}>
-          <sphereGeometry args={[0.12, 8, 6]} />
-          <meshBasicMaterial color="#FFF0E9" />
-        </mesh>
-      </group>
-      <group ref={wall} scale={isMobile ? 0.8 : 1}>
-        <mesh position={[0, -0.2, -0.3]}>
-          <boxGeometry args={[isMobile ? 6 : 11.5, 4.8, 0.2]} />
-          <meshBasicMaterial color="#251C18" />
-        </mesh>
-        {Array.from({ length: columns * 2 }, (_, i) => (
-          <Panel
-            key={i}
-            position={[
-              ((i % columns) - (columns - 1) / 2) * 2.65,
-              (Math.floor(i / columns) - 0.5) * 1.7,
-              0,
-            ]}
-            color="#DA3E00"
-          />
-        ))}
-      </group>
-      <Html
-        position={[0, isMobile ? -3.2 : 3.5, 0]}
-        center
-        style={{ pointerEvents: "none" }}
+      <mesh position={[0, 0, -2.5]}>
+        <planeGeometry args={[27, 17]} />
+        <shaderMaterial
+          transparent
+          depthWrite={false}
+          toneMapped={false}
+          uniforms={{ uOpacity: { value: 1 } }}
+          vertexShader={`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`}
+          fragmentShader={`varying vec2 vUv;uniform float uOpacity;void main(){float d=length((vUv-vec2(.5,.46))*vec2(1.25,1.));float a=exp(-d*d*15.)*.24;gl_FragColor=vec4(.32,.22,.19,a*uOpacity);}`}
+        />
+      </mesh>
+      <group
+        position={isMobile ? [0, 0.6, 0.35] : [0, 0, 0.35]}
+        scale={isMobile ? 0.59 : 0.91}
       >
+        <Display
+          variant="monitor"
+          stand="none"
+          finish="graphite"
+          quality={quality}
+          envIntensity={0.8}
+          screen={{ glare: false, power: 0 }}
+        >
+          <InterfaceSlides progress={progress} isMobile={isMobile} />
+        </Display>
+        <MonitorBase />
+      </group>
+      {positions.map((position, i) => (
+        <Display
+          key={i}
+          variant="signage"
+          finish="graphite"
+          quality="low"
+          scale={isMobile ? 0.25 : 0.32}
+          position={position}
+          rotation-y={isMobile ? 0 : position[0] > 0 ? -0.14 : 0.14}
+          screen={{ glare: false, power: 0 }}
+        >
+          <VideoCrossfade
+            progress={progress}
+            isMobile={isMobile}
+            slot={i}
+            textures={textures}
+          />
+        </Display>
+      ))}
+      {positions.map((position, i) => (
+        <ThreadLine
+          key={i}
+          quality={quality}
+          progress={progress}
+          points={[
+            [0, -0.1, -0.3],
+            [position[0] * 0.6, position[1] * 0.5, -0.5],
+            position,
+          ]}
+          color="#BDC2FF"
+          width={0.012}
+          showHead={false}
+          draw={[0, 0.08]}
+        />
+      ))}
+      <KitHtml>
         <div
-          ref={caption}
+          ref={copy}
+          data-banner-caption
           style={{
-            color: "#FFB5A0",
-            font: "11px monospace",
-            letterSpacing: ".12em",
-            whiteSpace: "nowrap",
+            position: "absolute",
+            top: isMobile ? "28%" : "18%",
+            left: "5%",
+            right: "5%",
+            textAlign: "center",
+            fontFamily: "Poppins,sans-serif",
+            color: "#EDE0DD",
+            pointerEvents: "none",
           }}
         >
-          {COPY[0]}
+          <div
+            style={{
+              fontSize: isMobile ? 18 : 27,
+              fontWeight: 500,
+              letterSpacing: "-.04em",
+              lineHeight: 1.3,
+            }}
+          >
+            Controlá lo que se ve. En todas partes.
+          </div>
+          <div
+            style={{
+              marginTop: 10,
+              fontSize: isMobile ? 10 : 13,
+              color: "#D8C2BC",
+            }}
+          >
+            Un solo lugar para coordinar todas tus pantallas.
+          </div>
         </div>
-      </Html>
+      </KitHtml>
     </group>
   )
 }

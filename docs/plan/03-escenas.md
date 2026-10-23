@@ -157,24 +157,33 @@ Construir esto una vez es lo que hace viable el volumen de escenas. Vive en `src
 | **Qué debe generar** | Sensación de potencia y escala |
 | **Integración con el proyecto** | Editor visual real (capturas existentes) como pieza flotante; identidad Banner Director |
 
-**Beats** (5 del mundo Banner; satélites aparte)
+**Un único beat — decisión humana durante T-A25 (22–23/10).** Conservar solamente
+la composición inicial: interfaz central y cuatro pantallas conectadas (dos mobile).
+La sección pasa de 500 a 100 `svh` (80 % menos de recorrido). No se agregan escenas
+de mapas, calendario, medallones ni un videowall separado.
 
-1. **Mundo** — una sola pantalla en la oscuridad.
-2. **Problema** — junto a ella aparecen cientos de pantallas descoordinadas, cada una mostrando algo distinto.
-3. **Razonamiento** — el editor visual (capas de UI flotantes del kit) arma una plantilla; planos de filtro aplican las reglas (región, fecha, entidad).
-4. **Solución** — publicar: el hilo se divide en miles de señales que atraviesan el broker de colas y los workers (grafo) y llegan a un mapa de ~10.000 pantallas que se encienden por región.
-5. **Resultado** — zoom a un local: un videowall sincronizado. "≈10.000 equipos activos"; logos de clientes con placeholders en greybox (archivos reales en T-H11).
+Dentro de ese tramo hay zoom suave y reversible. La interfaz desliza las capturas
+reales `1.webp → 3.webp → 5.webp → 6.webp` con el scroll. Las cuatro pantallas cambian
+sus clips por otros cuatro, de forma escalonada, con crossfade y desenfoque; en
+mobile se adaptan dos pares. Videos en `cover`, sin deformación ni franjas internas.
+Paleta oscura real: salmón `#FFB5A0`, lavanda `#BDC2FF` y superficies cálidas.
 
 **Satélites** (T-A29, no en greybox T-A14-banner):
 
 - **App Etiquetas** — un teléfono en el local, ondas Wi‑Fi hacia una pantalla puntual que cambia a "sin stock" sin alterar las demás.
 - **Web Landing** — una notebook del kit muestra la landing con sus secciones flotando: "la puerta de entrada comercial".
 
-**Interacción (greybox):** solo scroll/cámara; el “publicar” es animación coreografiada, no gesto obligatorio.
+**Interacción:** scroll para zoom y transiciones de contenido; sin botonera adicional.
 
-**Técnica:** 10.000 pantallas como un único `InstancedMesh` con estado por instancia en un shader; mapa estilizado como grilla de puntos; grafo de colas del kit.
+**Técnica vigente T-A25:** dispositivos biselados del kit, PBR/PMREM de estudio,
+slides y crossfades en shaders GPU (sin subir canvas por frame). Videos de 480 px:
+solo se reproducen los necesarios para la transición visible. Pausa con pestaña
+oculta, movimiento reducido o escena invisible; liberación al desmontar.
+Naturalis→Banner usa salida/entrada secuencial de geometrías, oscurecimiento previo
+de la paleta y luces de Banner moduladas por su opacidad. Sin dependencias nuevas.
 
-**Mobile:** el mapa se recorta a una región; el videowall pasa a ser 2×2. Hilo = filamento (ADR-006).
+**Mobile:** interfaz central con dos pantallas inferiores, encuadre propio y dos
+pares de clips. Hilo = filamento (ADR-006), fuera de las superficies de lectura.
 
 **Insumos del humano (T-H11):** archivos de logo de clientes autorizados (nombres OK en copy); 2–3 capturas del editor elegidas en alta (hay set en `public/images/proyects/`). Paleta/logo Banner ya en `assets-src/banner/brand/`.
 

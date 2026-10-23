@@ -13,50 +13,40 @@ export const banner: SceneDefinition = {
   palette: {
     background: "#151211",
     foreground: "#fff0e9",
-    accent: "#DA3E00",
-    accentAlt: "#FFB5A0",
+    accent: "#FFB5A0",
+    accentAlt: "#BDC2FF",
     scheme: "dark",
   },
   thread: {
     shape: "split",
     color: "#FFB5A0",
     anchors: (p) => {
-      // Bifurcación continua (sin escalón brusco en p=0.6) y cierre hacia segunda línea.
-      const split =
-        smoothstep(p, 0.42, 0.72) * (1 - smoothstep(p, 0.85, 1) * 0.55)
-      const toVignette = smoothstep(p, 0.84, 1)
-
+      // La señal pasa por debajo de las superficies: no tapa la interfaz ni el mapa.
+      const toVignette = smoothstep(p, 0.86, 1)
+      const y = -3.9 * (1 - toVignette)
       return [
-        [-4, -2 * (1 - toVignette * 0.7), 1 - toVignette],
-        [-2, -1 * (1 - toVignette * 0.7), 1 - toVignette],
-        [0, 0, 1 - toVignette],
-        [1.8, split * 1.2, 1 - toVignette],
-        [4, -split * 1.0, 1 - toVignette],
+        [-5, y - 0.15, -1],
+        [-2.5, y + 0.1, -1],
+        [0, y, -1],
+        [2.5, y + 0.1, -1],
+        [5, y - 0.15, -1],
       ]
     },
   },
   beats: [
-    { id: "mundo", range: [0, 0.2], label: "Una pantalla en la oscuridad" },
     {
-      id: "problema",
-      range: [0.2, 0.4],
-      label: "Cientos de mensajes sin coordinar",
+      id: "mundo",
+      range: [0, 1],
+      label: "Todas tus pantallas, un solo control",
     },
-    {
-      id: "razonamiento",
-      range: [0.4, 0.6],
-      label: "Una plantilla, reglas precisas",
-    },
-    { id: "solucion", range: [0.6, 0.8], label: "Publicar a escala" },
-    { id: "resultado", range: [0.8, 1], label: "≈10.000 equipos activos" },
   ],
   fallback: {
-    poster: "/posters/greybox/banner-2.png",
-    posterMobile: "/posters/greybox/banner-2-mobile.png",
+    poster: "/posters/banner-2.webp",
+    posterMobile: "/posters/banner-2-mobile.webp",
   },
   budget: {
-    maxTriangles: 65000,
-    maxDrawCalls: 85,
-    maxAssetKB: { desktop: 50, mobile: 50 },
+    maxTriangles: 50000,
+    maxDrawCalls: 40,
+    maxAssetKB: { desktop: 1200, mobile: 600 },
   },
 }

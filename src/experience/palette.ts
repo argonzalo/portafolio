@@ -157,7 +157,17 @@ function resolveLive(store: ExperienceStore): LivePalette {
     }
   }
 
-  return mixPalettes(current, paletteForChapter(nextId), amount, reducedMotion)
+  // Darken the room before the incoming displays appear, avoiding a grey wash.
+  const paletteAmount =
+    chapterId === "naturalis" && nextId === "banner-2"
+      ? Math.min(1, amount / 0.65)
+      : amount
+  return mixPalettes(
+    current,
+    paletteForChapter(nextId),
+    paletteAmount,
+    reducedMotion
+  )
 }
 
 function applyCss(palette: LivePalette): void {
