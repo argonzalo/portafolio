@@ -177,7 +177,7 @@ function mountPortrait(figure: HTMLElement): () => void {
 
   const readScroll = () => {
     const rect = hero.getBoundingClientRect()
-    const travel = Math.max(1, rect.height * 0.75)
+    const travel = Math.max(1, rect.height * 1.35)
     target.scroll = Math.min(1, Math.max(0, -rect.top / travel))
   }
 
@@ -315,8 +315,8 @@ function mountPortrait(figure: HTMLElement): () => void {
     figure.dataset.portraitReady = ""
     gsap.to(state, {
       intro: 0,
-      duration: 1.6,
-      ease: "expo.out",
+      duration: 2.8,
+      ease: "power2.out",
       delay: 0.15,
     })
     gsap.ticker.add(tick)

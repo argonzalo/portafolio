@@ -7,6 +7,7 @@ import ChapterSection from "@/components/journey/ChapterSection.astro"
 import { buttonVariants } from "@/components/ui/button"
 import { getSceneByChapter } from "@/scenes/registry"
 import { GreyboxCaption } from "@/scenes/greybox/Caption"
+import { sceneScrollSvh } from "@/experience/pacing"
 
 type Props = {
   id: string
@@ -27,16 +28,30 @@ const scene = getSceneByChapter(id)
   }
 </style>
 
+<style>
+  .scene-chapter {
+    height: var(--scene-scroll);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .scene-chapter {
+      height: var(--scene-reduced-scroll);
+    }
+  }
+</style>
+
 {
   scene ? (
     <section
       id={id}
       data-chapter={id}
       aria-label={label}
-      style={{ height: `${scene.beats.length * 100}svh` }}
-      class="relative"
+      style={{
+        "--scene-scroll": `${sceneScrollSvh(id, scene.beats.length)}svh`,
+        "--scene-reduced-scroll": `${scene.beats.length * 100}svh`,
+      }}
+      class="scene-chapter relative"
     >
-      <div class="pointer-events-none sticky top-0 h-svh overflow-hidden z-30 relative">
+      <div class="pointer-events-none relative sticky top-0 z-30 h-svh overflow-hidden">
         <GreyboxCaption client:load chapterId={id} label={label} />
       </div>
     </section>

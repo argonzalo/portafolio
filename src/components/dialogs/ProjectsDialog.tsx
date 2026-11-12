@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import {
   Dialog,
   DialogContent,
@@ -26,13 +26,6 @@ export function ProjectsDialog({ projects }: Props) {
 
   const project = projects.find((item) => item.id === activeId) ?? null
 
-  useEffect(() => {
-    if (!open) {
-      setView("list")
-      setActiveId(null)
-    }
-  }, [open])
-
   const showDetail = (id: string) => {
     setActiveId(id)
     setView("detail")
@@ -43,8 +36,13 @@ export function ProjectsDialog({ projects }: Props) {
     setActiveId(null)
   }
 
+  const changeOpen = (next: boolean) => {
+    setOpen(next)
+    if (!next) goBack()
+  }
+
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={changeOpen}>
       <DialogTrigger asChild>
         <button
           type="button"
@@ -68,7 +66,7 @@ export function ProjectsDialog({ projects }: Props) {
               </DialogTitle>
               <button
                 type="button"
-                onClick={() => setOpen(false)}
+                onClick={() => changeOpen(false)}
                 className="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all hover:bg-white/15 hover:scale-105 cursor-pointer"
                 aria-label="Cerrar lista de proyectos"
               >
@@ -149,7 +147,7 @@ export function ProjectsDialog({ projects }: Props) {
 
               <button
                 type="button"
-                onClick={() => setOpen(false)}
+                onClick={() => changeOpen(false)}
                 className="text-muted-foreground hover:text-foreground flex size-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all hover:bg-white/15 hover:scale-105 cursor-pointer"
                 aria-label="Cerrar detalle del proyecto"
               >

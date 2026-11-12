@@ -1,0 +1,1517 @@
+[
+  {
+    "name": "desktop",
+    "ratios": [
+      {
+        "id": "manifesto",
+        "ratio": 1.8
+      },
+      {
+        "id": "vibo",
+        "ratio": 2
+      },
+      {
+        "id": "pirp",
+        "ratio": 1.8
+      },
+      {
+        "id": "naturalis",
+        "ratio": 1.8
+      },
+      {
+        "id": "banner-2",
+        "ratio": 5.4
+      },
+      {
+        "id": "agnt",
+        "ratio": 1.8
+      }
+    ],
+    "camera": [
+      {
+        "from": 0,
+        "to": 0.28,
+        "before": {
+          "worldUnitsPer100px": 11.413180752264683,
+          "degreesPer100px": 381.25382493200846
+        },
+        "after": {
+          "worldUnitsPer100px": 3.781831419551703,
+          "degreesPer100px": 7.7692025292583216
+        }
+      },
+      {
+        "from": 0.5,
+        "to": 0.86,
+        "before": {
+          "worldUnitsPer100px": 26.924351014885577,
+          "degreesPer100px": 189.4403788794656
+        },
+        "after": {
+          "worldUnitsPer100px": 5.3838831641505225,
+          "degreesPer100px": 21.2624452428045
+        }
+      }
+    ],
+    "samples": [
+      {
+        "id": "manifesto",
+        "progress": 0.25,
+        "gpu": {
+          "geometries": 1,
+          "textures": 0,
+          "programs": 1,
+          "calls": 1,
+          "triangles": 0,
+          "mountedScenes": 1,
+          "jsHeapMB": 83.4,
+          "at": 2221.89999999851
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "manifesto",
+        "progress": 0.55,
+        "gpu": {
+          "geometries": 1,
+          "textures": 1,
+          "programs": 1,
+          "calls": 1,
+          "triangles": 0,
+          "mountedScenes": 1,
+          "jsHeapMB": 91.9,
+          "at": 2469.2000000029802
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "manifesto",
+        "progress": 0.72,
+        "gpu": {
+          "geometries": 1,
+          "textures": 1,
+          "programs": 1,
+          "calls": 1,
+          "triangles": 0,
+          "mountedScenes": 1,
+          "jsHeapMB": 91.9,
+          "at": 2469.2000000029802
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "vibo",
+        "progress": 0.1,
+        "gpu": {
+          "geometries": 13,
+          "textures": 3,
+          "programs": 13,
+          "calls": 14,
+          "triangles": 22204,
+          "mountedScenes": 2,
+          "jsHeapMB": 97,
+          "at": 3571.3000000044703
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "vibo",
+        "progress": 0.39,
+        "gpu": {
+          "geometries": 19,
+          "textures": 5,
+          "programs": 17,
+          "calls": 19,
+          "triangles": 30774,
+          "mountedScenes": 2,
+          "jsHeapMB": 97.3,
+          "at": 4651.89999999851
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "vibo",
+        "progress": 0.69,
+        "gpu": {
+          "geometries": 19,
+          "textures": 5,
+          "programs": 17,
+          "calls": 19,
+          "triangles": 31010,
+          "mountedScenes": 2,
+          "jsHeapMB": 102,
+          "at": 5153.30000000447
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "vibo",
+        "progress": 0.84,
+        "gpu": {
+          "geometries": 19,
+          "textures": 5,
+          "programs": 17,
+          "calls": 19,
+          "triangles": 31010,
+          "mountedScenes": 2,
+          "jsHeapMB": 97.1,
+          "at": 6167.89999999851
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "pirp",
+        "progress": 0.1,
+        "gpu": {
+          "geometries": 3,
+          "textures": 2,
+          "programs": 3,
+          "calls": 3,
+          "triangles": 192,
+          "mountedScenes": 2,
+          "jsHeapMB": 88.6,
+          "at": 6701.20000000298
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "pirp",
+        "progress": 0.3,
+        "gpu": {
+          "geometries": 4,
+          "textures": 3,
+          "programs": 4,
+          "calls": 2,
+          "triangles": 2040,
+          "mountedScenes": 2,
+          "jsHeapMB": 91,
+          "at": 7217.39999999851
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "pirp",
+        "progress": 0.5,
+        "gpu": {
+          "geometries": 4,
+          "textures": 3,
+          "programs": 4,
+          "calls": 2,
+          "triangles": 2040,
+          "mountedScenes": 2,
+          "jsHeapMB": 91,
+          "at": 7217.39999999851
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "pirp",
+        "progress": 0.7,
+        "gpu": {
+          "geometries": 9,
+          "textures": 4,
+          "programs": 7,
+          "calls": 6,
+          "triangles": 1578,
+          "mountedScenes": 2,
+          "jsHeapMB": 95.9,
+          "at": 7817.30000000447
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "pirp",
+        "progress": 0.84,
+        "gpu": {
+          "geometries": 9,
+          "textures": 4,
+          "programs": 7,
+          "calls": 6,
+          "triangles": 1578,
+          "mountedScenes": 2,
+          "jsHeapMB": 97.9,
+          "at": 8317
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "naturalis",
+        "progress": 0.1,
+        "gpu": {
+          "geometries": 3,
+          "textures": 5,
+          "programs": 2,
+          "calls": 3,
+          "triangles": 6855,
+          "mountedScenes": 2,
+          "jsHeapMB": 99.1,
+          "at": 8834.80000000447
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "naturalis",
+        "progress": 0.3,
+        "gpu": {
+          "geometries": 5,
+          "textures": 6,
+          "programs": 5,
+          "calls": 9,
+          "triangles": 7809,
+          "mountedScenes": 2,
+          "jsHeapMB": 90.9,
+          "at": 9417.70000000298
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "naturalis",
+        "progress": 0.5,
+        "gpu": {
+          "geometries": 20,
+          "textures": 8,
+          "programs": 7,
+          "calls": 18,
+          "triangles": 14709,
+          "mountedScenes": 2,
+          "jsHeapMB": 95.8,
+          "at": 10017.10000000149
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "naturalis",
+        "progress": 0.7,
+        "gpu": {
+          "geometries": 20,
+          "textures": 8,
+          "programs": 8,
+          "calls": 16,
+          "triangles": 14641,
+          "mountedScenes": 2,
+          "jsHeapMB": 99.6,
+          "at": 10517
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "naturalis",
+        "progress": 0.84,
+        "gpu": {
+          "geometries": 20,
+          "textures": 7,
+          "programs": 8,
+          "calls": 15,
+          "triangles": 14353,
+          "mountedScenes": 2,
+          "jsHeapMB": 101.9,
+          "at": 11016.20000000298
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "banner-2",
+        "progress": 0.1,
+        "gpu": {
+          "geometries": 27,
+          "textures": 15,
+          "programs": 7,
+          "calls": 28,
+          "triangles": 3530,
+          "mountedScenes": 2,
+          "jsHeapMB": 95.2,
+          "at": 11818
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "banner-2",
+        "progress": 0.36,
+        "gpu": {
+          "geometries": 27,
+          "textures": 15,
+          "programs": 7,
+          "calls": 28,
+          "triangles": 3530,
+          "mountedScenes": 2,
+          "jsHeapMB": 97.3,
+          "at": 12333.10000000149
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "banner-2",
+        "progress": 0.6,
+        "gpu": {
+          "geometries": 27,
+          "textures": 15,
+          "programs": 7,
+          "calls": 28,
+          "triangles": 3530,
+          "mountedScenes": 2,
+          "jsHeapMB": 98.4,
+          "at": 12832.60000000149
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "banner-2",
+        "progress": 0.84,
+        "gpu": {
+          "geometries": 27,
+          "textures": 15,
+          "programs": 7,
+          "calls": 28,
+          "triangles": 3530,
+          "mountedScenes": 2,
+          "jsHeapMB": 99.5,
+          "at": 13332.89999999851
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "agnt",
+        "progress": 0.17,
+        "gpu": {
+          "geometries": 27,
+          "textures": 15,
+          "programs": 7,
+          "calls": 28,
+          "triangles": 3530,
+          "mountedScenes": 1,
+          "jsHeapMB": 99.5,
+          "at": 13427.39999999851
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "agnt",
+        "progress": 0.51,
+        "gpu": {
+          "geometries": 9,
+          "textures": 6,
+          "programs": 7,
+          "calls": 23,
+          "triangles": 3270,
+          "mountedScenes": 1,
+          "jsHeapMB": 105.8,
+          "at": 13899.20000000298
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "agnt",
+        "progress": 0.82,
+        "gpu": {
+          "geometries": 38,
+          "textures": 10,
+          "programs": 12,
+          "calls": 32,
+          "triangles": 19346,
+          "mountedScenes": 1,
+          "jsHeapMB": 103.8,
+          "at": 14624.70000000298
+        },
+        "quality": "medium"
+      }
+    ],
+    "copy": [
+      {
+        "id": "pirp",
+        "p": 0.199,
+        "text": "Escuchar antes de decidir.",
+        "opacity": 0.000580627
+      },
+      {
+        "id": "pirp",
+        "p": 0.2,
+        "text": "Muchas voces. Una conversación.",
+        "opacity": 0
+      },
+      {
+        "id": "pirp",
+        "p": 0.201,
+        "text": "Muchas voces. Una conversación.",
+        "opacity": 0.000580627
+      },
+      {
+        "id": "pirp",
+        "p": 0.3,
+        "text": "Muchas voces. Una conversación.",
+        "opacity": 1
+      },
+      {
+        "id": "pirp",
+        "p": 0.199,
+        "text": "Escuchar antes de decidir.",
+        "opacity": 0.000580627
+      },
+      {
+        "id": "naturalis",
+        "p": 0.199,
+        "text": "Espacio para cuidar.",
+        "opacity": 0.000580627
+      },
+      {
+        "id": "naturalis",
+        "p": 0.2,
+        "text": "La agenda no debería pesar.",
+        "opacity": 0
+      },
+      {
+        "id": "naturalis",
+        "p": 0.201,
+        "text": "La agenda no debería pesar.",
+        "opacity": 0.000580627
+      },
+      {
+        "id": "naturalis",
+        "p": 0.3,
+        "text": "La agenda no debería pesar.",
+        "opacity": 1
+      },
+      {
+        "id": "naturalis",
+        "p": 0.199,
+        "text": "Espacio para cuidar.",
+        "opacity": 0.000580627
+      }
+    ],
+    "manifesto": [
+      {
+        "opacity": 1,
+        "phrases": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "opacity": 0.754632,
+        "phrases": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "opacity": 1.02207e-8,
+        "phrases": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "opacity": 1,
+        "phrases": [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "id": "manifesto",
+        "reversible": true,
+        "chapters": [
+          "manifesto",
+          "vibo"
+        ],
+        "maxScenes": 2
+      },
+      {
+        "id": "vibo",
+        "reversible": true,
+        "chapters": [
+          "vibo",
+          "pirp"
+        ],
+        "maxScenes": 2
+      },
+      {
+        "id": "pirp",
+        "reversible": true,
+        "chapters": [
+          "pirp",
+          "naturalis"
+        ],
+        "maxScenes": 2
+      },
+      {
+        "id": "naturalis",
+        "reversible": true,
+        "chapters": [
+          "naturalis",
+          "banner-2"
+        ],
+        "maxScenes": 2
+      },
+      {
+        "id": "banner-2",
+        "reversible": true,
+        "chapters": [
+          "banner-2",
+          "agnt"
+        ],
+        "maxScenes": 2
+      },
+      {
+        "id": "agnt",
+        "reversible": true,
+        "chapters": [
+          "agnt",
+          "archive"
+        ],
+        "maxScenes": 1
+      }
+    ],
+    "tiers": [
+      {
+        "id": "vibo",
+        "quality": "high",
+        "geometries": 23,
+        "textures": 10,
+        "programs": 7,
+        "calls": 32,
+        "triangles": 19346,
+        "mountedScenes": 2,
+        "jsHeapMB": 115,
+        "at": 32249.89999999851
+      },
+      {
+        "id": "pirp",
+        "quality": "high",
+        "geometries": 2,
+        "textures": 4,
+        "programs": 2,
+        "calls": 1,
+        "triangles": 3264,
+        "mountedScenes": 2,
+        "jsHeapMB": 99.5,
+        "at": 32927.60000000149
+      },
+      {
+        "id": "naturalis",
+        "quality": "high",
+        "geometries": 2,
+        "textures": 4,
+        "programs": 2,
+        "calls": 1,
+        "triangles": 3264,
+        "mountedScenes": 2,
+        "jsHeapMB": 99.5,
+        "at": 32927.60000000149
+      },
+      {
+        "id": "banner-2",
+        "quality": "high",
+        "geometries": 2,
+        "textures": 4,
+        "programs": 2,
+        "calls": 1,
+        "triangles": 3264,
+        "mountedScenes": 2,
+        "jsHeapMB": 99.5,
+        "at": 32927.60000000149
+      },
+      {
+        "id": "agnt",
+        "quality": "high",
+        "geometries": 19,
+        "textures": 9,
+        "programs": 7,
+        "calls": 33,
+        "triangles": 5526,
+        "mountedScenes": 1,
+        "jsHeapMB": 102.8,
+        "at": 33862.30000000447
+      },
+      {
+        "id": "vibo",
+        "quality": "medium",
+        "geometries": 16,
+        "textures": 10,
+        "programs": 15,
+        "calls": 16,
+        "triangles": 22162,
+        "mountedScenes": 2,
+        "jsHeapMB": 101.3,
+        "at": 34428.39999999851
+      },
+      {
+        "id": "pirp",
+        "quality": "medium",
+        "geometries": 16,
+        "textures": 10,
+        "programs": 15,
+        "calls": 16,
+        "triangles": 22162,
+        "mountedScenes": 2,
+        "jsHeapMB": 101.3,
+        "at": 34428.39999999851
+      },
+      {
+        "id": "naturalis",
+        "quality": "medium",
+        "geometries": 20,
+        "textures": 13,
+        "programs": 7,
+        "calls": 25,
+        "triangles": 15951,
+        "mountedScenes": 2,
+        "jsHeapMB": 109.1,
+        "at": 34994.60000000149
+      },
+      {
+        "id": "banner-2",
+        "quality": "medium",
+        "geometries": 27,
+        "textures": 17,
+        "programs": 7,
+        "calls": 28,
+        "triangles": 3530,
+        "mountedScenes": 2,
+        "jsHeapMB": 111.9,
+        "at": 35542.80000000447
+      },
+      {
+        "id": "agnt",
+        "quality": "medium",
+        "geometries": 27,
+        "textures": 17,
+        "programs": 7,
+        "calls": 28,
+        "triangles": 3530,
+        "mountedScenes": 1,
+        "jsHeapMB": 111.9,
+        "at": 35568.89999999851
+      },
+      {
+        "id": "vibo",
+        "quality": "low",
+        "geometries": 15,
+        "textures": 10,
+        "programs": 14,
+        "calls": 15,
+        "triangles": 6910,
+        "mountedScenes": 2,
+        "jsHeapMB": 116.2,
+        "at": 36194.5
+      },
+      {
+        "id": "pirp",
+        "quality": "low",
+        "geometries": 3,
+        "textures": 9,
+        "programs": 3,
+        "calls": 1,
+        "triangles": 1224,
+        "mountedScenes": 2,
+        "jsHeapMB": 109.6,
+        "at": 36693.70000000298
+      },
+      {
+        "id": "naturalis",
+        "quality": "low",
+        "geometries": 3,
+        "textures": 9,
+        "programs": 3,
+        "calls": 1,
+        "triangles": 1224,
+        "mountedScenes": 2,
+        "jsHeapMB": 109.6,
+        "at": 36693.70000000298
+      },
+      {
+        "id": "banner-2",
+        "quality": "low",
+        "geometries": 28,
+        "textures": 17,
+        "programs": 8,
+        "calls": 28,
+        "triangles": 2680,
+        "mountedScenes": 2,
+        "jsHeapMB": 112.6,
+        "at": 37295.30000000447
+      },
+      {
+        "id": "agnt",
+        "quality": "low",
+        "geometries": 14,
+        "textures": 9,
+        "programs": 7,
+        "calls": 28,
+        "triangles": 2254,
+        "mountedScenes": 1,
+        "jsHeapMB": 117.3,
+        "at": 37826.5
+      }
+    ],
+    "fps": 61.20254734919262,
+    "cpuThrottle": 1,
+    "reducedAfterExit": 1,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "ratios": [
+      {
+        "id": "manifesto",
+        "ratio": 1.8002257336343115
+      },
+      {
+        "id": "vibo",
+        "ratio": 2
+      },
+      {
+        "id": "pirp",
+        "ratio": 1.8
+      },
+      {
+        "id": "naturalis",
+        "ratio": 1.8
+      },
+      {
+        "id": "banner-2",
+        "ratio": 5.400473933649289
+      },
+      {
+        "id": "agnt",
+        "ratio": 1.8001579778830963
+      }
+    ],
+    "camera": [
+      {
+        "from": 0,
+        "to": 0.28,
+        "before": {
+          "worldUnitsPer100px": 15.59025912570537,
+          "degreesPer100px": 308.63551222922274
+        },
+        "after": {
+          "worldUnitsPer100px": 6.443750121298806,
+          "degreesPer100px": 4.1071354233596615
+        }
+      },
+      {
+        "from": 0.5,
+        "to": 0.86,
+        "before": {
+          "worldUnitsPer100px": 34.480881980859735,
+          "degreesPer100px": 143.92074784451253
+        },
+        "after": {
+          "worldUnitsPer100px": 7.184328929286576,
+          "degreesPer100px": 22.88214506390311
+        }
+      }
+    ],
+    "samples": [
+      {
+        "id": "manifesto",
+        "progress": 0.25,
+        "gpu": {
+          "geometries": 2,
+          "textures": 0,
+          "programs": 2,
+          "calls": 2,
+          "triangles": 480,
+          "mountedScenes": 1,
+          "jsHeapMB": 80.6,
+          "at": 1737.8999999985099
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "manifesto",
+        "progress": 0.55,
+        "gpu": {
+          "geometries": 2,
+          "textures": 1,
+          "programs": 2,
+          "calls": 2,
+          "triangles": 480,
+          "mountedScenes": 1,
+          "jsHeapMB": 91.7,
+          "at": 2008.6000000014901
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "manifesto",
+        "progress": 0.72,
+        "gpu": {
+          "geometries": 13,
+          "textures": 3,
+          "programs": 10,
+          "calls": 13,
+          "triangles": 20772,
+          "mountedScenes": 1,
+          "jsHeapMB": 89.5,
+          "at": 2525.89999999851
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "vibo",
+        "progress": 0.1,
+        "gpu": {
+          "geometries": 14,
+          "textures": 3,
+          "programs": 14,
+          "calls": 14,
+          "triangles": 21728,
+          "mountedScenes": 2,
+          "jsHeapMB": 92,
+          "at": 3042.5
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "vibo",
+        "progress": 0.39,
+        "gpu": {
+          "geometries": 20,
+          "textures": 5,
+          "programs": 18,
+          "calls": 19,
+          "triangles": 30298,
+          "mountedScenes": 2,
+          "jsHeapMB": 92.6,
+          "at": 3557.6999999955297
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "vibo",
+        "progress": 0.69,
+        "gpu": {
+          "geometries": 20,
+          "textures": 5,
+          "programs": 18,
+          "calls": 20,
+          "triangles": 31490,
+          "mountedScenes": 2,
+          "jsHeapMB": 97.1,
+          "at": 4057.5
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "vibo",
+        "progress": 0.84,
+        "gpu": {
+          "geometries": 20,
+          "textures": 5,
+          "programs": 18,
+          "calls": 18,
+          "triangles": 29578,
+          "mountedScenes": 2,
+          "jsHeapMB": 101.4,
+          "at": 4557.10000000149
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "pirp",
+        "progress": 0.1,
+        "gpu": {
+          "geometries": 4,
+          "textures": 2,
+          "programs": 4,
+          "calls": 4,
+          "triangles": 672,
+          "mountedScenes": 2,
+          "jsHeapMB": 88.1,
+          "at": 5056.5
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "pirp",
+        "progress": 0.3,
+        "gpu": {
+          "geometries": 4,
+          "textures": 2,
+          "programs": 4,
+          "calls": 4,
+          "triangles": 672,
+          "mountedScenes": 2,
+          "jsHeapMB": 88.1,
+          "at": 5056.5
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "pirp",
+        "progress": 0.5,
+        "gpu": {
+          "geometries": 5,
+          "textures": 3,
+          "programs": 5,
+          "calls": 1,
+          "triangles": 1224,
+          "mountedScenes": 2,
+          "jsHeapMB": 91.6,
+          "at": 5556.39999999851
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "pirp",
+        "progress": 0.7,
+        "gpu": {
+          "geometries": 10,
+          "textures": 4,
+          "programs": 8,
+          "calls": 5,
+          "triangles": 1578,
+          "mountedScenes": 2,
+          "jsHeapMB": 95.9,
+          "at": 6073.19999999553
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "pirp",
+        "progress": 0.84,
+        "gpu": {
+          "geometries": 10,
+          "textures": 4,
+          "programs": 8,
+          "calls": 5,
+          "triangles": 1578,
+          "mountedScenes": 2,
+          "jsHeapMB": 97.9,
+          "at": 6573.29999999702
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "naturalis",
+        "progress": 0.1,
+        "gpu": {
+          "geometries": 3,
+          "textures": 5,
+          "programs": 3,
+          "calls": 3,
+          "triangles": 6328,
+          "mountedScenes": 2,
+          "jsHeapMB": 95.5,
+          "at": 7090.10000000149
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "naturalis",
+        "progress": 0.3,
+        "gpu": {
+          "geometries": 3,
+          "textures": 5,
+          "programs": 4,
+          "calls": 3,
+          "triangles": 6328,
+          "mountedScenes": 2,
+          "jsHeapMB": 97.5,
+          "at": 7589
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "naturalis",
+        "progress": 0.5,
+        "gpu": {
+          "geometries": 3,
+          "textures": 5,
+          "programs": 4,
+          "calls": 3,
+          "triangles": 6328,
+          "mountedScenes": 2,
+          "jsHeapMB": 97.5,
+          "at": 7589
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "naturalis",
+        "progress": 0.7,
+        "gpu": {
+          "geometries": 18,
+          "textures": 7,
+          "programs": 9,
+          "calls": 16,
+          "triangles": 14114,
+          "mountedScenes": 2,
+          "jsHeapMB": 92.7,
+          "at": 8106.19999999553
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "naturalis",
+        "progress": 0.84,
+        "gpu": {
+          "geometries": 18,
+          "textures": 7,
+          "programs": 9,
+          "calls": 6,
+          "triangles": 6682,
+          "mountedScenes": 2,
+          "jsHeapMB": 94.8,
+          "at": 8606
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "banner-2",
+        "progress": 0.1,
+        "gpu": {
+          "geometries": 18,
+          "textures": 10,
+          "programs": 8,
+          "calls": 19,
+          "triangles": 3318,
+          "mountedScenes": 2,
+          "jsHeapMB": 105.6,
+          "at": 9190.10000000149
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "banner-2",
+        "progress": 0.36,
+        "gpu": {
+          "geometries": 18,
+          "textures": 10,
+          "programs": 8,
+          "calls": 19,
+          "triangles": 3318,
+          "mountedScenes": 2,
+          "jsHeapMB": 94.3,
+          "at": 9688.5
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "banner-2",
+        "progress": 0.6,
+        "gpu": {
+          "geometries": 18,
+          "textures": 10,
+          "programs": 8,
+          "calls": 19,
+          "triangles": 3318,
+          "mountedScenes": 2,
+          "jsHeapMB": 94.3,
+          "at": 9688.5
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "banner-2",
+        "progress": 0.84,
+        "gpu": {
+          "geometries": 18,
+          "textures": 10,
+          "programs": 8,
+          "calls": 19,
+          "triangles": 3318,
+          "mountedScenes": 2,
+          "jsHeapMB": 95.2,
+          "at": 10189.19999999553
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "agnt",
+        "progress": 0.17,
+        "gpu": {
+          "geometries": 10,
+          "textures": 6,
+          "programs": 8,
+          "calls": 24,
+          "triangles": 3750,
+          "mountedScenes": 1,
+          "jsHeapMB": 99.4,
+          "at": 10707.10000000149
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "agnt",
+        "progress": 0.51,
+        "gpu": {
+          "geometries": 20,
+          "textures": 6,
+          "programs": 8,
+          "calls": 34,
+          "triangles": 4710,
+          "mountedScenes": 1,
+          "jsHeapMB": 103.1,
+          "at": 11204.69999999553
+        },
+        "quality": "medium"
+      },
+      {
+        "id": "agnt",
+        "progress": 0.82,
+        "gpu": {
+          "geometries": 39,
+          "textures": 10,
+          "programs": 13,
+          "calls": 33,
+          "triangles": 19826,
+          "mountedScenes": 1,
+          "jsHeapMB": 98.4,
+          "at": 11771.79999999702
+        },
+        "quality": "medium"
+      }
+    ],
+    "copy": [
+      {
+        "id": "pirp",
+        "p": 0.199,
+        "text": "Escuchar antes de decidir.",
+        "opacity": 0.000514506
+      },
+      {
+        "id": "pirp",
+        "p": 0.2,
+        "text": "Muchas voces. Una conversación.",
+        "opacity": 7.42928e-7
+      },
+      {
+        "id": "pirp",
+        "p": 0.201,
+        "text": "Muchas voces. Una conversación.",
+        "opacity": 0.000650968
+      },
+      {
+        "id": "pirp",
+        "p": 0.3,
+        "text": "Muchas voces. Una conversación.",
+        "opacity": 1
+      },
+      {
+        "id": "pirp",
+        "p": 0.199,
+        "text": "Escuchar antes de decidir.",
+        "opacity": 0.000514506
+      },
+      {
+        "id": "naturalis",
+        "p": 0.199,
+        "text": "Espacio para cuidar.",
+        "opacity": 0.000514506
+      },
+      {
+        "id": "naturalis",
+        "p": 0.2,
+        "text": "La agenda no debería pesar.",
+        "opacity": 7.42928e-7
+      },
+      {
+        "id": "naturalis",
+        "p": 0.201,
+        "text": "La agenda no debería pesar.",
+        "opacity": 0.000650968
+      },
+      {
+        "id": "naturalis",
+        "p": 0.3,
+        "text": "La agenda no debería pesar.",
+        "opacity": 1
+      },
+      {
+        "id": "naturalis",
+        "p": 0.199,
+        "text": "Espacio para cuidar.",
+        "opacity": 0.000514506
+      }
+    ],
+    "manifesto": [
+      {
+        "opacity": 1,
+        "phrases": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "opacity": 0.751864,
+        "phrases": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "opacity": 0,
+        "phrases": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "opacity": 1,
+        "phrases": [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "id": "manifesto",
+        "reversible": true,
+        "chapters": [
+          "manifesto",
+          "vibo"
+        ],
+        "maxScenes": 2
+      },
+      {
+        "id": "vibo",
+        "reversible": true,
+        "chapters": [
+          "vibo",
+          "pirp"
+        ],
+        "maxScenes": 2
+      },
+      {
+        "id": "pirp",
+        "reversible": true,
+        "chapters": [
+          "pirp",
+          "naturalis"
+        ],
+        "maxScenes": 2
+      },
+      {
+        "id": "naturalis",
+        "reversible": true,
+        "chapters": [
+          "naturalis",
+          "banner-2"
+        ],
+        "maxScenes": 2
+      },
+      {
+        "id": "banner-2",
+        "reversible": true,
+        "chapters": [
+          "banner-2",
+          "agnt"
+        ],
+        "maxScenes": 2
+      },
+      {
+        "id": "agnt",
+        "reversible": true,
+        "chapters": [
+          "agnt",
+          "archive"
+        ],
+        "maxScenes": 1
+      }
+    ],
+    "tiers": [
+      {
+        "id": "vibo",
+        "quality": "high",
+        "geometries": 16,
+        "textures": 4,
+        "programs": 16,
+        "calls": 16,
+        "triangles": 37182,
+        "mountedScenes": 2,
+        "jsHeapMB": 95,
+        "at": 28885.5
+      },
+      {
+        "id": "pirp",
+        "quality": "high",
+        "geometries": 3,
+        "textures": 4,
+        "programs": 3,
+        "calls": 1,
+        "triangles": 1224,
+        "mountedScenes": 2,
+        "jsHeapMB": 97.8,
+        "at": 29417.10000000149
+      },
+      {
+        "id": "naturalis",
+        "quality": "high",
+        "geometries": 3,
+        "textures": 4,
+        "programs": 3,
+        "calls": 1,
+        "triangles": 1224,
+        "mountedScenes": 2,
+        "jsHeapMB": 97.8,
+        "at": 29417.10000000149
+      },
+      {
+        "id": "banner-2",
+        "quality": "high",
+        "geometries": 18,
+        "textures": 13,
+        "programs": 8,
+        "calls": 19,
+        "triangles": 4542,
+        "mountedScenes": 2,
+        "jsHeapMB": 106.3,
+        "at": 30117.19999999553
+      },
+      {
+        "id": "agnt",
+        "quality": "high",
+        "geometries": 18,
+        "textures": 13,
+        "programs": 8,
+        "calls": 19,
+        "triangles": 4542,
+        "mountedScenes": 1,
+        "jsHeapMB": 106.3,
+        "at": 30207.39999999851
+      },
+      {
+        "id": "vibo",
+        "quality": "medium",
+        "geometries": 16,
+        "textures": 10,
+        "programs": 16,
+        "calls": 16,
+        "triangles": 21686,
+        "mountedScenes": 2,
+        "jsHeapMB": 108.1,
+        "at": 30702.5
+      },
+      {
+        "id": "pirp",
+        "quality": "medium",
+        "geometries": 3,
+        "textures": 9,
+        "programs": 3,
+        "calls": 1,
+        "triangles": 1224,
+        "mountedScenes": 2,
+        "jsHeapMB": 127.9,
+        "at": 31216.19999999553
+      },
+      {
+        "id": "naturalis",
+        "quality": "medium",
+        "geometries": 3,
+        "textures": 9,
+        "programs": 3,
+        "calls": 1,
+        "triangles": 1224,
+        "mountedScenes": 2,
+        "jsHeapMB": 127.9,
+        "at": 31216.19999999553
+      },
+      {
+        "id": "banner-2",
+        "quality": "medium",
+        "geometries": 18,
+        "textures": 13,
+        "programs": 8,
+        "calls": 19,
+        "triangles": 3318,
+        "mountedScenes": 2,
+        "jsHeapMB": 88.2,
+        "at": 31834.39999999851
+      },
+      {
+        "id": "agnt",
+        "quality": "medium",
+        "geometries": 20,
+        "textures": 9,
+        "programs": 8,
+        "calls": 34,
+        "triangles": 4710,
+        "mountedScenes": 1,
+        "jsHeapMB": 93,
+        "at": 32350
+      },
+      {
+        "id": "vibo",
+        "quality": "low",
+        "geometries": 20,
+        "textures": 9,
+        "programs": 8,
+        "calls": 34,
+        "triangles": 4710,
+        "mountedScenes": 2,
+        "jsHeapMB": 93,
+        "at": 32425.89999999851
+      },
+      {
+        "id": "pirp",
+        "quality": "low",
+        "geometries": 3,
+        "textures": 9,
+        "programs": 3,
+        "calls": 1,
+        "triangles": 1224,
+        "mountedScenes": 2,
+        "jsHeapMB": 111.9,
+        "at": 32900.79999999702
+      },
+      {
+        "id": "naturalis",
+        "quality": "low",
+        "geometries": 20,
+        "textures": 13,
+        "programs": 8,
+        "calls": 25,
+        "triangles": 13135,
+        "mountedScenes": 2,
+        "jsHeapMB": 96.5,
+        "at": 33465.89999999851
+      },
+      {
+        "id": "banner-2",
+        "quality": "low",
+        "geometries": 20,
+        "textures": 13,
+        "programs": 8,
+        "calls": 25,
+        "triangles": 13135,
+        "mountedScenes": 2,
+        "jsHeapMB": 96.5,
+        "at": 33465.89999999851
+      },
+      {
+        "id": "agnt",
+        "quality": "low",
+        "geometries": 14,
+        "textures": 9,
+        "programs": 7,
+        "calls": 28,
+        "triangles": 2254,
+        "mountedScenes": 1,
+        "jsHeapMB": 116.9,
+        "at": 34017.79999999702
+      }
+    ],
+    "fps": 56.286731230719454,
+    "cpuThrottle": 4,
+    "reducedAfterExit": 1,
+    "errors": []
+  },
+  {
+    "reducedMotion": true,
+    "manifestoReadable": true,
+    "canvas": false
+  }
+]

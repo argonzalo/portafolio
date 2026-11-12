@@ -1,0 +1,92 @@
+[
+  {
+    "name": "desktop",
+    "chapters": [
+      {
+        "id": "hero",
+        "height": 900
+      },
+      {
+        "id": "manifesto",
+        "height": 1890
+      },
+      {
+        "id": "vibo",
+        "height": 3600
+      },
+      {
+        "id": "pirp",
+        "height": 4500
+      },
+      {
+        "id": "naturalis",
+        "height": 4500
+      },
+      {
+        "id": "banner-2",
+        "height": 900
+      },
+      {
+        "id": "agnt",
+        "height": 2700
+      },
+      {
+        "id": "archive",
+        "height": 1133
+      },
+      {
+        "id": "about",
+        "height": 674
+      },
+      {
+        "id": "contact",
+        "height": 650
+      }
+    ]
+  },
+  {
+    "name": "mobile",
+    "chapters": [
+      {
+        "id": "hero",
+        "height": 844
+      },
+      {
+        "id": "manifesto",
+        "height": 1772
+      },
+      {
+        "id": "vibo",
+        "height": 3376
+      },
+      {
+        "id": "pirp",
+        "height": 4220
+      },
+      {
+        "id": "naturalis",
+        "height": 4220
+      },
+      {
+        "id": "banner-2",
+        "height": 844
+      },
+      {
+        "id": "agnt",
+        "height": 2532
+      },
+      {
+        "id": "archive",
+        "height": 1463
+      },
+      {
+        "id": "about",
+        "height": 755
+      },
+      {
+        "id": "contact",
+        "height": 635
+      }
+    ]
+  }
+]

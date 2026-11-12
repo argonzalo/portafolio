@@ -209,6 +209,8 @@ Toda transición tiene tres capas sincronizadas por el mismo progreso de scroll:
 
 Las transiciones se diseñan en pares (Vibo→Pirp, Pirp→Naturalis, Naturalis→Banner, etc.) y cada par tiene un dueño en el tablero, para que no queden "huérfanas" entre dos agentes.
 
+**Ritmo vigente (T-A44, pedido humano 2026-11-12):** `src/experience/pacing.ts` fija 180svh por beat (antes 100svh): el mismo gesto de scroll avanza un 44 % menos. Vibo usa 200svh por beat (50 % menos), con un arco de cámara que permanece del mismo lado del jugador y un único regreso desde el cenital; el encuadre final se sostiene desde p=0,84. Banner conserva su único beat narrativo, con 540svh para leer sus cuatro interfaces. El manifiesto tiene 378svh, revelado hasta p=0,52, pausa de lectura hasta p=0,60 y salida entre p=0,60 y 0,74. Comparte el cursor amortiguado del mundo 3D. Los títulos de Pirp y Naturalis se apagan alrededor del cambio de beat para evitar sustituciones bruscas. El scroll sigue siendo nativo; con movimiento reducido se conserva la altura anterior de las escenas y el manifiesto queda estático, legible. Evidencia y límites de verificación: `evidencias/T-A44/README.md`.
+
 ## 8. Rúbrica y Guía de Arte Vinculante (T-H12)
 
 > Aprobada en el grilling de T-H12 (2026-10-22). Aplica de manera obligatoria a todas las escenas de primera y segunda línea para evitar el look amateur / low-poly genérico y garantizar el estándar *cinematic stylized*.

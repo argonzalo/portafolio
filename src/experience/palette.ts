@@ -1,5 +1,5 @@
-import { Color, MathUtils } from "three"
-import { handoffStart, ease } from "@/experience/choreography"
+import { Color } from "three"
+import { handoff, ramp } from "@/experience/choreography"
 
 import { journeyChapters } from "@/components/journey/chapters"
 import type { ExperienceStore } from "@/experience/store"
@@ -92,7 +92,7 @@ function mixPalettes(
   t: number,
   reducedMotion: boolean
 ): LivePalette {
-  const amount = reducedMotion ? (t < 0.5 ? 0 : 1) : ease(t)
+  const amount = reducedMotion ? (t < 0.5 ? 0 : 1) : t
   const scheme =
     from.scheme === to.scheme
       ? from.scheme
@@ -107,15 +107,6 @@ function mixPalettes(
     accentAlt: lerpHex(accentAltOf(from), accentAltOf(to), amount),
     scheme,
   }
-}
-
-function blendAmount(progress: number, chapterId: string): number {
-  const start = handoffStart(chapterId)
-  if (progress <= start) {
-    return 0
-  }
-
-  return MathUtils.clamp((progress - start) / (1 - start), 0, 1)
 }
 
 function nextChapterId(chapterId: string): string | null {
@@ -143,7 +134,7 @@ function resolveLive(store: ExperienceStore): LivePalette {
 
   const progress = store.progress(chapterId).current
   const nextId = nextChapterId(chapterId)
-  const amount = blendAmount(progress, chapterId)
+  const amount = handoff(progress, chapterId)
 
   if (!nextId || amount <= 0) {
     return {
@@ -158,7 +149,7 @@ function resolveLive(store: ExperienceStore): LivePalette {
   // Darken the room before the incoming displays appear, avoiding a grey wash.
   const paletteAmount =
     chapterId === "naturalis" && nextId === "banner-2"
-      ? Math.min(1, amount / 0.65)
+      ? ramp(amount, 0, 0.65)
       : amount
   return mixPalettes(
     current,

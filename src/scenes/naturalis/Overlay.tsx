@@ -2,7 +2,7 @@ import { useEffect, useRef, type RefObject } from "react"
 import { createPortal } from "react-dom"
 import type { SceneProps } from "@/experience/types"
 import type { Presentation } from "@/experience/presentation"
-import { envelope, ramp } from "@/experience/choreography"
+import { beatCopyOpacity, envelope, ramp } from "@/experience/choreography"
 import { readingVeil } from "./timing"
 import "./naturalis.css"
 
@@ -53,6 +53,9 @@ export function NaturalisOverlay({
         alpha = active ? (presentation?.current.opacity ?? 1) : 0
       const beat = Math.min(4, Math.floor(p * 5))
       show(root.current, alpha)
+      const copyAlpha = beatCopyOpacity(p, copy.length)
+      if (title.current) title.current.style.opacity = String(copyAlpha)
+      if (subtitle.current) subtitle.current.style.opacity = String(copyAlpha)
       if (root.current) {
         root.current.dataset.beat = String(beat)
         root.current.style.setProperty("--nat-reading", String(readingVeil(p)))

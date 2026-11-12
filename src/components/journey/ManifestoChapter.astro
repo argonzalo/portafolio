@@ -1,9 +1,15 @@
 ---
 import ChapterSection from "@/components/journey/ChapterSection.astro"
 import { manifesto } from "@/lib/site"
+import { MANIFESTO_SCROLL_SVH } from "@/experience/pacing"
 ---
 
-<ChapterSection id="manifesto" label="Cómo pienso" class="manifesto-chapter">
+<ChapterSection
+  id="manifesto"
+  label="Cómo pienso"
+  class="manifesto-chapter"
+  style={`--manifesto-scroll: ${MANIFESTO_SCROLL_SVH}svh`}
+>
   <div class="manifesto-copy">
     <h2
       class="max-w-md text-lg leading-relaxed text-muted-foreground sm:text-xl"
@@ -26,7 +32,7 @@ import { manifesto } from "@/lib/site"
     max-width: 51rem;
   }
   :global(#manifesto.manifesto-chapter) {
-    min-height: 210svh;
+    min-height: var(--manifesto-scroll, 378svh);
     justify-content: flex-start;
   }
   :global(#manifesto.manifesto-chapter > div) {

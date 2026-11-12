@@ -1,10 +1,10 @@
 /** One scroll interval for camera, scenery, captions, palette and thread. */
 export const HANDOFF_START = 0.86
 
-/** La entrada de la cancha tiene más recorrido; las demás escenas conservan
- * su ritmo. Hilo, cámara, paleta y captions comparten el mismo intervalo. */
+/** La entrada de la cancha tiene más recorrido. Las frases terminan de
+ * asentarse antes del relevo; hilo, cámara, paleta y captions comparten fase. */
 export function handoffStart(chapterId?: string | null): number {
-  return chapterId === "manifesto" ? 0.58 : HANDOFF_START
+  return chapterId === "manifesto" ? 0.6 : HANDOFF_START
 }
 
 export function ease(value: number): number {
@@ -28,4 +28,17 @@ export function handoff(progress: number, chapterId?: string | null): number {
 /** Hold a readable beat, with a soft, reversible entrance and exit. */
 export function envelope(p: number, start: number, end = 2, width = 0.045) {
   return ramp(p, start, start + width) * (1 - ramp(p, end - width, end))
+}
+
+/** Oculta la sustitución del copy en el límite de cada beat. El texto saliente
+ * se apaga antes del cambio y el entrante reaparece después, también al volver.
+ */
+export function beatCopyOpacity(p: number, count: number, width = 0.025) {
+  const beat = Math.min(count - 1, Math.max(0, Math.floor(p * count)))
+  const start = beat / count
+  const end = (beat + 1) / count
+  return (
+    (beat === 0 ? 1 : ramp(p, start, start + width)) *
+    (beat === count - 1 ? 1 : 1 - ramp(p, end - width, end))
+  )
 }

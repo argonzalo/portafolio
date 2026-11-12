@@ -2,14 +2,14 @@ import { useEffect, useRef, useState, type RefObject } from "react"
 import { createPortal } from "react-dom"
 import type { SceneProps } from "@/experience/types"
 import type { Presentation } from "@/experience/presentation"
-import { envelope, ramp } from "@/experience/choreography"
+import { beatCopyOpacity, envelope, ramp } from "@/experience/choreography"
 import { emitInteract } from "@/guide/signals"
 import data from "./dataset.json"
 import "./pirp.css"
 
 const headlines = [
   "Escuchar antes de decidir.",
-  "Seis voces. Una conversación.",
+  "Muchas voces. Una conversación.",
   "Cada señal encuentra su lugar.",
   "Detectar el cambio a tiempo.",
   "Una lectura. Un próximo paso.",
@@ -59,20 +59,23 @@ export function PirpOverlay({
       const alpha = active ? (presentation?.current.opacity ?? 1) : 0
       const beat = Math.min(4, Math.floor(p * 5))
       visibility(root.current, alpha)
+      const copyAlpha = beatCopyOpacity(p, headlines.length)
+      if (title.current) title.current.style.opacity = String(copyAlpha)
+      if (subtitle.current) subtitle.current.style.opacity = String(copyAlpha)
       if (beat !== previousBeat) {
         previousBeat = beat
         if (title.current) title.current.textContent = headlines[beat]
         if (subtitle.current) subtitle.current.textContent = subtitles[beat]
       }
-      visibility(feed.current, envelope(p, 0.2, 0.4, 0.025))
-      visibility(graph.current, envelope(p, 0.4, 0.6, 0.025))
+      visibility(feed.current, envelope(p, 0.2, 0.4, 0.04))
+      visibility(graph.current, envelope(p, 0.4, 0.6, 0.04))
       visibility(
         dashboard.current,
         isMobile
           ? ramp(p, 0.695, 0.735) * (1 - ramp(p, 0.76, 0.795))
-          : envelope(p, 0.6, 0.8, 0.025)
+          : envelope(p, 0.6, 0.8, 0.04)
       )
-      visibility(result.current, envelope(p, 0.8, 1.1, 0.025))
+      visibility(result.current, envelope(p, 0.8, 1.1, 0.04))
       const change = isMobile ? ramp(p, 0.695, 0.75) : ramp(p, 0.61, 0.72)
       if (trace.current)
         trace.current.style.strokeDashoffset = String(1 - change)

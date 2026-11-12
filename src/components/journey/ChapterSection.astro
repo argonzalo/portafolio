@@ -5,17 +5,19 @@ type Props = {
   /** Altura mínima para que ScrollTrigger tenga recorrido útil. */
   tall?: boolean
   class?: string
+  style?: string
 }
 
-const { id, label, tall = true, class: className } = Astro.props
+const { id, label, tall = true, class: className, style } = Astro.props
 ---
 
 <section
   id={id}
   data-chapter={id}
   aria-label={label}
+  style={style}
   class:list={[
-    "border-border relative z-0 scroll-mt-28 border-b",
+    "relative z-0 scroll-mt-28 border-b border-border",
     tall && "flex min-h-[120svh] flex-col justify-center",
     !tall && "py-20",
     className,

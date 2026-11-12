@@ -160,8 +160,8 @@ function SceneLayer({
     // The baked, depth-writing room must leave before Banner's surfaces arrive.
     const fromNaturalis = chapterId === "naturalis"
     presentation.current.opacity = current
-      ? 1 - ramp(t, 0, fromNaturalis ? 0.48 : 0.72)
-      : ramp(t, fromNaturalis ? 0.55 : 0.28, 1)
+      ? 1 - ramp(t, 0, fromNaturalis ? 0.48 : 0.9)
+      : ramp(t, fromNaturalis ? 0.55 : 0.1, 1)
     if (group.current) {
       group.current.visible = presentation.current.opacity > 0.001
       group.current.userData.reveal = presentation.current.opacity

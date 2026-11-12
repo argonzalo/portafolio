@@ -192,7 +192,10 @@ export type CameraKey = {
   sway?: number
 }
 
-/** Encuadres por beat: plano general → réplica orbital → cenital → tarjeta. */
+/** Encuadres por beat: general → arco lateral → cenital → tarjeta.
+ * Los planos cercanos permanecen del mismo lado del jugador: atravesar el
+ * punto de mira producía un giro de ~180° durante el acercamiento.
+ */
 export const CAMERA_KEYS: readonly CameraKey[] = [
   {
     at: 0,
@@ -203,7 +206,7 @@ export const CAMERA_KEYS: readonly CameraKey[] = [
     sway: 0.04,
   },
   {
-    at: 0.14,
+    at: 0.11,
     desktop: [-6.5, 4.6, 15.5],
     mobile: [-3.5, 6.5, 19],
     target: [-1.8, 0.9, 3.6],
@@ -211,25 +214,25 @@ export const CAMERA_KEYS: readonly CameraKey[] = [
     sway: 0.03,
   },
   {
-    at: 0.24,
-    desktop: [0.4, 1.75, 1.15],
-    mobile: [-3.4, 1.95, -1.9],
+    at: 0.26,
+    desktop: [-4.4, 2.6, 10.4],
+    mobile: [-4.3, 2.5, 12],
     target: [-2.25, 1.12, 5.05],
     mobileTarget: [-2.4, 0.62, 5.2],
     sway: 0.012,
   },
   {
     at: 0.42,
-    desktop: [-4.25, 1.55, 2.35],
-    mobile: [-4.55, 1.9, -0.8],
+    desktop: [-4.6, 2.4, 8.4],
+    mobile: [-4.4, 2.4, 10.9],
     target: [-2.15, 1.2, 4.95],
     mobileTarget: [-2.35, 0.62, 5.1],
     sway: 0.01,
   },
   {
-    at: 0.56,
-    desktop: [-4.3, 2.9, 0.9],
-    mobile: [-4.55, 3.0, -1.4],
+    at: 0.53,
+    desktop: [-4.6, 4.2, 8.4],
+    mobile: [-4.4, 5.4, 10.2],
     target: [-1.6, 1.05, 3.6],
     mobileTarget: [-2.1, 2.0, 4.6],
     sway: 0.015,
@@ -243,35 +246,12 @@ export const CAMERA_KEYS: readonly CameraKey[] = [
     sway: 0.02,
   },
   {
-    at: 0.74,
-    desktop: [-10, 22.4, 1.2],
-    mobile: [0.02, 29.4, 2.6],
-    target: [0, 0, 0.6],
-    mobileTarget: [0, 0, 0.8],
-    sway: 0.02,
-  },
-  {
-    at: 0.8,
-    desktop: [-0.2, 1.75, 1.3],
-    mobile: [0, 2.3, -1.6],
-    target: [-3.15, 1.15, 4.65],
-    mobileTarget: [-2.4, 0.95, 5.1],
-    sway: 0.025,
-  },
-  {
-    at: 0.92,
-    desktop: [0.15, 1.85, 1.75],
-    mobile: [0.2, 2.35, -1.3],
+    // Un único regreso amplio; después se sostiene el encuadre hasta el relevo.
+    at: 0.84,
+    desktop: [-4.4, 2.6, 9.6],
+    mobile: [-4.3, 3, 12],
     target: [-3.1, 1.15, 4.7],
     mobileTarget: [-2.4, 1.0, 5.1],
-    sway: 0.02,
-  },
-  {
-    at: 1,
-    desktop: [1.8, 3.6, -2.6],
-    mobile: [0.6, 4.2, -3.6],
-    target: [-2.2, 0.9, 4.2],
-    mobileTarget: [-2.2, 0.9, 4.4],
     sway: 0.02,
   },
 ]
