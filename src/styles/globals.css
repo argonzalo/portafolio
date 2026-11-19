@@ -11,9 +11,22 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Respaldo con métricas de Poppins: mientras carga la webfont (font-display:
+   swap) el texto ocupa casi lo mismo, así el swap no desplaza el hero
+   centrado verticalmente (CLS). Liberation Sans = Arial en Linux/CI. */
+@font-face {
+  font-family: "Poppins Fallback";
+  src: local("Arial"), local("ArialMT"), local("Liberation Sans"),
+    local("Helvetica");
+  size-adjust: 113.73%;
+  ascent-override: 92.33%;
+  descent-override: 30.78%;
+  line-gap-override: 8.79%;
+}
+
 @theme inline {
   --font-heading: var(--font-sans);
-  --font-sans: "Poppins", sans-serif;
+  --font-sans: "Poppins", "Poppins Fallback", sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
