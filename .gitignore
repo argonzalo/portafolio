@@ -46,3 +46,6 @@ ui-mvp-public/
 Thumbs.db
 .idea/
 
+# Docs
+docs/cv/
+
